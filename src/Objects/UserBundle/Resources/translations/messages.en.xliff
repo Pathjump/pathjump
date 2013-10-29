@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+            <trans-unit id="1">
+                <source>Login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Login Name</source>
+                <target>Login Name</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Remember me</source>
+                <target>Remember me</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>forgot your password</source>
+                <target>forgot your password</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Bad credentials</source>
+                <target>Login name is not correct</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>The presented password is invalid.</source>
+                <target>The password is not correct</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>User account is locked.</source>
+                <target>User account is locked</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>User account is disabled.</source>
+                <target>User account has been deleted</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>ReEmail</source>
+                <target>ReEmail</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Retype New Password</source>
+                <target>Retype New Password</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>welcome</source>
+                <target>welcome</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>your password is</source>
+                <target>your password is</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>press on the next link to activate your account</source>
+                <target>press on the next link to activate your account</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>your account is now active</source>
+                <target>your account is now active</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>invalid confirmation code</source>
+                <target>invalid confirmation code</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>nothing to do</source>
+                <target>nothing to do</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>the entered email was not found</source>
+                <target>the entered email was not found</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>done please check your email</source>
+                <target>done please check your email</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>this email was sent to allow you to change your password visit the next link to change it</source>
+                <target>this email was sent to allow you to change your password visit the next link to change it</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Forgot Password</source>
+                <target>Forgot Password</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Change Password</source>
+                <target>Change Password</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>password changed</source>
+                <target>password changed</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>new user</source>
+                <target>new user</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Sign up</source>
+                <target>Sign up</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>you can not undo this action are you sure you want to continue</source>
+                <target>you can not undo this action are you sure you want to continue</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>delete your account</source>
+                <target>delete your account</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>You have to enable javascript in order to use this feature</source>
+                <target>You have to enable javascript in order to use this feature</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Twitter Sign up</source>
+                <target>Twitter Sign up</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>you can login to our site with</source>
+                <target>you can login to our site with</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Twitter Login</source>
+                <target>Twitter Login</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Your Facebook account was successfully Linked to your account</source>
+                <target>Your Facebook account was successfully Linked to your account</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>I have new account on this cool site</source>
+                <target>I have new account on this cool site</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>unknown</source>
+                <target>unknown</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>Female</source>
+                <target>Female</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>Male</source>
+                <target>Male</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>this email was sent to you because you changed your email and your account is now not active</source>
+                <target>this email was sent to you because you changed your email and your account is now not active</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>activate your account</source>
+                <target>activate your account</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>Edit My Account</source>
+                <target>Edit My Account</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>Done</source>
+                <target>Done</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>Twitter Link</source>
+                <target>Twitter Link</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>First Name</source>
+                <target>First Name</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>Last Name</source>
+                <target>Last Name</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>Gender</source>
+                <target>Gender</target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>Date Of Birth</source>
+                <target>Date Of Birth</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>Country</source>
+                <target>Country</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>Old Password</source>
+                <target>Old Password</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>New Password</source>
+                <target>New Password</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>unlink facebook</source>
+                <target>unlink facebook</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>unlink twitter</source>
+                <target>unlink twitter</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>link facebook</source>
+                <target>link facebook</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>No result was found for query although at least one row was expected.</source>
+                <target>Login name is not correct</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>You can change your login name only once</source>
+                <target>You can change your login name only once</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>LinkedIn Sign up</source>
+                <target>LinkedIn Sign up</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>LinkedIn Login</source>
+                <target>LinkedIn Login</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>About You</source>
+                <target>About You</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>Url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>warning</source>
+                <target>warning</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>you will be logged out and logged in as the new user</source>
+                <target>you will be logged out and logged in as the new user</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>Your account is now linked to twitter</source>
+                <target>Your account is now linked to twitter</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>Unlinked successfully</source>
+                <target>Unlinked successfully</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>to our site</source>
+                <target>to our site</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>check your email for your activation link</source>
+                <target>check your email for your activation link</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Your account has been deleted</source>
+                <target>Your account has been deleted</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>Only characters, numbers and _ is valid</source>
+                <target>Only characters, numbers and _ is valid</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>valid</source>
+                <target>valid</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>This value is already used</source>
+                <target>This value is already used</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>Did you mean</source>
+                <target>Did you mean</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>RePassword</source>
+                <target>RePassword</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>Are you sure you want to</source>
+                <target>Are you sure you want to</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>Yes</source>
+                <target>Yes</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>No</source>
+                <target>No</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

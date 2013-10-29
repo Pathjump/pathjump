@@ -1,0 +1,13 @@
+<ul class="manage-list pull-right">
+    <li><a class="Notifi  active notifiToTooltip" data-original-title="Your Notifications" data-placement="bottom" data-toggle="tooltip" href="{{path('User_notification')}}"></a>
+                {% if allUserNotificationsCount > 0 %}
+            <span class="noti-num">{{allUserNotificationsCount}}</span>
+                {% endif %}
+        </li>
+        <li><a class="Messag messageTooltip" data-original-title="Messages" data-placement="bottom" data-toggle="tooltip" href="{{ path('user_box', {'box': 'inbox'}) }}"></a>
+                {% if newMessagesCount > 0 %}
+                <span class="noti-num">{{newMessagesCount}}</span>
+                {% endif %}
+            </li>
+            <li><a class="Sitt editTooltip" data-original-title="Edit Profile" data-placement="bottom" data-toggle="tooltip" href="{{path('user_edit')}}"></a></li>
+        </ul>

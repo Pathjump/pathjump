@@ -1,0 +1,52 @@
+{% extends '::base_admin.html.twig' %}
+{% block title %}configurations{% endblock %}
+{%block body%}
+<h1>Internjump Api Configurations</h1>
+
+
+<form  action="{{ url('admin_change_api_constants') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+        <table>
+            
+          <tr><td><h3>Twitter: </h3></td><td></td><td></td></tr>      
+            <tr>
+                <td>Consumer Key:</td>
+                <td>{{ form_widget(form.consumer_key, {'attr': {'value': config.consumer_key} }) }}</td>
+            </tr>
+            <tr>
+                <td>Consumer Secret: </td>
+                <td>{{ form_widget(form.consumer_secret, {'attr': {'value':config.consumer_secret} }) }}</td>
+                <td></td>
+            </tr>
+            
+
+            <tr><td><h3>Facebook: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>FacebookApp Id: </td>
+                <td>{{ form_widget(form.fb_app_id, {'attr': {'value': config.fb_app_id} }) }}</td>
+            </tr>
+            <tr>
+                <td>FacebookApp Secret: </td>
+                <td>{{ form_widget(form.fb_app_secret, {'attr': {'value': config.fb_app_secret} }) }}</td>
+            </tr>
+            
+             <tr><td><h3>Linkedin: </h3></td><td></td><td></td></tr>
+             <tr>
+                <td>LinkedIn key:  </td>
+                <td>{{ form_widget(form.linkedin_api_key, {'attr': {'value': config.linkedin_api_key} }) }}</td>
+            </tr>
+            <tr>
+                <td>LinkedIn Secret:  </td>
+                <td>{{ form_widget(form.linkedin_secret_key, {'attr': {'value': config.linkedin_secret_key} }) }}</td>
+            </tr>
+            <tr>             
+            <td>{{ form_rest(form) }}</td>
+            <td><button type="submit">Submit</button></td>
+            <td></td>
+            </tr>
+            
+        </table>
+        
+        
+    </form>
+{% endblock%}

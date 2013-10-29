@@ -1,0 +1,83 @@
+{% extends '::base.html.twig' %}
+{% block title %}{{company}} interview{% endblock %}
+
+{% block pageTitle %}Interview Details{% endblock %}
+
+{% block body %}
+<div class="container Main-content">
+
+
+
+
+    <div class="company-form">
+        <h2>Interest Details</h2>
+        <div class="Notifications">
+
+            <table width="100%" border="0" class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row">Details</th>
+                        <td><a href="{{path('internship_show',{'id' : interview.internship.id})}}" target="_blank">click here to see internship details</a></td>
+                    </tr>
+                    {% if interview.details %}
+                    <tr>
+                        <th scope="row">Details</th>
+                        <td>{{interview.details}}</td>
+                    </tr>
+                    {% endif %}
+
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>{{interview.interviewDate|date('j F Y h:i A')}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Country</th>
+                        <td>{{interview.getCountryName}}</td>
+                    </tr>
+                    {% if interview.state %}}
+                    <tr>
+                        <th scope="row">State</th>
+                        <td>{{interview.state}}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>{{interview.city}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Address</th>
+                        <td>{{interview.address}}</td>
+                    </tr>
+                    {% if interview.accepted != 'pending' %}
+                    <tr>
+                        <th scope="row">Interview status</th>
+                        <td>{{interview.accepted}}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">Location</th>
+                        <td>
+                            <div class="map" id="map_canvas" style="width: 100%;height: 300px;"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!--Notifications--->
+    </div><!--company-form-->
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script>
+  var latitude = '{{interview.Latitude}}';
+   var longitude = '{{interview.Longitude}}';
+
+$(document).ready(function(){
+    initialize();
+    });
+    </script>
+    <script src="{{asset('bundles/objectsinternjump/js/internShipMap.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+{% endblock %}

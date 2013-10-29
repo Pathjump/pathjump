@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <script>
+
+   var isInIFrame = (window.location != window.parent.location) ? true : window.location= 'http://apps.facebook.com/internjump/';
+   </script>
+    <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="viewport" content="width=device-width"/>
+        <meta name="google-site-verification" content="4h4nUoQOl0ougVoshJ0GYOcDNtwUI-2YOvQCuRLjric" />
+        {% block meat %}
+        <meta name="description" content="{{site_meta_description}}" />
+        <meta name="keywords" content="{{site_meta_keywords}}" />
+        {% endblock %}
+        <title>{% block title %}{{site_meta_title}}{% endblock %}</title>
+        {% block stylesheets %}
+        <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" media="screen"/>
+        <link href="{{ asset('css/main.css')}}" rel="stylesheet" media="screen"/>
+        <link href="{{ asset('css/bootstrap-responsive.css')}}" rel="stylesheet"/>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,400italic,700italic' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'/>
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+        <body>
+            <div class="loading" style="display: none">
+                <img src="{{ asset('img/loadingfacebox.gif') }}" alt="loader"/>
+                <p>{% trans %}Loading........{% endtrans %}</p>
+            </div>
+
+            <div class="Facbook-App">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a href="Javascript:void(0)" class="pull-left"><img src="{{ asset('img/Logo.png') }}" /></a>
+
+                            <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar collapsed pull-right" type="button">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                        </div><!--Container-->
+                    </div><!--navbar-inner-->
+                </div><!--navbar-->
+
+                <div class="Subcatego">
+                    {% if is_granted('ROLE_USER') %}
+                    <div class="container">
+                        <ul class="unstyled">
+                            <li><a href="{{path('fb_student_task',{'loginName' : app.user.loginName})}}">Home</a></li>
+                            <li><a href="{{ path('fb_user_search_page') }}">Search</a></li>
+                            <li><a href="{{ path('fb_education_new') }}">Education</a></li>
+                            <li><a href="{{ path('employmenthistory_new') }}">Employment</a></li>
+                            <li><a href="{{ path('fb_user_languages') }}">Language</a></li>
+                            <li><a href="{{ path('fb_addEditUserSkills') }}">Skills</a></li>
+                            <li><a href="{{ path('personal_questions') }}">Questions</a></li>
+                            {% if not app.user.score %}
+                                <li><a href="{{ path('fb_internjumb_quiz') }}">Personality Quiz</a></li>
+                            {% else %}
+                                <li><a href="{{path('fb_internjumb_quiz_page_result')}}">Personality Quiz</a></li>
+                            {% endif %}
+                            <li><a href="{{ path('fb_howMuchAreYouWorth') }}">Find Your Worth</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="container Main-content">
+                    {% if is_granted('ROLE_USER') %}
+                    <!---------------Invite Friends Part--------------->
+                    <div class="welcomInvite text-center">
+                        <span class="name"><a href="{{ path('fb_student_task',{'loginName' : app.user.loginName}) }}">{{ app.user }}</a></span>
+                        <div id="fb-root"></div>
+                        <script src="http://connect.facebook.net/en_US/all.js"></script>
+                        <button onclick="sendRequestViaMultiFriendSelector(); return false;" class="btn btn-warning btn-large"><span>Invite Friends</span></button>
+                        <script>
+                          FB.init({
+                            appId  : '282137608565990',
+                            oauth  : true,
+                            frictionlessRequests: true
+                          });
+
+                          function sendRequestViaMultiFriendSelector() {
+                            FB.ui({method: 'apprequests',
+                              title: 'Who would you like to invite?',
+                              message: 'Checkout Internjump Application',
+                              layout:  "iframe",
+                            }, requestCallback);
+                          }
+
+                          function requestCallback(response) {
+                            // Handle callback here
+                           console.log(response);
+                            //alert('done');
+                          }
+                        </script>
+                        {% block facemsg %}
+                        <p class="facemsg">{{ facebook_mesasage }}</p>
+                        {% endblock %}
+                        <div class="clear"></div>
+                    </div>
+                     <!-------------End Invite Friends Part--------------->
+                    {% endif %}
+
+                    {% block notifications %}
+                    <div class="page-title">
+                        <div class="container">
+                            <h1 class="pull-left">{% block pageTitle %}Home{% endblock %}</h1>
+                            <div class="notifsWrapper">
+                        {% if is_granted('ROLE_USER') %}
+                            {% render "ObjectsInternJumpBundle:InternjumpUser:fb_getUserNotifications" %}
+                        {% endif %}
+                            </div>
+                        </div><!--container--->
+                    </div>
+                    {% endblock %}
+
+                    {% if app.session.hasFlash('notice') %}
+                        <div class="alert alert-info">
+                        <button type="button" class="close" data-dismiss="alert"> × </button>
+                        {{ app.session.flash('notice') | raw }}
+                        </div>
+                    {% endif %}
+
+                    {% if app.session.hasFlash('success') %}
+                        <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert"> × </button>
+                        {{ app.session.flash('success') | raw }}
+                        </div>
+                    {% endif %}
+
+                    {% if app.session.hasFlash('error') %}
+                        <div class="alert alert-error">
+                        <button type="button" class="close" data-dismiss="alert"> × </button>
+                        {{ app.session.flash('error') | raw }}
+                        </div>
+                    {% endif %}
+
+
+                    {% block body %}{% endblock %}
+                </div><!--container-->
+
+                <div class="Copy-Right">
+                    <p>Copyright ©{{ "now"|date("Y") }}{{ internjumb_copyright }} , All rights reserved. </p>
+                </div><!--Copy-Right--->
+
+            </div>
+
+            {% block javascripts %}
+            <script src="{{asset('js/libs/jquery-1.8.1.js')}}"></script>
+            <script src="{{asset('js/bootstrap.min.js')}}"></script>
+            <script src="{{asset('js/plugins.js')}}"></script>
+            <script src="{{asset('js/main.js')}}"></script>
+            <script>
+                $(document).ready(function(){
+                   {% if is_granted('ROLE_USER') %}
+                    setInterval(function(){
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{path('get_user_notifications')}}',
+                            success: function(msg) {
+                                $('.notifsWrapper').html('');
+                                $('.notifsWrapper').html(msg);
+                            }
+                        });
+                    },{{refresh_notification_time}}*1000);
+                    {% elseif is_granted('ROLE_COMPANY') %}
+                    setInterval(function(){
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{path('get_company_notifications')}}',
+                            success: function(msg) {
+                                $('.notifsWrapper').html('');
+                                $('.notifsWrapper').html(msg);
+                            }
+                        });
+                    },{{refresh_notification_time}}*1000);
+                    {% endif %}
+                });
+                /*
+                 * this function will update the company notificatins widget
+                 */
+                function updateCompanyNotifications(){
+                    $.ajax({
+                            type: 'POST',
+                            url: '{{path('get_company_notifications')}}',
+                            success: function(msg) {
+                                $('.notifsWrapper').html('');
+                                $('.notifsWrapper').html(msg);
+                            }
+                        });
+                }
+
+                /*
+                * this function will update the user notificatins widget
+                */
+                function updateUserNotifications(){
+                    $.ajax({
+                            type: 'POST',
+                            url: '{{path('get_user_notifications')}}',
+                            success: function(msg) {
+                                $('.notifsWrapper').html('');
+                                $('.notifsWrapper').html(msg);
+                            }
+                        });
+                }
+            </script>
+            {% endblock %}
+    </body>
+</html>

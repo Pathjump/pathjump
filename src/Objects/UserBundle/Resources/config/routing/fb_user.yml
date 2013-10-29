@@ -1,0 +1,38 @@
+# routes that requires a login from the login page
+fb_user_delete:
+    pattern: /auth/fully/delete
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:deleteAccount }
+
+# routes that requires logged in user
+fb_user_edit:
+    pattern: /auth/edit
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:edit }
+
+fb_twitter_link:
+    pattern: /auth/twitter/link
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:twitterLink }
+
+fb_linkedin_link:
+    pattern: /auth/linkedin/link
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:linkedinLink }
+
+fb_social_unlink:
+    pattern: /auth/unlink/{social}
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:socialUnlink }
+
+fb_user_reActivation:
+    pattern: /user_reActivation
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:reActivation }
+
+# routes visible for every one
+fb_user_signup_second_step:
+    pattern: /signup/second/step
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:secondSignup }
+
+fb_linkedIn_user_data:
+    pattern:  /linkedIn
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:linkedInUserData }
+
+fb_login_name_check:
+    pattern: /login_name_check/{loginName}
+    defaults: { _controller: ObjectsUserBundle:FacebookUser:loginNameCheck }

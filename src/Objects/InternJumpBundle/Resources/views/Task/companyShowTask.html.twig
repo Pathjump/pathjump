@@ -1,0 +1,139 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('css/jquery.alerts.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{%block body%}
+
+<div class="container Main-content">
+ <div class="company-form Manage-Interns">
+
+<div class="user-box">
+            	<div class="media">
+                  <a href="#" class="pull-left">
+                    <img data-src="holder.js/64x64" class="media-object" alt="64x64" style="width: 85px; height: 85px;" src="{{ user.getTimThumbUrl(85, 85) }}">
+
+                  </a>
+                  <div class="media-body pull-left">
+                    <h4 class="media-heading titl-blue">{{ user }}</h4>
+                    <p><a href="javascript:void(0)"><i><strong>Number of Tasks</strong></i> {{numOfTasks}}</a></p>
+                    <p><a href="javascript:void(0)" class="Session"><i class="icon-calendar"></i><strong>Date of work:</strong> {{hireDate|date('Y-m-d')}}</a></p>
+
+                  </div>
+
+
+                </div>
+
+            </div><!--- user-form --->
+
+            <hr/>
+
+            <div class="Interns-links">
+            	<a href="{{ path('task_new',{'uid' : user.id}) }}"  class="btn btn-success add-task-btn">Add Task</a>
+                <a href="{{path('company_new_message', {'usename': user.loginName})}}" class="btn btn-info">Send message</a>
+
+            </div>
+
+   			<div class="Tasks">
+            	<h2>{{ entity.title }}</h2>
+
+                <div class="Tasks-Content">
+
+                    <div class="perPage select-box pull-right">
+                        <select class="status">
+                            <option value="new">new</option>
+                            <option value="inprogress">inprogress</option>
+                            <option value="done">done</option>
+                        </select>
+                    </div>
+<a href="{{path('company_task')}}"><button class="button btn btn-info" >Back</button></a><br><br>
+<form action="{{ path('task_delete', { 'id': entity.id }) }}" method="post" class="deleteform">{{ form_widget(delete_form) }}<input class="deletebutton btn btn-danger" type="button" value="Delete"/></form>
+<div class="clearfix"></div>
+
+                           <table width="100%" border="0" class="table table-bordered one-task-table noteDiv">
+                              <tr>
+                                <th scope="row"> From</th>
+                                <td>{{entity.company.name}}
+
+                                <span class="label {% if entity.status == 'new' %}label-info{% elseif entity.status == 'inprogress' %}label-warning{% else %}label-success{% endif %} pull-right"> {{entity.status}}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">to</th>
+                                <td>{{entity.user.loginName}}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Start</th>
+                                <td>{{ entity.startedAt|date('Y-m-d H:i:s') }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">End</th>
+                                <td>{{ entity.endedAt|date('Y-m-d H:i:s') }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Task</th>
+                                <td>
+                                <!--<a class="btn btn-small pull-right" href="#"><i class="icon-pencil"></i> Edit</a>-->
+
+                               {{ entity.description }}
+
+</td>
+                              </tr>
+                              {%if notes%}
+                                {%for note in notes%}
+
+                              <tr class="warning">
+
+                                <th  class="warning" scope="row">{% if note.type == 0%}{{entity.user.loginname}}{% elseif note.type == 1 %}{{entity.company.name}}{%endif%}: At {{note.createdAt|date('Y-m-d H:i a')}}</th>
+                                <td>
+
+                                  <div class="{{note.id}}note">{{note.note}}</div>
+                                   {%if (note.type ==0 and is_granted('ROLE_USER') ) or (note.type ==1 and is_granted('ROLE_COMPANY') ) %}
+                                    <a href=" javascript:void(0)" noteid="{{note.id}}" class="editNoteAjax ediTask btn btn-small pull-right"><i class="icon-pencil"></i>Edit</a>{%endif%}
+                                  <div class="edittaskNote" style=" display: none;">
+                                      <textarea style="width: 652px;" class="noteText" value="{{note.note}}" noteId="{{note.id}}">{{note.note}}</textarea>
+                                      <input type="button" value="Done" class="editNoteButton btn btn-small btn-info" >
+                                  </div>
+                                </td>
+
+                              </tr>
+
+                                {% endfor %}
+                              {% endif %}
+
+                            </table>
+
+<div class="addNote">
+<button class="button addNoteAjax btn btn-warning">Add Note</button>
+<div class="taskNote" style="margin-top: 20px;">
+    <textarea type="text" class="noteText1" rows="3" style="width: 100%"></textarea>
+    <input type="button" value="Add" class="addNoteButton btn btn-primary">
+</div>
+</div>
+                </div><!--Tasks-Content--->
+                      </div><!--Tasks-->
+                        </div><!--Manage-Interns-->
+                      </div><!--containter-->
+
+
+{%endblock%}
+
+
+{%block javascripts%}
+{{parent()}}
+<script src="{{ asset('js/jquery.alerts.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset('js/website.js')}}"></script>
+
+<script>
+var taskId= '{{entity.id}}';
+var userId = '{{entity.user.id}}';
+var name = '{{entity.company.name}}'
+var addNoteUrl = '{{url('add_note',{'text' : '','taskId' : ''})}}';
+var editNoteUrl = '{{url('edit_note',{'text' : '' ,'taskId' : '','noteId' : ''})}}';
+var changeStatusUrl= '{{url('change_status',{'taskId' : '','status' : ''})}}';
+var taskStatus= '{{entity.status}}';
+</script>
+<script src="{{asset('bundles/objectsinternjump/js/note.js')}}"></script>
+{%endblock%}

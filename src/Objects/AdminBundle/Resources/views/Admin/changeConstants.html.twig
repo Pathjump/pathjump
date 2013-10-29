@@ -1,0 +1,446 @@
+{% extends '::base_admin.html.twig' %}
+{% block title %}configurations{% endblock %}
+{%block body%}
+<h1>Internjump Configurations</h1>
+
+
+<form  action="{{ url('admin_change_constants') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+        <table>
+            <tr><td><h3>Site Email(s): </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Contact Us Email</td>
+                <td>{{ form_widget(form.contact_us_email) }}</td>
+
+            </tr>
+            <tr>
+                <td>Tell us about yourself Email:</td>
+                <td>{{ form_widget(form.info_email) }}</td>
+
+            </tr>
+
+            <tr><td><h3>Constants Of Site Meta Data</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Site Meta Title: </td>
+                <td>{{ form_widget(form.site_meta_title) }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Site Meta KeyWords: </td>
+                <td>{{ form_widget(form.site_meta_keywords) }}</td>
+
+            </tr>
+            <tr>
+                <td>Site Meta Description: </td>
+                <td>{{ form_widget(form.site_meta_description) }}</td>
+
+            </tr>
+            <tr>
+                <td>Site analytics: </td>
+                <td>{{ form_widget(form.analytics) }}</td>
+
+            </tr>
+
+
+
+
+
+            <tr><td><h3>Pages Constants: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>New job to suitable users message text: </td>
+                <td>{{ form_widget(form.new_job_to_suitable_users_message_text) }}</td>
+
+            </tr>
+            <tr>
+                <td>New job to suitable users subject text: </td>
+                <td>{{ form_widget(form.new_job_to_suitable_users_subject_text) }}</td>
+
+            </tr>
+            <tr>
+                <td>Skills autocomplete number: </td>
+                <td>{{ form_widget(form.skills_autocomplete_number) }}</td>
+
+            </tr>
+            <tr>
+                <td>Refresh notifications time: </td>
+                <td>{{ form_widget(form.refresh_notification_time) }}</td>
+                <td>sec</td>
+            </tr>
+            <tr>
+                <td>Jobs per page jobs list page: </td>
+                <td>{{ form_widget(form.jobs_per_page_index_jobs_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>User job apply success message: </td>
+                <td>{{ form_widget(form.job_apply_success_message_show_job_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>User job added before message: </td>
+                <td>{{ form_widget(form.job_added_before_message_show_job_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Map change location message: </td>
+                <td>{{ form_widget(form.map_change_location_message_new_job_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>No zipcode message: </td>
+                <td>{{ form_widget(form.no_zipcode_message_new_job_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Company add user interset waiting message: </td>
+                <td>{{ form_widget(form.company_user_interset_waiting_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>User reject company interset message: </td>
+                <td>{{ form_widget(form.company_user_interset_reject_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Company add user hire request waiting message: </td>
+                <td>{{ form_widget(form.company_user_hire_pending_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>User accept company hire request message: </td>
+                <td>{{ form_widget(form.company_user_hire_accept_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>User reject company hire request message: </td>
+                <td>{{ form_widget(form.company_user_hire_reject_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Company add user interview request waiting message: </td>
+                <td>{{ form_widget(form.company_user_interview_pending_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Company add user interview request waiting message: </td>
+                <td>{{ form_widget(form.company_user_interview_pending_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>User accept company interview request message: </td>
+                <td>{{ form_widget(form.company_user_interview_accept_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>User reject company interview request message: </td>
+                <td>{{ form_widget(form.company_user_interview_reject_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Create interview request success message: </td>
+                <td>{{ form_widget(form.create_interview_request_success_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Create hire request success message: </td>
+                <td>{{ form_widget(form.create_hire_request_success_message_user_data_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>User does not have active cv message: </td>
+                <td>{{ form_widget(form.user_does_not_have_cv_message) }}</td>
+
+            </tr>
+            <tr>
+                <td>Default latitude company used in company signup page: </td>
+                <td>{{ form_widget(form.default_latitude_company_signup_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Default longitude company used in company signup page: </td>
+                <td>{{ form_widget(form.default_longitude_company_signup_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Company signup success message: </td>
+                <td>{{ form_widget(form.company_signup_welcome_message) }}</td>
+
+            </tr>
+            <tr>
+                <td>Tasks per page user list tasks: </td>
+                <td>{{ form_widget(form.tasks_per_show_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Jobs per search results page: </td>
+                <td>{{ form_widget(form.jobs_per_search_results_page) }}</td>
+
+            </tr>
+            <tr>
+                <td>Facebook page url: </td>
+                <td>{{ form_widget(form.face_page_url) }}</td>
+
+            </tr>
+            <tr>
+                <td>Twitter page url: </td>
+                <td>{{ form_widget(form.twitter_page_url) }}</td>
+
+            </tr>
+            <tr>
+                <td>Google page url: </td>
+                <td>{{ form_widget(form.google_page_url) }}</td>
+
+            </tr>
+            <tr>
+                <td>LinkledIn page url: </td>
+                <td>{{ form_widget(form.linkledIn_page_url) }}</td>
+
+            </tr>
+
+            <tr>
+                <td>Home page youtube video id: </td>
+                <td>{{ form_widget(form.home_page_video_id) }}</td>
+
+            </tr>
+
+            <tr>
+                <td>Add new job success message: </td>
+                <td>{{ form_widget(form.new_job_success_message) }}</td>
+
+            </tr>
+
+            <tr>
+                <td>Add new task success message: </td>
+                <td>{{ form_widget(form.new_task_success_message) }}</td>
+
+            </tr>
+
+            <tr><td><h3>User Points: </h3></td><td></td><td></td></tr>
+
+            <tr>
+                <td>A degree points: </td>
+                <td>{{ form_widget(form.a_grade_points) }}</td>
+            </tr>
+            <tr>
+                <td>B degree points: </td>
+                <td>{{ form_widget(form.b_grade_points) }}</td>
+            </tr>
+            <tr>
+                <td>C degree points: </td>
+                <td>{{ form_widget(form.c_grade_points) }}</td>
+            </tr>
+            <tr>
+                <td>D degree points: </td>
+                <td>{{ form_widget(form.d_grade_points) }}</td>
+            </tr>
+            <tr>
+                <td>E/F degree points: </td>
+                <td>{{ form_widget(form.ef_grade_points) }}</td>
+            </tr>
+
+            <tr>
+                <td>Associate grade points: </td>
+                <td>{{ form_widget(form.associate_degree_points) }}</td>
+            </tr>
+            <tr>
+                <td>Bachelor grade points: </td>
+                <td>{{ form_widget(form.bachelor_degree_points) }}</td>
+            </tr>
+            <tr>
+                <td>Master grade points: </td>
+                <td>{{ form_widget(form.master_degree_points) }}</td>
+            </tr>
+            <tr>
+                <td>Doctoral grade points: </td>
+                <td>{{ form_widget(form.doctoral_degree_points) }}</td>
+            </tr>
+            <tr>
+                <td>One year experience points: </td>
+                <td>{{ form_widget(form.one_year_experience_points) }}</td>
+            </tr>
+            <tr>
+                <td>skill points: </td>
+                <td>{{ form_widget(form.skill_point) }}</td>
+            </tr>
+
+
+            <tr>
+
+            <tr><td><h3>Contact Page: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Contact form subjects: <i>(Separated by Comma ",")</i></td>
+                <td>{{ form_widget(form.contact_detinations) }}</td>
+            </tr>
+            <tr>
+                <td>Name: <i>Contact Info</i></td>
+                <td>{{ form_widget(form.contact_info_name) }}</td>
+            </tr>
+            <tr>
+                <td>Address part1: <i>Contact Info</i></td>
+                <td>{{ form_widget(form.contact_info_address_part1) }}</td>
+            </tr>
+            <tr>
+                <td>Address part2: <i>Contact Info</i></td>
+                <td>{{ form_widget(form.contact_info_address_part2) }}</td>
+            </tr>
+
+
+
+
+
+            <tr><td><h3>Resource Page: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Resources per page<i>[in display page]</i>: </td>
+                <td>{{ form_widget(form.resource_per_page) }}</td>
+            </tr>
+
+            <tr>
+
+            <tr><td><h3>Inside Facebook [Student 'Your privacy' Message]: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Message:<i>[fixed in Header]</i>: </td>
+                <td>{{ form_widget(form.facebook_mesasage) }}</td>
+            </tr>
+
+            <tr>
+
+            <tr><td><h3>Footer copyright llc: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Copyright Text: </td>
+                <td>{{ form_widget(form.internjumb_copyright) }}</td>
+            </tr>
+
+            <tr>
+
+
+            <tr><td><h3>"Not Found" Error Messages: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>User Not Found Error Message: </td>
+                <td>{{ form_widget(form.user_not_found_error_msg) }}</td>
+            </tr>
+
+            <tr>
+                <td>Company Not Found Error Message: </td>
+                <td>{{ form_widget(form.company_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Resume/CV Not Found Error Message: </td>
+                <td>{{ form_widget(form.cv_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Interview Not Found Error Message: </td>
+                <td>{{ form_widget(form.interview_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Request Not Found Error Message: </td>
+                <td>{{ form_widget(form.request_not_found_error_msg) }}</td>
+            </tr>
+
+            <tr>
+                <td>Question Not Found Error Message: </td>
+                <td>{{ form_widget(form.question_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Interest Not Found Error Message: </td>
+                <td>{{ form_widget(form.interest_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Education Not Found Error Message: </td>
+                <td>{{ form_widget(form.education_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Employment History Not Found Error Message: </td>
+                <td>{{ form_widget(form.emp_history_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Skill Not Found Error Message: </td>
+                <td>{{ form_widget(form.skill_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Task Not Found Error Message: </td>
+                <td>{{ form_widget(form.task_not_found_error_msg) }}</td>
+            </tr>
+
+            <tr>
+                <td>User Message Not Found Error Message: </td>
+                <td>{{ form_widget(form.user_message_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Company Message Not Found Error Message: </td>
+                <td>{{ form_widget(form.company_message_not_found_error_msg) }}</td>
+            </tr>
+            <tr>
+                <td>Internship Not Found Error Message: </td>
+                <td>{{ form_widget(form.internship_not_found_error_msg) }}</td>
+            </tr>
+
+
+            <tr><td><h3>User Worth Page Settings: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Default Statrting Salary: </td>
+                <td>${{ form_widget(form.worth_default_statrting_salary) }}</td>
+            </tr>
+            <tr>
+                <td>Experience Boost Value: </td>
+                <td>${{ form_widget(form.worth_experience_boost_value) }}</td>
+            </tr>
+            <tr>
+                <td>Experience Boost Value: </td>
+                <td>${{ form_widget(form.worth_year_boost) }}</td>
+            </tr>
+            <tr>
+                <td>NO Educations Message: </td>
+                <td>{{ form_widget(form.worth_no_education) }}</td>
+            </tr>
+            <tr>
+                <td>Educations End Date Empty Message: </td>
+                <td>{{ form_widget(form.worth_education_end_date_empty) }}</td>
+            </tr>
+            <tr>
+                <td>Educations Major Empty Message: </td>
+                <td>{{ form_widget(form.worth_education_major_empty) }}</td>
+            </tr>
+            <tr>
+                <td>No Major Match Skills Message: </td>
+                <td>{{ form_widget(form.worth_no_major_skills_match) }}</td>
+            </tr>
+            <tr>
+                <td>No Employment History Message: </td>
+                <td>{{ form_widget(form.worth_no_experience) }}</td>
+            </tr>
+            <tr>
+                <td>No Skills Message: </td>
+                <td>{{ form_widget(form.worth_no_skills) }}</td>
+            </tr>
+            <tr>
+                <td>Publish Worth Result On Facebook Message: </td>
+                <td>{{ form_widget(form.worth_facebook_message) }}</td>
+            </tr>
+            <tr>
+                <td>Select Worth People From: </td>
+                <td>{{ form_widget(form.worth_select_from) }}</td>
+            </tr>
+            <tr>
+                <td>Projected Annual Salary Description: </td>
+                <td>{{ form_widget(form.user_worth_description) }}</td>
+            </tr>
+            <tr>
+                <td>Lifetime Projected Earnings: </td>
+                <td>{{ form_widget(form.user_net_worth_description) }}</td>
+            </tr>
+
+
+
+            <tr>
+
+
+                <td>{{ form_rest(form) }}</td>
+                <td><button type="submit" class="btn">Submit</button></td>
+                <td></td>
+
+            </tr>
+        </table>
+
+
+    </form>
+{% endblock%}

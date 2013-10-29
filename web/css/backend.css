@@ -1,0 +1,37 @@
+.chzn-container,
+.select2-container {
+    width: 410px !important;
+}
+.chzn-drop {
+    width: 408px !important;
+}
+.chzn-search input {
+    width: 373px !important;
+}
+#objectsLoader {
+    background: #f2f2f2;
+    border: #FC3 1px solid;
+    border-radius: 15px;
+    color: #000;
+    height: 100px;
+    left: 40%;
+    margin: 10px;
+    moz-border-radius: 15px;
+    moz-box-shadow: 10px 10px 2px #999;
+    padding: 5px;
+    position: fixed;
+    text-align: center;
+    top: 40%;
+    width: 200px;
+    z-index: 1500;
+}
+#objectsLoader img {
+    left: 83px;
+    position: absolute;
+    top: 15px;
+}
+#objectsLoader p {
+    left: 37px;
+    position: absolute;
+    top: 68px;
+}

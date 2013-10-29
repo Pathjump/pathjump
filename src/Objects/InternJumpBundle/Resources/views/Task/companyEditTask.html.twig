@@ -1,0 +1,151 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Edit Task{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+<link href="{{ asset('css/chosen.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('css/jquery-ui-1.8.24.custom.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{asset('css/tabs-accordion.css')}}" type="text/css" rel="stylesheet" />
+<link href="{{asset('css/scrollinList.css')}}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{%block body%}
+<section id="comJobList">
+    <div class="wrapper">
+
+        <aside class="comJobListAccTabs">
+
+            <div class="accTabs">
+                <h1>Company Jobs</h1>
+
+                <!--Accordion Tabs-->
+                <div id="accordion">
+                    {% for jobName in hiredUsersJobsArray %}
+
+                        <h2 {% if loop.first %}class="current"{% endif %}>{{jobName}}</h2>
+                        <div class="pane" {% if loop.first %}style="display:block"{% endif %}>
+                            <ul>
+                            {% for job in companyHiredUsers %}
+                                {% if job.internship.title == jobName %}
+                                    <li><img src="{{job.user.getTimThumbUrl(111,119)}}" width="111" height="119">
+                                        <a href="{{path('company_user_task',{'userName' : job.user.loginName})}}">
+{{job.user}}
+                                            </a>
+                                        </li>
+                                {% endif %}
+                            {% endfor %}
+                                    </ul>
+                                </div>
+
+                    {% endfor %}
+                            </div>
+
+                        </div>
+                    </aside>
+
+                    <section class="comntSection">
+<div id="loading"><img src="{{asset('img/followLoader.gif')}}" width="35" height="35"></div>
+                        <aside class="addEdiTask">
+                            <!--form Name-->
+                            <h1>{%if formName%}{{formName}}{%endif%}:</h1>
+
+
+                            <fieldset>
+                                <legend><!--form Name-->{%if formName%}{{formName1}}{%endif%}:</legend>
+                                <form action="{{ path('company_task_edit', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                                <!--form Desc-->
+                                    <p class="formDesc">{%if formDesc%}{{formDesc}}{%endif%}</p>
+                        {% if form_errors(edit_form) %}
+                                    <span class="alert">
+                    {{ form_errors(edit_form) }}
+                                        </span>
+                {% endif %}
+
+                                        <label>Start Date</label>
+                        {{ form_widget(edit_form.startedAt) }}
+                        {% if form_errors(edit_form.startedAt) %}
+                                        <span class="triangle-border left">{{ form_errors(edit_form.startedAt) }}</span>
+                        {% endif %}
+                                        <br>
+
+                                        <label>END Date</label>
+                        {{ form_widget(edit_form.endedAt) }}
+                        {% if form_errors(edit_form.endedAt) %}
+                                        <span class="triangle-border left">{{ form_errors(edit_form.endedAt) }}</span>
+                        {% endif %}
+                                        <br>
+
+                                        <label>Status</label>
+                        {{ form_widget(edit_form.status) }}
+                        {% if form_errors(edit_form.status) %}
+                                        <span class="triangle-border left">{{ form_errors(edit_form.status) }}</span>
+                        {% endif %}
+                                        <br>
+
+                                        <label>Job</label>
+                        {{ form_widget(edit_form.internship) }}
+                        {% if form_errors(edit_form.internship) %}
+                                        <span class="triangle-border left">{{ form_errors(edit_form.internship) }}</span>
+                        {% endif %}
+                                        <br>
+
+                                        <label>User</label>
+                        {{ form_widget(edit_form.user) }}
+                        {% if form_errors(edit_form.user) %}
+                                        <span class="triangle-border left">{{ form_errors(edit_form.user) }}</span>
+                        {% endif %}
+                                        <br>
+
+                                        <label>Title</label>
+                        {{ form_widget(edit_form.title,{'attr' : {'class' : 'subject'}}) }}
+                        {% if form_errors(edit_form.title) %}
+                                        <span class="triangle-border left">{{ form_errors(edit_form.title) }}</span>
+                        {% endif %}
+                                        <br>
+
+                                        <label>Description</label>
+                        {{ form_widget(edit_form.description,{'attr' : {'class' : 'task'}}) }}
+                        {% if form_errors(edit_form.description) %}
+                                        <span class="triangle-border left">{{ form_errors(edit_form.description) }}</span>
+                        {% endif %}
+
+                                        {{ form_rest(edit_form) }}
+                                        <br/>
+                                        <button class="submit create">Edit</button>
+
+                                    </form>
+                                </fieldset>
+
+
+
+                            </aside>
+                        </section>
+                        <div class="clear"></div>
+                    </div>
+                </section>
+
+{%endblock%}
+
+{% block javascripts %}
+{{parent()}}
+                <script>
+                    $(document).ready(function(){
+                        $("#accordion").tabs(
+                                                        "#accordion div.pane",
+                                                        {tabs: 'h2', effect: 'slide', initialIndex: null}
+                                                                );
+                        $("#form_status,#form_internship,#form_user").chosen();
+                        $('.startedAt').datetimepicker({changeYear: true, dateFormat: 'yy-mm-dd', minDate: new Date()});
+                        $('.endedAt').datetimepicker({changeYear: true, dateFormat: 'yy-mm-dd', minDate: new Date()});
+                    });
+
+                var userId = '{{entity.user.id}}';
+                var jobUsersUrl = '{{url('get_job_users',{'id' : ''})}}';
+                    </script>
+                    <script type="text/javascript" src="{{asset('js/libs/accTabs.js')}}"></script>
+                    <script src="{{ asset('js/libs/chosen.jquery.min.js') }}"></script>
+                    <script type="text/javascript" src="{{asset('bundles/objectsinternjump/js/task.js')}}"></script>
+                    <script src="{{ asset('js/libs/jquery-ui-1.8.24.custom.min.js') }}" type="text/javascript"></script>
+                    <script src="{{ asset('js/libs/jquery-ui-timepicker-addon.js') }}" type="text/javascript"></script>
+{%endblock%}

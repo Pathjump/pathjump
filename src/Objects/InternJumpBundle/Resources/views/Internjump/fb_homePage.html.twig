@@ -1,0 +1,236 @@
+{% extends '::fb_base.html.twig' %}
+
+
+
+{%block body%}
+
+<div class="Your-worth">
+    <div class="container">
+
+        <div class="row-fluid show-grid">
+            <div class="span7">
+                <div class="worth-img">
+                    <img src="{{asset('img/bg1.png')}}" />
+                </div>
+            </div>
+            {% if worthUsers | length > 0 %}
+            <div class="span5 pull-right">
+
+                <div class="Worth-box">
+                    <h4>How much are they Worth? </h4>
+                    <div class="Worth-content">
+                        <ul class="thumb-a">
+                            {% for user in worthUsers %}
+                            <li>
+                                <img src="{{user.getTimThumbUrl(97,94)}}" />
+                                <div class="caption text-right">
+                                    <h5>{{user}} - $ {{user.currentWorth}}</h5>
+                                    {% if user.dateOfBirth %}
+                                    <p>Age: {{user.getAge()}} years old</p>
+                                    {% endif %}
+                                    <p>Source of wealth: Facebook</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div><!--Worth-conten--->
+                {% if not is_granted('ROLE_NOTACTIVE_COMPANY') %}
+                <div class="Find-Statment">
+                    Find out how much you are WORTH?
+                    <a href="{{path('howMuchAreYouWorth')}}">Start now</a>
+                </div><!--Find-Statment--->
+                {% endif %}
+            </div><!--span5-->
+            {% endif %}
+        </div><!--row-fluid--->
+
+    </div><!--container-->
+</div><!--Your-worth-->
+
+<div class="Start-form">
+    <div class="container">
+
+        <div class="row-fluid show-grid">
+            <div class="span5">
+                <div class="Form-Text">
+                    <h2><span>Jump</span> Start<br/> Your Career</h2>
+                    <p>We know you're ambitious and want that great internship that will help launch your career.
+                        Look no further,
+                        InternJump works with companies in the leading industries and makes applying and managing internships an easy process.</p>
+                </div>
+
+
+            </div>
+            <div class="span7">
+
+                <div class="Home-Search-form">
+                    <form>
+                        {% if allCompanies |length > 0 %}
+                        <select  Class="Choosen" id="companyFilter">
+                            <option value="">company</option>
+                            {% for company in allCompanies %}
+                            <option value="{{company.id}}">{{company}}</option>
+                            {% endfor %}
+                        </select>
+                        {% endif %}
+
+                        {#{% if allCities |length > 0 %}
+                        <select  Class="Choosen" id="cityFilter">
+                            <option value="">city</option>
+                            {% for city in allCities %}
+                            <option value="{{city.id}}">{{city}}</option>
+                            {% endfor %}
+                        </select>
+                        {% endif %}#}
+                        <input id="keywordFilter" placeholder="Keyword" type="text"/>
+
+                        {% if allState |length > 0 %}
+                        <select  Class="Choosen" id="stateFilter">
+                            <option value="">state</option>
+                            {% for state in allState %}
+                            <option value="{{state}}">{{state}}</option>
+                            {% endfor %}
+                        </select>
+                        {% endif %}
+
+                        {% if allCategory |length > 0 %}
+                        <select  Class="Choosen" id="industryFilter">
+                            <option value="">INDUSTRY</option>
+                            {% for category in allCategory %}
+                            <option value="{{category.id}}">{{category}}</option>
+                            {% endfor %}
+                        </select>
+                        {% endif %}
+
+                        <div class="Btn-box">
+
+                            <input class="Start-btn" type="button" id="homeSearchJob" value="start  now"/>
+                        </div>
+
+                    </form>
+
+                </div>
+                <img src="{{asset('img/bg2.png')}}" />
+
+            </div>
+        </div><!--row-fluid-->
+
+    </div><!--container--->
+</div><!--Start-form-->
+
+<div class="intrens">
+    <div class="container">
+        <div class="row-fluid show-grid">
+
+            <div class="span7">
+                <h2>intrens, save time & increase your opportunity</h2>
+
+                <div class="Feaetured-Companies">
+                    {% if featuredCompanies | length > 0 %}
+                    <h3>Feaetured <span>Companies</span></h3>
+                    <div class="row-fluid">
+                        <ul class="thumbnails companies-logo">
+                            {% for company in featuredCompanies %}
+                            <li class="span3">
+                                <a class="thumbnail" href="{{path('internship',{'loginName' : company.loginName})}}">
+                                    <img src="{{company.getTimThumbUrl(130,97)}}" />
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div><!--row-fluid--->
+                    {% endif %}
+
+                    {% if latestHiredUsers | length > 0 %}
+                    <h3>Recently<span> Hired interns</span></h3>
+
+                    <div class="R-Hired">
+                        <div class="row-fluid">
+                            <ul class="thumbnails">
+                                {% for userInternship in latestHiredUsers %}
+                                <li class="span3">
+                                    <div class="thumbnail">
+                                        <img src="{{userInternship.user.getTimThumbUrl(97,94)}}" />
+                                        <div class="caption">
+                                            <div class="titl-blue">{{userInternship.user}}</div>
+                                            {{userInternship.user.address}}
+                                        </div><!--caption-->
+                                    </div><!--thumbnail-->
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+
+
+
+
+                </div><!--Feaetured-Companies-->
+            </div><!--span4-->
+
+            <div class="span5">
+                {% if latestInternShips | length > 0 %}
+                <div class="Latest-In">
+                    <h3>lATEST <span>INTERNSHIPS</span></h3>
+                    <div class="media">
+                        {% for internship in latestInternShips %}
+                        <a href="{{path('internship_show',{'id' : internship.id})}}" class="pull-left"><img src="{{internship.company.getTimThumbUrl(130,97)}}" /></a>
+                        <div class="media-body">
+                            <div class="titl-blue"> {{internship.title}}</div>
+                            {{internship.company}}
+                        </div>
+                        <div class="clearfix"></div>
+                        {% endfor %}
+                    </div><!--media-->
+
+                </div><!--Latest-In-->
+                {% endif %}
+
+                <div class="img-ads">
+                    <img src="{{asset('img/img3.png')}}" />
+                </div>
+            </div><!--span4-->
+
+        </div><!--row-fluid-->
+    </div><!--container-->
+</div><!--intrens-->
+
+{%endblock%}
+
+{% block javascripts %}
+{{parent()}}
+<script>
+    var searchJobsUrl = "{{path('user_search_page')}}";
+    $(document).ready(function(){
+       $('#homeSearchJob').click(function(){
+          var company = $('#companyFilter').val();
+          var city = $('#cityFilter').val();
+          var state = $('#stateFilter').val();
+          var category = $('#industryFilter').val();
+          var keyword = $('#keywordFilter').val();
+
+          if(company || city || state || category || keyword)
+              searchJobsUrl += '?';
+
+          if(company)
+              searchJobsUrl += "&company="+company;
+
+          if(city)
+              searchJobsUrl += "&city="+city;
+
+          if(state)
+              searchJobsUrl += "&state="+state;
+
+          if(category)
+              searchJobsUrl += "&industry="+category;
+
+        if(keyword)
+              searchJobsUrl += "&keyword="+keyword;
+
+          window.location = searchJobsUrl;
+       });
+    });
+</script>
+{% endblock %}

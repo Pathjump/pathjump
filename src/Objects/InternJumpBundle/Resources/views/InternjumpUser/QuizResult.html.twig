@@ -1,0 +1,13 @@
+
+<li>
+    <h1>Quiz Result</h1>
+    <hr>
+    <div class="blueCont">
+        {% if resultObject %}
+        <h2>{{resultObject.message}}</h2>
+        <img src="{{resultObject.getTimThumbUrl(75,75)}}"/>           
+        {% else %}
+        <h2>The results is not created</h2>
+        {% endif %}
+    </div>
+</li>

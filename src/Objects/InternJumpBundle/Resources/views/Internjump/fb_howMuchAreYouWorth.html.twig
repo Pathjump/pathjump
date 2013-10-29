@@ -1,0 +1,182 @@
+{% extends '::fb_base.html.twig' %}
+
+{% block title %}
+{{parent()}} - Find your worth
+{%endblock%}
+
+{% block pageTitle %}
+find your worth
+{%endblock%}
+
+{%block body%}
+
+{% if facebook is defined %}
+<div class="container Main-content">
+
+    <div class="step2 pagination-centered text-center">
+        <strong class="text-success">You are one step closer to securing that Killer Internship</strong>. As part of InternJump's privacy policy your Facebook data will never be shared with employers,our
+        Facebook application is simply for our user's convenience. Please fill in your general contact details before you create your InternJump Resume.
+        <div class="Facebook-login span8">
+
+            <strong>Please!</strong> Connect by <strong>Facebook</strong><br>
+            to Know your worth<br><br>
+
+            {% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_link','permissions': 'email,publish_stream','cssClass' : 'face' , 'linkText' : 'Connect with your Facebook account' | trans} %}
+        </div><!--facebook-login--->
+
+
+    </div><!--step2--->
+
+</div>
+{% else %}
+<div class="container Main-content">
+    <!-- loading -->
+    <div class="Facebook-login span8 step3 pagination-centered text-center worthLoading">
+        <p>  Please wait while we calculate your worth</p>
+        <img width="198" height="197" src="{{asset('img/loading.png')}}">
+    </div><!--step2--->
+
+    <!-- result -->
+    <div class="Worth worthResult" style="display: none;">
+        <div class="step4 span8 Your-worth">
+
+            <div class=" text-center span5">
+                <p>Projected Annual Salary <a class="notifiToTooltip" data-original-title="{{user_worth_description}}" data-placement="bottom" data-toggle="tooltip" href="javascript:void(0)">?</a></p>
+                <span class="Worth-value">  ${{userTotalWorth}} USD</span>
+                {% if userNetWorth %}
+                <p>Lifetime Projected Earnings <a class="notifiToTooltip" data-original-title="{{user_net_worth_description}}" data-placement="bottom" data-toggle="tooltip" href="javascript:void(0)">?</a></p>
+                <span class="Worth-value">  ${{userNetWorth}} USD</span>
+                {% endif %}
+                <a class="btn btn-primary large" href="{{path('fb_howMuchAreYouWorth')}}">Recalculate</a>
+
+                <a class="btn btn-primary large" href="javascript:void(0)" id="shareResultOnFacebook">Share on Facebook</a>
+
+                <a class="btn btn-primary large" onclick="javascript:startTwitterShare();return false;" target="_blank" href="http://twitter.com/share?url={{url('howMuchAreYouWorth')}}&text=My expected worth on InternJump is ${{ userNetWorth }}&hashtags=internships" >Share on Twitter</a>
+
+            </div>
+            <img width="197" height="354" class=" span2 pull-right" src="{{asset('img/drowpng.png')}}">
+        </div><!--step4--->
+        <div class="clearfix"></div>
+
+            {% for message in ImproveResultsMessageArray %}
+                <p class=" pagination-centered">
+                    {{message}}
+                </p>
+            {% endfor %}
+
+
+
+        <div class="row">
+            {% if userFriendsWorth | length > 0%}
+            <div class="span4 friends-worth">
+                <h3>How much your friends are worth</h3>
+                {% for userFriendWorth in userFriendsWorth %}
+                <div class="media">
+                    <a class="pull-left" href="javascript:void(0)">
+                        <img src="{{userFriendWorth.image}}" style="width: 50px; height: 50px;" alt="64x64" class="media-object" data-src="holder.js/64x64">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{userFriendWorth.name}}</h4>
+                        $ {{userFriendWorth.worth}}
+                    </div>
+                </div><!--media--->
+                {% endfor %}
+            </div><!--friends-worth-->
+            {% endif %}
+
+            <div class="span5 graph-box text-center pull-right ">
+                <h3>Your projected worth over the next 5 years</h3>
+                <div id="chart" style="min-width: 494px; height: 293px;"></div>
+            </div><!--span5-->
+        </div><!--row-->
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+{% endif %}
+
+{%endblock%}
+
+{%block javascripts%}
+ {{parent()}}
+<script src="{{asset('js/Highcharts-3.0.0/highcharts.js')}}"></script>
+<script>
+    function startTwitterShare(){
+                newwindow = window.open("http://twitter.com/share?url={{url('howMuchAreYouWorth')}}&text=My expected worth on InternJump is ${{ userNetWorth }}&hashtags=internships", '', 'height=500,width=800');
+                if (window.focus) {
+                    newwindow.focus();
+                }
+            }
+
+        $(window).load(function(){
+            $('#shareResultOnFacebook').click(function() {
+                    $('#shareResultOnFacebook').hide();
+                    //show loader
+                    $('.loading').show();
+                    $.ajax({
+                        url: '{{ path('worth_faceBook_publish',{'userId' : loggedInUser.id,'userNetWorth' : userNetWorthSum}) }}',
+                        success : function(msg){
+                        },
+                        complete : function(){
+                            $('.loading').hide();
+                            $('#shareResultOnFacebook').show();
+                        }
+                    });
+                });
+
+            $('a.notifiToTooltip').tooltip();
+
+            $('.worthLoading').fadeOut(500,function(){
+               $('.worthResult').fadeIn(500);
+            });
+        });
+</script>
+{% if userTotalWorth is defined %}
+<script>
+    $(function() {
+        $('#chart').highcharts({
+            chart: {
+                type: 'line',
+                marginRight: 130,
+                marginBottom: 25
+            },
+            credits: {enabled: false},
+            title: {
+                text: '',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: [{% if fiveYearsWorthArray %}{% for year,worth in fiveYearsWorthArray %}'{{year}}',{% endfor %}{% endif %}]
+            },
+            yAxis: {
+                title: {
+                    text: 'Worth'
+                },
+                plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<strong>' + this.x + '</strong><br/>$' + this.y;
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -10,
+                y: 100,
+                borderWidth: 0
+            },
+            series: [{
+                    name: 'worth',
+                    data: [{% if fiveYearsWorthArray %}{% for year,worth in fiveYearsWorthArray %}{{worth}},{% endfor %}{% endif %}]
+                }]
+        });
+    });
+    </script>
+{% endif %}
+{%endblock%}

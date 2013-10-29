@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Schools
+{% endblock %}
+
+{% block pageTitle %}{{ parent() }} - Schools{% endblock %}
+
+{% block body %}
+        <div class="container Main-content">
+            <div class="row-fluid show-grid">
+                <div class="S-page">
+                    {{ schoolsDataUpper | raw }}
+                    {{ schoolsDataLower | raw }}
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{#<div class="reply">
+    {% if note.type == 0%}<span class="name">{{entity.user.loginname}}</span>{% elseif note.type == 1 %}<span class="name">{{entity.company.name}}</span>{%endif%}:
+    <span class="date">{{note.createdAt|date('Y-m-d H:i a')}}</span>
+    <div class="clear"></div>
+    <div class="{{note.id}}note"><article>{{note.note}}</article></div>
+    {%if (note.type ==0 and is_granted('ROLE_USER') ) or (note.type ==1 and is_granted('ROLE_COMPANY') ) %}
+    <a href=" javascript:void(0)" noteid="{{note.id}}" class="editNoteAjax ediTask">Edit Note</a>{%endif%}
+    <div class="edittaskNote" style=" display: none;">
+        <textarea style="width: 652px;" class="noteText" value="{{note.note}}" noteId="{{note.id}}">{{note.note}}</textarea>
+            <input type="button" value="Edit" class="editNoteButton" >
+    </div>
+</div>#}
+<tr class="warning">
+
+                                <th  class="warning" scope="row">{% if note.type == 0%}{{entity.user.loginname}}{% elseif note.type == 1 %}{{entity.company.name}}{%endif%}: At {{note.createdAt|date('Y-m-d H:i a')}}</th>
+                                <td>
+
+                                  <div class="{{note.id}}note">{{note.note}}</div>
+                                   {%if (note.type ==0 and is_granted('ROLE_USER') ) or (note.type ==1 and is_granted('ROLE_COMPANY') ) %}
+                                    <a href=" javascript:void(0)" noteid="{{note.id}}" class="editNoteAjax ediTask btn btn-small pull-right"><i class="icon-pencil"></i>Edit</a>{%endif%}
+                                  <div class="edittaskNote" style=" display: none;">
+                                      <textarea style="width: 652px;" class="noteText" value="{{note.note}}" noteId="{{note.id}}">{{note.note}}</textarea>
+                                      <input type="button" value="Done" class="editNoteButton btn btn-small btn-info" >
+                                  </div>
+                                </td>
+
+                              </tr>

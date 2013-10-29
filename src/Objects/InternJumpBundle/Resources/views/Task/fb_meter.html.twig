@@ -1,0 +1,84 @@
+
+<div class=" alert alert-success">
+    {#<div class="text-success"><strong class="orange">{{percent}}%</strong>  of your Resume is completed Successfully.</div>#}
+
+{% if percent > 0 and percent < 40%}
+ <div class="text-success"><strong class="orange">"Weak Profile"</strong> Come On Show Employers How Great You Are!</div>
+{% elseif percent > 40 and percent < 70 %}
+ <div class="text-success"><strong class="orange">"Medium Profile"</strong> Is Average Good Enough For You?</div>
+{% elseif percent > 70 and percent < 99 %}
+ <div class="text-success"><strong class="orange">"Strong Profile"</strong> You Are On Your Way To Some Great Opportunities, Just A Few More Clicks!"</div>
+{% elseif percent == 100%}
+ <div class="text-success"><strong class="orange">"You Have A Rockstar Profile!"</strong></div>
+{% endif %}
+</div><!--alert-->
+
+<div class="progress progress-info progress-striped">
+    <div class="bar" style="width: {{percent}}%;"></div>
+</div>
+<div><a class="btn btn-small btn-danger" href="javascript:void(0);" onclick="$('.muted').toggle(500);"><i class="icon-hand-right"></i> Click Here To See What Your Profile Is Missing</a></div>
+<div class="muted info" style="display: none;">
+    <span class="label label-important">Important</span>
+    You should complete your resume so you could to increase your oppertiunities<br>
+                {%if cvsFlag%}
+                   <span class="label label-important">!</span> <a href="{{path('fb_cv_new')}}"><b><u>Create a new</u></b></a> Resume Or if you already have Resume, Activate it <span>20%</span><br>
+                {%endif%}
+
+                {%if fNameFlag or lNameFlag or dobFlag or urlFlag or aboutFlag %}
+                   <span class="label label-important">!</span> Complete your <a href="{{path('fb_user_edit')}}"><u><b>Profile</b></u></a> {#Data,({%if fNameFlag%}firstName{%endif%}{%if lNameFlag%}, lastName{%endif%}{%if aboutFlag%}, about{%endif%}{%if dobFlag%}, date of birth{%endif%}{%if urlFlag%}, url{%endif%})#} <span>20%</span><br>
+                {%endif%}
+
+                {%if eduFlag%}
+                    <span class="label label-important">!</span> <a href="{{path('fb_education_new')}}"><b><u>Add Educations</u></b></a> to your Resume <span>10%</span><br>
+                {%endif%}
+
+                {%if expFlag%}
+                   <span class="label label-important">!</span> <a href="{{path('fb_employmenthistory_new')}}"><b><u>Add Employment</u></b></a> History to your Resume <span>10%</span><br>
+                {%endif%}
+
+                {%if skilFlag%}
+                   <span class="label label-important">!</span> <a href={{path('fb_addEditUserSkills')}}><u><b>Add Skills to your Resume </b></u></a><span>10%</span><br>
+                {%endif%}
+
+                {%if quizFlag%}
+                   <span class="label label-important">!</span> Complete your  <a href="{{path('fb_internjumb_quiz')}}"><u><b>"InternJump Personality"</b></u></a> Quiz <span>10%</span><br>
+                {%endif%}
+
+                {%if personalQuestionFlag%}
+                  <span class="label label-important">!</span> Complete your  <a href="{{path('fb_personal_questions')}}"><u><b>"Personal Question"</b></u></a> Quiz <span>10%</span><br>
+                {%endif%}
+
+                {%if cvDescFlag%}
+                    <span class="label label-important">!</span> Describe yourself at  {%for cv in cvNamesArray%}<a href="{{path('fb_cv_edit',{'id' : cv.id})}}"><b><u>{{cv.name}}</u> </b></a>{%endfor%} Resume(s) <span>10%</span><br>
+                {%endif%}
+
+                {%if allSocial==""%}
+                    {%if linked or facebook or twitter%}
+                      <span class="label label-important">!</span>  <a href="{{path('fb_user_edit')}}"><u><b>Link your Profile</b></u></a> to your
+                    {%if linked%}
+                            LinkedIn <span> 3%</span>
+                    {%endif%}
+                    {%if facebook%}
+                            Facebook <span> 3%</span>
+                    {%endif%}
+                    {%if twitter%}
+                            Twitter <span> 3%</span>
+                    {%endif%}
+
+                    {%endif%}
+                            <br>
+                {%else%}
+                   <span class="label label-important">!</span> <a href="{{path('fb_user_edit')}}"><u><b>Link your Profile</b></u></a> to your social accounts <span> 9%</span><br>
+                {%endif%}
+
+
+</div>
+
+{#
+                    {{cvsFlag}}<br />
+                    {{eduFlag}}<br />
+                    {{expFlag}}<br />
+                    {{skilFlag}}<br />
+                    {{quizFlag}}<br />
+#}
+

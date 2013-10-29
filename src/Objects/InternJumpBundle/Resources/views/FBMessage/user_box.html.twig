@@ -1,0 +1,67 @@
+{% extends '::fb_base.html.twig' %}
+
+{% block title %}user {{ box }}{% endblock %}
+
+{% block pageTitle %}user {{ box }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('css/jquery.alerts.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+
+<div class="container Main-content">
+
+    <div class="Box-a Inbox one-message">
+
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs">
+                <li{% if box == 'inbox' %} class="active"{% endif %}><a onclick="getTabContents(1);" href="#tab1" id="tab1Click" data-toggle="tab">Inbox</a></li>
+                <li{% if box == 'outbox' %} class="active"{% endif %}><a onclick="getTabContents(2);" href="#tab2" data-toggle="tab">Outbox</a></li>
+                <li{% if type == 'compose' %} class="active"{% endif %}><a onclick="getTabContents(3);" href="#tab3" data-toggle="tab">Compose</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane{% if box == 'inbox' %} active{% endif %}" id="tab1">
+                    {% if type == 'box' and box == 'inbox' %}
+                        {% render 'ObjectsInternJumpBundle:UserMessage:getMessages' with {'box': box, 'page': page, 'itemsPerPage': itemsPerPage} %}
+                    {% elseif type == 'show' and box == 'inbox' %}
+                        {% render 'ObjectsInternJumpBundle:UserMessage:getMessage' with {'id': messageId} %}
+                    {% endif %}
+                </div>
+
+                <div class="tab-pane{% if box == 'outbox' %} active{% endif %}" id="tab2">
+                    {% if type == 'box' and box == 'outbox' %}
+                        {% render 'ObjectsInternJumpBundle:UserMessage:getMessages' with {'box': box, 'page': page, 'itemsPerPage': itemsPerPage} %}
+                    {% elseif type == 'show' and box == 'outbox' %}
+                        {% render 'ObjectsInternJumpBundle:UserMessage:getMessage' with {'id': messageId} %}
+                    {% endif %}
+                </div>
+
+                <div class="tab-pane{% if type == 'compose' %} active{% endif %}" id="tab3">
+                    {% if type == 'compose' %}
+                        {% render 'ObjectsInternJumpBundle:UserMessage:newMessageForm' with {'userName': userName} %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div><!-- Box-a-->
+
+</div><!--container-->
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/libs/jquery.livequery.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery.alerts.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/cookies.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+    var companyInboxurl = '{{ path('fb_user_messages', {'box': 'inbox'}) }}';
+    var inboxUrl = '{{ path('fb_user_box', {'box': 'inbox'}) }}';
+    var companyOutboxurl = '{{ path('fb_user_messages', {'box': 'outbox'}) }}';
+    var outboxUrl = '{{ path('fb_user_box', {'box': 'outbox'}) }}';
+    var companyMessageurl = '{{ path('fb_user_new_message_form') }}';
+</script>
+<script src="{{ asset('bundles/objectsinternjump/js/companyMessages.js') }}" type="text/javascript"></script>
+{% endblock %}

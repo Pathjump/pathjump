@@ -1,0 +1,103 @@
+{% extends '::base.html.twig' %}
+{% block title %}Edit Manager{% endblock %}
+
+
+{% block body %}
+
+<div class="container-fluid signupForm">
+    <div class="container Main-content">
+        <div class="Student">
+            <h2>Edit Manager</h2>
+            <div class="row-fluid show-grid">
+                <div class="Sign-Up">
+                    {% if form_errors(form) %}
+                    <div class="alert alert-error">
+                        <button data-dismiss="alert" class="close" type="button"> &times; </button>
+                        {{ form_errors(form)|striptags }}
+                    </div>
+                    {% endif %}
+                    <form id="stuEdu" action="{{ path('manager_edit',{'id': entity.id}) }}" method="post" {{ form_enctype(form) }}>
+                        <fieldset>
+                            <legend></legend>
+                            <div class="controls">
+                                <label>Name</label>
+                                        {{ form_widget(form.name, {'attr': {'class': 'span12'} }) }}
+
+                                        {% if form_errors(form.name) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                            {{ form_errors(form.name) }}
+                                </div>
+                                        {% endif %}
+                            </div>
+
+                            <div class="controls row-fluid show-grid">
+                                <div class="span6">
+                                    <label>Login Name</label>
+                                        {{ form_widget(form.loginName, {'attr': {'class': 'span12'} }) }}
+
+                                    <span style="display: inline-block;margin-bottom: 13px;">
+                                        <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                    </span>
+
+                                        {% if form_errors(form.loginName) %}
+                                    <div class="alert alert-error">
+                                        <button type="button" class="close" data-dismiss="alert"> × </button>
+                                            {{ form_errors(form.loginName) }}
+                                    </div>
+                                        {% endif %}
+                                </div>
+                                <div class="span6">
+                                    <label>Email</label>
+                                        {{ form_widget(form.email, {'attr': {'class': 'span12'} }) }}
+
+                                    <span style="display: inline-block;margin-bottom: 13px;">
+                                        <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                    </span>
+
+                                        {% if form_errors(form.email) %}
+                                    <div class="alert alert-error">
+                                        <button type="button" class="close" data-dismiss="alert"> × </button>
+                                            {{ form_errors(form.email) }}
+                                    </div>
+                                        {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="controls row-fluid show-grid">
+                                <div class="span6">
+                                    <label>Password</label>
+                                    {{ form_widget(form.userPassword.Password, {'attr': {'class': 'span12'} }) }}
+
+                                    <span style="display: inline-block;margin-bottom: 13px;">
+                                        <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                    </span>
+                                </div>
+                                <div class="span6">
+                                    <label>Confirm Password</label>
+                                    {{ form_widget(form.userPassword.RePassword, {'attr': {'class': 'span12'} }) }}
+
+                                    <span style="display: inline-block;margin-bottom: 13px;">
+                                        <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                    </span>
+                                </div>
+
+                                {% if form_errors(form.userPassword) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.userPassword) }}
+                                </div>
+                                {% endif %}
+                            </div>
+                                    {{ form_rest(form) }}
+                            <button type="submit" class="btn btn-danger btn-large pull-right">Submit</button>
+                        </fieldset>
+                    </form>
+                </div><!--Sign-Up-->
+
+            </div><!--Sign-Up-->
+
+        </div><!---Student --->
+    </div><!--container-->
+</div>
+{% endblock %}

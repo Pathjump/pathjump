@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="viewport" content="width=device-width"/>
+        <meta name="google-site-verification" content="4h4nUoQOl0ougVoshJ0GYOcDNtwUI-2YOvQCuRLjric" />
+        {% block meat %}
+        <meta name="description" content="{{site_meta_description}}" />
+        <meta name="keywords" content="{{site_meta_keywords}}" />
+        {% endblock %}
+        <title>{% block title %}{{site_meta_title}}{% endblock %} - InternJump Internships & Entry Level Jobs</title>
+
+        {% block stylesheets %}
+        <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" media="screen"/>
+        <link href="{{ asset('css/main.css')}}" rel="stylesheet" media="screen"/>
+        <link href="{{ asset('css/bootstrap-responsive.css')}}" rel="stylesheet"/>
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,400italic,700italic' rel='stylesheet' type='text/css'/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'/>
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+        </head>
+        <body>
+            <div class="loading" style="display: none">
+                <img src="{{ asset('img/loadingfacebox.gif') }}" alt="loader"/>
+                <p>{% trans %}Loading........{% endtrans %}</p>
+            </div>
+
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a href="{{ path('site_homepage') }}" class="pull-left"><img src="{{ asset('img/Logo.png') }}" /></a>
+                        <div class="Top-Links pull-right span6">
+                            {% if not is_granted('ROLE_NOTACTIVE_COMPANY') and not is_granted('ROLE_NOTACTIVE') and not is_granted('ROLE_COMPANY_MANAGER')%}
+                                <p class="well well-small"><strong class="notLoggedInUserMessage">Are you an employer? Connect with top interns from all around the nation. <a href="{{path('employers_data')}}" class="startHiring btn btn-mini btn-info" style="color:#fff;">Start Hiring !</a></strong></p>
+                            {% endif %}
+
+                            {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
+                                <ul class="log-links pull-right  unstyled">
+                                     <!--<li><a href="{{ path('internship',{'loginName' : app.user.loginName}) }}">Hi, {{app.user.loginName}}</a></li>-->
+                                     <li><i class="icon-off"></i><a href="{{ path('logout') }}">Sign out</a></li>
+                                </ul>
+                            {% elseif is_granted('ROLE_NOTACTIVE') %}
+                                <ul class="log-links pull-right  unstyled">
+                                     <!--<li><a href="{{ path('student_task',{'loginName' : app.user.loginName}) }}">Hi, {{app.user.loginName}}</a></li>-->
+                                     <li><i class="icon-off"></i><a href="{{ path('logout') }}">Sign out</a></li>
+                                </ul>
+                            {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
+                                <ul class="log-links pull-right  unstyled">
+                                     <!--<li><a href="{{ path('student_task',{'loginName' : app.user.loginName}) }}">Hi, {{app.user.loginName}}</a></li>-->
+                                     <li><i class="icon-off"></i><a href="{{ path('logout') }}">Sign out</a></li>
+                                </ul>
+                            {% else %}
+                                            <ul class="log-links pull-right  unstyled">
+                                                <li><i class="icon-chevron-right"></i><a href="{{ path('login') }}">Login</a></li>
+                                                <li><i class="icon-user"></i><a href="{{path('user_signup')}}" class="muted">Sign up</a></li>
+                                            </ul><!--socila-icons--->
+                            {% endif %}
+                                        </div><!--Top-links-->
+
+                                        <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar collapsed pull-right" type="button">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <div class="nav-collapse collapse pull-right">
+                                            <ul class="nav">
+                                                {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
+                                                {% elseif is_granted('ROLE_NOTACTIVE') %}
+                                                {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
+                                                {% else %}
+                                                    <li id="employerLink"><a href="{{path('students_data')}}" class="nav-students">Students</a></li>
+                                                    <li id="studentLink"><a href="{{path('employers_data')}}" class="nav-companies">Employers</a></li>
+                                                    <li id="schoolsLink"><a href="{{path('schools')}}">Schools</a></li>
+                                                    <li id="resourceLink"><a href="{{path('resources')}}">Resources</a></li>
+                                                {% endif %}
+                                            </ul>
+                                        </div><!--/.nav-collapse -->
+
+                                    </div><!--Container-->
+                                </div><!--navbar-inner-->
+                            </div><!--navbar-->
+                            <div class="Subcatego">
+                                {% if is_granted('ROLE_COMPANY') %}
+                                    <div class="container">
+                                        <ul class="unstyled">
+                                            <li><a href="{{ path('internship',{'loginName' : app.user.loginName}) }}">Home</a></li>
+                                            <li><a href="{{ path('internship_new') }}">Add new Position</a></li>
+                                            <li><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
+                                            <li><a href="{{ path('company_search_for_cv') }}">Search Candidates</a></li>
+                                            <li><a href="{{ path('company_managers',{'loginName' : app.user.loginName}) }}">Managers</a></li>
+                                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
+                                        </ul>
+                                    </div>
+                                {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
+                                    <div class="container">
+                                        <ul class="unstyled">
+                                            <li><a href="{{ path('manager_home') }}">Home</a></li>
+                                            <li><a href="{{ path('internship_new') }}">Add new Position</a></li>
+                                            <li><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
+                                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
+                                        </ul>
+                                    </div>
+                                {% elseif is_granted('ROLE_USER') %}
+                                    <div class="container">
+                                        <ul class="unstyled">
+                                            <li><a href="{{path('student_task',{'loginName' : app.user.loginName})}}">Home</a></li>
+                                            <li><a href="{{ path('user_search_page') }}">Search</a></li>
+                                            <li><a href="{{ path('education_new') }}">Education</a></li>
+                                            <li><a href="{{ path('employmenthistory_new') }}">Employment</a></li>
+                                            <li><a href="{{ path('user_languages') }}">Language</a></li>
+                                            <li><a href="{{ path('addEditUserSkills') }}">Skills</a></li>
+                                            <li><a href="{{ path('personal_questions') }}">Questions</a></li>
+                                            {% if not app.user.score %}
+                                                <li><a href="{{path('internjumb_quiz')}}">Personality Quiz</a></li>
+                                            {% else %}
+                                                <li><a href="{{path('internjumb_quiz_page_result')}}">Personality Quiz</a></li>
+                                            {% endif %}
+                                            <li><a href="{{ path('howMuchAreYouWorth') }}">Find Your Worth</a></li>
+                                            <li id="resourceLink"><a href="{{path('resources')}}">Resources</a></li>
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            {% block notifications %}
+                            <div class="page-title">
+                                <div class="container">
+                                    <h1 class="pull-left">{#{% block pageTitle %}Home{% endblock %}#}</h1>
+                                    <div class="notifsWrapper">
+                                {% if is_granted('ROLE_USER') %}
+                                    {% render "ObjectsInternJumpBundle:InternjumpUser:getUserNotifications" %}
+                                {% elseif is_granted('ROLE_COMPANY') %}
+                                    {% render "ObjectsInternJumpBundle:Company:getCompanyNotifications" %}
+                                {% endif %}
+                                    </div>
+                                </div><!--container--->
+                            </div>
+                            {% endblock %}
+
+                            {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
+                                {% if not is_granted('ROLE_COMPANY') %}
+                                    <div class="alert alert-info">
+                                        <h3 class="">Please activate your account</h3>
+                                        <a href="{{path('company_reActivation')}}">Resend activation email</a>
+                                    </div>
+                                {% endif %}
+                            {% elseif is_granted('ROLE_NOTACTIVE') %}
+                                {% if not is_granted('ROLE_USER') %}
+                                    <div class="alert alert-info">
+                                        <h3 class="">Please activate your account</h3>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+                            {% if app.session.hasFlash('loginSuccess') %}
+                                <div class="alert alert-info timeMessage">
+                                    <h3 class="">Welcome, {{app.user.loginName}}</h3>
+                                </div>
+                            {% endif %}
+
+                            {% if app.session.hasFlash('notice') %}
+                                <div class="alert alert-info">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ app.session.flash('notice') | raw }}
+                                </div>
+                            {% endif %}
+
+                            {% if app.session.hasFlash('success') %}
+                                <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ app.session.flash('success') | raw }}
+                                </div>
+                            {% endif %}
+
+                            {% if app.session.hasFlash('error') %}
+                                <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ app.session.flash('error') | raw }}
+                                </div>
+                            {% endif %}
+
+                            {% block body %}{% endblock %}
+
+                            <div class="footer">
+                                <div class="container">
+
+
+
+                                    <div class=" nav-footer  pull-right">
+                                        <ul class="">
+                                            <li><a href="{{ path('site_homepage') }}"> Home   </a></li> |
+                                            <li><a href="{{path('resources')}}">Resources</a></li>|
+                                            <li><a href="{{path('aboutUs')}}">About Us</a></li> |
+                                            <li><a href="{{path('termsOfUse')}}">Terms Of Service</a></li> |
+                                            <li><a href="{{path('privacy')}}">Privacy Policy</a></li> |
+                                            <li><a href="https://internjump.com/internship/internjump">Careers</a></li> |
+                                            <li><a href="{{path('contactUs')}}">Contact Us</a></li> |
+                                            <li><a href="{{path('employers')}}">Industries</a></li> |
+                                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="" class="pull-left"><img src="{{asset('img/logo-2.png')}}" /></a>
+                                    <ul class="Social-icons-f unstyled  pull-right ">
+                                        <li>Follow us</li>
+                                        {% if face_page_url %}
+                                    <li><a target="_blank" href="{{face_page_url}}" class="ico-facebook"></a></li>
+                                {% endif %}
+                                {% if twitter_page_url %}
+                                        <li><a target="_blank" href="{{twitter_page_url}}" class="ico-twitter"></a></li>
+                                {% endif %}
+                                {% if linkledIn_page_url %}
+                                            <li><a target="_blank" href="{{linkledIn_page_url}}" class="ico-google"></a></li>
+                                {% endif %}
+                                    </ul>
+
+                                </div>
+                            </div><!--footer-->
+                            <div class="Copy-Right">
+                                <p>© {{ "now"|date("Y") }} {{internjumb_copyright}}</p>
+                            </div><!--Copy-Right--->
+
+                            {% block javascripts %}
+                            <script src="{{asset('js/libs/jquery-1.8.1.js')}}"></script>
+                            <script src="{{asset('js/bootstrap.min.js')}}"></script>
+                            <script src="{{asset('js/plugins.js')}}"></script>
+                            <script src="{{asset('js/main.js')}}"></script>
+                            <script>
+                                var _gaq=[['_setAccount','{{analytics}}'],['_trackPageview']];
+                                (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+                                    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+                                    s.parentNode.insertBefore(g,s)}(document,'script'));
+
+                                $(document).ready(function(){
+                                  $('a.notifiToTooltip,a.editTooltip,a.messageTooltip').tooltip();
+
+                                   setTimeout(function(){
+                                       $('div.timeMessage').slideUp(1000);
+                                    },6000);
+
+
+                                   {% if is_granted('ROLE_USER') %}
+                                    setInterval(function(){
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '{{path('get_user_notifications')}}',
+                                            success: function(msg) {
+                                                $('.notifsWrapper').html('');
+                                                $('.notifsWrapper').html(msg);
+                                            }
+                                        });
+                                    },{{refresh_notification_time}}*1000);
+                                    {% elseif is_granted('ROLE_COMPANY') %}
+                                    setInterval(function(){
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '{{path('get_company_notifications')}}',
+                                            success: function(msg) {
+                                                $('.notifsWrapper').html('');
+                                                $('.notifsWrapper').html(msg);
+                                            }
+                                        });
+                                    },{{refresh_notification_time}}*1000);
+                                    {% endif %}
+                                });
+                                /*
+                                 * this function will update the company notificatins widget
+                                 */
+                                function updateCompanyNotifications(){
+                                    $.ajax({
+                                            type: 'POST',
+                                            url: '{{path('get_company_notifications')}}',
+                                            success: function(msg) {
+                                                $('.notifsWrapper').html('');
+                                                $('.notifsWrapper').html(msg);
+                                            }
+                                        });
+                                }
+
+                                /*
+                                * this function will update the user notificatins widget
+                                */
+                                function updateUserNotifications(){
+                                    $.ajax({
+                                            type: 'POST',
+                                            url: '{{path('get_user_notifications')}}',
+                                            success: function(msg) {
+                                                $('.notifsWrapper').html('');
+                                                $('.notifsWrapper').html(msg);
+                                            }
+                                        });
+                                }
+                            </script>
+                            {% endblock %}
+                        </body>
+                    </html>

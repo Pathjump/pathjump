@@ -1,0 +1,24 @@
+{#
+{% trans %}welcome{% endtrans %} {{ user }}
+{% trans %}you can login to our site with{% endtrans %}: "{{ user.getUsername }}"
+{% trans %}your password is{% endtrans %}: "{{ password }}"
+{% if active == false %}
+{% trans %}press on the next link to activate your account{% endtrans %} {{ url('user_active', {'confirmationCode': user.confirmationCode, 'email': user.email}) }}
+{% endif %}
+#}
+Welcome {{ user }} to InternJump,
+
+You have taken your first step toward finding that killer internship and Jumpstarting your future. Please make sure to complete your InternJump resume and your InternJump personality test.
+
+On InternJump you can search for relevant openings and even better employers can search for you! If you do not see a relevant opening, do not panic! You will be alerted when there is a new opening that matches your skills and experience. 
+InternJump is building out new features to make the internship process easier for you the student. We look forward to helping you start your career with a great internship.
+
+Please click on the link to activate your InternJump account:
+{{ url('user_active', {'confirmationCode': user.confirmationCode, 'email': user.email}) }}
+
+Your login name: "{{ user.getUsername }}"
+Your password: "{{ password }}"
+
+Best,
+The InternJump Team
+http://internjump.com

@@ -1,0 +1,105 @@
+{% extends '::fb_base.html.twig' %}
+
+{% block title %}Search For Company{% endblock %}
+
+{% block pageTitle %}Search For Company{% endblock %}
+
+{% block body %}
+
+        <div class="container Main-content">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('site_fb_homepage') }}">Home</a> <span class="divider">/</span></li>
+                <li class="active">Search For Company</li>
+            </ul>
+
+            <div class="Search-interns">
+
+                <div class="row-fluid show-grid">
+
+                    <div class="span12 interns-res">
+
+                        <div class="tabbable"> <!-- Only required for left/right tabs -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="Result-box">
+                                        <div class="title3">{{ count }} Results
+                                            <div class="Select-a btn-group pull-right">
+                                                <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
+                                                    Order By
+                                                    <span class="caret"></span>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <!-- dropdown menu links -->
+                                                    <li><a href="{% if paginationParameters.orderBy == 'name' and paginationParameters.orderDirection == 'asc' %}{{ path('fb_search_for_company', {'searchString': searchString, 'orderBy': 'name', 'orderDirection': 'desc'}) }}{% else %}{{ path('fb_search_for_company', {'searchString': searchString}) }}{% endif %}">Company Name</a></li>
+                                                    <li><a href="{% if paginationParameters.orderBy == 'city' and paginationParameters.orderDirection == 'asc' %}{{ path('fb_search_for_company', {'searchString': searchString, 'orderBy': 'city', 'orderDirection': 'desc'}) }}{% else %}{{ path('fb_search_for_company', {'searchString': searchString, 'orderBy': 'city', 'orderDirection': 'asc'}) }}{% endif %}">City</a></li>
+                                                    <li><a href="{% if paginationParameters.orderBy == 'state' and paginationParameters.orderDirection == 'asc' %}{{ path('fb_search_for_company', {'searchString': searchString, 'orderBy': 'state', 'orderDirection': 'desc'}) }}{% else %}{{ path('fb_search_for_company', {'searchString': searchString, 'orderBy': 'state', 'orderDirection': 'asc'}) }}{% endif %}">State</a></li>
+                                                    <li><a href="{% if paginationParameters.orderBy == 'country' and paginationParameters.orderDirection == 'asc' %}{{ path('fb_search_for_company', {'searchString': searchString, 'orderBy': 'country', 'orderDirection': 'desc'}) }}{% else %}{{ path('fb_search_for_company', {'searchString': searchString, 'orderBy': 'country', 'orderDirection': 'asc'}) }}{% endif %}">Country</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="form-search pull-right">
+                                                <div class="input-append">
+                                                    <form action="{{ path('fb_search_for_company') }}">
+                                                        <input value="{{ searchString }}" name="searchString" placeholder="Search For Company" type="text" class="search-query">
+                                                        <button type="submit" class="btn">Search</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div><!---title3--->
+
+                                        {% if entities | length > 0 %}
+                                        <ul class="unstyled inner-list">
+                                            {% for entity in entities %}
+                                            <li class="row-fluid show-grid">
+                                                <div class="span8">
+                                                    <h4><a class="titl-blue" href="{{ path('fb_company_public_profile', {'loginName': entity.loginName, 'industrySlug': entity.professions.first().slug}) }}" title="{{ entity }}">{{ entity }}</a></h4>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="Area">{{ entity.city }}{% if entity.state %}, {{ entity.state }}{% endif %}, {{ entity.getCountryName() }}</div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% else %}
+                                        <div class="alert alert-info">
+                                            Nothing found
+                                        </div>
+                                        {% endif %}
+                                    </div><!--Result-box-->
+
+
+                                    {% if lastPageNumber > 1 %}
+                                    <div class="pagination pagination-centered">
+                                        <ul>
+                                            {% if page > 1 %}
+                                            <li><a href="{{ path('fb_search_for_company', paginationParameters) }}">&laquo;</a></li>
+                                            {% set paginationParameters = paginationParameters|merge({'page': page - 1}) %}
+                                            <li><a href="{{ path('fb_search_for_company', paginationParameters) }}">&lt;</a></li>
+                                            {% endif %}
+
+                                            {% for numberOfPage in 1..lastPageNumber %}
+                                            {% if numberOfPage > page - 4 and numberOfPage < page + 4 %}
+                                            {% set paginationParameters = paginationParameters|merge({'page': numberOfPage}) %}
+                                            <li{% if numberOfPage == page %} class="active"{% endif %}><a href="{{ path('fb_search_for_company', paginationParameters) }}">{{ numberOfPage }}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                            {% if page < lastPageNumber %}
+                                            {% set paginationParameters = paginationParameters|merge({'page': page + 1}) %}
+                                            <li><a href="{{ path('fb_search_for_company', paginationParameters) }}">&gt;</a></li>
+                                            {% set paginationParameters = paginationParameters|merge({'page': lastPageNumber}) %}
+                                            <li><a href="{{ path('fb_search_for_company', paginationParameters) }}">&raquo;</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                </div><!--tab1--->
+                            </div><!--tab-content--->
+                        </div><!--tabbable--->
+                    </div><!--span 8-->
+                </div>
+
+            </div><!--Search-interns-->
+
+    </div><!--container-->
+{% endblock %}

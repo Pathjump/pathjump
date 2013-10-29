@@ -1,0 +1,422 @@
+{% extends '::base_admin.html.twig' %}
+{% block title %}Edit Site Forms{% endblock %}
+{%block body%}
+<h1>Internjump Edit Site Forms</h1>
+
+
+<form  action="{{ url('admin_edit_site_forms') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+        <table>
+
+
+          <tr><td><h3>Login Form: </h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Login Form Title:</td>
+                <td>{{ form_widget(form.loginFormName) }}</td>
+
+            </tr>
+            <tr>
+                <td>Login Form  Description:</td>
+                <td>{{ form_widget(form.loginFormDesc) }}</td>
+
+            </tr>
+
+            <!-------->
+
+
+            <tr><td><h3>Student SignUp/step1,2 Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student SignUp Form Tile: </td>
+                <td>{{ form_widget(form.studentSignUp_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student SignUp Form Description: </td>
+                <td>{{ form_widget(form.studentSignUp_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Student Education SignUp/step3 Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student Education Form Title: </td>
+                <td>{{ form_widget(form.studentSignUpEducation_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Education Form Description: </td>
+                <td>{{ form_widget(form.studentSignUpEducation_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Student Education SignUp/step4 Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student Language Form Title: </td>
+                <td>{{ form_widget(form.studentSignUpLanguage_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Language Form Description: </td>
+                <td>{{ form_widget(form.studentSignUpLanguage_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+            <!-------->
+
+            <tr><td><h3>Student SignUp/step4 -create Cv step1 Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student Cv Form Title part1: </td>
+                <td>{{ form_widget(form.studentSignUpCv_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Cv Form Title part2: </td>
+                <td>{{ form_widget(form.studentSignUpCv_FormName1) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Cv Form Description: </td>
+                <td>{{ form_widget(form.studentSignUpCv_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+            <!-------->
+
+           <tr><td><h3>Student SignUp/step4 -create Cv step2(Skills) Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student Skill Form Title: </td>
+                <td>{{ form_widget(form.studentSignUpCvSkills_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Skill Form Description: </td>
+                <td>{{ form_widget(form.studentSignUpCvSkills_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+            <!-------->
+
+            <tr><td><h3>Student SignUp/step4 -create Cv step3(Experience) Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student Experience Form Title: </td>
+                <td>{{ form_widget(form.studentSignUpCvExperience_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Experience Form Description: </td>
+                <td>{{ form_widget(form.studentSignUpCvExperience_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+            <!-------->
+
+            <tr><td><h3>Student SignUp/step4 -create Cv step4(Success) Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student Success Form Title: </td>
+                <td>{{ form_widget(form.studentSignUpCvSuccess_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Success Form Description: </td>
+                <td>{{ form_widget(form.studentSignUpCvSuccess_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+            <!-------->
+            <tr><td><h3>Student Edit Account Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student Edit Account Form Title: </td>
+                <td>{{ form_widget(form.studentEditAccount_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Edit Account Form Description: </td>
+                <td>{{ form_widget(form.studentEditAccount_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+            <!-------->
+
+            <tr><td><h3>Student Edit Resume Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Student Edit Resume Form Title: </td>
+                <td>{{ form_widget(form.studentEditResume_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Student Edit Resume Form Description: </td>
+                <td>{{ form_widget(form.studentEditResume_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Student Edit Resume/Add Employment History Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentEditResumeEmpHistory_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentEditResumeEmpHistory_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Student Edit Resume/Add Skills Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentEditCvAddSkill_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentEditCvAddSkill_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+
+            <tr><td><h3>Student Edit Skills Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentEditSkill_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentEditSkill_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+
+
+            <tr><td><h3>Student Education Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentEditEducation_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentEditEducation_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+
+           <tr><td><h3>Student Edit Employment History Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentEditEmpHistory_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentEditEmpHistory_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Student Add new Resume Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentAddResume_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentAddResume_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Student Add new Education Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentAddEducation_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentAddEducation_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Student Add new Employment History Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentAddEmpHistory_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentAddEmpHistory_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Employers SignUp Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.companySignUp_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.companySignUp_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+             <!-------->
+
+            <tr><td><h3>Employers Add Internship/Job Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.companyAddJob_FormName) }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.companyAddJob_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+             <!-------->
+
+            <tr><td><h3>Employers Add Task Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title<i>(Main Title)</i>: </td>
+                <td>{{ form_widget(form.companyAddTask_FormName) }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Form Title1<i>(Sub Title)</i>: </td>
+                <td>{{ form_widget(form.companyAddTask_FormName1) }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.companyAddTask_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Employers Edit Internship/Job Form:</h3></td><td></td><td></td></tr>
+
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.companyEditJob_FormName) }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.companyEditJob_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>Employers Edit Task Form:</h3></td><td></td><td></td></tr>
+            <tr>
+                <td>Form Title<i>(Main Title)</i>: </td>
+                <td>{{ form_widget(form.companyEditTask_FormName) }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Form Title1<i>(Sub Title)</i>: </td>
+                <td>{{ form_widget(form.companyEditTask_FormName1) }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.companyEditTask_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+
+            <tr><td><h3>User Add Language Form:</h3></td><td></td><td></td></tr>
+
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentAddLanguage_FormName) }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentAddLanguage_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr><td><h3>User Edit Language Form:</h3></td><td></td><td></td></tr>
+
+            <tr>
+                <td>Form Title: </td>
+                <td>{{ form_widget(form.studentEditLanguage_FormName) }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Form Description: </td>
+                <td>{{ form_widget(form.studentEditLanguage_FormDesc) }}</td>
+                <td></td>
+            </tr>
+
+            <!-------->
+
+            <tr>
+            <td>{{ form_rest(form) }}</td>
+            <td><button type="submit" class="btn">Submit</button></td>
+            <td></td>
+
+            </tr>
+
+        </table>
+
+
+    </form>
+{% endblock%}

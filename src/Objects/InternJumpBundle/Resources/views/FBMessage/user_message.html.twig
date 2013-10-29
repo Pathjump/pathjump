@@ -1,0 +1,42 @@
+<form onsubmit="confirmDelete(this, '{{ path('fb_user_messages', {'box': box}) }}', '#tab{% if box == 'inbox' %}1{% else %}2{% endif %}');return false;" action="{{ path('fb_user_message_delete', { 'id': entity.id }) }}" method="post">
+    {{ form_widget(delete_form) }}
+    <button class="btn btn-danger" type="submit">Delete</button>
+    {% if entity.sentFromCompany %}
+    <a class="btn btn-success" onclick="requestData('{{ path('fb_user_new_message_form', {'userName': entity.company.loginName}) }}', '#tab{% if box == 'inbox' %}1{% else %}2{% endif %}');return false;" href="{{ path('fb_user_new_message', {'userName': entity.company.loginName}) }}">Reply</a>
+    {% endif %}
+</form>
+<ul class="list2">
+    <li>
+        <div class="row-fluid show-grid">
+            <div class="span1">{% if entity.sentFromCompany %}From{% else %}To{% endif %} </div>
+            <div class="span11">
+                {{ entity.company }}
+            </div>
+        </div>
+    </li>
+
+    <li>
+        <div class="row-fluid show-grid">
+            <div class="span1">Title </div>
+            <div class="span11">{{ entity.title }}</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="row-fluid show-grid">
+            <div class="span1">Date </div>
+            <div class="span11">
+                {{ entity.createdAt|date('M d,Y') }}
+            </div>
+        </div>
+    </li>
+
+    <li>
+        <div class="row-fluid show-grid">
+            <div class="span1">Message </div>
+            <div class="span11">
+                {{ entity.message }}
+            </div>
+        </div>
+    </li>
+</ul>

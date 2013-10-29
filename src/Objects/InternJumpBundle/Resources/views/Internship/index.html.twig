@@ -1,0 +1,353 @@
+{% extends '::base.html.twig' %}
+{% block title %}{{company}} internships{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+<link href="{{ asset('css/colorBox/colorbox.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block pageTitle %}{{company}} Profile{% endblock %}
+
+{% block body %}
+
+<div class="container Main-content">
+
+    <div class="row-fluid">
+        <div class="{% if ownerCompanyFlag == 0 %}span12{% else %}span8{% endif %}">
+            {% if ownerCompanyFlag == 0 and is_granted('ROLE_USER') %}
+            <ul class="nav nav-tabs">
+                <li>
+                    {% if userCompanyFavoriteFlag == 'no' %}
+                        <a href="javascript:void(0)" data-status="add" class="addCompanyToFavorite">Add to favorite</a>
+                    {% else %}
+                        <a href="javascript:void(0)" data-status="remove" class="addCompanyToFavorite">Remove from favorite</a>
+                    {% endif %}
+                </li>
+            </ul>
+            {% endif %}
+
+                <div class="company-form company-profile">
+                    <h2><div class="img-box"><img src="{{company.getTimThumbUrl(98,102)}}"></div>{{company}} Profile
+                        <a href="#companyMap" class="showCompanyMap map">Show Map</a>
+                    {% if ownerCompanyFlag == 1 %}
+                        <a href="{{path('company_edit')}}" style="float: right;margin-right: 10px;">Edit</a>
+                    {% endif %}
+                    </h2>
+                    <div class="C-profile">
+                        <ul class="Social-icons-f unstyled">
+                {% if company.facebookUrl %}
+                                <li><a class="ico-facebook" href="{{ company.facebookUrl }}" target="_blank" rel="nofollow"></a></li>
+                {% endif %}
+                {% if company.twitterUrl %}
+                                    <li><a class="ico-twitter" href="{{ company.twitterUrl }}" target="_blank" rel="nofollow"></a></li>
+                {% endif %}
+                {% if company.googlePlusUrl %}
+                                        <li><a class="ico-google" href="{{ company.googlePlusUrl }}" target="_blank" rel="nofollow"></a></li>
+                {% endif %}
+                {% if company.linkedInUrl %}
+                                            <li><a class="ico-linkedin" href="{{ company.linkedInUrl }}" target="_blank" rel="nofollow"></a></li>
+                {% endif %}
+                {% if company.youtubeUrl %}
+                                                <li><a href="{{ company.youtubeUrl }}" target="_blank" rel="nofollow"></a></li>
+                {% endif %}
+                                                </ul>
+
+                                                <table width="100%" border="0" class="table table-bordered">
+                                                    <tbody><tr>
+                                                            <th scope="row">Name </th>
+                                                            <td>{{company}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Industry</th>
+                                                            <td>
+                        {% for cat in company.professions %}
+                                {% if not loop.last %}
+                                    {{cat}},
+                                {% else %}
+                                    {{cat}}
+                                {% endif %}
+                        {% endfor %}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Address</th>
+                                                                <td>{{company.address}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Country</th>
+                                                                <td>{{company.getCountryName()}}</td>
+                                                            </tr>
+                    {% if company.state %}
+                                                            <tr>
+                                                                <th scope="row">State</th>
+                                                                <td>{{company.state}}</td>
+                                                            </tr>
+                    {% endif %}
+                                                            <tr>
+                                                                <th scope="row">City</th>
+                                                                <td>{{company.city}}</td>
+                                                            </tr>
+                    {% if company.url %}
+                                                            <tr>
+                                                                <th scope="row">Website</th>
+                                                                <td><a href="{{company.url}}" target="_blank">{{company.url}} </a> </td>
+                                                            </tr>
+                    {% endif %}
+
+                                                            <tr>
+                                                                <th scope="row">Widget</th>
+                                                                <td>
+                                                                    <a href="{{ path('create_company_widget',{ 'id' : company.id }) }}">click here</a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div><!--C-profile--->
+                                            </div><!--company-form-->
+
+                                            {% if companyJobs | length > 0 %}
+                                            <h3>Internship list</h3>
+
+                                            <div class="Result-box">
+
+                                                <div class="title3">{% if lastPageNumber > 1 %}Page {{page}} of {{lastPageNumber}}{% endif %}
+
+                                                    <div class="Select-a btn-group pull-right">
+
+                                                    </div>
+
+                                                </div><!---title3--->
+
+                                                <ul class="unstyled inner-list">
+                                                {% for entity in companyJobs %}
+                                                        <li class="row-fluid show-grid">
+                                                            <div class="span8">
+                                                                <h4><a class="titl-blue" href="{{path('internship_show',{'id' : entity.id})}}">{{ entity.title }}</a></h4>
+                                                                <i><strong><a href="{{path('internship_show',{'id' : entity.id})}}">Active From : {{ entity.activeFrom|date('d M Y') }} <br/>To : {{ entity.activeTo|date('d M Y') }}</a></strong></i>
+                                                                <p><br></p>
+                                                                <p></p>
+                                                        {% if entity.active and is_granted('ROLE_COMPANY') and company.id == app.user.id %}
+                                                                <span class="label label-success">Active</span>
+                                                        {% elseif is_granted('ROLE_COMPANY') and company.id == app.user.id %}
+                                                                <span class="label label-important">Not Active</span>
+                                                        {% endif %}
+                                                            </div>
+                                                            <div class="span4">
+                                                                <div class="Area">{{ entity.city }}, {%if entity.state %}{{ entity.state }},{% endif %} {{ entity.getCountryName }}</div>
+                                                        {% if is_granted('ROLE_COMPANY') and company.id == app.user.id %}
+                                                                <a href="{{ path('internship_edit', { 'id': entity.id }) }}"><i class="icon-file"></i> Edit</a>
+                                                                <br/>
+                                                                {% set findJobMachesUrl =  path('company_search_for_cv',{'country-id' : entity.country,'city' : entity.city,'state' : entity.state})  %}
+                                                                {% for skill in entity.skills %}
+                                                                    {% set findJobMachesUrl = findJobMachesUrl ~  '&skills-ids[]=' ~ skill.id %}
+                                                                {% endfor %}
+                                                                {% for category in entity.categories %}
+                                                                    {% set findJobMachesUrl = findJobMachesUrl ~  '&selected-categories[]=' ~ category.id %}
+                                                                {% endfor %}
+
+                                                                <a href="{{ findJobMachesUrl }}">Find Matches</a>
+                                                        {% endif %}
+                                                            </div>
+                                                        </li>
+                                                {% endfor %}
+                                                    </ul>
+
+
+                                                </div><!--Result-box-->
+                                                {% endif %}
+
+                                             {% if lastPageNumber > 1 %}
+                                                <div class="pagination pagination-centered">
+                                                    <ul>
+                                                {% if page > 1 %}
+                                                            <li><a href="{{ url('internship',{'loginName' : loginName }) }}" class="right">&laquo;&laquo;</a></li>
+                                                            <li><a href="{{ url('internship', { 'loginName' : loginName,'page': page - 1}) }}" class="right">&laquo;</a></li>
+                                                {% endif %}
+
+                                            {% for numberOfPage in 1..lastPageNumber %}
+                                            {% if numberOfPage > page - 3 and numberOfPage < page + 3 %}
+                                                {% if page == numberOfPage %}<li class="active"><a href="javascript:void(0)">{{ numberOfPage }}</a></li>{% else %}<li><a href="{{ url('internship', {'loginName' : loginName,'page': numberOfPage}) }}">{{ numberOfPage }}</a></li>{%endif%}
+                                            {% endif %}
+                                            {% endfor %}
+
+
+                                                {% if page < lastPageNumber %}
+                                                                    <li><a href="{{ url('internship', { 'loginName' : loginName,'page': page + 1}) }}" class="left">&raquo;</a></li>
+                                                                    <li><a href="{{ url('internship', {'loginName' : loginName,'page': lastPageNumber}) }}" class="left">&raquo;&raquo;</a></li>
+                                                {% endif %}
+                                                                    </ul>
+                                                                </div>
+                                            {% endif %}
+                                                            </div>
+
+        {% if ownerCompanyFlag == 1 %}
+                                                            <div class="span4 search-right-col">
+                                                                <div class="Col-block">
+                                                                    <h2>Manage interns/Employees</h2>
+                {% if hiredUsersJobsArray|length > 0 %}
+                    {% for jobName in hiredUsersJobsArray %}
+                                                                    <h3><strong>{{jobName}}</strong></h3>
+                                                                    <ul class="list2">
+                        {% for job in companyHiredUsers %}
+                                {% if job.internship.title == jobName %}
+
+                                                                            <li>
+                                                                                <div class="media">
+                                                                                    <a class="pull-left" href="{{path('company_user_task',{'userName' : job.user.loginName})}}">
+                                                                                        <img src="{{job.user.getTimThumbUrl(90,80)}}" style="width: 30px; height: 30px;" alt="" class="media-object">
+                                                                                    </a>
+                                                                                    <div class="media-body">
+                                                                                        <div>{{job.user}}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                        {% endif %}
+                            {% endfor %}
+                                                                        </ul>
+                    {% endfor %}
+               {% else %}
+                                                                        <h3><strong>You have not hired an intern/employee through InternJump</strong></h3>
+               {% endif %}
+                                                                    </div>
+
+                                                                    <hr>
+
+
+            {% if companyInterests|length > 0 %}
+                                                                    <div class="Col-block">
+                                                                        <h2>interesting candidates</h2>
+                                                                        <ul class="list2">
+                {% for interest in companyInterests %}
+                                                                                <li>
+                                                                                    <div class="media">
+                                                                                        <a class="pull-left" href="{{path('company_see_user_data',{'userLoginName' : interest.user.loginName,'cvId' : interest.cvId})}}">
+                                                                                            <img src="{{interest.user.getTimThumbUrl(90,80)}}" style="width: 30px; height: 30px;" alt="" class="media-object">
+                                                                                        </a>
+                                                                                        <div class="media-body">
+                                                                                            <div>{{interest.user}}</div>
+                                                                                            <span class="label {% if interest.accepted == 'accepted' %}label-success{% elseif interest.accepted == 'pending' %}label-warning{% elseif interest.accepted == 'rejected' %}label-important{% endif %} pull-right">{{interest.accepted}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                {% endfor %}
+                                                                            </ul>
+                                                                        </div>
+            {% endif %}
+
+            {% if companyInterviews|length > 0 %}
+                                                                        <div class="Col-block">
+                                                                            <h2>Interviews</h2>
+                                                                            <ul class="list2">
+                {% for interview in companyInterviews %}
+                                                                                    <li>
+                                                                                        <div class="media">
+                                                                                            <a class="pull-left" href="{{path('interview_show',{'interviewId' : interview.id})}}">
+                                                                                                <img src="{{interview.user.getTimThumbUrl(90,80)}}" style="width: 30px; height: 30px;" alt="" class="media-object">
+                                                                                            </a>
+                                                                                            <div class="media-body">
+                                                                                                <div>{{interview.user}}</div>
+                                                                                                <div class="date muted pull-left">{{interview.interviewDate|date('j F. Y h:i A')}}</div>
+                                                                                                <span class="label {% if interview.accepted == 'accepted' %}label-success{% elseif interview.accepted == 'pending' %}label-warning{% elseif interview.accepted == 'rejected' %}label-important{% endif %} pull-right">{{interview.accepted}}</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </li>
+                {% endfor %}
+                                                                                </ul>
+                                                                            </div>
+            {% endif %}
+
+                                            {% if comanyFavoriteusers | length > 0 %}
+                                                                            <div class="Col-block">
+                                                                                <h2>Favorite Candidates</h2>
+                                                                                <ul class="list2">
+                {% for user in comanyFavoriteusers %}
+                                                                                        <li>
+                                                                                            <div class="media">
+                                                                                                <a class="pull-left" href="{{path('company_see_user_data',{'userLoginName' : user.user.loginName,'cvId' : user.cvId})}}">
+                                                                                                    <img src="{{user.user.getTimThumbUrl(90,80)}}" style="width: 30px; height: 30px;" alt="" class="media-object">
+                                                                                                </a>
+                                                                                                <div class="media-body">
+                                                                                                    <div>{{user.user}}</div>
+                                                                                                    <a class="label label-important pull-right removeUserFromFavorite" href="javascript:void(0)" data-user-id="{{user.user.id}}">Remove</a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </li>
+                {% endfor %}
+                                                                                    </ul>
+                                                                                </div>
+                                            {% endif %}
+                                                                            </div><!--span4 search-right-col-->
+        {% endif %}
+                                                                        </div><!--row-fluid-->
+
+                                                                        <div style="display: none;">
+                                                                            <div  id="companyMap">
+                                                                                <div class="modal-header">
+                                                                                    <h3>{{ company }} </h3>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p>
+                                                                                    <div id="map_canvas" style="width: 900px;height: 350px;"></div>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script src="{{ asset('js/jquery.colorbox-min.js') }}"></script>
+<script type="text/javascript" src="{{asset('js/website.js')}}"></script>
+<script>
+
+var latitude = '{{company.Latitude}}';
+var longitude = '{{company.Longitude}}';
+$(document).ready(function() {
+    //add company to user fav list
+    $('.addCompanyToFavorite').click(function() {
+        var status = $(this).attr('data-status');
+        //show loading img
+        $('.loading').show();
+        $.ajax({
+            url: "{{ path('add_company_to_favorite',{'companyId' : company.id}) }}" + "/" + status,
+            success: function(msg) {
+            },
+            complete: function(msg) {
+                location.reload();
+            }
+        });
+    });
+
+
+    $('a.removeUserFromFavorite').click(function() {
+        var userId = $(this).attr('data-user-id');
+        //show loading img
+        $('.loading').show();
+        $.ajax({
+            url: "{{ path('add_user_to_favorite') }}" + "/" + userId + "/remove",
+            success: function(msg) {
+            },
+            complete: function(msg) {
+                location.reload();
+            }
+        });
+    });
+
+    $('.showCompanyMap').colorbox({
+        inline: true,
+        onLoad: function() {
+            setTimeout(function() {
+                initialize();
+            }, 1000);
+        }
+    });
+})
+
+</script>
+<script src="{{asset('bundles/objectsinternjump/js/internShipMap.js')}}"></script>
+{% endblock %}

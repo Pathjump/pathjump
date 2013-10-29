@@ -1,0 +1,123 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parent() }} - Contact US{% endblock %}
+
+{% block pageTitle %}{{ parent() }} - Contact US{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    #tooltip{color:#444;font-size:12px;text-shadow:1px 1px 0 #fff;border:1px solid #666;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;background-repeat:repeat-x;background-position:left top;background-color:#D7D7D7;-moz-box-shadow:0 0 4px #bbb;-webkit-box-shadow:0 0 4px #bbb;box-shadow:0 0 4px #bbb;line-height:1.2em;position:absolute;z-index:100000;display:none;padding:5px}
+</style>
+{% endblock %}
+
+{% block body %}
+
+        {% if form_errors(form) %}
+        <div class="alert alert-error">
+            <button data-dismiss="alert" class="close" type="button"> &times; </button>
+            {{ form_errors(form) }}
+        </div>
+        {% endif %}
+
+        {% if flag == 1 %}
+        <div class="alert alert-success">
+            <button data-dismiss="alert" class="close" type="button"> &times; </button>
+            Your message has been sent Succefully
+        </div>
+        {% endif %}
+
+        <div class="container Main-content">
+            <div class="row-fluid show-grid">
+
+                <div class="Sign-Up">
+
+                    <form action="{{ path('contactUs') }}" method="post">
+                        <fieldset>
+                            <legend><h3>{{ contact_info_name }}</h3></legend>
+                            <img alt="world web" width="102" height="120" src="{{ asset('img/contact.jpg') }}" />
+                            <div class="pull-right">
+                                <p><h3>{{ contact_info_address_part1 }}</h3></p>
+                                <p><h3>{{ contact_info_address_part2 }}</h3></p>
+                            </div>
+
+                            <div class="controls  row-fluid show-grid">
+                                <div class="span6">
+                                    <label>Your Name</label>
+                                    {{ form_widget(form.Name, {'attr': {'class': 'span12'} }) }}
+
+                                    <span style="display: inline-block;margin-bottom: 13px;">
+                                        <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                    </span>
+
+                                    {% if form_errors(form.Name) %}
+                                    <div class="alert alert-error">
+                                        <button type="button" class="close" data-dismiss="alert"> × </button>
+                                        {{ form_errors(form.Name) }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="span6">
+                                    <label>Your Email</label>
+                                    {{ form_widget(form.Email, {'attr': {'class': 'span12'} }) }}
+
+                                    <span style="display: inline-block;margin-bottom: 13px;">
+                                        <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                    </span>
+
+                                    {% if form_errors(form.Email) %}
+                                    <div class="alert alert-error">
+                                        <button type="button" class="close" data-dismiss="alert"> × </button>
+                                        {{ form_errors(form.Email) }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="controls select-box">
+                                <label>Subject</label>
+                                {{ form_widget(form.Subject, {'attr': {'class': 'span12'} }) }}
+
+                                <span style="display: inline-block;margin-bottom: 13px;">
+                                    <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                </span>
+
+                                {% if form_errors(form.Subject) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.Subject) }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="controls">
+                                <label>Message</label>
+                                {{ form_widget(form.Message, {'attr': {'class': 'span12'} }) }}
+
+                                <span style="display: inline-block;margin-bottom: 13px;">
+                                    <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                </span>
+
+                                {% if form_errors(form.Message) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.Message) }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            {{ form_rest(form) }}
+                            <button type="submit" class="btn btn-primary pull-right">Send</button>
+                        </fieldset>
+                    </form>
+                </div><!--Sign-Up-->
+
+            </div><!--Sign-Up-->
+        </div><!--container-->
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/tooltip/tooltip.js') }}"></script>
+{% endblock %}

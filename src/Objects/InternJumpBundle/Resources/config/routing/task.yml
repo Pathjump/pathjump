@@ -1,0 +1,62 @@
+company_task:
+    pattern:  /company/{page}/{status}/{tasksPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:companyAllTasks", page: 1, status: all ,tasksPerPage: ~}
+
+company_user_task:
+    pattern:  /companyuser/{userName}/{status}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:companyUserAllTasks",itemsPerPage: ~, status: all, page: 1}
+
+student_task_show:
+    pattern:  /{id}/usershow
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:studentShow" }
+
+fb_student_task_show:
+    pattern:  /{id}/fb_usershow
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:fb_studentShow" }
+
+company_task_show:
+    pattern:  /{id}/companyshow
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:companyShow" }
+
+task_new:
+    pattern:  /new/{uid}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:new", uid: null }
+
+task_create:
+    pattern:  /create
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:create" }
+    requirements: { _method: post }
+
+student_task_edit:
+    pattern:  /{id}/useredit
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:studentEdit" }
+
+company_task_edit:
+    pattern:  /{id}/companyedit
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:companyEdit" }
+
+task_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:delete" }
+    requirements: { _method: post }
+
+get_job_users:
+    pattern:  /getjobusers/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:getJobUsers" }
+
+get_user_jobs:
+    pattern:  /getusersjobs/{uid}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:getUserJobs" }
+
+
+add_note:
+    pattern:  /addnote/{text}/{taskId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:addNote" }
+
+edit_note:
+    pattern:  /editnote/{text}/{taskId}/{noteId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:editNote", text: null, taskId: null, noteId: null }
+
+change_status:
+    pattern:  /changestatus/{taskId}/{status}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:changeTaskStatus", taskId: null, status: null }

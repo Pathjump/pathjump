@@ -1,0 +1,84 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Resume Skills{% endblock %}
+
+{% block pageTitle %}Resume Skills{% endblock %}
+
+{% block body %}
+
+        <div class="container Main-content">
+
+            <div class="Student">
+
+                <ul class="nav nav-tabs">
+                    <li><a href="{{ path('cv_edit', {'id': entity.id}) }}">Objectives</a></li>
+                    <li class="active"><a href="{{ path('cv_skills', {'id': entity.id}) }}">Skills</a></li>
+                    <li><a href="{{ path('cv_employment_history', {'id': entity.id}) }}">Experience</a></li>
+                    <li class="pull-right span3"><h3>Strength of Profile</h3></li>
+                </ul>
+
+                <div class="row-fluid show-grid">
+
+                    <div class="span8">
+                        <form class="company-form" action="{{ path('cv_skills', {'id': entity.id}) }}" method="post">
+                            <legend><h2>{% if formName %}{{ formName }}{% endif %}</h2></legend>
+
+                            <ul class="list2">
+                                <li>
+                                    <label class="checkbox">
+                                        <input{% if userSkills | length == cvSkills | length %} checked="checked"{% endif %} onchange="checkUnCheck(this);" id="all_cv_skills" type="checkbox"> Check / UnCheck All
+                                    </label>
+                                </li>
+                                {% for skill in userSkills %}
+                                <li>
+                                    <label class="checkbox">
+                                        <input{% if skill in cvSkills %} checked="checked"{% endif %} id="skill_{{ skill.id }}" class="cvSkillInput" name="cv_skills[]" type="checkbox" value="{{ skill.id }}"> {{ skill }}
+                                    </label>
+                                </li>
+                                {% endfor %}
+                            </ul>
+
+                            <fieldset>
+                                <hr class="divider"/>
+                                <div class="controls ">
+                                    <button type="submit" class="btn btn-primary pull-right">{{ buttonText }}</button>
+                                    <a title="Add/Edit your skills" href="{{ path('addEditUserSkills') }}" class="pull-right back">Add/Edit your skills</a>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                    </div><!--span 9-->
+
+                    <div class="span4">
+                        {% render "ObjectsInternJumpBundle:Task:userMeter" %}
+                    </div>
+
+                </div><!--row-fluid show-grid-->
+
+            </div><!---Student --->
+        </div><!--container-->
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    function checkUnCheck(element) {
+        if(element.checked){
+            $('.cvSkillInput').each(function() {
+                if(!this.checked){
+                    $(this).click();
+                }
+            });
+            return;
+        }
+        $('.cvSkillInput').each(function(){
+            if(this.checked){
+                $(this).click();
+            }
+        });
+    }
+    $(document).ready(function() {
+        $('input[type="checkbox"]').ezMark();
+    });
+</script>
+{% endblock %}

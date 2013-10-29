@@ -1,0 +1,55 @@
+get_skills_by_title:
+    pattern:  /get/skills
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:getSkills" }
+
+skill:
+    pattern:  /
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:StudentAllSkills" }
+
+skill_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:show" }
+
+skill_new:
+    pattern:  /newskill
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:newSkill" }
+
+skill_create:
+    pattern:  /create
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:create" }
+    requirements: { _method: post }
+
+skill_edit:
+    pattern:  /{id}/editskill
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:editSkill" }
+
+skill_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:update" }
+    requirements: { _method: post }
+
+skill_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:delete" }
+    requirements: { _method: post }
+
+
+deleteSkill:
+    pattern:  /{id}/delete1
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:deleteSkill" }
+
+addEditUserSkills:
+    pattern:  /add_edit
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:addEditUserSkills" }
+
+submitAddEditUserSkills:
+    pattern:  /submit_add_edit/{skills}
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:submitAddEditUserSkills" }
+
+userRemoveSkill:
+    pattern:  /user_remove_skill/{skillId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:userRemoveSkill" }
+
+fb_addEditUserSkills:
+    pattern:  /fb_add_edit
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:fb_addEditUserSkills" }

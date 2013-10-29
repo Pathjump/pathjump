@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+{% block title %}{{ company }} - managers {% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('css/jquery.alerts.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+
+<div class="container Main-content">
+    <div class="row-fluid show-grid">
+        <a class="addNewEducation btn btn-mini btn-info" style="color:#fff;margin-bottom: 20px;" href="{{ path('manager_new') }}">Add New Manager</a>
+    </div>
+{% if companyManagers | length > 0 %}
+    <div class="company-form">
+        <h2>Your Managers</h2>
+        <div class="Notifications">
+
+            <table width="100%" border="0" class="table table-bordered">
+                <tbody><tr>
+                        <th scope="row"> Name</th>
+                        <th scope="row"> Login Name</th>
+                        <th scope="row"> Email</th>
+                        <th scope="row"> Created At</th>
+                        <th scope="row"> Action</th>
+                    </tr>
+                {% for manager in companyManagers %}
+                    <tr>
+                        <td>{% if manager.name %}{{ manager.name }}{% else %}-{% endif %}</td>
+                        <td>{{ manager.loginName }}</td>
+                        <td>{{ manager.email }}</td>
+                        <td>{{ manager.createdAt|date('j F Y') }}</td>
+                        <td><a href="{{ path('manager_edit',{'id': manager.id})}}"><i class="icon-pencil"></i></a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="confirmDelete({{ manager.id }});
+                            return false;"><i class="icon-trash"></i></a></td>
+                            </tr>
+                {% endfor %}
+                        </tbody>
+                    </table>
+                </div><!--Notifications--->
+            </div>
+{% endif %}
+        </div>
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+        <script src="{{ asset('js/jquery.alerts.js') }}" type="text/javascript"></script>
+        <script>
+                            function confirmDelete(id) {
+                                jConfirm(
+                                        'ok',
+                                        'cancel',
+                                        'Are you sure you want to Delete This Manager ?',
+                                        'Warning',
+                                        function(confirm) {
+                                            if (confirm) {
+                                                window.location = '{{ path('manager_delete') }}/'+id;
+                                            }
+                                        }
+                                );
+                            }
+            </script>
+{% endblock %}

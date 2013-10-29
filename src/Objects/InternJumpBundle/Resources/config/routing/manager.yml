@@ -1,0 +1,19 @@
+company_managers:
+    pattern:  /{loginName}/control
+    defaults: { _controller: "ObjectsInternJumpBundle:Manager:companyManagers" }
+
+manager_new:
+    pattern:  /new
+    defaults: { _controller: "ObjectsInternJumpBundle:Manager:new" }
+
+manager_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ObjectsInternJumpBundle:Manager:edit" }
+
+manager_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:Manager:delete" , id : ~}
+
+manager_home:
+    pattern:  /{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:Manager:managerHome" , page : 1}

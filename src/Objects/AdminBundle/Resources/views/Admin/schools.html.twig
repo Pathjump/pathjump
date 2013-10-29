@@ -1,0 +1,46 @@
+{% extends '::base_admin.html.twig' %}
+{% block title %}configurations{% endblock %}
+{%block body%}
+<h1>Edit Schools page Text</h1>
+
+
+<form  action="{{ url('admin_edit_schools_page') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+        <table>
+            
+            <tr>
+                <td>Schools Page Upper Text</td>
+                <td>{{ form_widget(form.schoolstext1 , {'attr': {'value': config.schoolstext1} }) }}</td>
+     
+            </tr>            
+            <tr>
+                <td>Schools Page Lower Text</td>
+                <td>{{ form_widget(form.schoolstext2 , {'attr': {'value': config.schoolstext2} }) }}</td>
+     
+            </tr>
+           
+           
+                <td>{{ form_rest(form) }}</td>
+                <td><button type="submit">Submit</button></td>
+                <td></td>
+            </tr>
+        </table>
+        
+         
+    </form>
+{% endblock%}
+
+{% block javascripts %}
+{{parent()}}
+
+<script type="text/javascript" src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript">
+        window.onload = function()
+	{
+		CKEDITOR.replace( 'form_schoolstext1' );
+                CKEDITOR.replace( 'form_schoolstext2' );
+        }
+</script>
+    
+    
+{% endblock %}

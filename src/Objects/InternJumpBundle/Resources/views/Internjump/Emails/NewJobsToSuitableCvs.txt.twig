@@ -1,0 +1,11 @@
+InternJump - Matching Jobs
+
+
+{% for job in jobs %}
+{{ job.company }}
+{{url('internship_show',{'id' : job.id})}}
+{{ job.city }}, {{ job.state }}
+{% if not loop.last %}
+=================================
+{% endif %}
+{% endfor %}

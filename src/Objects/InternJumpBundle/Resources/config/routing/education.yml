@@ -1,0 +1,35 @@
+education_undergraduate_degrees:
+    pattern:  /degrees/{for}
+    defaults: { _controller: "ObjectsInternJumpBundle:Education:getEducationDegrees" }
+    requirements:
+        for: graduate|undergraduate
+
+education_new:
+    pattern:  /new
+    defaults: { _controller: "ObjectsInternJumpBundle:Education:new" }
+
+education_create:
+    pattern:  /create
+    defaults: { _controller: "ObjectsInternJumpBundle:Education:create" }
+    requirements:
+        _method: post
+
+education_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:Education:edit" }
+    requirements:
+        id: \d+
+
+education_update:
+    pattern:  /update/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:Education:update" }
+    requirements:
+        _method: post
+        id: \d+
+
+education_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:Education:delete" }
+    requirements:
+        _method: post
+        id: \d+

@@ -1,0 +1,274 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{% trans %}Sign up{% endtrans %}{% endblock %}
+
+{% block pageTitle %}Signup Up{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    #tooltip{color:#444;font-size:12px;text-shadow:1px 1px 0 #fff;border:1px solid #666;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;background-repeat:repeat-x;background-position:left top;background-color:#D7D7D7;-moz-box-shadow:0 0 4px #bbb;-webkit-box-shadow:0 0 4px #bbb;box-shadow:0 0 4px #bbb;line-height:1.2em;position:absolute;z-index:100000;display:none;padding:5px}
+.simpleStep{
+    font-family: 'Open Sans',sans-serif;
+	border-top: 1px solid #D0D0D0;
+	border-bottom: 1px solid #D0D0D0;
+	padding:10px 0;
+}
+.landing .font1 {
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 24px;
+}
+.landing .font1 span{font-weight:800;}
+.landing .font2 {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 16px;
+}
+.landing .font2 span{font-weight:800;}
+.landing .jobAlert {
+    color: #CC2206;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 18px;
+    text-transform: uppercase;
+}
+.landing .number {
+    background: url("https://internjump.com/img/landing1-circle-number-bg.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    width: 42px;
+	float:left;
+	margin-right:5px;
+}
+.landing .normal {
+    color: #1F1F1F;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+.landing .signupForm{
+	padding-top:15px;
+	background:url("https://internjump.com/img/landing1-signupbg.png") top center repeat;
+}
+.landing .well{background:#FFF;}
+.landing label{
+	font-weight:bold;
+}
+.introSignup{padding:15px 0;}
+.landing .slide-title-normal {
+    color:#f09800;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 30px;
+    text-transform: capitalize;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+        {% if message %}
+        <div class="alert">
+            <button data-dismiss="alert" class="close" type="button"> &times; </button>
+            {{ message }}
+        </div>
+        {% endif %}
+
+        {% if form_errors(form) %}
+        <div class="alert alert-error">
+            <button data-dismiss="alert" class="close" type="button"> &times; </button>
+            {{ form_errors(form) }}
+        </div>
+        {% endif %}
+
+
+
+
+<!-- begin new custom landing page -->
+<div class="landing">
+<div class="container-fluid simpleStep">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span3 text-right">
+                <span class="font1">Join <span>InternJump</span></span><br>
+                <span class="font2">Finding <span>Internships</span> Made Easy!</span>
+            </div>
+            <div class="span3 normal">
+                <span class="number">1</span> Apply to jobs faster,  even from your  mobile phone
+            </div>
+            <div class="span3 normal">
+                <span class="number">2</span> Post a resume to  be found by registered  employers
+            </div>
+            <div class="span3">
+                <span class="jobAlert">Create a Job Alert  and more for free</span>
+            </div>            
+        </div>
+    </div>    
+</div>
+
+<div class="container-fluid signupForm">
+
+
+
+
+        <div class="container Main-content">
+
+            <div class="Student">
+
+                <h2>{% if formName %}{{ formName }}{% endif %}</h2>
+                <h4>{% if formDesc %}{{ formDesc }}{% endif %}</h4>
+                <div class="row-fluid show-grid">
+
+                    <div class="span6">
+                        <div class="Sign-Up">
+
+                            <form id="stuEdu" action="{{ path('user_signup') }}" method="post" {{ form_enctype(form) }}>
+                                <fieldset>
+                                    <legend></legend>
+                                    <div class="controls">
+                                        <label>Your Name</label>
+                                        {{ form_widget(form.name, {'attr': {'class': 'span12'} }) }}
+
+                                        {% if form_errors(form.name) %}
+                                        <div class="alert alert-error">
+                                            <button type="button" class="close" data-dismiss="alert"> × </button>
+                                            {{ form_errors(form.name) }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% if loginNameRequired %}
+                                    <div class="controls">
+                                        <label>Login Name</label>
+                                        {{ form_widget(form.loginName, {'attr': {'class': 'span12'} }) }}
+
+                                        <span style="display: inline-block;margin-bottom: 13px;">
+                                            <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                        </span>
+
+                                        <div id="loginName-error">
+                                            {{ app.session.flash('notice') | raw }}
+                                        </div>
+
+                                        {% if form_errors(form.loginName) %}
+                                        <div class="alert alert-error">
+                                            <button type="button" class="close" data-dismiss="alert"> × </button>
+                                            {{ form_errors(form.loginName) }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="controls">
+                                        <label>E-mail</label>
+                                        {{ form_widget(form.email, {'attr': {'class': 'span12'} }) }}
+
+                                        <span style="display: inline-block;margin-bottom: 13px;">
+                                            <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                        </span>
+
+                                        <div id="mailcheck-message">
+                                            {{ app.session.flash('notice') | raw }}
+                                        </div>
+
+                                        {% if form_errors(form.email) %}
+                                        <div class="alert alert-error">
+                                            <button type="button" class="close" data-dismiss="alert"> × </button>
+                                            {{ form_errors(form.email) }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="controls row-fluid show-grid">
+                                        <div class="span6">
+                                            <label>Password</label>
+                                            {{ form_widget(form.userPassword.Password, {'attr': {'class': 'span12'} }) }}
+                                        </div>
+                                        <div class="span6">
+                                            <label>Confirm Password</label>
+                                            {{ form_widget(form.userPassword.RePassword, {'attr': {'class': 'span12'} }) }}
+
+                                            <span style="display: inline-block;margin-bottom: 13px;">
+                                                <img style="opacity: 1;" class="tooltip" title="Required Field" src="{{ asset('js/tooltip/required.png') }}" />
+                                            </span>
+                                        </div>
+
+                                        {% if form_errors(form.userPassword) %}
+                                        <div class="alert alert-error">
+                                            <button type="button" class="close" data-dismiss="alert"> × </button>
+                                            {{ form_errors(form.userPassword) }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {{ form_rest(form) }}
+                                    <button type="submit" class="btn btn-danger btn-large pull-right">Sign Up</button>
+                                </fieldset>
+                            </form>
+                        </div><!--Sign-Up-->
+                    </div>
+
+                    <div class="span6">
+                        <div class="Social-sign-up">
+                            <ul class="Social-icons">
+                                <li>Sign Up with</li>
+                                <li>{% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_logging','permissions': 'email,publish_stream,user_birthday,user_about_me,user_education_history,user_work_history,user_location,user_hometown','cssClass' : 'ico-facebook' , 'linkText' : ''} %}</li>
+                                <li><a class="ico-google" onclick="newWindow = window.open('{{ path('linkedInButton', {'callbackUrl': 'linkedIn_user_data','popup' : 'yes'}) }}', '{% trans %}LinkedIn Sign up{% endtrans %}', 'height=400, width=600');if(window.focus)newWindow.focus();return false;" target="_blank" title="{% trans %}LinkedIn Sign up{% endtrans %}" href="{{ path('linkedInButton', {'callbackUrl': 'linkedIn_user_data'}) }}"></a></li>
+                                <li><a class="ico-twitter" onclick="newWindow = window.open('{{ path('twitter_authentication', {'redirectRoute': 'twitter_enter', 'popup': 'yes'}) }}', '{% trans %}Twitter Sign up{% endtrans %}', 'height=200, width=200');if(window.focus)newWindow.focus();return false;" target="_blank" title="{% trans %}Twitter Sign up{% endtrans %}" href="{{ path('twitter_authentication', {'redirectRoute': 'twitter_enter'}) }}"></a></li>
+                            </ul>
+                            <br />
+                            <strong>For employers <a href="{{ path('company_signup') }}"> Sign up here</a> </strong>
+                        </div>
+                    </div>
+
+                </div><!--Sign-Up-->
+
+            </div><!---Student --->
+        </div><!--container-->
+</div><!-- end signupForm -->
+
+
+<div class="container-fluid introSignup">
+	<div class="container">
+    	<div class="row-fluid">
+        	<div class="span4">
+                        <p class="slide-title-normal">Jump Start Your Career</p>
+                        <img src="https://internjump.com/img/landing-happy-students.jpg" class="thumbnail" alt="students">
+                        <p class="slide-subtitle-big">We know you're ambitious and want that great internship that will help launch your career. Look no further, InternJump works with companies in the leading industries and makes applying and managing internships an easy process.</p>
+                        <a class="btn" href="https://internjump.com/students"><span>LEARN MORE</span></a>
+            </div>
+            <div class="span4">
+	    	        <p class="slide-title-normal">Thousands of openings</p>
+    	    	    <img src="https://internjump.com/img/landing-jobSearch.jpg" class="thumbnail" alt="job search">
+            </div>
+            <div class="span4">
+		            <p class="slide-title-normal">easy to use portal</p>
+            		<img src="https://internjump.com/img/landing-portal.jpg" class="thumbnail" alt="portal page">
+            </div>
+		</div>
+	</div>
+</div>
+
+
+</div><!-- end landing -->        
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script>
+    var loginNameError = "{% trans %}Username can only have letters, number and hypen.{% endtrans %}";
+    var loginNameNotExist = "{% trans %}Available{% endtrans %}";
+    var loginNameExist = "{% trans %}Already taken.{% endtrans %}";
+    var mailcheckMessage = "{% trans %}Did you mean{% endtrans %}";
+    var loginNameCheckUrl = "{{url('login_name_check',{'loginName' : ''})}}";
+    var countryCitiesStatesUrl = '{{url('get_countey_cities_states',{'countryId' : ''})}}';
+</script>
+<script src="{{asset('bundles/objectsuser/js/xregexp-all.js')}}"></script>
+<script src="{{asset('bundles/objectsuser/js/mailcheck.js')}}"></script>
+<script src="{{asset('bundles/objectsuser/js/signUp.js')}}"></script>
+<script src="{{asset('js/tooltip/tooltip.js')}}"></script>
+{% endblock %}

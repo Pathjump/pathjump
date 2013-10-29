@@ -1,0 +1,136 @@
+add_user_question:
+    pattern:  /add_user_question/{userLoginName}/{question}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:addUserQuestion" }
+
+add_user_interest:
+    pattern:  /add_user_interest/{loginName}/{cvId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:addUserInterest" }
+    requirements:
+        cvId:  \d+
+
+company_hire_user:
+    pattern:  /company_hire_user/{userId}/{cvId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:companyHireUser" }
+    requirements:
+        userId:  \d+
+        cvId:  \d+
+
+interview_request:
+    pattern:  /interview_request/{userId}/{cvId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:interviewRequest" }
+    requirements:
+        userId:  \d+
+        cvId:  \d+
+
+company_notification:
+    pattern:  /notification/{type}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:companyNotification" , type : all, page : 1, itemsPerPage: ~}
+
+company_notification_mardAs_read:
+    pattern:  /company_notification_mardAs_read/{notificationId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:companyNotificationMardAsRead" }
+    requirements:
+        notificationId:  \d+
+
+company_markAll_notifications_asRead:
+    pattern:  /company_markAll_notifications_asRead
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:companyMarkAllNotificationsAsRead" }
+
+question_show:
+    pattern:  /question/{questionId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:questionShow" }
+    requirements:
+        questionId:  \d+
+
+fb_question_show:
+    pattern:  /fb_question/{questionId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:fb_questionShow" }
+    requirements:
+        questionId:  \d+
+
+interview_show:
+    pattern:  /interview/{interviewId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:interviewShow" }
+    requirements:
+        interviewId:  \d+
+
+company_signup:
+    pattern:  /signup
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:companySignup" }
+
+company_active:
+    pattern: /auth/active/{confirmationCode}
+    defaults: { _controller: ObjectsInternJumpBundle:Company:activation }
+
+company_edit:
+    pattern: /auth/edit
+    defaults: { _controller: ObjectsInternJumpBundle:Company:companyEdit }
+
+company_forgot_password:
+    pattern: /forgot/password
+    defaults: { _controller: ObjectsInternJumpBundle:Company:companyForgotPassword }
+
+company_change_password:
+    pattern: /change/password/{confirmationCode}/{email}
+    defaults: { _controller: ObjectsInternJumpBundle:Company:companyChangePassword }
+
+get_company_notifications:
+    pattern: /get_company_notifications
+    defaults: { _controller: ObjectsInternJumpBundle:Company:getCompanyNotifications }
+
+add_interest:
+    pattern: /add_interest/{loginName}/{cvId}
+    defaults: { _controller: ObjectsInternJumpBundle:Company:addInterest }
+
+search_for_company:
+    pattern: /search/{page}/{orderBy}/{orderDirection}
+    defaults: { _controller: ObjectsInternJumpBundle:Company:searchForCompany, page: 1, orderBy: ~, orderDirection: ~ }
+    requirements:
+        page: \d+
+
+fb_search_for_company:
+    pattern: /fb/search/{page}/{orderBy}/{orderDirection}
+    defaults: { _controller: ObjectsInternJumpBundle:Company:facebookSearchForCompany, page: 1, orderBy: ~, orderDirection: ~ }
+    requirements:
+        page: \d+
+
+industry_companies:
+    pattern:  /{industrySlug}/{page}/{orderBy}/{orderDirection}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:industryCompanies", page: 1, orderBy: ~, orderDirection: ~ }
+    requirements:
+        page: \d+
+
+fb_industry_companies:
+    pattern:  /fb/{industrySlug}/{page}/{orderBy}/{orderDirection}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:facebookIndustryCompanies", page: 1, orderBy: ~, orderDirection: ~ }
+    requirements:
+        page: \d+
+
+company_public_profile:
+    pattern:  /{industrySlug}/{loginName}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:companyPublicProfile" }
+
+fb_company_public_profile:
+    pattern:  /fb/{industrySlug}/{loginName}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:facebookCompanyPublicProfile" }
+
+company_reActivation:
+    pattern:  /activation/code/resend
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:reActivation" }
+
+add_user_to_favorite:
+    pattern:  /add_user/favorite/{userId}/{status}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:addUserToFavorite" , userId : ~ ,status : ~}
+
+create_company_widget:
+    pattern:  /create/widget/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:createCompanyWidget" }
+    requirements:
+        id: \d+
+
+show_company_widget:
+    pattern:  /show/widget/{id}/{jobs}
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:showCompanyWidget" }
+    requirements:
+        id: \d+
+        jobs: \d+

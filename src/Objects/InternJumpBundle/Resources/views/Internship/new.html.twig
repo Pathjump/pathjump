@@ -1,0 +1,509 @@
+{% extends '::base.html.twig' %}
+{% block title %}Create new job{% endblock %}
+
+{% block pageTitle %}employers ADD JOB{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+<link href="{{ asset('css/jquery.alerts.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('css/chosen.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('css/jquery-ui-1.8.24.custom.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+{% if form_errors(form) %}
+<div class="alert alert-error">
+    <button data-dismiss="alert" class="close" type="button"> &times; </button>
+    {{ form_errors(form) }}
+</div>
+{% endif %}
+
+<!-- step 1 -->
+<form action="{{ path('internship_new') }}" method="post" {{ form_enctype(form) }} class="company-form" novalidate="">
+<div class="container Main-content" id="1ststep">
+    <div class="row-fluid show-grid">
+        <div class="Add-Job-description span12">
+
+
+                <legend><h2>{%if formName%}{{formName}}{%endif%}  <small>(Job Description Continued)</small></h2></legend>
+                <fieldset>
+
+                    <div class="controls">
+                        <label>Job title</label>
+                        {{ form_widget(form.title,{'attr' : {'class' : 'span12'}}) }}
+                        {% if form_errors(form.title) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.title) }}
+                            </div>
+                       {% endif %}
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span12 select-box">
+                            <label>Position type</label>
+                            {{ form_widget(form.positionType) }}
+                            {% if form_errors(form.positionType) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.positionType) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <label>Industry</label>
+                        {{ form_widget(form.categories,{'attr' : {'class' :  'chzn-select'}}) }}
+                        {% if form_errors(form.categories) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.categories) }}
+                            </div>
+                       {% endif %}
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span6 select-box">
+                            <label>Minimum GPA</label>
+                            {{ form_widget(form.minimumGPA) }}
+                            {% if form_errors(form.minimumGPA) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.minimumGPA) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="span6 select-box">
+                            <label>Number of openings</label>
+                            {{ form_widget(form.numberOfOpenings) }}
+                            {% if form_errors(form.numberOfOpenings) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.numberOfOpenings) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span6 select-box">
+                            <label>Session Period</label>
+                            {{ form_widget(form.sessionPeriod) }}
+                            {% if form_errors(form.sessionPeriod) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.sessionPeriod) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="span3">
+                            <label>Active From</label>
+                            {{ form_widget(form.activeFrom) }}
+                            {% if form_errors(form.activeFrom) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.activeFrom) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="span3">
+                            <label>Active To</label>
+                            {{ form_widget(form.activeTo) }}
+                            {% if form_errors(form.activeTo) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.activeTo) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span6">
+
+                        </div>
+                        <div class="span6">
+                            <button class="btn btn-primary pull-right jobNextStep" data-href="2ndstep" data-current-location="1ststep" type="button">Next</button>
+                        </div>
+                    </div>
+
+
+
+
+                </fieldset>
+
+        </div><!--Add-Job-description-->
+    </div>
+</div>
+
+<!-- step 2 -->
+<div class="container Main-content" id="2ndstep" style="display: none;">
+    <div class="row-fluid show-grid">
+        <div class="Add-Job-description span12">
+                <legend><h2>Add Job  <small>(More description)</small></h2></legend>
+                <fieldset>
+
+                    <div class="controls">
+                        <label>Job Description</label>
+                        {{ form_widget(form.description, {'attr': {'class': 'span12' } }) }}
+                        {% if form_errors(form.description) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.description) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="controls row-fluid show-grid">
+                        <label>Skills <i><em class="muted">select some skills</em></i></label>
+                        {{ form_widget(form.skills,{'attr' : {'class' :  'chzn-select','style' : 'width: 921px;'}}) }}
+                        {% if form_errors(form.skills) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.skills) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="controls row-fluid show-grid">
+                        <label>Skills <i><em class="muted">add other skills comma separated</em></i></label>
+                        {{ form_widget(form.otherSkills,{'attr' : {'class' :  'span12'}}) }}
+                        {% if form_errors(form.otherSkills) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.otherSkills) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="controls">
+                        <label>Requirements </label>
+                        {{ form_widget(form.requirements, {'attr': {'class': 'span12' } }) }}
+                        {% if form_errors(form.requirements) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.requirements) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="controls">
+                        <label>Compensation</label>
+                        {{ form_widget(form.compensation, {'attr': {'class': 'span12' } }) }}
+                        {% if form_errors(form.compensation) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.compensation) }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span10">
+                            <label>Languages</label>
+                        </div>
+                        <div class="span2">
+                            <div class="Add-links">
+                                <a class="add-btn" id="btnAdd" href="javascript:void(0)"></a>
+                                <a class="Remove-btn not-active" id="btnDel" href="javascript:void(0)"></a>
+                            </div><!--Add-links-->
+                        </div>
+                    </div>
+
+                    <div class="controls  row-fluid show-grid langaugesContainer">
+                        {% for oneLanguage in form.languages %}
+                            <div class="newLangauge">
+                                {% if not loop.first %}
+                                            <a class="Remove-btn" href="javascript:void(0);" onclick="deleteSubForm(this);">-</a>
+                                {% endif %}
+                                <div class="span2 select-box">
+                                    <label>Language</label>
+                                    {{ form_widget(oneLanguage.language) }}
+                                </div>
+                                <div class="span2 select-box">
+                                    <label>Spoken</label>
+                                    {{ form_widget(oneLanguage.spokenFluency) }}
+                                </div>
+                                <div class="span2 select-box">
+                                    <label>Written</label>
+                                    {{ form_widget(oneLanguage.writtenFluency) }}
+                                </div>
+                                <div class="span2 select-box">
+                                    <label>Read</label>
+                                    {{ form_widget(oneLanguage.readFluency) }}
+                                </div>
+                            </div>
+                         {% endfor %}
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span6">
+
+                        </div>
+                        <div class="span6">
+                            <button class="btn btn-primary pull-right jobNextStep" data-href="3rdstep" data-current-location="2ndstep" type="button">Next</button><a class="pull-right back jobPrevStep" href="1ststep"  data-current-location="2ndstep">Back</a>
+                        </div>
+                    </div>
+
+
+
+
+                </fieldset>
+        </div><!--Add-Job-description-->
+    </div>
+</div>
+
+<!-- step 3 -->
+<div class="container Main-content" id="3rdstep" style="display: none;">
+    <div class="row-fluid show-grid">
+        <div class="Add-Job-description span12">
+
+                <legend><h2>Add Job  <small>(Job Location)</small></h2></legend>
+                <fieldset>
+
+                    <div class="controls">
+                        <label>Address</label>
+                        {{ form_widget(form.address, {'attr': {'class': 'span12' } }) }}
+                        {% if form_errors(form.address) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.address) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <div class=" span12 select-box">
+                            <label>Work Location</label>
+                            {{ form_widget(form.workLocation) }}
+                            {% if form_errors(form.workLocation) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.workLocation) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <div class=" span12 select-box">
+                            <label>Country</label>
+                            {{ form_widget(form.country) }}
+                            {% if form_errors(form.country) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.country) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span6 select-box">
+                            <label>City</label>
+                            {{ form_widget(form.city, {'attr': {'class': 'autocomplete' } }) }}
+                            {% if form_errors(form.city) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.city) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="span6">
+                            <label>State</label>
+                            {{ form_widget(form.state) }}
+                            {% if form_errors(form.state) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.state) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <label>Zip Code</label>
+                        {{ form_widget(form.zipcode, { 'attr': {'value': company.zipcode,'class' : 'span6'} }) }}
+                        <a id="getMyPosition" href="javascript:void(0)">Update map position</a>
+                        <img class="positionLoader" src="{{asset('img/loadingfacebox.gif')}}" id="getMyPositionImg" style="display: none;"/>
+
+                        {% if form_errors(form.zipcode) %}
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert"> × </button>
+                                {{ form_errors(form.zipcode) }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="controls">
+                        <label class="checkbox">Active
+                                {{ form_widget(form.active) }}
+                            </label>
+
+                    </div>
+
+                    {{ form_widget(form.Latitude, { 'attr': {'value': company.Latitude} }) }}
+                    {{ form_widget(form.Longitude, { 'attr': {'value': company.Longitude} }) }}
+
+                    {{ form_rest(form) }}
+
+                    <h3>Company Map</h3>
+
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span12 mab-box">
+                            <div id="map_canvas" style="height:350px;width:100%;"></div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span6">
+                            <label class="checkbox">
+                                <div class=""><input type="checkbox" class="ez-hide agreeTerms"></div> By submitting this post, you agree with our <a href="{{path('termsOfUse')}}" target="_blank">terms of service</a>.
+                            </label>
+                        </div>
+                        <div class="span6">
+                            <button class="btn btn-primary pull-right" type="submit" id="submitNewJob">Submit</button><a class="pull-right back jobPrevStep" href="2ndstep"  data-current-location="3rdstep">Back</a>
+                        </div>
+                    </div>
+
+
+
+
+                </fieldset>
+
+        </div><!--Add-Job-description-->
+    </div>
+</div>
+</form>
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+
+{% set formElementHTML %}
+{% spaceless %}
+<div class="newLangauge">
+    <a class="Remove-btn" href="javascript:void(0);" onclick="deleteSubForm(this);">-</a>
+    <div class="span2 select-box">
+        <label>Language</label>
+        {{ form_widget(form.languages.vars.prototype.language) }}
+    </div>
+    <div class="span2 select-box">
+        <label>Spoken</label>
+        {{ form_widget(form.languages.vars.prototype.spokenFluency) }}
+    </div>
+    <div class="span2 select-box">
+        <label>Written</label>
+        {{ form_widget(form.languages.vars.prototype.writtenFluency) }}
+    </div>
+    <div class="span2 select-box">
+        <label>Read</label>
+        {{ form_widget(form.languages.vars.prototype.readFluency) }}
+    </div>
+</div>
+{% endspaceless %}
+{% endset %}
+<script>
+        //ths part for add / remove langauge form
+        var formElementHTML = '{{ formElementHTML | escape('js') }}';
+        function deleteSubForm(currentElement) {
+            $(currentElement).parent().remove();
+        }
+
+        ///////////////////////////////////////////
+
+
+        var no_zipcode_message_new_job_page = '{{no_zipcode_message_new_job_page}}';
+        var map_change_location_message = '{{map_change_location_message}}';
+        var jobCity = '{{company.city}}';
+        var jobState = '{{company.state}}';
+        var companyAddress = '{{company.address|nl2br}}';
+        var latitude = '{{company.Latitude}}';
+        var longitude = '{{company.Longitude}}';
+        var countryCitiesStatesUrl = '{{url('get_countey_cities_states',{'countryId' : ''})}}';
+        var getPositionUrl = '{{url('get_position',{'zipcode' : ''})}}';
+        var cityAutoCompleteUrl = "{{ path('city_auto_complete') }}";
+        var defaultStateName = '{{defaultStateName}}';
+
+        $(document).ready(function() {
+            //check none for language levels as default
+            $('#form_languages_0_spokenFluency_None').attr('checked', 'checked');
+            $('#form_languages_0_writtenFluency_None').attr('checked', 'checked');
+            $('#form_languages_0_readFluency_None').attr('checked', 'checked');
+
+            //ths part for add / remove langauge form
+            $('#btnAdd').click(function() {
+                var tempHtml = formElementHTML;
+                var subFormNumbers = [];
+                $('[name^="form[languages]"]').each(function() {
+                    subFormNumber = parseInt($(this).attr('name').match(/\d+/)[0]);
+                    if ($.inArray(subFormNumber, subFormNumbers) == -1) {
+                        subFormNumbers.push(subFormNumber);
+                    }
+                });
+                $('.langaugesContainer').append(tempHtml.replace(/\$\$name\$\$/g, (subFormNumbers.sort().pop() + 1)));
+                $('#btnDel').removeClass('not-active');
+                $(".select-box select").selectbox();
+            });
+            $('#btnDel').click(function() {
+                if ($('.langaugesContainer').children().length == 2) {
+                    $('#btnDel').addClass('not-active');
+                }
+                $('.langaugesContainer').children().last().remove();
+            });
+            $('.chzn-select').livequery(function() {
+                $(this).chosen();
+            });
+
+////////////////////////////////////////////
+
+
+
+            $('#logedInComapny,#newJob').addClass('crnt');
+            $('#companyNav').show();
+
+            setInterval(function() {
+                //Loader Script
+                $('#loading').width($('#loading').parent().width());
+                $('#loading').height($('#loading').parent().height());
+            }, 500);
+
+            $('.activeFrom').datepicker({changeYear: true, yearRange: 'c-0:c+30', dateFormat: 'yy-mm-dd', minDate: new Date()});
+            $('.activeTo').datepicker({changeYear: true, yearRange: 'c-0:c+30', dateFormat: 'yy-mm-dd', minDate: new Date()});
+
+            //Function for Choosen >> page of inbox
+            $(".chzn-select,#form_activeFrom_year,#form_activeFrom_day,#form_activeFrom_month,#form_activeTo_month,#form_activeTo_day,#form_activeTo_year").chosen();
+            $(".chzn-select-deselect").chosen({
+                allow_single_deselect: true
+            });
+
+
+
+            //add ckeditor
+            $('#submitNewJob').click(function() {
+                if ($('.agreeTerms').is(':checked')) {
+                    return true;
+                }
+                else {
+                    jAlert("You must agree with our terms of service first.");
+                    return false;
+                }
+
+            });
+        });
+        $(function() {
+	/*$('.Box-a .checkbox  input').ezMark();*/
+            $('input').ezMark();
+            $('.customP input[type="checkbox"]').ezMark({checkboxCls: 'ez-checkbox-green', checkedCls: 'ez-checked-green'})
+        });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script src="{{ asset('js/libs/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('js/libs/jquery-ui-1.8.24.custom.min.js') }}" type="text/javascript"></script>
+    <script src="{{asset('bundles/objectsinternjump/js/internShip.js')}}"></script>
+    <script src="{{asset('bundles/objectsinternjump/js/newInternShipMap.js')}}"></script>
+    <script src="{{asset('bundles/objectsinternjump/js/cityAutoComplete.js')}}"></script>
+    <script src="{{ asset('js/libs/jquery.livequery.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.transit.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.alerts.js') }}"></script>
+
+    <script>
+
+        </script>
+{% endblock %}

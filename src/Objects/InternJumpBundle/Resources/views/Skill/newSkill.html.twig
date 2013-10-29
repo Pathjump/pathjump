@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+
+{%block body%}
+<h3>Student Add New Skill</h3>
+
+<form action="{{ url('skill_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button name="create" type="submit">Create</button>
+        <button name="create-add-another" type="submit">Create & Add again</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ url('skill') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+
+{%endblock%}

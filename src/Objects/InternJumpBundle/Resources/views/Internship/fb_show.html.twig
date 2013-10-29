@@ -1,0 +1,274 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}{{entity.title}}{% endblock %}
+
+{% block pageTitle %}{{entity.title}}{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+<link href="{{ asset('css/jquery.alerts.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('css/colorBox/colorbox.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<div class="container Main-content">
+    <div class="Search-interns">
+        <div class="row-fluid show-grid">
+
+            <div class="span8">
+                <div class="company-form">
+
+                    <div class="row-fluid intern-title show-grid">
+                        <div class="span10">
+                            <h3>{{ entity.title }}</h3>
+
+                        </div>
+                        <div class="span2 logo-box"><img src="{{entity.company.getTimThumbUrl(130,60)}}"></div><h4 class="span6">{{entity.company}}</h4>
+                    </div><!--intern-title--->
+
+
+                    <div class="row-fluid show-grid interns-info">
+
+                        <div class="span6">
+                            <div class="intern-pos">
+                                <div class="titl-blue">Position type</div>{{ entity.positionType }}
+                                <div class="titl-blue">Position in</div>{{entity.getCountryName()}}, {{entity.city}}{% if entity.state %}, {{entity.state}}{% endif %}
+                            </div>
+                            <div class="row-fluid show-grid Starts">
+                                <div class="span6"><div class="titl-blue">Work Location</div>{{entity.workLocation}}</div>
+                                {% if is_granted('ROLE_COMPANY') and company.id == app.user.id %}
+                                <div class="span6"><div class="titl-blue">Expires</div>{{ entity.activeTo|date('d F Y') }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="row-fluid show-grid">
+                                <div class="span6 titl-blue">Session Period:</div>
+                                <div class="span6"><span class="lebel-info">{{entity.sessionPeriod}}</span></div>
+                            </div>
+                            <div class="row-fluid show-grid">
+                                <div class="span6 titl-blue">Number of positions:</div>
+                                <div class="span6"><span class="lebel-info">{{entity.numberOfOpenings}}</span></div>
+                            </div>
+                            <div class="row-fluid show-grid">
+                                <div class="span6 titl-blue">Industry:</div>
+                                <div class="span6"><span class="lebel-info">
+                                    {% for cat in entity.getCategories %}
+                                          {% if not loop.last %}
+                                                {{cat}},
+                                          {% else %}
+                                                {{cat}}
+                                          {% endif %}
+                                    {% endfor %}
+                                            </span></div>
+                                    </div>
+                                </div>
+                            </div><!--intern-title--->
+
+
+                            <div class="box-b links">
+                                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51c6b26429cfea68"></script>
+                                <!-- AddThis Button END -->
+                                <a class="addthis_button_compact"><i class="icon-share"></i> Share</a>
+                            {#
+                                <a href=""><i class="icon-star"></i> Add to Favorites</a>
+                            #}
+                            {% if entity.active and jobAvailabilityFlag == 1 and is_granted('ROLE_USER') and addedBeforeFlag == 1%}
+                                <a class="btn btn-primary large pull-right apply" href="javascript:void(0)" id="jobApply">apply</a>
+                            {% elseif not is_granted('ROLE_NOTACTIVE_COMPANY') and not is_granted('ROLE_NOTACTIVE') %}
+                                <a class="btn btn-primary large pull-right apply" href="javascript:void(0)" id="notActiveUserApply">apply</a>
+                            {% endif %}
+
+                            {% if addedBeforeFlag == 0 and is_granted('ROLE_USER') %}
+                                <h4 class=" text-center pull-right">{{job_added_before_message}}</h4>
+                            {% endif %}
+                                <div class="clearfix"></div>
+                            </div><!--box-b-->
+
+
+                            <div class="box-b">
+                                <h4 class="titl-blue">Description</h4>
+                                <p>{{ entity.description | raw }}</p>
+                            </div><!--box-b-->
+
+                            <div class="box-b">
+                                <h4 class="titl-blue">Requirements</h4>
+                                <p>{{ entity.requirements | raw }}</p>
+                            </div><!--box-b-->
+
+                            <div class="box-b Skils-box">
+                                <ul class="unstyled">
+                            {% if entity.skills %}
+                                        <li class="row-fluid show-grid">
+                                            <div class="span5">Skills</div>
+                                            <div class="span7">
+                                    {% for skill in entity.skills %}
+                                        {% if not loop.last %}
+                                        {{ skill.title }} ,
+                                        {% else %}
+                                        {{ skill.title }}
+                                        {% endif %}
+                                    {% endfor %}
+                                                </div>
+                                            </li>
+                            {% endif %}
+
+                                            {% if entity.minimumGPA > 0 %}
+                                            <li class="row-fluid show-grid">
+                                                <div class="span5">Minimum GPA Requirement</div>
+                                                <div class="span7">{{ entity.minimumGPA }}</div>
+                                            </li>
+                                            {% endif %}
+
+                                            <li class="row-fluid show-grid">
+                                                <div class="span5">Language skills</div>
+                                            </li>
+                            {% for lang in entity.languages %}
+                                            <li class="row-fluid show-grid">
+                                                <div class="span5">{{ lang.language.name}}</div> (
+                                                Spoken : {{ lang.spokenFluency}}
+                                                Written : {{ lang.writtenFluency}}
+                                                Read : {{ lang.readFluency}}
+                                                )
+                                            </li>
+                            {% endfor %}
+                                        </ul>
+                                    </div><!--Skils-box-->
+
+                                    <div class="box-b">
+                                        <div class="row-fluid show-grid">
+                                            <div class="span6"><br>
+                                                <div class="map" id="map_canvas" style="width: 100%;height: 100px;"></div>
+                                            </div>
+                                            <div class="span6">
+                                                <h4 class="titl-blue">Location:</h4>
+                                                <p>
+                                {{entity.address}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div><!--box-b--->
+
+                    {% if entity.active and jobAvailabilityFlag == 1 and is_granted('ROLE_USER') and addedBeforeFlag == 1%}
+
+                                        <div class="box-b links">
+                                            <a class="btn btn-primary large pull-right apply" href="javascript:void(0)" id="jobApply">apply</a> <h4 class=" text-center pull-right">Apply to this position!</h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+                    {% elseif not is_granted('ROLE_NOTACTIVE_COMPANY') and not is_granted('ROLE_NOTACTIVE')  %}
+                                        <div class="box-b links">
+                                            <a class="btn btn-primary large pull-right apply" href="javascript:void(0)" id="notActiveUserApply">apply</a> <h4 class=" text-center pull-right">Apply to this position!</h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+                    {% endif %}
+                    {% if addedBeforeFlag == 0 and is_granted('ROLE_USER') %}
+                                        <div class="box-b links">
+                                            <h4 class=" text-center pull-right">{{job_added_before_message}}</h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+                    {% endif %}
+                    {% if is_granted('ROLE_COMPANY') and company.id == app.user.id %}
+                                        <div class="box-b links">
+                                            <a class="btn btn-primary large pull-right apply" href="{{ path('internship_edit', { 'id': entity.id }) }}">Edit</a>
+                                            <a class="btn btn-primary large pull-right apply" href="javascript:void(0)" data-delete-url="{{ url('internship_delete', { 'id': entity.id }) }}" id="deleteJob">Delete</a> <h4 class=" text-center pull-right">({{applyedUsers|length}}) Students Applied</h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+                    {% endif %}
+
+                                    </div><!--company-form-->
+
+                                    {% if is_granted('ROLE_COMPANY') and company.id == app.user.id and applyedUsers|length > 0 %}
+                                    <div class="Result-box">
+                                            <h4 class="title3">Applications Received</h4><!---title3--->
+
+                                            <ul class="unstyled inner-list">
+                                                {% for userInternship in applyedUsers %}
+                                                <li class="row-fluid show-grid">
+                                                    <div class="span8">
+                                                        <h4><a class="titl-blue" href="{{url('company_see_user_data',{'userLoginName' : userInternship.user.loginName,'cvId' : userInternship.cv.id})}}">{{userInternship.user}}</a></h4>
+                                                        <i><strong><a href="javascript:void(0)">{{userInternship.cv.objective}}</a></strong></i>
+                                                        <p><br></p>
+                                                        <p></p>
+                                                    </div>
+                                                    <div class="span4">
+                                                        <div class="Area">{{userInternship.user.city}}{% if userInternship.user.state %}, {{userInternship.user.state}}{% endif %}, {{userInternship.user.getCountryName}}</div>
+                                                    </div>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div><!--Result-box-->
+                                        {% endif %}
+
+                                </div><!--span 8-->
+
+                                <div class="span4 search-right-col">
+
+                                    {% if relatedJobs | length > 0 %}
+                                        <div class="Col-block">
+                                            <h2>Related Positions</h2>
+                                            <div class="media">
+                        {% for job in relatedJobs %}
+                                                    <a href="{{path('internship',{'loginName' : job.company.loginName})}}" class="pull-left"><img src="{{job.company.getTimThumbUrl(60,60)}}"></a>
+                                                    <div class="media-body">
+                                                        <div class="titl-blue">
+                                                            <a href="{{path('internship_show',{'id' : job.id})}}">
+                                    {{job.title}}
+                                                                </a>
+                                                            </div>
+                            {{job.company}}
+                                                        </div><br>
+                                                        <div class="clearfix"></div>
+                        {% endfor %}
+                                                    </div>
+                                        </div><!--Col-block--->
+                                        {% endif %}
+
+                {% if LatestJobs | length > 0%}
+                                        <div class="Col-block Latest-Interrnships">
+                                            <h2>Latest Interrnships</h2>
+                                            <div class="media">
+                        {% for job in LatestJobs %}
+                                                    <a href="{{path('fb_internship',{'loginName' : job.company.loginName})}}" class="pull-left"><img src="{{job.company.getTimThumbUrl(130,60)}}"></a>
+                                                    <div class="media-body">
+                                                        <div class="titl-blue">
+                                                            <a href="{{path('fb_internship_show',{'id' : job.id})}}">
+                                    {{job.title}}
+                                                                </a>
+                                                            </div>
+                            {{job.company}}
+                                                        </div><br>
+                                                        <div class="clearfix"></div>
+                        {% endfor %}
+                                                    </div>
+                                                </div>
+                {% endif %}
+
+
+
+
+                                            </div><!--search-right-col--->
+
+                                        </div><!--row-fluid show-grid-->
+
+                                    </div><!--Search-interns-->
+
+                                </div>
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+                                <script>
+                                    var latitude = '{{entity.Latitude}}';
+                                    var longitude = '{{entity.Longitude}}';
+                                    var getUserCvsUrl = "{{path('user_cvs')}}";
+                                    var userJobApplyUrl = "{{path('add_user_job',{'jobId' : entity.id,'cvId' : ''})}}";
+                                    var job_apply_success_message = "{{job_apply_success_message}}";
+                                    var searchJobsUrl = "{{path('fb_user_search_page')}}";
+                                    </script>
+                                    <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+                                    <script src="{{asset('bundles/objectsinternjump/js/showInternShip.js')}}"></script>
+                                    <script src="{{asset('bundles/objectsinternjump/js/internShipMap.js')}}"></script>
+                                    <script src="{{ asset('js/jquery.alerts.js') }}"></script>
+                                    <script src="{{ asset('js/jquery.colorbox-min.js') }}"></script>
+
+{% endblock %}

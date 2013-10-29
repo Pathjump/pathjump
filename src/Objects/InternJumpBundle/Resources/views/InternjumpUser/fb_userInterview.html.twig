@@ -1,0 +1,218 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}{{user}} interview{% endblock %}
+
+{% block pageTitle %}Interview Details{% endblock %}
+
+{% block body %}
+<div class="container Main-content">
+
+
+
+
+    <div class="company-form">
+        <h2>Interview Details</h2>
+        <div class="Notifications">
+
+            <table width="100%" border="0" class="table table-bordered">
+                <tbody><tr>
+                        <th scope="row"> From</th>
+                        <td><a href="{{company.url}}">{{company}}</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Details</th>
+                        <td><a href="{{path('fb_internship_show',{'id' : interview.internship.id})}}" target="_blank">click here to see internship details</a></td>
+                    </tr>
+                    {% if interview.details %}
+                    <tr>
+                        <th scope="row">Details</th>
+                        <td>{{interview.details}}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>{{interview.interviewDate|date('j F Y h:i A')}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Country</th>
+                        <td>{{interview.getCountryName}}</td>
+                    </tr>
+                    {% if interview.state %}
+                    <tr>
+                        <th scope="row">State</th>
+                        <td>{{interview.state}}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>{{interview.city}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Address</th>
+                        <td>{{interview.address}}</td>
+                    </tr>
+                    {% if interview.accepted != 'pending' %}
+                    <tr>
+                        <th scope="row">Interview status</th>
+                        <td>{{interview.accepted}}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">Location</th>
+                        <td>
+                            <div class="map" id="map_canvas" style="width: 100%;height: 300px;"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            {% if interview.accepted == 'pending' %}
+            <div class=" row-fluid">
+                <a class="btn btn-primary pull-right" href="javascript:void(0)" id="accepted">Accept</a>
+                <a class="btn pull-right " href="javascript:void(0)" id="rejected">Reject </a>
+            </div>
+            {% endif %}
+        </div><!--Notifications--->
+    </div><!--company-form-->
+
+</div>
+{#
+<div id="main" role="main">
+
+    <section id="comJobList">
+        <div class="wrapper">
+            <section class="comntSection fullWidth" id="interviewDetails">
+
+                <aside class="copmanyInfo">
+                    <h1>Interested company</h1>
+                    <div class="infoBlock">
+                        <div class="logo">
+                            <img src="{{company.getTimThumbUrl(105,120)}}" width="105" height="120">
+                        </div>
+                        <div class="info">
+                            <label>Company:</label>
+                            <span>{{company}}</span>
+                            <br>
+                            {% if company.url %}
+                            <label>Website:</label>
+                            <span>
+                                <a href="{{company.url}}">{{company.url}}</a>
+                            </span>
+                            <br>
+                            {% endif %}
+                            <label>Country:</label>
+                            <span>{{company.getCountryName()}}</span>
+                            <br>
+                            <label>City:</label>
+                            <span>{{company.city}}</span>
+                            <br>
+                            {% if company.state %}
+                            <label>State:</label>
+                            <span>{{company.state}}</span>
+                            <br>
+                            {% endif %}
+                            <label>Address:</label>
+                            <span>{{company.address}}</span>
+                            <br>
+                        </div>
+
+                        <!--
+                    <p>
+                        Provide students with access to companies which they would not find in their typical job search. Internjump works with small to midsized companies which do not have the resources to reach out to college campuses. By promoting internjump you will be giving your students access to opportunities they might never have learned about in their internship search process.
+                    </p>
+                        -->
+
+                        <div class="clear"></div>
+                    </div>
+                </aside>
+
+                <aside class="addEdiTask">
+                    <h1>Interview Details</h1>
+
+                    <div class="onMap">
+                        <span class="ico"></span>
+                        <h2>Interview location :</h2>
+                        <div class="map" id="map_canvas">
+                        </div>
+                    </div>
+
+                    <div class="intDetails">
+                        <span><strong>Date : </strong> {{interview.interviewDate|date('j F Y h:i:s A')}}</span>
+                        <span><strong>Country : </strong> {{interview.getCountryName}}</span>
+                        <span><strong>City : </strong> {{interview.city}}</span>
+                        {% if interview.state %}
+                        <span><strong>State : </strong> {{interview.state}}</span>
+                        {% endif %}
+                        <span><strong>Address : </strong> {{interview.address}} </span>
+                        {% if interview.accepted != 'pending' %}
+                        <span><strong>Interview status : </strong> {{interview.accepted}} </span>
+                        {% endif %}
+                        {% if interview.details %}
+                        <span><strong>Interview Details : </strong> {{interview.details}} </span>
+                        {% endif %}
+
+                        <span>
+                            <a href="{{path('internship_show',{'id' : interview.internship.id})}}" target="_blank">click here to see job details</a>
+                        </span>
+                    </div>
+                    <div class="clear"></div>
+
+                    {% if interview.accepted == 'pending' %}
+                    <button class="bak" id="rejected">Reject</button>
+                    <button class="submit" id="accepted">Accept</button>
+                    {% endif %}
+                    <div class="clear"></div>
+
+                </aside>
+
+
+
+            </section>
+            <div class="clear"></div>
+        </div>
+    </section>
+
+
+</div>
+#}
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+<script>
+    var latitude = '{{interview.Latitude}}';
+    var longitude = '{{interview.Longitude}}';
+
+    $(document).ready(function() {
+        initialize();
+
+        //interview accept/reject
+        $('#accepted,#rejected').click(function() {
+            thisLink = $(this);
+            var linkId = thisLink.attr('id');
+            //hide the buttons
+            $('#accepted,#rejected').hide();
+            //show the loading image
+            $('.loading').show();
+            $.ajax({
+                url: "{{path('user_accept_reject_interview',{'interviewId' : interview.id, 'status' : ''})}}" + "/" + linkId,
+                success: function(msg) {
+                    if (msg == 'done') {
+                        $('#interviewStatus').text(linkId);
+                        $('#interviewMessage').text('the interview was updated successfully');
+                    }
+                },
+                complete: function(msg) {
+                    location.reload();
+                }
+            });
+        });
+
+    });
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script src="{{asset('bundles/objectsinternjump/js/internShipMap.js')}}"></script>
+{% endblock %}

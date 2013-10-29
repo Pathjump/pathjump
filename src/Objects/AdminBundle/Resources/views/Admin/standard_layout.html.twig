@@ -1,0 +1,61 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/chosen.css') }}" type="text/css" media="all"/>
+<link rel="stylesheet" href="{{ asset('css/backend.css') }}" type="text/css" media="all"/>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    var countriesUrl = '{{ path('get_all_countries') }}';
+    var countrySelectsUrl = '{{ path('get_countey_cities_states', {'countryId': ''}) }}/';
+    </script>
+    <script src="{{ asset('js/libs/chosen.jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/libs/jquery.livequery.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/backend.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block logo %}
+    <img src="{{ asset('img/internjump-backend-logo.png') }}" alt="Internjump" style="float: left;padding-right: 10px;"/>
+    <h3><a href="{{ url('admin_home') }}">Admin Home</a></h3>
+    <div class="nav-collapse collapse">
+        <ul class="nav nav-pills">
+            <li class="dropdown">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown"
+                   href="#">
+                    Control
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url('sonata_admin_dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url('admin_change_constants') }}">ChangeConstants</a></li>
+                    <li><a href="{{ url('admin_change_api_constants') }}">ChangeApiConstants</a></li>
+                    <li><a href="{{ url('admin_edit_about_us') }}">AboutUs</a></li>
+                    <li><a href="{{ url('admin_edit_terms_of_Service') }}">TermsOfService</a></li>
+                    <li><a href="{{ url('admin_edit_privacy_policy') }}">PrivacyPolicy</a></li>
+                    <li><a href="{{ url('admin_edit_employers_data_page') }}">EmployersDataPage</a></li>
+                    <li><a href="{{ url('admin_edit_students_data_page') }}">StudentsDataPage</a></li>
+                    <li><a href="{{ url('admin_edit_schools_page') }}">SchoolsPage</a></li>
+                    <li><a href="{{ url('admin_edit_site_forms') }}">SiteForms</a></li>
+                    <li><a href="{{ url('admin_edit_CampusReps') }}">CampusReps</a></li>
+                    <li><a href="{{ url('admin_end_of_day_report') }}">End Of Day Report</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <p class="navbar-text pull-right">
+            Hello admin <a href="{{ path('logout') }}">Logout</a>
+        </p>
+    </div>
+
+    <div id="objectsLoader" style="display: none;">
+        <img src="{{ asset('img/followLoader.gif') }}"/>
+        <p>Loading Please Wait .......</p>
+    </div>
+{% endblock %}
+{# the purpose of the footer is to remove the sonata link from the footer #}
+{% block footer %}
+{% endblock %}

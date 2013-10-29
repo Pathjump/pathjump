@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+{% block title %}internjump quiz{% endblock %}
+
+{% block body %}
+
+{% if is_granted('ROLE_USER') %}
+<a href="{{path('internjumb_quiz_page')}}">Find out now</a>
+{% else %}
+<span class="alert">Your acount not active</span>
+{% endif %}
+
+
+{% endblock %}
+

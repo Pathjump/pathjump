@@ -1,0 +1,34 @@
+{% extends '::fb_base.html.twig' %}
+
+{% block title %}Company listing by industry{% endblock %}
+
+{% block pageTitle %}Company listing by industry{% endblock %}
+
+{% block body %}
+        <div class="container Main-content">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('site_fb_homepage') }}">Home</a> <span class="divider">/</span></li>
+                <li class="active">Employers</li>
+            </ul>
+            <div class="Box-a Industry">
+                <h3 class="title3">
+                    Company Listing by Industry
+                    <div class="form-search pull-right">
+                        <div class="input-append" style="margin-top: 5px;">
+                            <form action="{{ path('fb_search_for_company') }}">
+                                <input name="searchString" placeholder="Search For Company" type="text" class="search-query">
+                                <button type="submit" class="btn">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </h3>
+                <br/>
+                <h2>Feature your business in our company listing by <a href="{{ path('company_signup') }}">joining</a>, free!</h2>
+                <ul class="unstyled">
+                    {% for industry in  entities %}
+                    <li><a href="{{ path('fb_industry_companies', {'industrySlug': industry.slug}) }}">{{ industry }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div><!-- Box-a-->
+        </div><!--container-->
+{% endblock %}

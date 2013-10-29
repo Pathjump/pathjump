@@ -1,0 +1,40 @@
+twitter_authentication:
+    pattern:  /twitterauthentication/{popup}/{redirectRoute}
+    defaults: { _controller: ObjectsAPIBundle:Twitter:index, popup: 'no' }
+
+twitter_callback:
+    pattern:  /twitter
+    defaults: { _controller: ObjectsAPIBundle:Twitter:twitter }
+
+save_twitter_tokens:
+    pattern:  /twitter/save
+    defaults: { _controller: ObjectsAPIBundle:Twitter:saveTwitterTokens }
+
+twitt:
+    pattern: /twitt/{status}
+    defaults: { _controller: ObjectsAPIBundle:Twitter:twitt }
+
+get_last_twitts:
+    pattern: /twitts/{count}
+    defaults: { _controller: ObjectsAPIBundle:Twitter:getLastTwitts }
+
+facebook_app_id:
+    pattern:  /facebook/app/id
+    defaults: { _controller: ObjectsAPIBundle:Facebook:getFacbookApplicationId }
+    
+facebook_end_dailog:
+    pattern:  /facebookenddialog
+    defaults: { _controller: ObjectsAPIBundle:Facebook:endDialog }
+    
+facebook_one_user_handel:
+    pattern:  /facebookoneuserhandel
+    defaults: { _controller: ObjectsAPIBundle:Facebook:facebookOneUserHandeler }   
+    
+linkedInButton:
+    pattern:  /linkedInButton/{callbackUrl}/{popup}
+    defaults: { _controller: ObjectsAPIBundle:Linkedin:linkedInButton, popup: 'no'}     
+    
+linkedInCallBack:
+    pattern:  /linkedInCallBack
+    defaults: { _controller: ObjectsAPIBundle:Linkedin:linkedInCallBack}    
+    

@@ -1,0 +1,99 @@
+{% extends '::base.html.twig' %}
+{% block title %}personal Questions{% endblock %}
+
+{% block pageTitle %}Personal Questions{% endblock %}
+
+{% block body %}
+{% if questions|length > 0%}
+<div class="container Main-content">
+    <div class="row-fluid show-grid">
+
+        <div class="span12">
+            <div class="company-form Resume">
+<div class="Result-box">
+<h4 class="title3">Personal Questions</h4><!---title3--->
+
+<ul class="unstyled inner-list">
+    {% for question in questions %}
+        <li class="row-fluid show-grid">
+            <div class="span8">
+                <h4><a class="titl-blue" href="javascript:void(0)">{{question.question}}</a></h4>
+                <i><strong id="questionAnswerSpan-{{question.id}}">{{question.userAnswer}}</strong></i>
+                <p><br></p>
+                <p></p>
+            </div>
+            <div class="span4">
+                <div class="Area"><a href="javascript:void(0)" class="edit-btn addEditAnswerLink" id="{{question.id}}"><i class="icon-file"></i>
+                        {% if question.userAnswer %}
+                        Edit Your Answer
+                        {% else %}
+                        Answer this question
+                        {% endif %}
+                    </a></div>
+            </div>
+                <div class="editQuestionAnswer">
+                    <form action="" method="get" id="addEditQuestionAnswerDiv-{{question.id}}" style="display: none;">
+                        <div class="control-group">
+                                <div class="controls">
+                        <textarea name="" cols="" rows="" placeholder="Answer a question" class="addEditQuestionAnswer span12" id="addEditQuestionAnswer-{{question.id}}">{{question.userAnswer}}</textarea>
+                        </div>
+                        </div>
+                        <div class="control-group">
+                                <div class="controls">
+                            <button class="btn addEditQuestionAnswerButton pull-right" name="" type="button" value="" id="{{question.id}}">Answer</button>
+                             </div>
+                        </div>
+                    </form>
+               </div>
+        </li>
+     {% endfor %}
+    </ul>
+</div><!--Result-box-->
+</div></div></div></div>
+{% else %}
+<div class="alert alert-info">
+    Questions is not created yet
+</div>
+{% endif %}
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+        <script>
+        $(document).ready(function(){
+
+            //show edit/add question answer form
+$('a.addEditAnswerLink').click(function(){
+var thisLink = $(this);
+var questionId = thisLink.attr('id');
+//show the input field
+$('#addEditQuestionAnswerDiv-'+questionId).slideToggle(500);
+});
+
+//add/edit form action
+    $('button.addEditQuestionAnswerButton').click(function(){
+        var thisInput = $(this);
+        var questionId = thisInput.attr('id');
+        //get the answer text
+        var answerText = $.trim($('#addEditQuestionAnswer-'+questionId).val());
+        if(answerText){
+            //hide the button
+            thisInput.hide();
+            //show loading div
+            $('.loading').show();
+            $.ajax({
+                url: '{{path('addEdit_personal_question_answer')}}'+'/'+questionId+'/'+encodeURIComponent(answerText),
+                success: function(msg) {
+                },
+                complete: function(msg) {
+                    window.location.reload();
+                }
+            });
+
+        }
+    });
+
+        });
+            </script>
+{% endblock %}

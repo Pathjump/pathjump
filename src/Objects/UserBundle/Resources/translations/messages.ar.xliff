@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="messages.en.xliff">
+        <body>
+            <trans-unit id="1">
+                <source>Login</source>
+                <target>الدخول</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Login Name</source>
+                <target>اسم الدخول</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Password</source>
+                <target>كلمة المرور</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Remember me</source>
+                <target>تذكرنى</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>forgot your password</source>
+                <target>نسيت كلمة المرور</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Bad credentials</source>
+                <target>خطأ فى أسم الدخول</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>The presented password is invalid.</source>
+                <target>كلمة المرور غير صحيحه</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>User account is locked.</source>
+                <target>لقد تم ايقاف هذا الحساب</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>User account is disabled.</source>
+                <target>لقد تم مسح هذا الحساب</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Email</source>
+                <target>البريد الألكترونى</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>ReEmail</source>
+                <target>أعد البريد الألكترونى</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Retype New Password</source>
+                <target>أعد كلمة المرور الجديده</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>welcome</source>
+                <target>اهلا بك</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>your password is</source>
+                <target>كلمة مرورك هى</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>press on the next link to activate your account</source>
+                <target>أضغط على اللينك التالى لتفعيل حسابك</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>your account is now active</source>
+                <target>لقد تم تفعيل حسابك</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>invalid confirmation code</source>
+                <target>خطأ فى تأكيد الحساب</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>nothing to do</source>
+                <target>لم يحدث اى تغيير</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>the entered email was not found</source>
+                <target>البريد الألكترونى غير موجود</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>done please check your email</source>
+                <target>تم بنجاح من فضلك تفقد بريدك الألكترونى</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>this email was sent to allow you to change your password visit the next link to change it</source>
+                <target>هذه الرساله أرسلت اليك لتمكنك من تغيير كلمة المرور أضغط على اللينك القادم لتغييرها</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Forgot Password</source>
+                <target>نسيت كلمة المرور</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Change Password</source>
+                <target>تغيير كلمة المرور</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>password changed</source>
+                <target>تم تغيير كلمة المرور</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>new user</source>
+                <target>مستخدم جديد</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Sign up</source>
+                <target>أشترك معنا</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>you can not undo this action are you sure you want to continue</source>
+                <target>فى حالة قيامك بهذه الخطوه لن يمكنك التراجع عنها هل أنت متأكد من رغبتك فى المتابعه</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>delete your account</source>
+                <target>مسح حسابك</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>You have to enable javascript in order to use this feature</source>
+                <target>يجب عليك أستخدام الجافا سكريبت لأكمال هذه الخطوه</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Twitter Sign up</source>
+                <target>التسجيل بأستخدام تويتر</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>you can login to our site with</source>
+                <target>تستطيع الدخول لموقعنا ب</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Twitter Login</source>
+                <target>الدخول بأستخدام تويتر</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Your Facebook account was successfully Linked to your account</source>
+                <target>لقد تم ربط حسابك الشخصى مع حساب الفيس بوك بنجاح</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>I have new account on this cool site</source>
+                <target>أنا الأن لدى حساب شخصى على هذا الموقع</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>unknown</source>
+                <target>غير معروف</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>Female</source>
+                <target>أنثى</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>Male</source>
+                <target>ذكر</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>this email was sent to you because you changed your email and your account is now not active</source>
+                <target>لقد تم أرسال هذا البريد الألكترونى لأنك قمت بتعديل عنوان بريدك الألكترونى و أصبح حسابك غير مفعل</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>activate your account</source>
+                <target>فعل حسابك</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>Edit My Account</source>
+                <target>تعديل الحساب الشخصى</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Edit</source>
+                <target>عدل</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>Done</source>
+                <target>تم بنجاح</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>Twitter Link</source>
+                <target>أربط حسابك على تويتر</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>First Name</source>
+                <target>الأسم الأول</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>Last Name</source>
+                <target>الأسم الأخير</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>Gender</source>
+                <target>النوع</target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>Date Of Birth</source>
+                <target>تاريخ الميلاد</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>Country</source>
+                <target>البلد</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>Old Password</source>
+                <target>كلمة المرور القديمه</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>New Password</source>
+                <target>كلمة المرور الجديده</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>unlink facebook</source>
+                <target>الغى اتصال الفيسبوك</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>unlink twitter</source>
+                <target>الغى اتصال تويتر</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>link facebook</source>
+                <target>اربط حسابك على فيسبوك</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>No result was found for query although at least one row was expected.</source>
+                <target>خطأ فى أسم الدخول</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>You can change your login name only once</source>
+                <target>يمكنك تغيير أسم الدخول مره واحده فقط</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>LinkedIn Sign up</source>
+                <target>التسجيل بأستخدام LinkedIn</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>LinkedIn Login</source>
+                <target>الدخول بأستخدام LinkedIn</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>About You</source>
+                <target>نبذه عنك</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>Url</source>
+                <target>موقعك الألكترونى</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>warning</source>
+                <target>تحذير</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>you will be logged out and logged in as the new user</source>
+                <target>سيتم تحويلك للمستخدم الجديد تلقائيا</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>Your account is now linked to twitter</source>
+                <target>تم الأتصال بحسابك الشخصى على تويتر</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>Unlinked successfully</source>
+                <target>تم الفصل بنجاح</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>to our site</source>
+                <target>فى موقعنا</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>check your email for your activation link</source>
+                <target>تم أرسال رساله إلى بريدك الألكترونى لتفعل حسابك</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Your account has been deleted</source>
+                <target>تم مسح حسابك بنجاح</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>Only characters, numbers and _ is valid</source>
+                <target>فقط الأحرف والأرقام و _ صالحة</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>valid</source>
+                <target>متاح</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>This value is already used</source>
+                <target>هذه القيمة مستخدمة</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>Did you mean</source>
+                <target>هل تقصد</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>RePassword</source>
+                <target>أعد كلمة المرور</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>Are you sure you want to</source>
+                <target>هل أنت متأكد أنك تريد</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>Yes</source>
+                <target>نعم</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>No</source>
+                <target>لا</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

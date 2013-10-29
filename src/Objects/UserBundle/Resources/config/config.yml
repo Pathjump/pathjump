@@ -1,0 +1,3 @@
+parameters:
+    auto_active: true
+    login_name_required: false

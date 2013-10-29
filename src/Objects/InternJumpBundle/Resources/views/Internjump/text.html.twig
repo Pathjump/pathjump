@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+ {{ title }}
+{% endblock %}
+
+{% block pageTitle %}{{ parent() }} - {{ title }}{% endblock %}
+
+{% block body %}
+        <div class="container Main-content">
+            <div class="row-fluid show-grid">
+                <div class="S-page">
+                    {{ content|raw }}
+                    {% for founder in founders %}
+                    <div>
+                        <img src="{{founder.getTimThumbUrl(102,120)}}" width="102" height="120">
+                        <a href="javascript:void(0)">{#mailto:{{founder.founderEmail}}#}
+                        <h1>{{founder.founderName}}</h1>
+                        <h2>{{founder.founderPosition}}</h2></a>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+{% endblock %}

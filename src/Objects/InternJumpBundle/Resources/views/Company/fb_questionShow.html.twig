@@ -1,0 +1,103 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}{{question}}{% endblock %}
+{% block pageTitle %}{{question}}{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+<link href="{{ asset('css/colorBox/colorbox.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<div class="container Main-content">
+    <div class="company-form">
+        <h2>Hire Request Details</h2>
+        <div class="Notifications">
+
+            <table width="100%" border="0" class="table table-bordered">
+                <tbody><tr>
+                        <th scope="row"> From</th>
+                        <td><a href="{{ path('fb_internship',{'loginName' : questionCompany.loginName}) }}">{{questionCompany}}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Question</th>
+                        <td>{{question.question}}</a>
+                        </td>
+                    </tr>
+                    {% if question.answer %}
+                    <tr>
+                        <th scope="row"> Answer</th>
+                        <td>{{question.answer}}
+                        </td>
+                    </tr>
+                    {% elseif is_granted('ROLE_USER') %}
+                    <tr>
+                        <th scope="row"> Answer</th>
+                        <td>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <textarea class="questionAnswer" placeholder="Type your answer…" style="width: 98%;"></textarea>
+                                    <button class="btn questionAnswerButton pull-right" type="button" id="accepted" style="margin-bottom: 5px;">Submit</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div><!--Notifications--->
+    </div><!--company-form-->
+
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+                                <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+                                <script src="{{ asset('js/jquery.colorbox-min.js') }}"></script>
+                                <script src="{{asset('bundles/objectsinternjump/js/internShipMap.js')}}"></script>
+                                <script>
+                                    var latitude = '{{questionCompany.Latitude}}';
+                                    var longitude = '{{questionCompany.Longitude}}';
+                                    $(document).ready(function() {
+
+                                        $('.showCompanyMap').colorbox({
+                                            inline: true,
+                                            onLoad: function() {
+                                                initialize();
+                                            }
+                                        });
+                                        //interest accept/reject
+                                        $('.questionAnswerButton').click(function() {
+                                            var thisInput = $(this);
+                                            //get the answer text
+                                            var answerText = $.trim($('.questionAnswer').val());
+                                            if (answerText) {
+                                                //hide the button
+                                                thisInput.hide();
+                                                //show loading div
+                                                $('.loading').show();
+                                                $.ajax({
+                                                    url: '{{path('user_answer_company_question',{'questionId' : question.id,'answerText' : ''})}}' + '/' + encodeURIComponent(answerText),
+                                                    success: function(msg) {
+                                                        if (msg == 'done') {
+                                                            //hide the textarea
+                                                            $('.questionAnswer').hide();
+                                                            //change the question answer
+                                                            $('#questionAnswer').text(answerText);
+                                                        }
+                                                    },
+                                                    complete: function(msg) {
+                                                        location.reload();
+                                                    }
+                                                });
+
+                                            }
+                                        });
+
+                                    });
+
+                                    </script>
+{% endblock %}

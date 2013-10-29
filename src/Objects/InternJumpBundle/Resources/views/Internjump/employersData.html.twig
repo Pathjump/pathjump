@@ -1,0 +1,33 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Employers{% endblock %}
+
+{% block pageTitle %}Employers{% endblock %}
+
+{%block body%}
+<div class="container Main-content">
+    <div class="row-fluid show-grid">
+        <div class="Sign-Up S-page">
+                    {{employersData|raw}}
+            </div>
+        </div>
+    </div>
+
+{%endblock%}
+
+{% block javascripts %}
+{{parent()}}
+<script>
+$(document).ready(function(){
+    $('#employerLink').addClass('crnt');
+
+    $('#companySignUpLink').click(function(){
+        window.location = '{{path('company_signup')}}';
+    });
+    $('#companyLogin').click(function(){
+        window.location = '{{path('login')}}';
+    });
+});
+</script>
+{% endblock %}
+

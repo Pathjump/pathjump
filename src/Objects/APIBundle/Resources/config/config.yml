@@ -1,0 +1,18 @@
+parameters:
+  consumer_key: wAaEsy8xqZzi5UxIVVbyQw
+  consumer_secret: ISTezbrDecK4TF0UncTjZE9qsc7BtGVMFiSXP17Ypw
+  oauth_token: null
+  oauth_token_secret: null
+  fb_app_id: '140790826106156'
+  # '282137608565990'
+  fb_app_secret: 560ae9b6b521ba64b82d84082e365320
+  # c0e978a64bc520a8b677dfa9e57f4746
+  fb_app_state: ae3a926faaec553ac9b570eb78509e76
+  fb_page_name: TestObjects
+  fb_page_id: '190411274380147'
+  fb_page_access_token: AAACteDc7yQwBAMGYgBfMIFVGzcZAFbWEGgSKtbqU8cU7n5nu00rEZBZCVmXKiEU56famVe5hJNWPHrTcCQdmN7ArmJZAZAswgQXcElfFsizz4Dxs3UqCu
+  fb_user_id: '100000705769644'
+  fb_access_token: AAACteDc7yQwBALQ2vbVK5LnI1XrZC2LZBgDujZCf1EAeOS9ENZCC7Jg63TNEGRXYrz3E7EhR1towIZB70r2D94rhSNsXnVd9izHdXJDEhRQZDZD
+  fb_access_token_expiration_date:
+  linkedin_api_key: kmatlaey25au
+  linkedin_secret_key: 4TmcM7zHTG09BohC

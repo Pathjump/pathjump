@@ -1,0 +1,74 @@
+internship_new:
+    pattern:  /new
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:new" }
+
+internship:
+    pattern:  /{loginName}/{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:index" ,page : 1}
+    requirements:
+        page:  \d+
+
+internship_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:show" }
+    requirements:
+        id:  \d+
+
+get_countey_cities_states:
+    pattern:  /get_countey_cities_states/{countryId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:getCounteyCitiesStates" }
+
+internship_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:edit" }
+    requirements:
+        id:  \d+
+
+internship_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:delete" }
+    requirements:
+        id:  \d+
+
+get_all_countries:
+    pattern:  /get/all_countries
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:getAllCountries" }
+
+add_user_job:
+    pattern:  /add_user_job/{jobId}/{cvId}
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:addUserJob" }
+    requirements:
+        jobId:  \d+
+        cvId:  \d+
+
+user_cvs:
+    pattern:  /user/cvs
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:userCvs" }
+
+get_position:
+    pattern:  /get/position/{zipcode}
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:getPosition" }
+
+fb_internship_show:
+    pattern:  /fb/{id}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:fb_show" }
+    requirements:
+        id:  \d+
+
+fb_internship:
+    pattern:  /fb/{loginName}/{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:fb_index" ,page : 1}
+    requirements:
+        page:  \d+
+
+show_indeed_job:
+    pattern:  /indeed/{jobkey}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:showIndeedJob" }
+
+fb_show_indeed_job:
+    pattern:  /fb_indeed/{jobkey}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:fb_showIndeedJob" }
+
+indeed_job_apply:
+    pattern:  /indeed/{jobkey}/apply
+    defaults: { _controller: "ObjectsInternJumpBundle:Internship:indeedJobApply" }

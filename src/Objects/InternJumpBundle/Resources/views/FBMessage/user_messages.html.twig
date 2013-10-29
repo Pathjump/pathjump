@@ -1,0 +1,86 @@
+{% if entities | length > 0 %}
+    <form onsubmit="return false;" id="companyMessagesForm" action="{{ path('fb_user_messages_batch_action') }}" method="POST">
+        <input id="currentBox" type="hidden" name="box" value="{{ box }}"/>
+        {% if box =='inbox' %}
+        <button class="btn btn-warning" type="submit" id="readAllMessages" name="readAllMessages" value="1"><i class="icon-eye-open icon-white"></i></button>
+        {% endif %}
+        <button class="btn btn-danger" type="submit" id="deleteAllMessages" name="deleteAllMessages" value="1">Delete</button>
+        <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                Per page
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                {% for perPageNumber in 10 .. 100 %}
+                    {% if perPageNumber is divisibleby(10) %}
+                <li><a onclick="setCookie('user_messages_per_page_{{ userId }}', {{ perPageNumber }}, 86391359);document.location.reload(true);" href="javascript:void(0)">{{ perPageNumber }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <!-- dropdown menu links -->
+            </ul>
+        </div>
+
+        <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                page
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                {% for pageNumber in 1 .. lastPageNumber %}
+                <li><a href="{{ path('fb_user_box', {'box': box, 'page': pageNumber}) }}">{{ pageNumber }}</a></li>
+                {% endfor %}
+                <!-- dropdown menu links -->
+            </ul>
+        </div>
+
+        <div class="clearfix"></div>
+        <br/>
+
+
+        <ul class="list2">
+            <li>
+                <label class="checkbox">
+                    <input class="js" title="select/deseclect all messages" onchange="changeMessagesSelection();" type="checkbox"/>
+                    Subject
+                    <small class="muted pull-right">Date</small>
+                </label>
+            </li>
+            {% for entity in entities %}
+            <li>
+                <label class="checkbox">
+                    {% if (entity.sentFromCompany) and (not entity.isRead) %}
+                    <i class="icon-eye-open"></i>
+                    {% endif %}
+                    <input class="companyMessage" name="userMessages[]" value="{{ entity.id }}" type="checkbox" />
+                    <a onclick="requestData('{{ path('fb_user_message', {'id': entity.id}) }}', '#tab{% if box == 'inbox' %}1{% else %}2{% endif %}', updateUserNotifications);return false;" href="{{ path('fb_show_user_message', {'id': entity.id}) }}" title="{{ entity }}">{{ entity.title }}</a>
+                    <small class="muted pull-right">{{ entity.createdAt|date('M d,Y') }}</small>
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% if lastPageNumber > 1 %}
+        <div class="pagination pagination-centered">
+            <ul>
+                {% if page > 1 %}
+                <li><a onclick="requestData('{{ path('fb_user_messages', {'box': box}) }}', '#tab{% if box == 'inbox' %}1{% else %}2{% endif %}');return false;" href="{{ path('fb_user_box', {'box': box}) }}">First</a></li>
+                <li><a onclick="requestData('{{ path('fb_user_messages', {'box': box, 'page': page - 1}) }}', '#tab{% if box == 'inbox' %}1{% else %}2{% endif %}');return false;" href="{{ path('fb_user_box', {'box': box, 'page': page - 1}) }}">&lt;</a></li>
+                {% endif %}
+
+                {% for numberOfPage in 1..lastPageNumber %}
+                {% if numberOfPage > page - 4 and numberOfPage < page + 4 %}
+                <li{% if numberOfPage == page %} class="active"{% endif %}><a onclick="requestData('{{ path('fb_user_messages', {'box': box, 'page': numberOfPage}) }}', '#tab{% if box == 'inbox' %}1{% else %}2{% endif %}');return false;" href="{{ path('fb_user_box', {'box': box, 'page': numberOfPage}) }}">{{ numberOfPage }}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                {% if page < lastPageNumber %}
+                <li><a onclick="requestData('{{ path('fb_user_messages', {'box': box, 'page': page + 1}) }}', '#tab{% if box == 'inbox' %}1{% else %}2{% endif %}');return false;" href="{{ path('fb_user_box', {'box': box, 'page': page + 1}) }}">&gt;</a></li>
+                <li><a onclick="requestData('{{ path('fb_user_messages', {'box': box, 'page': lastPageNumber}) }}', '#tab{% if box == 'inbox' %}1{% else %}2{% endif %}');return false;" href="{{ path('fb_user_box', {'box': box, 'page': lastPageNumber}) }}">Last</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+    </form>
+{% else %}
+You have no messages
+{% endif %}

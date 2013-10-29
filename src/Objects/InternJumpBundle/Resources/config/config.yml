@@ -1,0 +1,86 @@
+parameters:
+  new_job_to_suitable_users_message_text: 'There are new internships and entry level job posted in your area. Checkout this one in particular:'
+  new_job_to_suitable_users_subject_text: 'New & Exciting Internships and Entry Level Job'
+  skills_autocomplete_number: 10
+  refresh_notification_time: 30
+  contact_us_email: info@internjump.com
+  site_meta_title: 'Internship opportunities for College Students and Graduates'
+  site_meta_keywords: 'Internships, Jobs, Students, Employers, university, college, careers, employment'
+  site_meta_description: 'InternJump.com is the leading platform for internships that provides students a fresh and new outlook on finding internship opportunities to Jump Start their career.'
+  analytics: UA-1416230-24
+  jobs_per_page_index_jobs_page: 10
+  job_apply_success_message_show_job_page: 'You have successfully applied to this internship position'
+  job_added_before_message_show_job_page: Applied
+  map_change_location_message_new_job_page: 'Click on the map to change your location'
+  no_zipcode_message_new_job_page: 'Please provide your zipcode'
+  company_user_interset_waiting_message_user_data_page: 'Interns approval pending'
+  company_user_interset_reject_message_user_data_page: 'The interns has decided not to provide access to their resume'
+  company_user_hire_pending_message_user_data_page: 'Waiting for student''s response'
+  company_user_hire_accept_message_user_data_page: 'Student has accepted your request'
+  company_user_hire_reject_message_user_data_page: 'Student has rejected your request'
+  company_user_interview_pending_message_user_data_page: 'Waiting for student''s response'
+  company_user_interview_accept_message_user_data_page: 'Student has accepted your interview request'
+  company_user_interview_reject_message_user_data_page: 'Student has declined your interview request'
+  create_interview_request_success_message_user_data_page: 'Interview request complete'
+  create_hire_request_success_message_user_data_page: 'Your request to hire this student is pending student approval'
+  user_does_not_have_cv_message: 'You do not have any active resume'
+  default_latitude_company_signup_page: '42.722661000000'
+  default_longitude_company_signup_page: '-73.830143700000'
+  company_signup_welcome_message: 'Thank you for registering your company on InternJump. To activate your account and begin recruiting, please check your email for an activation code. Make sure to check the spam folder if the email does not show up in your inbox. Click above to resend the activation email.'
+  tasks_per_show_page: 10
+  jobs_per_search_results_page: 24
+  face_page_url: 'http://www.facebook.com/internjump'
+  twitter_page_url: 'http://twitter.com/InternJump'
+  google_page_url: 'https://plus.google.com/110727481723924712014/'
+  linkledIn_page_url: 'http://www.linkedin.com/company/internjump'
+  home_page_video_id: ZcP22bYAfAU
+  new_job_success_message: 'New internship is created successfully'
+  new_task_success_message: 'New task is created successfully'
+  a_grade_points: 20
+  b_grade_points: 10
+  c_grade_points: 5
+  d_grade_points: 3
+  e/f_grade_points: 2
+  associate_degree_points: 10
+  bachelor_degree_points: 20
+  master_degree_points: 30
+  doctoral_degree_points: 40
+  other_degree_points: 0
+  skill_point: 5
+  one_year_experience_points: 20
+  contact_detinations: 'Compliment,Criticism,Suggestion,Bug Report,Support,Investor Relations,Other'
+  contact_info_name: 'InternJump LLC'
+  contact_info_address_part1: '30 Broad St'
+  contact_info_address_part2: 'New York, NY 10004'
+  resource_per_page: 10
+  facebook_mesasage: 'Your Facebook details will not be shared with the employers.'
+  internjumb_copyright: 'InternJump LLC'
+  info_email: info@internjump.com
+  user_not_found_error_msg: 'This User does not exist.'
+  company_not_found_error_msg: 'This Company does not exist.'
+  cv_not_found_error_msg: 'This Resume does not exist.'
+  interview_not_found_error_msg: 'This Interview does not exist.'
+  request_not_found_error_msg: 'This Request  does not exist.'
+  question_not_found_error_msg: 'This Question does not exist.'
+  interest_not_found_error_msg: 'This Interest does not exist.'
+  education_not_found_error_msg: 'This Education does not exist.'
+  emp_history_not_found_error_msg: 'This Employment History does not exist.'
+  skill_not_found_error_msg: 'This Skill does not exist.'
+  task_not_found_error_msg: 'This Task does not exist.'
+  user_message_not_found_error_msg: 'This Message does not exist.'
+  company_message_not_found_error_msg: 'This Message does not exist.'
+  internship_not_found_error_msg: 'This position is no longer available.'
+  worth_default_statrting_salary: 24000
+  worth_experience_boost_value: 2000
+  worth_no_education: 'Add your educations'
+  worth_education_end_date_empty: 'Fill in all your educations end date'
+  worth_education_major_empty: 'Fill in all your educations major'
+  worth_no_major_skills_match: 'Your skills is not relevant to your major'
+  worth_no_experience: 'Add your employment histories'
+  worth_no_skills: 'Add your skills'
+  worth_year_boost: 3
+  worth_facebook_message: 'My expected worth on InternJump is'
+  worth_select_from: manually
+  user_worth_description: 'Your Current Worth'
+  user_net_worth_description: 'Your Net Worth'
+  host_name: 'newinternjump_dev.com'

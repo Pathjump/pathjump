@@ -1,0 +1,127 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+{% block logo %}
+<img src="{{ asset('img/internjump-backend-logo.png') }}" alt="Internjump" style="float: left;padding-right: 10px;"/>
+<h3><a href="{{ url('admin_home') }}">Admin Home</a></h3>
+<ul class="nav">
+    <li><a href="{{ url('sonata_admin_dashboard') }}">Dashboard</a></li>
+    <li><a href="{{ url('admin_change_constants') }}">ChangeConstants</a></li>
+    <li><a href="{{ url('admin_change_api_constants') }}">ChangeApiConstants</a></li>
+    <li><a href="{{ url('admin_edit_about_us') }}">EditAboutUs</a></li>
+    <li><a href="{{ url('admin_edit_terms_of_Service') }}">EditTermsOfService</a></li>
+    <li><a href="{{ url('admin_edit_privacy_policy') }}">EditPrivacyPolicy</a></li>
+    <li><a href="{{ url('admin_edit_employers_data_page') }}">EditEmployersDataPage</a></li>
+    <li><a href="{{ url('admin_edit_students_data_page') }}">EditStudentsDataPage</a></li>
+    <li><a href="{{ url('logout') }}">Logout</a></li>
+</ul>
+
+<div id="objectsLoader" style="display: none;">
+    <img src="{{ asset('img/followLoader.gif') }}"/>
+    <p>Loading Please Wait .......</p>
+</div>
+{% endblock %}
+
+
+{% block form %}
+{% if '/admin/company/' in app.request.getRequestUri or '/admin/internship/' in app.request.getRequestUri %}
+
+<div style="float: right;">
+    <a href="javascript:void(0)" id="getMyLocation" style="font-size: 15px;font-weight: bold;float: right;">Get my location</a>
+    <img src="{{asset('img/loadingfacebox.gif')}}" id="getMyPositionImg" style="display: none;float: right;"/>
+    <div id="map_canvas" style="height:300px;width:300px;"></div>
+
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+<script>
+    var map_change_location_message = 'click on other point to change your location';
+  $(document).ready(function(){
+      if($('input.latitude').val() && $('input.longitude').val()){
+      initialize($('input.latitude').val(),$('input.longitude').val());
+        }
+
+
+    $('#getMyLocation').click(function(){
+        var zipcode = $('input.zipcode').val();
+        if(zipcode){
+            //hide link
+            $('#getMyLocation').hide();
+            //show loading img
+            $('#getMyPositionImg').show();
+            $.ajax({
+                url: '{{url('get_position',{'zipcode' : ''})}}'+"/"+zipcode,
+                success: function(msg) {
+                    if(msg != 'faild'){
+                        msg = msg.split('|');
+                        latitude = msg['0'];
+                        longitude = msg['1'];
+                        //set lat and lng to input fields
+                        $('input.latitude').val(msg['0']);
+                        $('input.longitude').val(msg['1']);
+                    }
+                },
+                complete: function(msg) {
+                    //show link
+                    $('#getMyLocation').show();
+                    //hide loading img
+                    $('#getMyPositionImg').hide();
+
+                    initialize(latitude,longitude);
+                }
+            });
+        }else{
+            $('input.zipcode').focus();
+        }
+    });
+});
+
+
+
+function initialize(latitude,longitude) {
+    var latlng = new google.maps.LatLng(latitude,longitude);
+
+    var myOptions = {
+        zoom: 5,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+
+    var infowindow = new google.maps.InfoWindow();
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        title: 'the job location'
+    });
+    infowindow.setContent(map_change_location_message);
+    infowindow.open(map, marker);
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        infowindow.close();
+        var currentLat = event.latLng.lat();
+        var currentLng = event.latLng.lng();
+
+        var newPosition = "<strong>Lat : </strong>"+currentLat+"<br><strong>Lng : </strong>"+currentLng;
+
+        infowindow.setContent(newPosition);
+        infowindow.open(map, marker);
+
+        marker.setPosition(event.latLng);
+        //set lat and lng to input fields
+        $('input.latitude').val(currentLat);
+        $('input.longitude').val(currentLng);
+    });
+}
+
+    </script>
+{% endif %}
+    <script type="text/javascript" src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+
+{{parent()}}
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,50 @@
+company_box:
+    pattern:  /{box}/{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:messagesBox", page: 1 }
+    requirements:
+        box: inbox|outbox
+        page: \d+
+
+company_messages:
+    pattern:  /from/{box}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:getMessages", page: 1, itemsPerPage: ~ }
+    requirements:
+        box: inbox|outbox
+        page: \d+
+
+company_messages_batch_action:
+    pattern:  /batch
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:messagesBatch" }
+    requirements:
+        _method: POST|DELETE
+
+company_message:
+    pattern:  /message/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:getMessage" }
+    requirements:
+        id: \d+
+
+show_company_message:
+    pattern:  /show/message/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:show" }
+    requirements:
+        id: \d+
+
+company_message_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:delete" }
+    requirements:
+        _method: post
+        id: \d+
+
+company_new_message:
+    pattern:  /to
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:new" }
+
+company_new_message_form:
+    pattern:  /form/{userName}
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:newMessageForm", userName: ~ }
+
+company_create_message:
+    pattern:  /create/{userName}
+    defaults: { _controller: "ObjectsInternJumpBundle:CompanyMessage:create", userName: ~ }

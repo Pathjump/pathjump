@@ -1,0 +1,41 @@
+{% if allUserCvs|length > 0%}
+<div class="container Main-content span4" style="margin-left: 0;">
+    <div class="row-fluid show-grid">
+            <div class="company-form Resume">
+                <div class="Result-box">
+                    <h4 class="title3">Select your CV</h4>
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">Select your CV</label>
+                            <div class="controls">
+                                <select class="chzn-select" id="userCvs">
+                {% for cv in allUserCvs %}
+                                        <option value="{{cv.id}}">{{cv.name}}</option>
+                {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls" style="margin-bottom: 20px;">
+                                    <button type="button" class="btn" id="userCvSubmit">Confirm</button>
+                                    <button type="button" class="btn" id="userCvCancle">Cancel</button>
+                                    <img src="{{asset('img/loadingfacebox.gif')}}" id="userAddJobImg" style="display: none;float: right;"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% else %}
+    <div class="container Main-content span4">
+    <div class="row-fluid show-grid">
+            <div class="company-form Resume">
+                <div class="Result-box">
+                    <h4 class="title3">Select your CV</h4>
+                    <p>{{user_does_not_have_cv_message}}</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endif %}

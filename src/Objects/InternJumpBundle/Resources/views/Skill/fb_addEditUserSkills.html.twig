@@ -1,0 +1,74 @@
+{% extends '::fb_base.html.twig' %}
+
+{% block stylesheets %}
+{{parent()}}
+<link href="{{ asset('css/jquery-ui-1.8.24.custom.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block pageTitle %}Skills{% endblock %}
+
+{% block body %}
+
+<div class="container Main-content">
+    <div class="row-fluid show-grid">
+        <div class="Add-Job-description span12">
+
+            <form class="company-form">
+                <legend><h2>{%if formName%}{{formName}}{%endif%}  <small>{%if formDesc%}{{formDesc}}{%endif%}</small></h2></legend>
+                <fieldset>
+                    <div class="controls">
+                        <label>Skills <i><em class="muted">select some skills</em></i></label>
+
+                        <div class="input-append" style="width: 100%;">
+                            <input class="span12" id="skillsSearch" type="text" style="width: 95%;">
+                            <button class="btn" id="addSkill" type="button">Add</button>
+                        </div>
+                        <div class="alert alert-error skillError" style="width: 95%;display: none;"></div>
+
+                        <ul class="unstyled chzn-choices" id="skillsResult">
+                            {% for skill in userSkills %}
+                                <li>
+                                    <span id="skillName">{{skill.title}}</span>
+                                    <a href="javascript:void(0)" id="deleteSkill" skillId="{{skill.id}}">X</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                    <div class="controls  row-fluid show-grid">
+                        <div class="span6">
+
+                        </div>
+                        <div class="span6">
+                            <input class="btn btn-primary pull-right" type="button" id="submitSkills" value="Add skills" {% if not userSkills|length > 0 %}disabled{% endif %} />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div><!--Add-Job-description-->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script>
+    var skillArray = new Array(
+        {% for skill in userSkills %}
+    '{{ skill.title }}'{% if not loop.last %},{% endif %}
+        {% endfor %}
+    );
+            var searcSkillsUrl = '{{ path('get_skills_by_title') }}';
+    var saveUserSkillsUrl = '{{path('submitAddEditUserSkills',{'skills': ''})}}';
+    var userHomePageUrl = '{{ path('fb_addEditUserSkills') }}';
+    var userRemoveSkillurl = '{{path('userRemoveSkill',{'skillId' : ''})}}';
+
+    $(document).ready(function() {
+        $('#logedInStudent,#userSkills').addClass('crnt');
+        $('#studentNav').show();
+    });
+    </script>
+    <script src="{{ asset('js/libs/jquery-ui-1.8.24.custom.min.js') }}" type="text/javascript"></script>
+    <script src="{{asset('bundles/objectsinternjump/js/addEditSkills.js')}}"></script>
+{% endblock %}

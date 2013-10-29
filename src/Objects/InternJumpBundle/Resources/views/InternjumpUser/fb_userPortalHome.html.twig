@@ -1,0 +1,273 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}{{user}}{% endblock %}
+
+{% block pageTitle %}RESUME{% endblock %}
+
+{% block body %}
+
+<div class="container Main-content">
+    <div class="row-fluid show-grid">
+
+        <div class="span8">
+            <div class="company-form Resume">
+                <div class="row-fluid Resume-title show-grid">
+                    <div class="span10">
+                        <h2>{{user}}
+                            <div><small>{{user.getCountryName}}{% if user.state %}, {{user.state}}{% endif %}, {{user.city}}</small></div></h2>
+                    </div>
+                    <div class="span2 logo-box"><img src="{{user.getTimThumbUrl(90,85)}}"></div>
+
+
+                </div><!--Resume-title--->
+
+                {% if not userCv.isActive %}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                    This resume is not active.
+                </div>
+                {% endif %}
+
+                <div class="Box-a">
+                    <h3>	About</h3>
+                    <a class="btn btn-small pull-right" href="{{path('user_edit')}}"><i class="icon-pencil"></i> Edit</a>
+                    {% if user.about %}<p>{{user.about}}</p>{% endif %}
+
+                    <h5 class="titl-blue">Address</h5>
+                    <p>{{user.address}}</p>
+
+                    <h5 class="titl-blue">Email</h5>
+                    <p>{{user.email}}</p>
+
+                    {% if user.dateOfBirth %}
+                    <h5 class="titl-blue">Date Of Birth</h5>
+                    <p>{{user.dateOfBirth | date('d-m-Y')}}</p>
+                    {% endif %}
+                </div>
+
+                <div class="Box-a">
+                    <h3>	Objectives</h3>
+                    <a class="btn btn-small pull-right" href="{{path('fb_cv_edit',{'id' : userCv.id})}}"><i class="icon-pencil"></i> Edit</a>
+                    <h5 class="titl-blue">Description</h5>
+                    <p>{{userCv.objective}}</p>
+                </div>
+
+                {% if userCv.skills|length > 0 %}
+                <div class="Box-a">
+                    <h3>Skills</h3>
+                    <a class="btn btn-small pull-right" href="{{path('fb_cv_skills',{'id' : userCv.id })}}"><i class="icon-pencil"></i> Edit</a>
+                    <ul>
+                        <li><span>
+                            {% for skill in userCv.skills %}
+                                 {% if not loop.last %}
+                                        {{skill.title}},
+                                 {% else %}
+                                        {{skill.title}}
+                                 {% endif %}
+                            {% endfor %}
+                            </span></li>
+                    </ul>
+                    <a href="{{ path('fb_addEditUserSkills') }}">Add new Skill</a>
+                </div>
+                {% endif %}
+
+                {% if user.educations|length > 0 %}
+                <div class="Box-a">
+                    <h3>Education</h3>
+                    {% for education in user.educations %}
+                        <a class="btn btn-small pull-right" href="{{path('fb_education_edit',{'id' : education.id })}}"><i class="icon-pencil"></i> Edit</a>
+                        {% if education.schoolName %}
+                        <h5 class="titl-blue">{{education.schoolName}}</h5>
+                        {% endif %}
+                        <strong>{% if education.graduateDegree %}{{ education.graduateDegree }}{% else %}{{ education.undergraduateDegree }}{% endif %} - {{education.major}} {% if education.minor %}({{education.minor}}){% endif %}</strong>
+                        <div class="muted">Alexandria,Egypt</div>
+                        <div class="muted">{% if education.startDate %}{{education.startDate}}{% endif %} - {% if education.endDate %}{{education.endDate}}{% endif %}</div>
+                        {% if education.startDate %}
+                        <p>{{education.relevantCourseworkTaken}}</p>
+                        {% endif %}
+                    {% endfor %}
+                    <a href="{{ path('fb_education_new') }}">Add another School</a>
+                </div>
+                {% endif %}
+
+                {% if userCv.employmentHistory|length > 0 %}
+                <div class="Box-a">
+                    <h3>Experience</h3>
+                    {% for empHistory in userCv.employmentHistory %}
+                        <a class="btn btn-small pull-right" href="{{path('fb_cv_employment_history',{'id' : userCv.id })}}"><i class="icon-pencil"></i> Edit</a>
+                        <h5 class="titl-blue">{{empHistory.title}}</h5>
+                        <strong>
+                            {% if empHistory.companyUrl %}
+                                <a href="{{empHistory.companyUrl}}">
+                                {{empHistory.companyName}}
+                                </a>
+                           {% else %}
+                                {{empHistory.companyName}}
+                           {% endif %}
+                        </strong>
+                        {% if empHistory.isCurrent %}
+                        <div class="muted" style="color: #1EAF01;font: bold 15px/40px Arial,Helvetica,sans-serif;">Current Position</div>
+                        {% endif %}
+                        <div class="muted">{{empHistory.startedFrom|date('M Y')}}{% if empHistory.endedIn %} - {{empHistory.endedIn|date('M Y')}}{% endif %}</div>
+                        {% if empHistory.description %}
+                        <p>{{empHistory.description}}</p>
+                        {% endif %}
+                    {% endfor %}
+                    <a href="{{ path('fb_employmenthistory_new') }}">Add another position</a>
+                </div>
+                {% endif %}
+
+            </div><!--profile-pag--->
+            <br>
+            <div class="links text-right">
+                <a class="btn" href="javascript:mailpage()"><i class="icon-envelope"></i> Send</a>
+                <a class="btn" href="javascript:window.print()"><i class="icon-print"></i> Print</a>
+            </div>
+
+            {% if userPersonalQuestionAnswers|length > 0 %}
+            <div class="Result-box">
+                <h4 class="title3">Personal Questions</h4><!---title3--->
+
+                <ul class="unstyled inner-list">
+                    {% for answer in userPersonalQuestionAnswers %}
+                        <li class="row-fluid show-grid">
+                            <div class="span8">
+                                <h4><a class="titl-blue" href="javascript:void(0)">{{answer.question.question}}</a></h4>
+                                <i><strong>{{answer.answer}}</strong></i>
+                                <p><br></p>
+                                <p></p>
+                            </div>
+                            <div class="span4">
+                                <div class="Area"><a href="{{ path('fb_personal_questions') }}"><i class="icon-file"></i>Edit Answer</a></div>
+                            </div>
+                        </li>
+                     {% endfor %}
+                    </ul>
+                </div><!--Result-box-->
+            {% endif %}
+            {% if companiesQuestions|length >0 %}
+            <div class="Result-box">
+                <h4 class="title3">Company Questions</h4><!---title3--->
+
+                <ul class="unstyled inner-list">
+                    {% for question in companiesQuestions %}
+                        <li class="row-fluid show-grid">
+                            <div class="span8">
+                                <h4><a class="titl-blue" href="javascript:void(0)">{{question.question}}</a></h4>
+                                <i><strong id="questionAnswerSpan-{{question.id}}">{{question.answer}}</strong></i>
+                                <p><br></p>
+                                <p></p>
+                            </div>
+                            <div class="span4">
+                                <div class="Area">
+                                    {% if question.showOnCV %}
+                                    <a href="javascript:void(0)" class="questionStatus edit-btn" status="hide" id="{{question.id}}">hide from companies</a>
+                                    {% else %}
+                                    <a href="javascript:void(0)" class="questionStatus edit-btn" status="show" id="{{question.id}}">show to companies</a>
+                                    {% endif %}
+                                </div>
+                                <a href="javascript:void(0)" class="edit-btn addEditAnswerLink" id="{{question.id}}"><i class="icon-file"></i>Edit</a>
+                            </div>
+                                <div class="editQuestionAnswer">
+                                    <form action="" method="get" class="student-comment" id="addEditQuestionAnswerDiv-{{question.id}}" style="display: none;">
+                                        <div class="control-group">
+                                                <div class="controls">
+                                        <textarea name="" cols="" rows="" placeholder="Answer a question" class="addEditQuestionAnswer span12" id="addEditQuestionAnswer-{{question.id}}">{{question.answer}}</textarea>
+                                        </div>
+                                        </div>
+                                        <div class="control-group">
+                                                <div class="controls">
+                                            <button class="btn addEditQuestionAnswerButton pull-right" name="" type="button" value="" id="{{question.id}}">Answer a questions</button>
+                                             </div>
+                                        </div>
+                                    </form>
+                           </div>
+                        </li>
+                     {% endfor %}
+                    </ul>
+                </div><!--Result-box-->
+            {% endif %}
+        </div><!--span 8-->
+
+        <div class="span4">
+            <div class="Col-block">
+                <h2>Strength of Profile</h2>
+                {% render "ObjectsInternJumpBundle:Task:fb_userMeter" %}
+                <br>
+                <a data-toggle="modal" role="button" href="{{path('fb_cv_new')}}" class="btn btn-primary pull-right">Add New Resme</a>
+            </div> <!--Col-block-->
+            <br><br>
+
+            <!--
+            <div class="Col-block ">
+                <h2>Your Resumes</h2>
+                <ul>
+                    {% for cv in user.cvs %}
+                    <li>
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox isActiveCv" id="cv-{{cv.id}}" cvid="{{cv.id}}" {% if cv.isActive %}checked="checked"{% endif %}>
+                        {% if cvId != cv.id %}
+                        <a href="{{path('user_portal_home',{'loginName' : user.loginName,'cvId' : cv.id})}}">
+                        {{cv.name }}
+                        </a>
+                        {% else %}
+                            <a href="javascript:void(0)" class="crnt">
+                            {{cv.name }}
+                                    </a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            -->
+            <div class="Col-block ">
+                <h2>Vedio Introduction</h2>
+                <img src="{{asset('img/Internjump---Resume.jpg')}}">
+            </div>
+
+        </div><!--span4-->
+
+    </div><!--row-fluid show-grid-->
+
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+
+<!-- Google Code for IJ-Signup Conversion Page -->
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 1018990413;
+    var google_conversion_language = "en";
+    var google_conversion_format = "1";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "gmZuCIOT0QQQzZ7y5QM";
+    var google_conversion_value = 0;
+    /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1018990413/?value=0&amp;label=gmZuCIOT0QQQzZ7y5QM&amp;guid=ON&amp;script=0"/>
+    </div>
+    </noscript>
+
+    <script>
+        //the mailing script
+        function mailpage(){
+            mail_str = "mailto:?subject=" + document.title + ' cv';
+            mail_str += "&body=" + location.href;
+            location.href = mail_str;
+        }
+
+        $(document).ready(function() {
+            $('#logedInStudent').addClass('crnt');
+        });
+        var changeCvStatusUrl = '{{path('change_user_cv_status')}}';
+        var changeQuestionStatusUrl = '{{path('change_question_showOnCv')}}';
+        var addEditCompanyQuestionUrl = '{{path('user_answer_company_question')}}';
+        </script>
+        <script src="{{asset('bundles/objectsinternjump/js/userPortalHome.js')}}"></script>
+{% endblock %}

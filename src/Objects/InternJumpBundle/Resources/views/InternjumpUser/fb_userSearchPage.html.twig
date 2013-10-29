@@ -1,0 +1,478 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}
+Job Search
+{% endblock %}
+
+{% block pageTitle %}Job Search{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+<link href="{{ asset('css/chosen.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('css/jquery-ui-1.8.24.custom.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<div class="container Main-content">
+
+      <div class="Search-student">
+                  <form>
+                	<fieldset>
+
+
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#basic" data-toggle="tab">Basic </a></li>
+                                    <li><a href="#advanced" data-toggle="tab">Advanced Options</a></li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div id="basic" class="tab-pane fade active in">
+                                        <p>
+                                     <div class="controls  row-fluid show-grid">
+                                        <div class="span4 ">
+                                			<label>Job Type</label>
+                               					{{form_widget(form.jobtype, { 'attr': {'class': '', 'id' : 'jobtype_search'} })}}
+                            			</div>
+                                        <div class="span4 ">
+                                            <label>State</label>        
+                                            {{form_widget(form.state, { 'attr': {'class': 'chzn-select', 'id' : 'state_search'} })}}
+                                        </div>    
+                                             </div>
+                                        <div class="controls  row-fluid show-grid">
+                                        <div class="span4">
+                                        	<label>Industry</label>
+                                				{{form_widget(form.category, { 'attr': {'class': 'chzn-select','id' : 'category_search'} })}}
+                                        </div>
+                                             <div class="span4 ">
+                                            <label>City</label>
+                                            {{form_widget(form.city, { 'attr': { 'id' : 'city_search', 'placeholder': 'Type city'} })}}
+                                                            </div>
+                                     </div>
+                                    </p>
+
+                                                  <div class="Search-Internships Search-box ">
+            <form id="search_form" action="" method="POST" class="form-search">
+                <div class="input-append">
+                    <input id="search_text" name="" type="text" {% if keyword and keyword != "empty"%} value="{{keyword}}" {%else%}placeholder="Keywords"{% endif %} class="span6 search-query">
+                    <input id="search_button" name="" type="button" value="Search" class="btn btn-info">
+                </div>
+            </form>
+
+            </div>
+                                                </div>
+
+                                    <div id="advanced" class="tab-pane fade">
+                                        <p>
+                                            <div class="controls">
+
+
+                                            <div class="row-fluid show-grid">
+                                                <div class="span4">
+                                            <label>Location</label>    
+                                            {{form_widget(form.country, { 'attr': {'class': 'chzn-select', 'id' : 'country_search'} })}}
+                                                    </div>{#{{form_widget(form.city, { 'attr': {'class': 'chzn-select','style':'width:160px;', 'id' : 'city_search'} })}}#}
+                                                    
+                                            <div class="span4 ">
+                                                <label>Language</label>
+                                                    {{form_widget(form.language, { 'attr': {'class': 'chzn-select', 'style' : 'width: auto', 'id' : 'language_search'} })}}
+                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                        <div class="controls  row-fluid show-grid">
+                                            <div class="span4">
+                                                <label>Companies</label>
+                                {{form_widget(form.company, { 'attr': {'class': '', 'style' : 'width: auto', 'id' : 'company_search'} })}}
+                                            </div>
+                                           
+
+                                        </div>
+                                       
+                                    </p>
+                                     <input id="search_button" name="" type="button" value="Search" class="btn btn-info pull-right search_button"/>
+                                     <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+
+                    </fieldset>
+                </form>
+
+            </div><!--Add-Task-->
+
+
+
+
+            <div class="Search-interns">
+
+
+
+
+
+            <ul class="searchResult">
+
+<div class="pagination pagination-centered">
+<ul >
+                                {% if lastPageNumber > 1 %}
+                    {% if page > 1 %}
+                       <li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang }) }}">&laquo;&laquo;</a></li>
+                                                <li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang ,'page': page - 1}) }}">&laquo;</a></li>
+                    {% endif %}
+
+
+
+        {% for numberOfPage in 1..lastPageNumber %}
+        {% if numberOfPage > page - 3 and numberOfPage < page + 3 %}
+                                {% if page == numberOfPage %}<li class="active"><a href="javascript:void(0)">{{ numberOfPage }}</a></li>{% else %}<li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang ,'page': numberOfPage}) }}" >{{ numberOfPage }}</a></li>{%endif%}
+        {% endif %}
+        {% endfor %}
+
+
+                    {% if page < lastPageNumber %}
+                                                <li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang ,'page': page + 1}) }}" >&raquo;</a></li>
+                                                <li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang ,'page': lastPageNumber}) }}" >&raquo;&raquo;</a></li>
+{% endif %}
+                {% endif %}
+                                            </ul>
+        </div>
+
+{%if jobs%}
+        <div class="row-fluid show-grid">
+
+            <div class=" interns-res">
+
+            	    <div class="tabbable"> <!-- Only required for left/right tabs -->
+
+
+                            	<div class="Result-box">
+                                	<div class="title3"> Search Results:
+
+                                  </div><!---title3--->
+
+                                   <ul class="unstyled inner-list">
+                                       {%for job in jobs%}
+                                   		<li class="row-fluid show-grid">
+                                            <div class="span8">
+                                            	<h4><a class="titl-blue" href="{{path('internship_show', {'id': job.id})}}">{{job.title}}</a></h4>
+                                                <i><strong><a href="javascript:void(0)">{{job.company.name}}</a></strong></i>
+                                                <p>{{job.description|raw}}</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="span4">
+                                            	<div class="Area">{{ job.city }}  ,  {%if job.state %}{{ job.state }}  ,{% endif %}  {{job.getCountryName()}}</div>
+                                                <div class="date muted">{{job.createdAt|date('d-m-Y')}}</div>
+                                                <a href="javascript:void(0)"><i class="icon-calendar"></i> Active from:{{job.activeFrom|date('j F, Y')}}</a><br/>
+                                                <a href="javascript:void(0)"><i class="icon-calendar"></i> Active to:{{job.activeTo|date('j F, Y')}}</a><br/>
+                                                <!-- <a href="javascript:void(0)"><i class="icon-pencil"></i> Position type</a> -->
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+
+
+
+                                   </ul>
+
+
+                                </div><!--Result-box-->
+
+
+
+
+
+
+                    </div><!--tabbable--->
+            </div><!--span 8-->
+            </div>
+{%else%}
+No Results found
+{%endif%}
+
+    <ul class="pging">
+                                {% if lastPageNumber > 1 %}
+                    {% if page > 1 %}
+                       <li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company, 'jobt' : jobtype,}) }}">&laquo;&laquo;</a></li>
+                                                <li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company, 'jobt' : jobtype,'page': page - 1}) }}">&laquo;</a></li>
+                    {% endif %}
+
+
+
+        {% for numberOfPage in 1..lastPageNumber %}
+        {% if numberOfPage > page - 3 and numberOfPage < page + 3 %}
+                                {% if page == numberOfPage %}<li class="active"><a href="javascript:void(0)">{{ numberOfPage }}</a></li>{% else %}<li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company, 'jobt' : jobtype,'page': numberOfPage}) }}" >{{ numberOfPage }}</a></li>{%endif%}
+        {% endif %}
+        {% endfor %}
+
+
+                    {% if page < lastPageNumber %}
+                                                <li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company, 'jobt' : jobtype, 'page': page + 1}) }}" >&raquo;</a></li>
+                                                <li><a class="pagenum" href="{{url('user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company, 'jobt' : jobtype,'page': lastPageNumber}) }}" >&raquo;&raquo;</a></li>
+{% endif %}
+                {% endif %}
+                                            </ul>
+
+
+            </ul>
+
+
+
+        </aside>
+
+</div><!--Search-student-->
+
+</div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+<script src="{{asset('js/libs/chosen.jquery.min.js')}}"></script>
+<script src="{{asset('bundles/objectsinternjump/js/internShip_Search.js')}}"></script>
+<script src="{{asset('js/libs/jquery-ui-1.8.24.custom.min.js')}}"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#logedInStudent,#jobSearch').addClass('crnt');
+        $('#studentNav').show();
+        $('#search_button').click();
+    });
+
+
+    var countryCitiesStatesUrl = '{{url('get_countey_cities_states',{'countryId' : ''})}}';
+    var searchJobsUrl= '{{url('user_search_ajax', {'title' : '','country' : '','city' : '','state' : '','category' : '','company' :  '','lang' :  '', 'jobt': '' , 'page' :  1})}}';
+    var autoCompleteUrl='{{url('auto_complete_url')}}';
+    var cityAutoCompleteUrl= '{{url('city_auto_complete_url')}}';
+    var text="empty";
+    var country='empty';
+    var city='empty';
+    var state="empty";
+    var category="empty";
+    var company="empty";
+    var language="empty";
+    var jobType="empty";
+    var stateParam = '{{ app.request.get('state') }}';
+    </script>
+
+    <script>
+    $('#search_form').submit(function(){
+    return false;
+    });
+
+    $('#search_button , .search_button').click(function(){
+    var searchJobsUrl= '{{url('user_search_ajax', {'title' : '','country' : '','city' : '','state' : '','category' : '','company' :  '','lang' :  '', 'jobt' : '' ,'page' :  1})}}';
+    $('.loading').show();
+
+    if($('#search_text').val()!= ""){ var text=$('#search_text').val();}
+    else{ var text='empty'; }
+
+    if($('#form_country').val()!= ""){ var country=$('#form_country').val();}
+    else{ var country='empty'; }
+
+    if($('#form_city').val()!= ""){ var city=$('#form_city').val();}
+    else{ var city='empty'; }
+
+    if($('#form_state').val()!= ""){ var state=$('#form_state').val();}
+    else{var state="empty"; }
+
+    if($('#form_category').val()!= ""){ var category=$('#form_category').val();}
+    else{ var category="empty"; }
+
+    
+    /*if($('#form_company').val()!= ""){ var company=$('#form_company').val();}
+    else{ 
+        var comp = '{{ app.request.get('company') }}';
+        if(comp != "empty" && comp != '') {  var company=comp;}
+        else  var company="empty";
+    }*/
+    if($('#form_company').attr('value') != ""){
+        var company = $('#form_company').attr('value');
+    }
+     else  var company="empty";
+
+    if($('#form_language').val()!= ""){ var language=$('#form_language').val();}
+    else{ var language="empty";}
+
+    /*if($('#form_jobtype').val()!= ""){ var jobType=$('#form_jobtype').val();}
+    else{ var jobType="empty";}*/
+    if($('#form_jobtype input:radio').is(':checked')){
+        if($('#form_jobtype input:radio:checked').val() != "" ) {var jobType = $('#form_jobtype input:radio:checked').val()}
+    }  else {var jobType="empty" }
+
+    if(text || country || city || state || category || company || language || jobType){
+    $('#search_error').hide();
+                        {% if app.request.get('access_method') == 'facebook' %}
+                            searchJobsUrl=searchJobsUrl+"/"+text+"/"+country+"/"+city+"/"+state+"/"+category+"/"+company+"/"+language+"?access_method=facebook";
+                        {% else %}
+                            searchJobsUrl=searchJobsUrl+"/"+text+"/"+country+"/"+city+"/"+state+"/"+category+"/"+company+"/"+language+"/"+jobType;
+                    {%endif%}
+
+    $.ajax({
+                url: searchJobsUrl,
+                success: function(msg) {
+                    $('.searchResult').empty();
+                    $('.searchResult').append(msg);
+                },
+                complete: function(msg) {
+                    $('.loading').hide();
+                    $('.search_title').show();
+                    {% if app.request.get('access_method') == 'facebook' %}
+                        $('a').each(function(){
+                                 if(!$(this).attr('faceFlag')){
+                                    if($(this).attr('href') == "javascript:void(0)")
+                                    {}
+                                    else{
+                                        this.href += (/\?/.test(this.href) ? '&' : '?') + 'access_method=facebook';
+                                    }
+                                 }
+                        });
+                    {%endif%}
+
+
+                }
+            });
+    }//end if
+    else{
+    $('#search_error').show();
+    $('.loading').hide();
+    }
+    });
+
+        </script>
+        <script>
+           $("#search_text").autocomplete({
+                minLength: 3,
+                source: function(request, response) {
+                    $.ajax({
+                        url: autoCompleteUrl,
+                        data: {
+                            term: request.term
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            // alert(data);
+                            response($.map(data, function(item) {
+
+                                return {
+                                    label:  item.name,
+                                    value:  item.id
+
+                                }
+                            }))
+                        }
+                    })
+                },
+                select: function( event, ui ) {
+                    result = ui.item.value;
+                    {% if app.request.get('access_method') == 'facebook' %}
+                        searchJobsUrl=searchJobsUrl+"/empty/empty/empty/empty/"+result+"/empty"+"/empty"+"?access_method=facebook";
+                    {% else %}
+                        searchJobsUrl=searchJobsUrl+"/empty/empty/empty/empty/"+result+"/empty"+"/empty"+"/empty";
+                    {%endif%}
+                    $.ajax({
+                    url: searchJobsUrl,
+                    success: function(msg) {
+                        $('.searchResult').empty();
+                        $('.searchResult').append(msg);
+                    },
+                    complete: function(msg) {
+                        $('.loading').hide();
+                        $('.search_title').show();
+                        {% if app.request.get('access_method') == 'facebook' %}
+                        $('a').each(function(){
+                                 if(!$(this).attr('faceFlag')){
+                                    if($(this).attr('href') == "javascript:void(0)")
+                                    {}
+                                    else{
+                                        this.href += (/\?/.test(this.href) ? '&' : '?') + 'access_method=facebook';
+                                    }
+                                 }
+                        });
+                        {%endif%}
+
+                    }
+                });
+
+                },
+                close: function (event, ui){
+                    $("#search_text").val("");
+                }
+            });
+
+
+ //auto complete for city feild
+            $("#form_city").autocomplete({
+                minLength: 3,
+                source: function(request, response) {
+                    $.ajax({
+                        url: cityAutoCompleteUrl,
+                        data: {
+                            city: request.term,
+                            country : $('#form_country').val()
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            // alert(data);
+                            response($.map(data, function(item) {
+
+                                return {
+                                    label:  item.name,
+                                    value:  item.name
+
+                                }
+                            }))
+                        }
+                    })
+                },
+                select: function( event, ui ) {
+
+                },
+                close: function (event, ui){
+
+                }
+            });
+
+
+            //pagenation links ajax
+            $(".pagenum").live('click', function(){
+                $('.loading').show();
+                var pageurl =$(this).attr('href');
+                {% if app.request.get('access_method') == 'facebook' %}
+                        pageurl=pageurl+"?access_method=facebook"
+                {%endif%}
+
+                $.ajax({
+                    url: pageurl,
+                    success: function(msg) {
+                        $('.searchResult').empty();
+                        $('.searchResult').append(msg);
+                    },
+                    complete: function(msg) {
+                        $('.loading').hide();
+                        $('.search_title').show();
+                        {% if app.request.get('access_method') == 'facebook' %}
+                        $('a').each(function(){
+                                 if(!$(this).attr('faceFlag')){
+                                    if($(this).attr('href') == "javascript:void(0)")
+                                    {}
+                                    else{
+                                        this.href += (/\?/.test(this.href) ? '&' : '?') + 'access_method=facebook';
+                                    }
+                                 }
+                        });
+                        {%endif%}
+
+                    }
+                 });
+                 return false;
+
+            });
+
+
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    })
+
+
+            </script>
+{% endblock %}

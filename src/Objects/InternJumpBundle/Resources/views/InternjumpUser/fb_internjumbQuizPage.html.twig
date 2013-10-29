@@ -1,0 +1,122 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}internjumb quiz{% endblock %}
+
+{% block body %}
+{% if quiz|length > 0 %}
+        <div class="container Main-content">
+            <div class="company-form Quizes">
+                {% for question in quiz %}
+                <div class="questionsContainer"{% if not loop.first %}style="display: none;"{% endif %} questionNumber='{{loop.index}}'>
+                    <h4 class="title3">Question {{loop.index}}<span class="pull-right btn-small">Question {{loop.index}} - {{ quiz|length }}</span></h4>
+                    <h5 class="titl-blue">{{question.question}}</h5>
+                    <div class="box-b">
+                        <ul class="unstyled">
+                            {% for answer in question.answers %}
+                                <li>
+                                    <label class="checkbox">
+                                        <input type="radio" class="quizAnswer" name="{{question.id}}" score="{{answer.score}}"> {{answer.answer}}
+                                    </label>
+                                </li>
+                            {% endfor %}
+                         </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                 <div class="box-b links" id="quizButtons">
+                    {% if quiz|length > 0 %}
+                        <a href="javascript:void(0)" class="btn btn-primary large pull-right" id="quizNextButton" style="display: none;">Next Question</a>
+                        <a href="javascript:void(0)" class="btn btn-primary large pull-right" id="submitQuiz" style="display: none;">Submit</a>
+                        <a href="javascript:void(0)" class="pull-right" id="quizBackButton" style="display: none;">Back</a>
+
+                    {% endif %}
+                     <div class="clearfix"></div>
+                </div>
+            </div><!--company-form-->
+        </div>
+{% else %}
+<div class="alert alert-info">
+The quiz is not created yet
+</div>
+{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script>
+    var updateUserScoreUrl = '{{path('update_user_quiz_score',{'score' : ''})}}';
+    $(document).ready(function() {
+        var questionsNumber = '{{quiz|length}}';
+        if (questionsNumber > 1) {
+            $('#quizNextButton').show();
+        } else if (questionsNumber == 1) {
+            $('#submitQuiz').show();
+        }
+
+        //get prev question
+        $('#quizBackButton').click(function() {
+            //get the visible question number
+            var visibleQuestionNoB = $('.questionsContainer:visible').attr('questionNumber');
+            //hide visible question and show the prev one
+            $('.questionsContainer:visible').hide();
+            $('.questionsContainer').eq(parseInt(visibleQuestionNoB) - 2).show();
+            //show next button
+            if (parseInt(visibleQuestionNoB) - 1 < questionsNumber) {
+                $('#quizNextButton').show();
+                //hide the submit button
+                $('#submitQuiz').hide();
+            }
+            //hide back button if first question
+            if (parseInt(visibleQuestionNoB) - 1 == 1) {
+                $('#quizBackButton').hide();
+            }
+
+        });
+
+        //get next question
+        $('#quizNextButton').click(function() {
+            //get the visible question number
+            var visibleQuestionNo = $('.questionsContainer:visible').attr('questionNumber');
+            //hide visible question and show the next one
+            $('.questionsContainer:visible').hide();
+            $('.questionsContainer').eq(parseInt(visibleQuestionNo)).show();
+            //show back button
+            if (parseInt(visibleQuestionNo) + 1 > 1) {
+                $('#quizBackButton').show();
+            }
+
+            //show submit button at the last question
+            if (parseInt(visibleQuestionNo) + 1 == questionsNumber) {
+                //hide the next button
+                $('#quizNextButton').hide();
+                //show the submit button
+                $('#submitQuiz').show();
+            }
+
+        });
+
+
+        $('#submitQuiz').click(function() {
+            var score = 0;
+            $('.quizAnswer:checked').each(function() {
+                score = score + parseInt($(this).attr('score'));
+            });
+
+            //hide the button
+            $('#quizButtons').hide()
+            //show loading img
+            $('.loading').show();
+            $.ajax({
+                url: updateUserScoreUrl + '/' + score,
+                success: function(msg) {
+
+                },
+                complete: function(msg) {
+                        window.location = "{{path('fb_internjumb_quiz_page_result')}}";
+                }
+            });
+
+        });
+    });
+    </script>
+{% endblock %}
+

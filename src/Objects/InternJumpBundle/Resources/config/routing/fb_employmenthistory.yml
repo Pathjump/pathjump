@@ -1,0 +1,29 @@
+fb_employmenthistory_new:
+    pattern:  /new
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEmploymentHistory:new" }
+
+fb_employmenthistory_create:
+    pattern:  /create
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEmploymentHistory:create" }
+    requirements:
+        _method: post
+
+fb_employmenthistory_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEmploymentHistory:edit" }
+    requirements:
+        id: \d+
+
+fb_employmenthistory_update:
+    pattern:  /update/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEmploymentHistory:update" }
+    requirements:
+        _method: post
+        id: \d+
+
+fb_employmenthistory_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEmploymentHistory:delete" }
+    requirements:
+        _method: post
+        id: \d+

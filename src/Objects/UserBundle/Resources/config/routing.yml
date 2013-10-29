@@ -1,0 +1,23 @@
+# Login routes
+login_check:
+    pattern:  /login_check
+
+logout:
+    pattern:  /logout
+
+login:
+    pattern:  /login
+    defaults: { _controller: ObjectsUserBundle:User:login }
+
+# routing files
+user:
+    resource: "@ObjectsUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+fb_user:
+    resource: "@ObjectsUserBundle/Resources/config/routing/fb_user.yml"
+    prefix:   /fb/user
+
+city_auto_complete:
+    pattern: /get/cities
+    defaults: { _controller: ObjectsUserBundle:User:getCities }

@@ -1,0 +1,19 @@
+<div class="interestForm" style="display: none;">
+{% if form_errors(form) %}
+<div class="alert-message error">
+    {{ form_errors(form) }}
+</div>
+{% endif %}
+
+<form action="{{ path('add_user_interest',{'loginName' : loginName,'cvId' : cvId}) }}" method="post" {{ form_enctype(form) }}>
+    
+    {{ form_errors(form.validTo) }}<br>
+    <label>validTo:</label>
+    {{ form_widget(form.validTo) }}
+    
+    {{ form_rest(form) }}
+    <p>
+        <button type="submit">Add interest</button>
+    </p>
+</form>   
+</div>        

@@ -1,0 +1,54 @@
+parameters:
+  loginFormName: 'Sign in'
+  loginFormDesc: 'Employers and Job seekers can use the form below to sign in. Job seekers, to expedite your sign in process, you can use your Facebook, Twitter or LinkedIn account.'
+  studentSignUp_FormName: 'Students SignUp'
+  studentSignUp_FormDesc: 'You are one step closer to securing that Killer Internship. As part of InternJump’s privacy policy your Facebook data will never be shared with employers, our Facebook application is simply for our user’s convenience. Please fill in your general contact details before you create your InternJump Resume.'
+  studentSignUpEducation_FormName: 'Education Level'
+  studentSignUpEducation_FormDesc: null
+  studentSignUpCv_FormName: 'Create your first'
+  studentSignUpCv_FormName1: Resume
+  studentSignUpCv_FormDesc: null
+  studentSignUpCvSkills_FormName: 'Add skills'
+  studentSignUpCvSkills_FormDesc: null
+  studentSignUpCvExperience_FormName: 'Your Experience'
+  studentSignUpCvExperience_FormDesc: null
+  studentSignUpCvSuccess_FormName: 'Congratulations on your first resume with InternJump'
+  studentSignUpCvSuccess_FormDesc: 'You are just a step away from securing a killer internship'
+  studentSignUpLanguage_FormName: 'ADD Languages'
+  studentSignUpLanguage_FormDesc: 'ADD Languages'
+  studentEditAccount_FormName: 'Edit Account'
+  studentEditAccount_FormDesc: null
+  studentEditResume_FormName: 'Update Resume'
+  studentEditResume_FormDesc: null
+  studentEditResumeEmpHistory_FormName: 'Add Employment History to Resume'
+  studentEditResumeEmpHistory_FormDesc: null
+  studentEditCvAddSkill_FormName: 'Add skills to Resume'
+  studentEditCvAddSkill_FormDesc: null
+  studentEditSkill_FormName: 'Edit Skills'
+  studentEditSkill_FormDesc: null
+  studentEditEducation_FormName: 'Edit Education'
+  studentEditEducation_FormDesc: null
+  studentEditEmpHistory_FormName: 'Edit Employment History'
+  studentEditEmpHistory_FormDesc: null
+  studentAddResume_FormName: 'Add Resume'
+  studentAddResume_FormDesc: null
+  studentAddEducation_FormName: 'New Education'
+  studentAddEducation_FormDesc: null
+  studentAddEmpHistory_FormName: 'New Employment History'
+  studentAddEmpHistory_FormDesc: null
+  companySignUp_FormName: 'Employers Signup'
+  companySignUp_FormDesc: null
+  companyAddTask_FormName: 'Manage Tasks'
+  companyAddTask_FormName1: 'Add Task'
+  companyAddTask_FormDesc: null
+  companyAddJob_FormName: 'Add job'
+  companyAddJob_FormDesc: null
+  companyEditTask_FormName: 'Manage Tasks'
+  companyEditTask_FormName1: 'Edit Task'
+  companyEditTask_FormDesc: null
+  companyEditJob_FormName: 'Edit a job'
+  companyEditJob_FormDesc: null
+  studentAddLanguage_FormName: 'Manage Languages'
+  studentAddLanguage_FormDesc: null
+  studentEditLanguage_FormName: 'Edit language'
+  studentEditLanguage_FormDesc: null

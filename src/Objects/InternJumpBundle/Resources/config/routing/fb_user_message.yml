@@ -1,0 +1,50 @@
+fb_user_box:
+    pattern:  /{box}/{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:messagesBox", page: 1 }
+    requirements:
+        box: inbox|outbox
+        page: \d+
+
+fb_user_messages:
+    pattern:  /from/{box}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:getMessages", page: 1, itemsPerPage: ~ }
+    requirements:
+        box: inbox|outbox
+        page: \d+
+
+fb_user_messages_batch_action:
+    pattern:  /batch
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:messagesBatch" }
+    requirements:
+        _method: POST|DELETE
+
+fb_user_message:
+    pattern:  /message/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:getMessage" }
+    requirements:
+        id: \d+
+
+fb_show_user_message:
+    pattern:  /show/message/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:show" }
+    requirements:
+        id: \d+
+
+fb_user_message_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:delete" }
+    requirements:
+        _method: post
+        id: \d+
+
+fb_user_new_message:
+    pattern:  /to/{userName}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:new", userName: ~ }
+
+fb_user_new_message_form:
+    pattern:  /form/{userName}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:newMessageForm", userName: ~ }
+
+fb_user_create_message:
+    pattern:  /create/{userName}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookUserMessage:create", userName: ~ }

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+        <base target="_blank" />
+            <!-- Bootstrap -->
+        <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
+        <link href="{{ asset('css/widget.css')}}" rel="stylesheet" media="screen">
+        <link href="{{ asset('css/bootstrap-responsive.css')}}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="">
+            <div class="widget-contaier">
+                <div class="W-company">
+                    <img src='{{ url('site_homepage') }}{{ company.getTimThumbUrl() }}'/>
+                    <a href="{{path('internship',{'loginName' : company.loginName})}}" class="w-c-name">{{ company }}</a>
+                </div>
+                {% for job in latestCompanyJobs %}
+                <div class="w-job-box clearfix">
+                    <h4 class="w-job">
+                        <a class="titl-blue" href="{{ url('internship_show',{'id' : job.id}) }}">
+                            {{ job }}
+                        </a>
+                        </h4>
+                        <i>{{ job.city }}{% if job.state %},{{ job.state }}{% endif %}</i>
+                        <a href="{{ url('internship_show',{'id' : job.id}) }}" class="btn btn-info pull-right">Apply</a><br>
+                    </div>
+                {% endfor %}
+                    <div class="w-foot">
+                        Powered by IJ
+                        <a href="{{ path('site_homepage') }}">
+                            <img src='{{ url('site_homepage') }}img/logo-widget.png'/>
+                        </a>
+                    </div>
+                </div><!--widget-contaier--->
+            </div><!--container  Main-content-->
+    </body>
+</html>
+
+

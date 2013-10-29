@@ -1,0 +1,281 @@
+{% extends '::base.html.twig' %}
+
+{%block body%}
+
+<div class="Your-worth">
+    <div class="container">
+
+        <div class="row-fluid show-grid landing">
+            <div class="span4 Start-form">
+
+                <div class="Form-Text">
+                    <h2><span>Jump</span> Start<br/> Your Career</h2>
+                    <p>We know you're ambitious and want that great internship that will help launch your career.
+                        Look no further,
+                        InternJump works with companies in the leading industries and makes applying and managing internships an easy process.</p>
+                </div>
+
+                <div class="l-Search">
+
+                    <div class="Home-Search-form">
+                        <form>
+                            <select  Class="Choosen" id="companyFilter">
+                                <option value="">job type</option>
+                                <option value="Internship">Internship</option>
+                                <option value="Entry Level">Entry Level</option>
+                            </select>
+
+                       {# {% if allCities |length > 0 %}
+                        <select  Class="Choosen" id="cityFilter">
+                            <option value="">city</option>
+                            {% for city in allCities %}
+                            <option value="{{city.id}}">{{city}}</option>
+                            {% endfor %}
+                        </select>
+                        {% endif %}#}
+
+
+
+                        {% if allState |length > 0 %}
+                            <select  Class="Choosen" id="stateFilter">
+                                <option value="">state</option>
+                            {% for state in allState %}
+                                <option value="{{state}}">{{state}}</option>
+                            {% endfor %}
+                            </select>
+                        {% endif %}
+
+                        {% if allCategory |length > 0 %}
+                            <select  Class="Choosen" id="industryFilter">
+                                <option value="">INDUSTRY</option>
+                            {% for category in allCategory %}
+                                <option value="{{category.id}}">{{category}}</option>
+                            {% endfor %}
+                            </select>
+                        {% endif %}
+
+                            <input id="keywordFilter" placeholder="Keyword" type="text" style="width: 94%;background: #3882BD;color: #FFFFFF;font-family: Arial,Helvetica,sans-serif;font-size: 17px;"/>
+
+                            <div class="Btn-box">
+
+                                <input class="Start-btn" type="button" id="homeSearchJob" value="start  now"/>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </div><!--Start-form -->
+
+
+            <div class="span4">
+
+                <div class="worth-img">
+                    <img src="{{asset('img/bg1.png')}}" />
+                </div>
+
+                {% if worthUsers | length > 0 %}
+                <div class="Worth-box">
+                    <h4>How Much Are They Worth? </h4>
+                    <div class="Worth-content">
+                        <ul class="thumb-a">
+                            {% if worthFrom == 'automatic' %}
+                                {% for user in worthUsers %}
+                                <li>
+
+                                    <img src="{{user.getTimThumbUrl(80,80)}}" width="80" height="80" />
+                                    <div class="caption text-right">
+                                        <h5>{{user}} - $ {% if user.worthResult == 0 %}?{% else %}{{user.worthResult}}{% endif %}</h5>
+                                            {% if user.dateOfBirth %}
+                                        <p>Age: {% if user.getAge() == 0 %}?{% else %}{{user.getAge()}} years old{% endif %}</p>
+                                            {% endif %}
+                                        <p>Source of wealth: Facebook</p>
+                                    </div>
+
+                                </li>
+                                {% endfor %}
+                            {% else %}
+                                {% for user in worthUsers %}
+                                <li>
+                                    <img src="{{user.getTimThumbUrl(80,80)}}" width="80" height="80" />
+                                    <div class="caption text-right">
+                                        <h5>{{user}} - $ {% if user.worthResult == 0 %}?{% else %}{{user.worthResult}}{% endif %}</h5>
+                                        <p>Age: {% if user.age == 0 %}?{% else %}{{user.age}} years old{% endif %}</p>
+                                        <p>Source of wealth: {{user.source}}</p>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            {% endif %}
+                            </ul>
+                        </div>
+                    </div><!--Worth-conten -->
+                {% if not is_granted('ROLE_NOTACTIVE_COMPANY') %}
+                    <div class="Find-Statment">
+                        Find out how much you are WORTH!
+                        <a href="{{path('howMuchAreYouWorth')}}">Start now</a>
+                    </div><!--Find-Statment--->
+                {% endif %}
+                {% endif %}
+                </div>
+                <div class="span4">
+                    <div class="connect-interns">
+                        <h4>Seamlessly Connect With Top Interns</h4>
+                        <p>Finding and managing internship programs can be expensive and time consuming.
+                            InternJump makes finding interns easy and provides tools to manage interns on the job.</p>
+                        <p><strong>InternJump allows companies of all sizes to find and manage qualified interns.
+
+
+                                A sophisticated algorithm to screen potential interns and present you with your top matches based on specific skills/requirements you select.
+                            </strong></p>
+                        <img src="{{ asset('img/ijLandingImg.jpg')}}" />
+
+                        <strong><a href="javascript:void(0)" class="pull-right">More Informations</a></strong>
+                        <div class="clearfix"></div>
+                    </div><!--connect-interns-->
+
+                </div>
+            </div>
+
+
+
+
+        </div><!--container-->
+    </div><!--Your-worth-->
+
+
+{% if featuredCompanies | length > 0 %}
+    <div class="Feaetured-Companies">
+        <div class="container">
+
+            <h3>Feaetured <span>Companies</span></h3>
+
+            <div id="myCarousel" class="carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <div class="row-fluid">
+                    {% for company in featuredCompanies %}
+                                {% if loop.index%7 == 0 %}
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row-fluid">
+                                {% endif %}
+                                    <div class="span2">
+                                        <a href="{{path('internship',{'loginName' : company.loginName})}}" class="thumbnail">
+                                            <img src="{{company.getTimThumbUrl(130,97)}}"  width="130" height="97">
+                                        </a>
+                                    </div>
+                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel nav -->
+                        <a class="carousel-control left" href="#myCarousel" data-slide="prev"> &lsaquo;</a>
+                        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                    </div>
+
+                </div><!--container-->
+            </div><!-- Feaetured-Companies -->
+    {% endif %}
+
+            <div class="clearfix"></div>
+
+            <div class="Recently-Hired">
+                <div class="container">
+
+                    <h3>Recently<span> Hired Candidates</span></h3>
+
+                    <div class="carousel slide carousel-fade" id="myCarousel2">
+
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <div class="media">
+                                            <a class="pull-left" href="javascript:void(0)">
+                                                <img src="{{asset('img/john-h-internjump.jpg')}}" style="width: 64px; height: 85px;">
+                                            </a>
+                                            <div class="media-body">
+                                                <blockquote>
+                                                    <p>InternJump was really great. There were tons of openings that I would not have seen elsewhere and creating my virtual profile was simple and fun!</p>
+                                                    <small><a href="#">John H </a><cite title="Source Title">(Cornell 2011)</cite></small>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="span6">
+                                        <div class="media">
+                                            <a class="pull-left" href="javascript:void(0)">
+                                                <img src="{{asset('img/roni-y-internjump.jpg')}}" style="width: 64px; height: 85px;">
+                                            </a>
+                                            <div class="media-body">
+                                                <blockquote>
+                                                    <p>The InternJump system made finding and interacting with employers a breeze and I got my investment banking internship!</p>
+                                                    <small><a href="#">Roni Y </a><cite title="Source Title">(Baruch College 2010)</cite></small>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- item -->
+                        </div>
+                        <!-- Carousel nav -->
+                        <a data-slide="prev" href="#myCarousel2" class="carousel-control left">&lsaquo;</a>
+                        <a data-slide="next" href="#myCarousel2" class="carousel-control right">&rsaquo;</a>
+                    </div>
+
+                    <!--Feaetured-Companies-->
+
+                </div><!--container-->
+            </div><!--Recently-Hired-->
+
+{%endblock%}
+
+{% block javascripts %}
+{{parent()}}
+            <script>
+                var searchJobsUrl = "{{path('user_search_page')}}";
+                $(document).ready(function() {
+                    $('#homeSearchJob').click(function() {
+                        //slider
+                        $('.carousel').carousel({
+                            interval: 20000
+                        });
+
+                        var company = $('#companyFilter').val();
+                        var city = $('#cityFilter').val();
+                        var state = $('#stateFilter').val();
+                        var category = $('#industryFilter').val();
+                        var keyword = $('#keywordFilter').val();
+
+
+                        if (company || city || state || category || keyword)
+                            searchJobsUrl += '?';
+
+                        if (company)
+                            searchJobsUrl += "&jobType=" + company;
+
+                        if (city)
+                            searchJobsUrl += "&city=" + city;
+
+                        if (state)
+                            searchJobsUrl += "&state=" + state;
+
+                        if (category)
+                            searchJobsUrl += "&industry=" + category;
+
+                        if (keyword)
+                            searchJobsUrl += "&keyword=" + keyword;
+
+                        window.location = searchJobsUrl;
+                    });
+                });
+                </script>
+{% endblock %}

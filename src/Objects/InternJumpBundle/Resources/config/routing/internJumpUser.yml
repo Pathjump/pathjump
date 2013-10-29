@@ -1,0 +1,205 @@
+company_see_user_data:
+    pattern:  /company/{userLoginName}/{cvId}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:companySeeUserData"}
+    requirements:
+        cvId:  \d+
+        jobId:  \d+
+
+user_portal_home:
+    pattern:  /{loginName}/{cvId}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userPortalHome" }
+    requirements:
+        cvId:  \d+
+
+change_user_cv_status:
+    pattern:  /change/cvStatus/{cvId}/{status}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:changeUserCvStatus" ,cvId : null,status : null}
+    requirements:
+        cvId:  \d+
+
+user_cvs_actions:
+    pattern:  /change/cvsActions/{cvsId}/{status}/{method}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:changeCvsStatus" ,cvsId : null,status : null, method: null}
+
+change_question_showOnCv:
+    pattern:  /change/question_showOnCv/{questionId}/{status}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:changeQuestionShowOnCv" ,questionId : null,status : null}
+    requirements:
+        questionId:  \d+
+
+user_answer_company_question:
+    pattern:  /answer/company_question/{questionId}/{answerText}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userAnswerCompanyQuestion" ,questionId : null,answerText : null}
+    requirements:
+        questionId:  \d+
+
+User_notification:
+    pattern:  /notification/{type}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:UserNotification" ,type : all, page : 1, itemsPerPage: ~ }
+    requirements:
+        page:  \d+
+        itemsPerPage:  \d+
+
+user_notification_mardAs_read:
+    pattern:  /notification/mardAs/read/{notificationId}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userNotificationMardAsRead" }
+    requirements:
+        notificationId:  \d+
+
+user_mark_all_notifications_asRead:
+    pattern:  /mark_all/notifications/asRead
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userMarkAllNotificationsAsRead" }
+
+user_interest:
+    pattern:  /interest/{interestId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userInterest" }
+    requirements:
+        interestId:  \d+
+
+fb_user_interest:
+    pattern:  /fb_interest/{interestId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_userInterest" }
+    requirements:
+        interestId:  \d+
+
+user_accept_reject_interest:
+    pattern:  /accept_reject_interest/{interestId}/{status}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userAcceptRejectinterest" }
+    requirements:
+        interestId:  \d+
+
+user_interview:
+    pattern:  /interview/{interviewId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userInterview" }
+    requirements:
+        interviewId:  \d+
+
+fb_user_interview:
+    pattern:  /fb_interview/{interviewId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_userInterview" }
+    requirements:
+        interviewId:  \d+
+
+user_accept_reject_interview:
+    pattern:  /accept_reject_interview/{interviewId}/{status}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userAcceptRejectInterview" }
+    requirements:
+        interviewId:  \d+
+
+user_hire:
+    pattern:  /hire/{userInternshipId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userHire" }
+    requirements:
+        userInternshipId:  \d+
+
+fb_user_hire:
+    pattern:  /fb_hire/{userInternshipId}/show
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_userHire" }
+    requirements:
+        userInternshipId:  \d+
+
+user_accept_reject_hire:
+    pattern:  /accept_reject_hire/{userInternshipId}/{status}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userAcceptRejectHire" }
+    requirements:
+        userInternshipId:  \d+
+
+get_user_notifications:
+    pattern:  /get_user_notifications
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:getUserNotifications" }
+
+fb_get_user_notifications:
+    pattern:  /fb_get_user_notifications
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_getUserNotifications" }
+
+user_search_page:
+    pattern:  /search
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:StudentInternshipsSearch" }
+
+fb_user_search_page:
+    pattern:  /fb_search
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_StudentInternshipsSearch" }
+
+user_search_ajax:
+    pattern:  /search/{title}/{country}/{city}/{state}/{category}/{company}/{lang}/{jobt}/{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:search",country: null, city: null, state: null, category: null, company: null, lang: null, jobt: null, page: 1 }
+
+fb_user_search_ajax:
+    pattern:  /search/{title}/{country}/{city}/{state}/{category}/{company}/{lang}/{jobt}/{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_search",country: null, city: null, state: null, category: null, company: null, lang: null, jobt: null, page: 1 }
+
+
+auto_complete_url:
+    pattern:  /autocompleteurl
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:autocomplete", _format: json}
+    requirements: { _format: (xml|json), _method: GET }
+
+city_auto_complete_url:
+    pattern:  /cityAutocompleteurl
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:citiesAutocomplete", _format: json}
+    requirements: { _format: (xml|json), _method: GET }
+
+internjumb_quiz:
+    pattern:  /internjump_quiz
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:internjumbQuizPage" }
+
+
+update_user_quiz_score:
+    pattern:  /update_user/quiz_score/{score}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:updateUserQuizScore" }
+
+personal_questions:
+    pattern:  /personal_questions
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:personalQuestions" }
+
+addEdit_personal_question_answer:
+    pattern:  /addEdit_personal_question_answer/{questionId}/{answerText}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:addEditPersonalQuestionAnswer" , questionId : null, answerText : null}
+
+upload_cv:
+    pattern:  /upload_cv
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:uploadCv" }
+
+fb_upload_cv:
+    pattern:  /fb_upload_cv
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_uploadCv" }
+
+fb_personal_questions:
+    pattern:  /fb_personal_questions
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_personalQuestions" }
+
+fb_internjumb_quiz:
+    pattern:  /fb_internjump_quiz
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_internjumbQuizPage" }
+
+fb_user_portal_home:
+    pattern:  /fb/{loginName}/{cvId}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_userPortalHome" }
+    requirements:
+        cvId:  \d+
+
+fb_User_notification:
+    pattern:  /fb_notification/{type}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_UserNotification" ,type : all, page : 1, itemsPerPage: ~ }
+    requirements:
+        page:  \d+
+        itemsPerPage:  \d+
+
+add_company_to_favorite:
+    pattern:  /add_company/favorite/{companyId}/{status}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:addCompanyToFavorite" , companyId : ~ ,status : ~}
+
+report_user:
+    pattern:  /report_user/{userId}/{cvId}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:reportUser"}
+    requirements:
+        userId:  \d+
+        cvId:  \d+
+
+internjumb_quiz_page_result:
+    pattern:  /internjump_quiz_result
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:internjumbQuizPageResult" }
+
+fb_internjumb_quiz_page_result:
+    pattern:  /fb_internjump_quiz_result
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_internjumbQuizPageResult" }

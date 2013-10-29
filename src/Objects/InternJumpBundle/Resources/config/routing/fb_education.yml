@@ -1,0 +1,29 @@
+fb_education_new:
+    pattern:  /new
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEducation:new" }
+
+fb_education_create:
+    pattern:  /create
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEducation:create" }
+    requirements:
+        _method: post
+
+fb_education_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEducation:edit" }
+    requirements:
+        id: \d+
+
+fb_education_update:
+    pattern:  /update/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEducation:update" }
+    requirements:
+        _method: post
+        id: \d+
+
+fb_education_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEducation:delete" }
+    requirements:
+        _method: post
+        id: \d+

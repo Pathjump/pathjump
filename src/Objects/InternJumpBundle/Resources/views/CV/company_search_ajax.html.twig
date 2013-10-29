@@ -1,0 +1,49 @@
+
+                                    <div class="Result-box">
+                                        <div class="title3">{{ count }} Results
+                                        </div><!---title3--->
+
+                                        <ul class="unstyled inner-list">
+                                            {% for cv in cvs %}
+                                            <li class="row-fluid show-grid">
+                                                <div class="span8">
+                                                    <h4><a class="titl-blue" href="{{ path('company_see_user_data',{'userLoginName' : cv.user.loginName,'cvId' : cv.id}) }}">{{ cv.user }}</a></h4>
+                                                    <i><strong><a href="{{ path('company_see_user_data',{'userLoginName' : cv.user.loginName,'cvId' : cv.id}) }}">{{ cv }}</a></strong></i>
+                                                    <p><br /></p>
+                                                    <p></p>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="Area">{% if cv.user.city %}{{ cv.user.city }}, {% endif %}{% if cv.user.state %}{{ cv.user.state }}, {% endif %}{{ cv.user.getCountryName() }}</div>
+                                                    <div class="date muted">{{ cv.createdAt | date('Y-m-d') }}</div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+
+                                    </div><!--Result-box-->
+
+                                    {% if lastPageNumber > 1 %}
+                                    <div class="pagination pagination-centered">
+                                        <ul>
+                                            {% if page > 1 %}
+                                            <li><a onclick="refreshPage(1);return false;" href="{{ path('company_search_for_cv', paginationParameters) }}">&laquo;</a></li>
+                                            {% set paginationParameters = paginationParameters|merge({'page': page - 1}) %}
+                                            <li><a onclick="refreshPage({{ page - 1 }});return false;" href="{{ path('company_search_for_cv', paginationParameters) }}">&lt;</a></li>
+                                            {% endif %}
+
+                                            {% for numberOfPage in 1..lastPageNumber %}
+                                            {% if numberOfPage > page - 4 and numberOfPage < page + 4 %}
+                                            {% set paginationParameters = paginationParameters|merge({'page': numberOfPage}) %}
+                                            <li{% if numberOfPage == page %} class="active"{% endif %}><a onclick="refreshPage({{ numberOfPage }});return false;" href="{{ path('company_search_for_cv', paginationParameters) }}">{{ numberOfPage }}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                            {% if page < lastPageNumber %}
+                                            {% set paginationParameters = paginationParameters|merge({'page': page + 1}) %}
+                                            <li><a onclick="refreshPage({{ page + 1 }});return false;" href="{{ path('company_search_for_cv', paginationParameters) }}">&gt;</a></li>
+                                            {% set paginationParameters = paginationParameters|merge({'page': lastPageNumber}) %}
+                                            <li><a onclick="refreshPage({{ lastPageNumber }});return false;" href="{{ path('company_search_for_cv', paginationParameters) }}">&raquo;</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    {% endif %}

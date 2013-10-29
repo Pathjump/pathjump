@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+{{parent()}} - {{ post.postTitle }}
+{% endblock %}
+
+{% block pageTitle %}{{ post.postTitle }}{% endblock %}
+
+{% block body %}
+        <div class="container Main-content">
+            <div class="resources">
+
+                <div class="media">
+                    <a href="{{ path('show_resources',{'slug' : post.slug}) }}" class="pull-left">
+                        <img src="{{ post.getTimThumbUrl(175,130) }}" class="media-object" alt="{{ post.postTitle }}" />
+                    </a>
+
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="{{ path('show_resources',{'slug' : post.slug}) }}">{{ post.postTitle }}</a>
+                            <div>
+                                {% for cat in post.getCategories() %}
+                                <i><strong>{{ cat.catName }}</strong></i>
+                                {% if not loop.last %}
+                                ,
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </h4>
+                        <br/>
+                        {{ post.postBody|raw }}
+                    </div>
+                </div>
+
+            </div><!--resources-->
+
+        </div><!--container-->
+{% endblock %}

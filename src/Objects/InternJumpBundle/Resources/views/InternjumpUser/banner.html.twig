@@ -1,0 +1,19 @@
+{% if banner.code %}
+    {{ banner.code | raw }}
+{% elseif banner.image %}
+    <a href="{{ path('increment_banner_no_of_clicks', {'id': banner.id}) }}">
+        <img alt="banner {{ banner }}" src="{{ asset(banner.getTimThumbUrl(bannerWidth, bannerHeight)) }}" width="{{ bannerWidth }}" height="{{ bannerHeight }}" />
+    </a>
+{% else %}
+    <div class="flashBanner">
+        <a href="{{ path('increment_banner_no_of_clicks', {'id': banner.id}) }}"></a>
+        <div>
+            <object>
+                <param name="movie" value="{{ asset(banner.getSWFFileWebPath()) }}"/>
+                <param name="allowFullScreen" value="true"/>
+                <param name="allowscriptaccess" value="always"/>
+                <embed src="{{ asset(banner.getSWFFileWebPath()) }}" type="application/x-shockwave-flash" width="{{ bannerWidth }}" height="{{ bannerHeight }}" allowscriptaccess="always" allowfullscreen="true"/>
+            </object>
+        </div>
+    </div>
+{% endif %}

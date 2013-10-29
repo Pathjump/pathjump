@@ -1,0 +1,223 @@
+ObjectsInternJumpBundle_internship:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/internship.yml"
+    prefix:   /internship
+
+ObjectsInternJumpBundle_skill:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/skill.yml"
+    prefix:   /skill
+
+ObjectsInternJumpBundle_internJumpUser:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/internJumpUser.yml"
+    prefix:   /internJumpUser
+
+company_message:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/company_message.yml"
+    prefix:   /company/messages
+
+ObjectsInternJumpBundle_company:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/company.yml"
+    prefix:   /company
+
+employers:
+    pattern:  /company
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:employers" }
+
+fb_employers:
+    pattern:  /fb/company
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:facebookEmployers" }
+
+user_message:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/user_message.yml"
+    prefix:   /user/messages
+
+fb_user_message:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/fb_user_message.yml"
+    prefix:   /fb/user/messages
+
+ObjectsInternJumpBundle_education:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/education.yml"
+    prefix:   /education
+
+ObjectsInternJumpBundle_facebook_education:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/fb_education.yml"
+    prefix:   /fb/education
+
+ObjectsInternJumpBundle_cv:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/cv.yml"
+    prefix:   /cv
+
+ObjectsInternJumpBundle_facebook_cv:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/fb_cv.yml"
+    prefix:   /fb/cv
+
+ObjectsInternJumpBundle_employmenthistory:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/employmenthistory.yml"
+    prefix:   /employmenthistory
+
+ObjectsInternJumpBundle_facebook_employmenthistory:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/fb_employmenthistory.yml"
+    prefix:   /fb/employmenthistory
+
+ObjectsInternJumpBundle_test:
+    pattern:  /test
+    defaults: { _controller: ObjectsInternJumpBundle:Default:test }
+
+site_homepage:
+    pattern:  /
+    defaults: { _controller: ObjectsInternJumpBundle:Internjump:homePage }
+
+site_fb_homepage:
+    pattern:  /fbhome
+    defaults: { _controller: ObjectsInternJumpBundle:Internjump:fb_homePage }
+
+signup_education:
+    pattern:  /user/signup/third/step
+    defaults: { _controller: "ObjectsInternJumpBundle:Education:signupEducation" }
+
+fb_signup_education:
+    pattern:  /fb/user/signup/third/step
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEducation:signupEducation" }
+
+signup_language:
+    pattern:  /user/signup/fourth/step
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:signupLanguage" }
+
+fb_signup_language:
+    pattern:  /fb/user/signup/fourth/step
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:facebookSignupLanguage" }
+
+signup_cv_skills:
+    pattern:  /cv/second/step
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:signupCVSkills" }
+
+fb_signup_cv_skills:
+    pattern:  /fb/cv/second/step
+    defaults: { _controller: "ObjectsInternJumpBundle:Skill:facebookSignupCVSkills" }
+
+signup_cv_experience:
+    pattern:  /cv/third/step
+    defaults: { _controller: "ObjectsInternJumpBundle:EmploymentHistory:signupCVExperience" }
+
+fb_signup_cv_experience:
+    pattern:  /fb/cv/third/step
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookEmploymentHistory:signupCVExperience" }
+
+company_search_for_cv:
+    pattern:  /search-for-cv
+    defaults: { _controller: "ObjectsInternJumpBundle:Company:searchForCV" }
+
+ObjectsInternJumpBundle_task:
+    resource: "@ObjectsInternJumpBundle/Resources/config/routing/task.yml"
+    prefix:   /task
+
+student_task:
+    pattern:  /userPortal/{loginName}/{status}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:studentAllTasks", itemsPerPage: ~, status: all, page: 1 }
+
+fb_student_task:
+    pattern:  /fb_userPortal/{loginName}/{status}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:Task:fb_studentAllTasks", itemsPerPage: ~, status: all, page: 1 }
+
+employers_data:
+    pattern:  /employers
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:employersData" }
+
+students_data:
+    pattern:  /students
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:studentsData" }
+
+privacy:
+    pattern:  /privacy
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:privacy" }
+
+termsOfUse:
+    pattern:  /terms-of-use
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:termsOfUse" }
+
+aboutUs:
+    pattern:  /about-us
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:aboutUs" }
+
+contactUs:
+    pattern:  /contact-us
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:ContactUs" }
+
+FAQ_page:
+    pattern:  /FAQ
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:FAQ" }
+
+schools:
+    pattern:  /schools
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:schools" }
+
+resources:
+    pattern:  /Resources/{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:AllResources", page: 1 }
+
+show_resources:
+    pattern:  /Resource/{slug}
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:showOneResource" }
+
+campus_resps:
+    pattern:  /CampusReps
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:campusReps" }
+
+mail_404:
+    pattern:  /errorEmail
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:errorPage404Mail" }
+
+user_languages:
+    pattern:  /language/new
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userLanguages" }
+
+user_edit_language:
+    pattern:  /language/edit/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:userEditLanguage" }
+    requirements:
+        id: \d+
+
+user_delete_language:
+    pattern:  /language/delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:deleteLanguage",id : ~ }
+    requirements:
+        id: \d+
+
+howMuchAreYouWorth:
+    pattern:  /findyourworth
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:howMuchAreYouWorth" }
+
+fb_howMuchAreYouWorth:
+    pattern:  /fb_findyourworth
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:fb_howMuchAreYouWorth" }
+
+fb_user_languages:
+    pattern:  /fb_language/new
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_userLanguages" }
+
+fb_user_edit_language:
+    pattern:  /fb_language/edit/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_userEditLanguage" }
+    requirements:
+        id: \d+
+
+fb_user_delete_language:
+    pattern:  /fb_language/delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:fb_deleteLanguage" ,id : ~}
+    requirements:
+        id: \d+
+
+worth_faceBook_publish:
+    pattern:  /user/worth_faceBook_publish/{userId}/{userNetWorth}
+    defaults: { _controller: "ObjectsInternJumpBundle:Internjump:worthFaceBookPublish"}
+    requirements:
+        userId: \d+
+
+ObjectsInternJumpBundle_manager:
+        resource: "@ObjectsInternJumpBundle/Resources/config/routing/manager.yml"
+        prefix:   /manager
+
+increment_banner_no_of_clicks:
+    pattern:  /banner/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:InternjumpUser:incrementBannerNoOfClicks" }
+    requirements:
+        id:  \d+

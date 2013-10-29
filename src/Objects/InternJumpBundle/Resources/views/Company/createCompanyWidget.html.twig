@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+{% block title %}{{company}} widget{% endblock %}
+
+
+{% block pageTitle %}{{company}} widget{% endblock %}
+
+{% block body %}
+
+<div class="container Main-content">
+
+    <div class="row show-grid">
+        <div class="span3">
+            <div class="company-form company-profile">
+                <h2>
+                    <div class="img-box">
+                        <img src="{{company.getTimThumbUrl(98,102)}}">
+                    </div>{{company}}
+                </h2>
+                <div class="C-profile">
+                    <form action="{{ path('create_company_widget',{ 'id' : company.id }) }}">
+                        <div class="control-group">
+                            <label class="control-label" for="inputWidth">Width</label>
+                            <div class="controls">
+                                <input type="text" id="inputWidth" name="width" placeholder="Width" value="{{ width }}">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputHeight">Height</label>
+                            <div class="controls">
+                                <input type="text" id="inputHeight" name="height" placeholder="Height" value="{{ height }}">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputBorder">Border</label>
+                            <div class="controls">
+                                <input type="checkbox" id="inputBorder" name="border" value="1" {% if border == 1 %}checked=""{% endif %}>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputJobs">No Of Jobs</label>
+                            <div class="controls">
+                                <select id="inputJobs" name="jobs">
+                                    <option value="2" {% if jobs == 2 %}selected=""{% endif %}>2</option>
+                                    <option value="3" {% if jobs == 3 %}selected=""{% endif %}>3</option>
+                                    <option value="5" {% if jobs == 5 %}selected=""{% endif %}>5</option>
+                                    <option value="10" {% if jobs == 10 %}selected=""{% endif %}>10</option>
+                                    <option value="15" {% if jobs == '15' %}selected=""{% endif %}>15</option>
+                                    <option value="20" {% if jobs == 20 %}selected=""{% endif %}>20</option>
+                                    <option value="25" {% if jobs == 25 %}selected=""{% endif %}>25</option>
+                                    <option value="30" {% if jobs == 30 %}selected=""{% endif %}>30</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary">Generate</button>
+                            </div>
+                        </div>
+                    </form>
+                </div><!--C-profile--->
+            </div><!--company-form-->
+
+        </div>
+        <div class="span6">
+
+            <div id="ij-company-widget" data-border="{{ border }}" data-width="{{ width }}" data-height="{{ height }}" data-href="{{ url('show_company_widget',{'id' : company.id,'jobs' : jobs}) }}"></div>
+
+            <div class="company-form company-profile generatedCode" style="margin-top: 20px;">
+                <div class="C-profile">
+                    <form>
+                        <p>1- Include this JavaScript file.</p>
+                        <textarea onclick="this.focus();this.select()" spellcheck="false" style="width: 100%;">&lt;script type="text/javascript" src="{{ url('site_homepage') }}js/widgets/company.js"&gt;&lt;/script&gt;</textarea>
+
+                          <p>2- Add this Html code wherever you want the plugin to appear on your page.</p>
+                          <textarea onclick="this.focus();this.select()" spellcheck="false" style="width: 100%;">&lt;div id="ij-company-widget" data-border="{{ border }}" data-width="{{ width }}" data-height="{{ height }}" data-href="{{ url('show_company_widget',{'id' : company.id,'jobs' : jobs}) }}"&gt;&lt;/div&gt;</textarea>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div><!--row-fluid-->
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+    <script type="text/javascript" src="{{ asset('js/widgets/company.js') }}"></script>
+{% endblock %}

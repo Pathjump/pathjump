@@ -1,0 +1,135 @@
+{% extends '::fb_base.html.twig' %}
+
+{% block title %}Company {{ company }}{% endblock %}
+
+{% block pageTitle %}Company {{ company }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('css/colorBox/colorbox.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+
+        <div class="container Main-content">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('site_fb_homepage') }}">Home</a> <span class="divider">/</span></li>
+                <li><a href="{{ path('fb_employers') }}">Employers</a> <span class="divider">/</span></li>
+                <li><a href="{{ path('fb_industry_companies', {'industrySlug': industry.slug}) }}">{{ industry }}</a> <span class="divider">/</span></li>
+                <li class="active">{{ company }}</li>
+            </ul>
+
+            <div class="company-form company-profile">
+                <h2>
+                    <div class="img-box">
+                        <img src="{{ company.getTimThumbUrl(98, 102) }}" alt="{{ company }}" />
+                    </div>
+                        {{ company }} Profile
+                    {% if company.Longitude and company.Latitude %}
+                    <a href="#companyMap" class="showCompanyMap map">Show Map</a>
+                    {% endif %}
+                    <div class="form-search pull-right">
+                        <div class="input-append" style="margin-top: 5px;">
+                            <form action="{{ path('fb_search_for_company') }}">
+                                <input name="searchString" placeholder="Search For Company" type="text" class="search-query">
+                                <button type="submit" class="btn">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </h2>
+
+                <div class="C-profile">
+                    <ul class="Social-icons-f unstyled">
+                        {% if company.facebookUrl %}
+                        <li><a class="ico-facebook" href="{{ company.facebookUrl }}" target="_blank" rel="nofollow"></a></li>
+                        {% endif %}
+                        {% if company.twitterUrl %}
+                        <li><a class="ico-twitter" href="{{ company.twitterUrl }}" target="_blank" rel="nofollow"></a></li>
+                        {% endif %}
+                        {% if company.googlePlusUrl %}
+                        <li><a href="{{ company.googlePlusUrl }}" target="_blank" rel="nofollow"></a></li>
+                        {% endif %}
+                        {% if company.linkedInUrl %}
+                        <li><a class="ico-google" href="{{ company.linkedInUrl }}" target="_blank" rel="nofollow"></a></li>
+                        {% endif %}
+                        {% if company.youtubeUrl %}
+                        <li><a href="{{ company.youtubeUrl }}" target="_blank" rel="nofollow"></a></li>
+                        {% endif %}
+                    </ul>
+
+                    <table border="0" width="100%" class="table table-bordered">
+                        <tbody><tr>
+                                <th scope="row">Name </th>
+                                <td>{{ company }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Industry</th>
+                                <td>{{ industry }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address</th>
+                                <td>{{ company.address }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Country</th>
+                                <td>{{ company.getCountryName() }}</td>
+                            </tr>
+                            {% if company.state %}
+                            <tr>
+                                <th scope="row">State</th>
+                                <td>{{ company.state }}</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <th scope="row">Website</th>
+                                <td><a href="{{ company.url }}" target="_blank">{{ company.url }}</a></td>
+                            </tr>
+                            {% if viewJobsLink %}
+                            <tr>
+                                <th scope="row">Jobs</th>
+                                <td><a href="{{ path('fb_internship', {'loginName': company.loginName}) }}" target="_blank">View Job Listing</a></td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+
+                </div><!--C-profile--->
+
+            </div><!--company-form-->
+        </div>
+
+        {% if company.Longitude and company.Latitude %}
+        <div style="display: none;">
+            <div  id="companyMap">
+                <div class="modal-header">
+                    <h3>Map</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <div id="map_canvas" style="width: 400px;height: 168px;"></div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.colorbox-min.js') }}"></script>
+    <script src="{{ asset('bundles/objectsinternjump/js/internShipMap.js') }}"></script>
+    <script>
+        var latitude = '{{ company.Latitude }}';
+        var longitude = '{{ company.Longitude }}';
+        $(document).ready(function() {
+            $('.showCompanyMap').colorbox({
+                inline: true,
+                onLoad: function() {
+                    initialize();
+                }
+            });
+        });
+    </script>
+{% endblock %}

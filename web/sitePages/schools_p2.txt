@@ -1,0 +1,43 @@
+<div class="Ques-box">
+	<h2>
+		School &amp; University</h2>
+	<h3>
+		Benefits of Promoting Internjump to Your Students</h3>
+	<ul>
+		<li>
+			A sophisticated algorithm to screen potential interns and present you with your top matches based on specific skills/requirements you select.</li>
+		<li>
+			A free branding opportunity to build your firm&#39;s presence at the most prestigious institutions and with some of the nation&#39;s most talented students.</li>
+		<li>
+			A simplified internship management tool over traditional HR. Manage the entire internship process from start to finish and control how many resumes</li>
+		<li>
+			you receive so you don&#39;t need to spend valuable time sifting through hundreds of resumes.</li>
+		<li>
+			Access to some of the top young students who are eager to intern with your firm, in either paid or unpaid internship positions.</li>
+		<li>
+			Foster new connections, so when/if you are looking to hire you have people to choose from who have already demonstrated their productivity a interns.</li>
+		<li>
+			A No Cost Solution to traditional job boards where you are flooded with resumes!</li>
+		<li>
+			Tools to manage interns on the job, including a weekly log where interns document how they are spending their days ensuring maximum productivity.</li>
+	</ul>
+	<div class="faqs">
+		<h2>
+			FAQ:</h2>
+		<strong>How much does internjump cost for students?</strong>
+		<p>
+			Internjump is a free resource for students and companies.</p>
+		<strong>Are all internships paid?</strong>
+		<p>
+			Internjump works with companies offering paid and unpaid internships.</p>
+		<strong>I am intrigued. How do I start promoting internjump to students?</strong>
+		<p>
+			Let students know about internjump on your campus career website and tell students about us when they stop by asking for help with their internship search process. We also have downloadable marketing flyers which you can post on your campus and a student informational document which can be emailed to students or student organizations.</p>
+		<p class="mail">
+			If you have any further questions please email <a href="mailTo:%20mail#mail.com">university@internjump.com</a><br />
+			Best,<br />
+			<em><strong>The Internjump Team</strong></em></p>
+	</div>
+</div>
+<p>
+	&nbsp;</p>

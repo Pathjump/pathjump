@@ -1,0 +1,47 @@
+admin_change_constants:
+    pattern:   /admin/changeConstants
+    defaults: { _controller: ObjectsAdminBundle:Admin:adminChangeConstants }
+
+admin_edit_about_us:
+      pattern:   /admin/EditAboutUs
+      defaults: { _controller: ObjectsAdminBundle:Admin:EditAboutUs }
+
+admin_edit_terms_of_Service:
+      pattern:   /admin/EditTerms
+      defaults: { _controller: ObjectsAdminBundle:Admin:EditTermsOfService }
+
+admin_edit_privacy_policy:
+        pattern:   /admin/EditPrivacy
+        defaults: { _controller: ObjectsAdminBundle:Admin:EditPrivacyPolicy }
+
+admin_edit_analytics:
+        pattern:   /admin/EditAnalytics
+        defaults: { _controller: ObjectsAdminBundle:Admin:EditAnalytics }
+
+admin_change_api_constants:
+        pattern:   /admin/ChangeApiContants
+        defaults: { _controller: ObjectsAdminBundle:Admin:adminChangeApiConstants }
+
+admin_edit_employers_data_page:
+        pattern:   /admin/editEmployersDataPage
+        defaults: { _controller: ObjectsAdminBundle:Admin:editEmployersDataPage }
+
+admin_edit_students_data_page:
+        pattern:   /admin/editStudentsDataPage
+        defaults: { _controller: ObjectsAdminBundle:Admin:editStudentsDataPage }
+
+admin_edit_schools_page:
+    pattern:  /admin/shcools
+    defaults: { _controller: "ObjectsAdminBundle:Admin:schools" }
+
+admin_edit_site_forms:
+    pattern:  /admin/editSiteForms
+    defaults: { _controller: "ObjectsAdminBundle:AdminSiteForms:adminEditSiteForms" }
+
+admin_edit_CampusReps:
+    pattern:  /admin/editCampusReps
+    defaults: { _controller: "ObjectsAdminBundle:Admin:EditCampusReps" }
+
+admin_end_of_day_report:
+    pattern:  /admin/end_of_day_report/{from}/{to}
+    defaults: { _controller: "ObjectsAdminBundle:Admin:endOfDayReport",from : null,to : null }

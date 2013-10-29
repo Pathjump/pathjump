@@ -1,0 +1,119 @@
+<div class="pagination pagination-centered">
+<ul class="">
+                                {% if lastPageNumber > 1 %}
+                    {% if page > 1 %}
+                       <li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype }) }}">&laquo;&laquo;</a></li>
+                                                <li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype ,'page': page - 1}) }}">&laquo;</a></li>
+                    {% endif %}
+
+
+
+        {% for numberOfPage in 1..lastPageNumber %}
+        {% if numberOfPage > page - 3 and numberOfPage < page + 3 %}
+                                {% if page == numberOfPage %}<li class="active"><a href="javascript:void(0)">{{ numberOfPage }}</a></li>{% else %}<li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype ,'page': numberOfPage}) }}" >{{ numberOfPage }}</a></li>{%endif%}
+        {% endif %}
+        {% endfor %}
+
+
+                    {% if page < lastPageNumber %}
+                                                <li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype ,'page': page + 1}) }}" >&raquo;</a></li>
+                                                <li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype ,'page': lastPageNumber}) }}" >&raquo;&raquo;</a></li>
+{% endif %}
+                {% endif %}
+                                            </ul>
+        </div>
+
+
+          <div class="row-fluid show-grid">
+
+            <div class=" interns-res">
+
+            	    <div class="tabbable"> <!-- Only required for left/right tabs -->
+
+
+                            	<div class="Result-box">
+                                	<div class="title3"> Search Results:
+
+                                  </div><!---title3--->
+
+                                   <ul class="unstyled inner-list">
+                                       {%for job in jobs%}
+                                   		<li class="row-fluid show-grid">
+                                            <div class="span8">
+                                            	<h4><a class="titl-blue" href="{{path('fb_internship_show', {'id': job.id})}}">{{job.title}}</a></h4>
+                                                <i><strong><a href="{{path('fb_internship_show', {'id': job.id})}}">{{job.company.name}}</a></strong></i>
+                                                <p>{{job.description|raw}}</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="span4">
+                                            	<div class="Area">{{ job.city }}  ,  {%if job.state %}{{ job.state }}  ,{% endif %}  {{job.getCountryName()}}</div>
+                                                <div class="date muted">{#<b style="color: black"><i class="icon-time"></i>Posted at:</b>#} {{job.createdAt|date('d-m-Y h:i:s')}}</div>
+                                                <a href="{{path('fb_internship_show', {'id': job.id})}}"><i class="icon-calendar"></i> Active from:{{job.activeFrom|date('j F, Y')}}</a><br/>
+                                                <a href="{{path('fb_internship_show', {'id': job.id})}}"><i class="icon-calendar"></i> Active to:{{job.activeTo|date('j F, Y')}}</a><br/>
+                                                <!-- <a href="javascript:void(0)"><i class="icon-pencil"></i> Position type</a> -->
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                        <!--++++++++++++++++++++++++ API jobs +++++++++++++++++++++++++++ -->
+                                         {% for j in apiJobs['results']%}
+                                           <li class="row-fluid show-grid">
+                                            <div class="span8">
+                                            	<h4><a class="titl-blue" href="{{ path('fb_show_indeed_job',{'jobkey' : j['jobkey']}) }}">{{j['jobtitle']}}</a></h4>
+                                                <i><strong><a href="{{ path('fb_show_indeed_job',{'jobkey' : j['jobkey']}) }}">{{j['company']}}</a></strong></i>
+                                                <p>{{j['snippet']|raw}}</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="span4">
+                                            	<div class="Area">{{j['city']}}  ,  {{j['state']}},  {{j['country']}}</div>
+                                                <div class="date muted">{#<b style="color: black"><i class="icon-time"></i>Posted at:</b>#} {{j['date']|date('d-m-Y h:i:s')}}</div>
+                                                <a href="{{ path('fb_show_indeed_job',{'jobkey' : j['jobkey']}) }}"><i class="icon-calendar"></i> Active form: {{j['formattedRelativeTime']}}</a><br/>
+                                                <!-- <a href="javascript:void(0)"><i class="icon-pencil"></i> Position type</a> -->
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                        <!-- +++++++++++++++++++++++ End API jobs ++++++++++++++++++++++++ -->
+
+
+                                   </ul>
+
+
+                                </div><!--Result-box-->
+
+
+
+
+
+
+                    </div><!--tabbable--->
+            </div><!--span 8-->
+            </div>
+
+
+
+
+
+
+<div class="pagination pagination-centered">
+<ul class="">
+                                {% if lastPageNumber > 1 %}
+                    {% if page > 1 %}
+                       <li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype }) }}">&laquo;&laquo;</a></li>
+                                                <li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype ,'page': page - 1}) }}">&laquo;</a></li>
+                    {% endif %}
+
+
+
+        {% for numberOfPage in 1..lastPageNumber %}
+        {% if numberOfPage > page - 3 and numberOfPage < page + 3 %}
+                                {% if page == numberOfPage %}<li class="active"><a href="javascript:void(0)">{{ numberOfPage }}</a></li>{% else %}<li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype ,'page': numberOfPage}) }}" >{{ numberOfPage }}</a></li>{%endif%}
+        {% endif %}
+        {% endfor %}
+
+
+                    {% if page < lastPageNumber %}
+                                                <li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype ,'page': page + 1}) }}" >&raquo;</a></li>
+                                                <li><a class="pagenum" href="{{url('fb_user_search_ajax', {'title' : title,'country' : country,'city' : city,'state' : state,'category' : category,'company' :  company,'lang': lang, 'jobt': jobtype ,'page': lastPageNumber}) }}" >&raquo;&raquo;</a></li>
+{% endif %}
+                {% endif %}
+                                            </ul>
+        </div>

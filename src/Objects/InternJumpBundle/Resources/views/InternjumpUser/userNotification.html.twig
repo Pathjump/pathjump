@@ -1,0 +1,173 @@
+{% extends '::base.html.twig' %}
+{% block title %}{{user}} notifications{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+{% endblock %}
+
+{% block pageTitle %}notifications{% endblock %}
+
+{% block body %}
+{% if userNotifications|length > 0 %}
+<div class="container Main-content">
+
+    <div class="Box-a Notifications">
+        <h3 class="title3">Page {{page}} of {{lastPageNumber}}</h3>
+
+        {% if unreadNotifications|length > 0 and type == 'all' %}
+        <a class="btn btn-warning markAllUnreadNotification" href="javascript:void(0)" title="Mark all as read"><i class="icon-eye-open icon-white"></i></a>
+        {% endif %}
+        <!--<a class="btn btn-danger" href="">Delete</a>-->
+        <div class="pull-right select-box" style="width: 200px;">
+            <label>Per page </label>
+                <select name="user_notifications_per_page_{{ user.id }}" onchange="setCookie('user_notifications_per_page_{{ user.id }}', this.value, 86391359);document.location.reload(true);">
+                {% for perPageNumber in 10 .. 100 %}
+                    {% if perPageNumber is divisibleby(10) %}
+                        <option{% if itemsPerPage == perPageNumber %} selected="selected"{% endif %} value="{{ perPageNumber }}">{{ perPageNumber }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="pull-right select-box" style="width: 200px;">
+            <label>Page</label>
+            <select onchange="window.location = '{{ path('User_notification', {'type': type,'page' : ''}) }}/' + this.value;">
+                {% for pageNumber in 1 .. lastPageNumber %}
+                    <option{% if page == pageNumber %} selected="selected"{% endif %} value="{{ pageNumber }}">{{ pageNumber }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="pull-right select-box" style="width: 200px;">
+            <label>Filter By</label>
+            <select  onchange="window.location = '{{ path('User_notification', {'type': ''}) }}/' + this.value;">
+                <option {% if type == 'all' %}selected="selected"{% endif %} value="all">Show all</option>
+                <option {% if type == 'company_question' %}selected="company_question"{% endif %} value="company_question">Company Question</option>
+                <option {% if type == 'company_interest' %}selected="company_interest"{% endif %} value="company_interest">Company Interest</option>
+                <option {% if type == 'company_job_hire' %}selected="company_job_hire"{% endif %} value="company_job_hire">Job Offer</option>
+                <option {% if type == 'company_interview' %}selected="company_interview"{% endif %} value="company_interview">Company Interview</option>
+                <option {% if type == 'company_edit_task' %}selected="company_edit_task"{% endif %} value="company_edit_task">Company Update Task</option>
+                <option {% if type == 'company_add_note' %}selected="company_add_note"{% endif %} value="company_add_note">Company Add Task Note</option>
+                <option {% if type == 'company_assign_task' %}selected="company_assign_task"{% endif %} value="company_assign_task">Company Assign Task</option>
+                <option {% if type == 'company_edit_note' %}selected="company_edit_note"{% endif %} value="company_edit_note">Company Edit Task Note</option>
+            </select>
+    </div>
+
+        <div class="clearfix"></div>
+        <br>
+
+        <ul class="list2">
+            {% for notification in userNotifications %}
+                {% if notification.type == 'company_question' %}
+                    <li class="{% if notification.isNew %}focus{% endif %} singleRow" notificationId='{{notification.id}}' notificationPage='{{path('question_show',{'questionId' : notification.typeId})}}'>
+                        <label class="checkbox">
+                            <i class="icon-question-sign"></i>
+                            <strong>{{notification.company}}</strong> has added a question for you
+                            <small class="muted pull-right">{{notification.createdAt|date('j F Y')}}</small>
+                        </label>
+                    </li>
+                {% elseif notification.type == 'company_interest' %}
+                    <li class="{% if notification.isNew %}focus{% endif %} singleRow" notificationId='{{notification.id}}' notificationPage='{{path('user_interest',{'interestId' : notification.typeId})}}'>
+                        <label class="checkbox">
+                            <i class="icon-thumbs-up"></i>
+                            <strong>{{notification.company}}</strong> has indicated interest! Great Work!
+                            <small class="muted pull-right">{{notification.createdAt|date('j F Y')}}</small>
+                        </label>
+                    </li>
+                {% elseif notification.type == 'company_job_hire' %}
+                    <li class="{% if notification.isNew %}focus{% endif %} singleRow" notificationId='{{notification.id}}' notificationPage='{{path('user_hire',{'userInternshipId' : notification.typeId})}}'>
+                        <label class="checkbox">
+                            <i class="icon-ok"></i>
+                            <strong>{{notification.company}}</strong> has extended you an offer! Congratulations!
+                            <small class="muted pull-right">{{notification.createdAt|date('j F Y')}}</small>
+                        </label>
+                    </li>
+                {% elseif notification.type == 'company_interview' %}
+                    <li class="{% if notification.isNew %}focus{% endif %} singleRow" notificationId='{{notification.id}}' notificationPage='{{path('user_interview',{'interviewId' : notification.typeId})}}'>
+                        <label class="checkbox">
+                            <i class="icon-user"></i>
+                            <strong>{{notification.company}}</strong> has extended you an interview request! Congratulations!
+                            <small class="muted pull-right">{{notification.createdAt|date('j F Y')}}</small>
+                        </label>
+                    </li>
+                {% elseif notification.type == 'company_assign_task' %}
+                    <li class="{% if notification.isNew %}focus{% endif %} singleRow" notificationId='{{notification.id}}' notificationPage='{{path('student_task_show',{'id' : notification.typeId})}}'>
+                        <label class="checkbox">
+                            <i class="icon-thumbs-up"></i>
+                            <strong>{{notification.company}}</strong> has assigned you a task. Do not put it off too long!
+                            <small class="muted pull-right">{{notification.createdAt|date('j F Y')}}</small>
+                        </label>
+                    </li>
+                {% elseif notification.type == 'company_edit_task' %}
+                    <li class="{% if notification.isNew %}focus{% endif %} singleRow" notificationId='{{notification.id}}' notificationPage='{{path('student_task_show',{'id' : notification.typeId})}}'>
+                        <label class="checkbox">
+                            <i class="icon-share"></i>
+                            <strong>{{notification.company}}</strong> has edited your task. Check it out it might be important!
+                            <small class="muted pull-right">{{notification.createdAt|date('j F Y')}}</small>
+                        </label>
+                    </li>
+                {% elseif notification.type == 'company_add_note' %}
+                    <li class="{% if notification.isNew %}focus{% endif %} singleRow" notificationId='{{notification.id}}' notificationPage='{{path('student_task_show',{'id' : notification.typeId})}}'>
+                        <label class="checkbox">
+                            <i class="icon-share"></i>
+                            <strong>{{notification.company}}</strong> has added a note to your task. Check it out it might be important!
+                            <small class="muted pull-right">{{notification.createdAt|date('j F Y')}}</small>
+                        </label>
+                    </li>
+                {% elseif notification.type == 'company_edit_note' %}
+                    <li class="{% if notification.isNew %}focus{% endif %} singleRow" notificationId='{{notification.id}}' notificationPage='{{path('student_task_show',{'id' : notification.typeId})}}'>
+                        <label class="checkbox">
+                            <i class="icon-share"></i>
+                            <strong>{{notification.company}}</strong> has edited a note to your task. Check it out it might be important!
+                            <small class="muted pull-right">{{notification.createdAt|date('j F Y')}}</small>
+                        </label>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+        </ul>
+
+        {% if lastPageNumber > 1 %}
+        <div class="pagination pagination-centered">
+            <ul>
+            {% if page > 1 %}
+                <li><a href="{{ url('User_notification',{'type' : type }) }}" class="right">&laquo;&laquo;</a></li>
+                <li><a href="{{ url('User_notification', { 'type' : type,'page': page - 1}) }}" class="right">&laquo;</a></li>
+            {% endif %}
+
+        {% for numberOfPage in 1..lastPageNumber %}
+        {% if numberOfPage > page - 3 and numberOfPage < page + 3 %}
+            {% if page == numberOfPage %}<li class="active"><a href="javascript:void(0)">{{ numberOfPage }}</a></li>{% else %}<li><a href="{{ url('User_notification', {'type' : type,'page': numberOfPage}) }}">{{ numberOfPage }}</a></li>{%endif%}
+        {% endif %}
+        {% endfor %}
+
+
+            {% if page < lastPageNumber %}
+                    <li><a href="{{ url('User_notification', { 'type' : type,'page': page + 1}) }}" class="left">&raquo;</a></li>
+                    <li><a href="{{ url('User_notification', {'type' : type,'page': lastPageNumber}) }}" class="left">&raquo;&raquo;</a></li>
+            {% endif %}
+             </ul>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% else %}
+<div class="alert alert-info">
+You have no notifications
+</div>
+{% endif %}
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+<script>
+
+    var notficationMarkUrl = '{{path('user_notification_mardAs_read',{'notificationId': ''})}}';
+    var notficationMarkAllUrl = '{{path('user_mark_all_notifications_asRead')}}';
+
+    </script>
+
+    <script src="{{ asset('js/cookies.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/libs/chosen.jquery.min.js') }}"></script>
+    <script src="{{asset('bundles/objectsinternjump/js/userNotifications.js')}}"></script>
+{% endblock %}

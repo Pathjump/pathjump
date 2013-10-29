@@ -1,0 +1,77 @@
+{% extends '::base_admin.html.twig' %}
+{% block title %}Admin-Day Report{% endblock %}
+
+{% block body %}
+<div id="chart" style="width: 100%; height: 500px;"></div>
+
+{% endblock %}
+
+{%block javascripts%}
+{{parent()}}
+<script src="{{asset('js/Highcharts-3.0.0/highcharts.js')}}"></script>
+<script>
+    $(function() {
+        $('#chart').highcharts({
+            chart: {
+                type: 'line',
+                marginRight: 130,
+                marginBottom: 25
+            },
+            credits: {enabled: false},
+            title: {
+                text: 'Day Report',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: [{% for activity in dayActivities %}'{{activity.createdAt | date('Y-m-d')}}',{% endfor %}]
+            },
+            yAxis: {
+                title: {
+                    text: 'Count'
+                },
+                plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<strong>' + this.x + '</strong><br/>' + this.y;
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -10,
+                y: 100,
+                borderWidth: 0
+            },
+            series: [{
+                    name: 'Company Signups',
+                    data: [{% for activity in dayActivities %}{{activity.companySignupCount}},{% endfor %}]
+                }, {
+                    name: 'Company Activated',
+                    data: [{% for activity in dayActivities %}{{activity.companyActivatedCount}},{% endfor %}]
+                }, {
+                    name: 'Job Postings',
+                    data: [{% for activity in dayActivities %}{{activity.newJobsCount}},{% endfor %}]
+                }, {
+                    name: 'Student Signups',
+                    data: [{% for activity in dayActivities %}{{activity.studentSignupCount}},{% endfor %}]
+                }, {
+                    name: 'Student Activated',
+                    data: [{% for activity in dayActivities %}{{activity.studentActivatedCount}},{% endfor %}]
+                }, {
+                    name: 'Scheduled Interviews',
+                    data: [{% for activity in dayActivities %}{{activity.noOfInterviews}},{% endfor %}]
+                }, {
+                    name: 'Hired Interns',
+                    data: [{% for activity in dayActivities %}{{activity.noOfHired}},{% endfor %}]
+                }
+            ]
+        });
+    });
+    </script>
+{% endblock %}

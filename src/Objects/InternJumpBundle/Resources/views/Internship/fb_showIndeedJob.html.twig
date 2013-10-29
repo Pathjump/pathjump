@@ -1,0 +1,128 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}{{jobDetails.jobtitle}}{% endblock %}
+
+{% block pageTitle %}{{jobDetails.jobtitle}}{% endblock %}
+
+{% block body %}
+<div class="container Main-content">
+    <div class="Search-interns">
+        <div class="row-fluid show-grid">
+
+            <div class="span8">
+                <div class="company-form">
+
+                    <div class="row-fluid intern-title show-grid">
+                        <div class="span10">
+                            <h3>{{ jobDetails.jobtitle }}</h3>
+
+                        </div>
+                        <h4 class="span6">{{jobDetails.company}}</h4>
+                    </div><!--intern-title--->
+
+
+                    <div class="row-fluid show-grid interns-info">
+
+                        <div class="span6">
+                            <div class="intern-pos">
+                                <div class="titl-blue">Position in</div>{{jobDetails.country}}, {{jobDetails.city}}, {{jobDetails.state}}
+                            </div>
+                        </div>
+                        <div class="span6">
+                            {% if jobDetails.expired %}
+                            <div class="row-fluid show-grid">
+                                <div class="span6 titl-blue">Expires:</div>
+                                <div class="span6"><span class="lebel-info">{{jobDetails.expired}}</span></div>
+                            </div>
+                            {% endif %}
+                                </div>
+                            </div><!--intern-title--->
+
+
+                            <div class="box-b links">
+                                {% if is_granted('ROLE_USER')  %}
+                                                <a class="btn btn-primary large pull-right apply" href="{{ path('indeed_job_apply',{'jobkey' : jobDetails.jobkey}) }}">Custom Apply</a>
+                                            {% elseif not is_granted('ROLE_NOTACTIVE')%}
+                                                <a class="btn btn-primary large pull-right apply" href="{{ path('user_signup') }}">Custom Apply</a>
+                                            {% endif %}
+                                <div class="clearfix"></div>
+                            </div><!--box-b-->
+
+                            <div class="box-b">
+                                <h4 class="titl-blue">Snippet</h4>
+                                <p>{{ jobDetails.snippet | raw }}</p>
+                            </div><!--box-b-->
+
+                                    <div class="box-b">
+                                        <div class="row-fluid show-grid">
+                                            <div class="span6"><br>
+                                                <div class="map" id="map_canvas" style="width: 300px;height: 100px;"></div>
+                                            </div>
+                                            <div class="span6">
+                                                <h4 class="titl-blue">Internship Location:</h4>
+                                                </div>
+                                            </div>
+                                        </div><!--box-b--->
+
+                                        <div class="box-b links">
+                                            {% if is_granted('ROLE_USER')  %}
+                                                <a class="btn btn-primary large pull-right apply" href="{{ path('indeed_job_apply',{'jobkey' : jobDetails.jobkey}) }}">Custom Apply</a>
+                                            {% elseif not is_granted('ROLE_NOTACTIVE')%}
+                                                <a class="btn btn-primary large pull-right apply" href="{{ path('user_signup') }}">Custom Apply</a>
+                                            {% endif %}
+                                            <h4 class=" text-center pull-right">Apply to this position!</h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                    </div><!--company-form-->
+
+                                </div><!--span 8-->
+
+                                <div class="span4 search-right-col">
+
+                {% if LatestJobs | length > 0%}
+                                        <div class="Col-block Latest-Interrnships">
+                                            <h2>Latest Interrnships</h2>
+                                            <div class="media">
+                        {% for job in LatestJobs %}
+                                                    <a href="{{path('fb_internship',{'loginName' : job.company.loginName})}}" class="pull-left"><img src="{{job.company.getTimThumbUrl(60,60)}}"></a>
+                                                    <div class="media-body">
+                                                        <div class="titl-blue">
+                                                            <a href="{{path('fb_internship_show',{'id' : job.id})}}">
+                                    {{job.title}}
+                                                                </a>
+                                                            </div>
+                            {{job.company}}
+                                                        </div><br>
+                                                        <div class="clearfix"></div>
+                        {% endfor %}
+                                                    </div>
+                                                </div>
+                {% endif %}
+
+
+
+
+                                            </div><!--search-right-col--->
+
+                                        </div><!--row-fluid show-grid-->
+
+                                    </div><!--Search-interns-->
+
+                                </div>
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+                                <script>
+                                    var latitude = '{{jobDetails.latitude}}';
+                                    var longitude = '{{jobDetails.longitude}}';
+                                    var searchJobsUrl = "{{path('fb_user_search_page')}}";
+                                    </script>
+                                    <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+                                    <script src="{{asset('bundles/objectsinternjump/js/showInternShip.js')}}"></script>
+                                    <script src="{{asset('bundles/objectsinternjump/js/internShipMap.js')}}"></script>
+                                    <script src="{{ asset('js/jquery.alerts.js') }}"></script>
+                                    <script src="{{ asset('js/jquery.colorbox-min.js') }}"></script>
+
+{% endblock %}

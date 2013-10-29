@@ -1,0 +1,49 @@
+signup_cv:
+    pattern: /first/step
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:signupCV" }
+
+signup_cv_success:
+    pattern: /success
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:signupCVSuccess" }
+
+cv_skills:
+    pattern: /skills/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:editCVSkills" }
+    requirements:
+        id: \d+
+
+cv_employment_history:
+    pattern: /employment/history/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:editCVEmloymentHistory" }
+    requirements:
+        id: \d+
+
+cv_new:
+    pattern: /create
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:new" }
+
+cv_create:
+    pattern: /create/submit
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:create" }
+    requirements:
+        _method: post
+
+cv_edit:
+    pattern: /edit/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:edit" }
+    requirements:
+        id: \d+
+
+cv_update:
+    pattern: /update/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:update" }
+    requirements:
+        _method: post
+        id: \d+
+
+cv_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:CV:delete" }
+    requirements:
+        _method: post
+        id: \d+

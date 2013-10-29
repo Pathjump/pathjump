@@ -1,0 +1,73 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}{{user}} interest{% endblock %}
+
+{% block pageTitle %}Interest Details{% endblock %}
+
+{% block body %}
+<div class="container Main-content">
+    <div class="company-form">
+        <h2>Interest Details</h2>
+        <div class="Notifications">
+
+            <table width="100%" border="0" class="table table-bordered">
+                <tbody><tr>
+                        <th scope="row"> From</th>
+                        <td><a href="{{ path('fb_internship',{'loginName' : company.loginName}) }}">{{company}}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Interested cv</th>
+                        <td><a href="{{path('fb_user_portal_home',{'loginName' : user.loginName, 'cvId': cv.id})}}">{{cv.name}}</a></td>
+                    </tr>
+                    {% if interest.accepted != 'pending' %}
+                    <tr>
+                        <th scope="row">Interest status</th>
+                        <td>{{interest.accepted}}</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            {% if interest.accepted == 'pending' %}
+            <div class=" row-fluid">
+                <a class="btn btn-primary pull-right" id="accepted" href="javascript:void(0)">Accept</a>
+                <a class="btn pull-right " id="rejected" href="javascript:void(0)">Reject </a>
+            </div>
+            {% endif %}
+        </div><!--Notifications--->
+    </div><!--company-form-->
+
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+{{parent()}}
+<script>
+
+    $(document).ready(function() {
+        //interest accept/reject
+        $('#accepted,#rejected').click(function() {
+            thisLink = $(this);
+            var linkId = thisLink.attr('id');
+            //hide the buttons
+            $('#accepted,#rejected').hide();
+            //show the loading image
+            $('.loading').show();
+            $.ajax({
+                url: "{{path('user_accept_reject_interest',{'interestId' : interest.id, 'status' : ''})}}" + "/" + linkId,
+                success: function(msg) {
+                    if (msg == 'done') {
+                        $('#interestStatus').text(linkId);
+                        $('#interestMessage').text('the interest was updated successfully');
+                    }
+                },
+                complete: function(msg) {
+                    location.reload();
+                }
+            });
+        });
+
+    });
+
+    </script>
+{% endblock %}

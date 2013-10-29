@@ -1,0 +1,49 @@
+fb_signup_cv:
+    pattern: /first/step
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:signupCV" }
+
+fb_signup_cv_success:
+    pattern: /success
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:signupCVSuccess" }
+
+fb_cv_skills:
+    pattern: /skills/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:editCVSkills" }
+    requirements:
+        id: \d+
+
+fb_cv_employment_history:
+    pattern: /employment/history/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:editCVEmloymentHistory" }
+    requirements:
+        id: \d+
+
+fb_cv_new:
+    pattern: /create
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:new" }
+
+fb_cv_create:
+    pattern: /create/submit
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:create" }
+    requirements:
+        _method: post
+
+fb_cv_edit:
+    pattern: /edit/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:edit" }
+    requirements:
+        id: \d+
+
+fb_cv_update:
+    pattern: /update/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:update" }
+    requirements:
+        _method: post
+        id: \d+
+
+fb_cv_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:FacebookCV:delete" }
+    requirements:
+        _method: post
+        id: \d+

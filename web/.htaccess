@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # redirect www to original domain
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+    RewriteCond %{HTTPS} on
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+    RewriteRule ^user-profile-image/([0-9]+)/([0-9]+)/([0-9a-zA-Z\-_.]+).([a-zA-Z]{3,4})$ timthumb.php?src=/images/users-profiles-images/$3.$4&w=$1&h=$2&zc=1 [NC,L]
+    RewriteRule ^company-logo/([0-9]+)/([0-9]+)/([0-9a-zA-Z\-_]+).([a-zA-Z]{3,4})$ timthumb.php?src=/images/companies-logos/$3.$4&w=$1&h=$2&zc=2 [NC,L]
+    RewriteRule ^default-company-logo/([0-9]+)/([0-9]+)$ timthumb.php?src=/img/company-default-img.jpg&w=$1&h=$2&zc=2 [NC,L]
+    RewriteRule ^quiz-result-image/([0-9]+)/([0-9]+)/([0-9a-zA-Z\-_]+).([a-zA-Z]{3,4})$ timthumb.php?src=/images/quiz-results-images/$3.$4&w=$1&h=$2&zc=2 [NC,L]
+    RewriteRule ^founders-Image/([0-9]+)/([0-9]+)/([0-9a-zA-Z\-_]+).([a-zA-Z]{3,4})$ timthumb.php?src=/images/founders-Images/$3.$4&w=$1&h=$2&zc=1 [NC,L]
+    RewriteRule ^posts-Images/([0-9]+)/([0-9]+)/([0-9a-zA-Z\-_]+).([a-zA-Z]{3,4})$ timthumb.php?src=/images/posts-Images/$3.$4&w=$1&h=$2&zc=1 [NC,L]
+    RewriteRule ^worth-image/([0-9]+)/([0-9]+)/([0-9a-zA-Z\-_]+).([a-zA-Z]{3,4})$ timthumb.php?src=/images/worth-images/$3.$4&w=$1&h=$2&zc=1 [NC,L]
+    RewriteRule ^banner-image/([0-9]+)/([0-9]+)/([0-9a-zA-Z\-_]+).([a-zA-Z]{3,4})$ timthumb.php?src=/uploads/banners-images/$3.$4&w=$1&h=$2&zc=2 [NC,L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ app.php [QSA,L]
+</IfModule>

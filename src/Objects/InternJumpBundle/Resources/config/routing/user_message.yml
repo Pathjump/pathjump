@@ -1,0 +1,50 @@
+user_box:
+    pattern:  /{box}/{page}
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:messagesBox", page: 1 }
+    requirements:
+        box: inbox|outbox
+        page: \d+
+
+user_messages:
+    pattern:  /from/{box}/{page}/{itemsPerPage}
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:getMessages", page: 1, itemsPerPage: ~ }
+    requirements:
+        box: inbox|outbox
+        page: \d+
+
+user_messages_batch_action:
+    pattern:  /batch
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:messagesBatch" }
+    requirements:
+        _method: POST|DELETE
+
+user_message:
+    pattern:  /message/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:getMessage" }
+    requirements:
+        id: \d+
+
+show_user_message:
+    pattern:  /show/message/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:show" }
+    requirements:
+        id: \d+
+
+user_message_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:delete" }
+    requirements:
+        _method: post
+        id: \d+
+
+user_new_message:
+    pattern:  /to/{userName}
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:new", userName: ~ }
+
+user_new_message_form:
+    pattern:  /form/{userName}
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:newMessageForm", userName: ~ }
+
+user_create_message:
+    pattern:  /create/{userName}
+    defaults: { _controller: "ObjectsInternJumpBundle:UserMessage:create", userName: ~ }

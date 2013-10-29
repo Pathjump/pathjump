@@ -1,0 +1,29 @@
+employmenthistory_new:
+    pattern:  /new
+    defaults: { _controller: "ObjectsInternJumpBundle:EmploymentHistory:new" }
+
+employmenthistory_create:
+    pattern:  /create
+    defaults: { _controller: "ObjectsInternJumpBundle:EmploymentHistory:create" }
+    requirements:
+        _method: post
+
+employmenthistory_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:EmploymentHistory:edit" }
+    requirements:
+        id: \d+
+
+employmenthistory_update:
+    pattern:  /update/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:EmploymentHistory:update" }
+    requirements:
+        _method: post
+        id: \d+
+
+employmenthistory_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ObjectsInternJumpBundle:EmploymentHistory:delete" }
+    requirements:
+        _method: post
+        id: \d+

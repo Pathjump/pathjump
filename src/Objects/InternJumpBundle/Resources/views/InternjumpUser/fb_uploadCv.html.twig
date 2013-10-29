@@ -1,0 +1,54 @@
+{% extends '::fb_base.html.twig' %}
+{% block title %}Cv Upload{% endblock %}
+
+
+{% block pageTitle %}Upload Resume{% endblock %}
+
+{% block body %}
+{% if form_errors(form) %}
+<div class="alert alert-error">
+    <button data-dismiss="alert" class="close" type="button"> &times; </button>
+    {{ form_errors(form) }}
+</div>
+{% endif %}
+<div class="container Main-content">
+    <div class="Student">
+        <h3>Upload Resume</h3>
+        <p></p>
+        <div class="row-fluid show-grid">
+            <div class="span12">
+                <form action="{{ url('fb_upload_cv') }}" method="post" {{ form_enctype(form) }} id="imageUploadForm">
+                    <fieldset>
+                        <legend></legend>
+                        <div class="Sign-Up">
+                            <ul>
+                                <li>Upload your exisiting resume to auto-fill your InternJump profile.</li>
+                                <li>If you choose to use one of our templates, download the template (<a href="{{asset('cvTemplate.doc')}}">Here</a>), fill in the template with your information and then upload the template</li>
+                            </ul>
+                            <div class="controls">
+                                {{ form_widget(form.file) }}
+                                {% if form_errors(form.file) %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                                    {{ form_errors(form.file) }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="controls  row-fluid show-grid">
+                                <div class="span6">
+                                    {{ form_rest(form) }}
+                                    </div>
+                                    <div class="span6">
+                                        <button class="btn btn-primary pull-right" type="submit">Upload</button>
+                                    </div>
+                                </div>
+                        </fieldset>
+                    </form>
+                </div><!--Sign-Up-->
+            </div>
+        </div><!--Sign-Up-->
+
+    </div><!---Student --->
+</div>
+
+{% endblock %}
