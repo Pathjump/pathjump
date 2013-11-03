@@ -33,6 +33,7 @@ parameters:
   twitter_page_url: 'http://twitter.com/InternJump'
   google_page_url: 'https://plus.google.com/110727481723924712014/'
   linkledIn_page_url: 'http://www.linkedin.com/company/internjump'
+  skybe_name: 'internjump'
   home_page_video_id: ZcP22bYAfAU
   new_job_success_message: 'New internship is created successfully'
   new_task_success_message: 'New task is created successfully'

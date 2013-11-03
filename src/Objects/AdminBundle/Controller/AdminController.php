@@ -155,6 +155,7 @@ class AdminController extends Controller {
             $config['worth_select_from'] = $container->getParameter('worth_select_from');
             $config['user_worth_description'] = $container->getParameter('user_worth_description');
             $config['user_net_worth_description'] = $container->getParameter('user_net_worth_description');
+            $config['skybe_name'] = $container->getParameter('skybe_name');
 
             //make form to fill it with data
             $form = $this->createFormBuilder($config)
@@ -193,6 +194,7 @@ class AdminController extends Controller {
                     ->add('google_page_url', 'text', array('required' => FALSE))
                     ->add('linkledIn_page_url', 'text', array('required' => FALSE))
                     ->add('home_page_video_id', 'text', array('required' => FALSE))
+                    ->add('skybe_name', 'text', array('required' => FALSE))
                     ->add('new_job_success_message', 'text')
                     ->add('new_task_success_message', 'text')
                     ->add('a_grade_points', 'integer')
@@ -527,6 +529,10 @@ class AdminController extends Controller {
                         $firstFileChange = TRUE;
                     }
 
+                    if ($formDataArray['skybe_name'] != $container->getParameter('skybe_name')) {
+                        $firstFileChange = TRUE;
+                    }
+
 
                     //check if we need to open the first file to change it is config
                     if ($firstFileChange) {
@@ -641,6 +647,8 @@ class AdminController extends Controller {
                             $value['parameters']['user_message_not_found_error_msg'] = $formDataArray['user_message_not_found_error_msg'];
                             $value['parameters']['company_message_not_found_error_msg'] = $formDataArray['company_message_not_found_error_msg'];
                             $value['parameters']['internship_not_found_error_msg'] = $formDataArray['internship_not_found_error_msg'];
+
+                            $value['parameters']['skybe_name'] = $formDataArray['skybe_name'];
 
 
                             //dump to make spaces and format of the file before update it

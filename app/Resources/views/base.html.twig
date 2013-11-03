@@ -13,15 +13,18 @@
         <title>{% block title %}{{site_meta_title}}{% endblock %} - InternJump Internships & Entry Level Jobs</title>
 
         {% block stylesheets %}
-        <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" media="screen"/>
-        <link href="{{ asset('css/main.css')}}" rel="stylesheet" media="screen"/>
+        <link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet" media="screen"/>
+        <!--<link href="{{ asset('css/main.css')}}" rel="stylesheet" media="screen"/>-->
         <link href="{{ asset('css/bootstrap-responsive.css')}}" rel="stylesheet"/>
+        <link rel="stylesheet" href="{{ asset('css/normalize.css')}}"/>
+        <link rel="stylesheet" href="{{ asset('css/main_new.css')}}"/>
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}"/>
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,400italic,700italic' rel='stylesheet' type='text/css'/>
         <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'/>
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'/>
         {% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-
+        <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js')}}"></script>
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
@@ -34,210 +37,144 @@
             }(document, 'script', 'facebook-jssdk'));</script>
         </head>
         <body>
+            <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <![endif]-->
+
             <div class="loading" style="display: none">
                 <img src="{{ asset('img/loadingfacebox.gif') }}" alt="loader"/>
                 <p>{% trans %}Loading........{% endtrans %}</p>
             </div>
 
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a href="{{ path('site_homepage') }}" class="pull-left"><img src="{{ asset('img/Logo.png') }}" /></a>
-                        <div class="Top-Links pull-right span6">
-                            {% if not is_granted('ROLE_NOTACTIVE_COMPANY') and not is_granted('ROLE_NOTACTIVE') and not is_granted('ROLE_COMPANY_MANAGER')%}
-                                <p class="well well-small"><strong class="notLoggedInUserMessage">Are you an employer? Connect with top interns from all around the nation. <a href="{{path('employers_data')}}" class="startHiring btn btn-mini btn-info" style="color:#fff;">Start Hiring !</a></strong></p>
-                            {% endif %}
+            <div class="main-wapper">
+        	<div class="top-bar">
+        		<div class="container">
+                    <ul class="Log-links unstyled pull-right hidden-phone">
+                    	{% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
+                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                        {% elseif is_granted('ROLE_NOTACTIVE') %}
+                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                        {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
+                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                        {% elseif is_granted('ROLE_ADMIN') %}
+                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                        {% else %}
+                             <li class="Login"><a href="{{ path('login') }}"><i class="fa fa-key"></i> Login</a></li>
+                             <li class="Sign-up"><a href="{{path('user_signup')}}"><i class="fa fa-user"></i>  sign up</a></li>
+                        {% endif %}
+                    </ul>
+                    <ul class="social-icons pull-right">
+                        {% if twitter_page_url %}
+                        <li><a href="{{twitter_page_url}}" target="_blank"><i class="fa fa-twitter"></i> twitter</a></li>
+                        {% endif %}
+                        {% if skybe_name %}
+                        <li><a href="skype:{{skybe_name}}?call"><i class="fa fa-skype"></i> skype</a></li>
+                        {% endif %}
+                        {% if google_page_url %}
+                        <li><a href="{{google_page_url}}" target="_blank"><i class="fa fa-google-plus"></i> Google+</a></li>
+                        {% endif %}
+                        {% if linkledIn_page_url %}
+                        <li><a href="{{linkledIn_page_url}}" target="_blank"><i class="fa fa-linkedin"></i>  linkedin</a></li>
+                        {% endif %}
+                         {% if face_page_url %}
+                         <li><a href="{{face_page_url}}" target="_blank"><i class="fa fa-facebook"></i> facebook</a></li>
+                         {% endif %}
+                    </ul>
+                </div>
+        	</div>
 
-                            {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
-                                <ul class="log-links pull-right  unstyled">
-                                     <!--<li><a href="{{ path('internship',{'loginName' : app.user.loginName}) }}">Hi, {{app.user.loginName}}</a></li>-->
-                                     <li><i class="icon-off"></i><a href="{{ path('logout') }}">Sign out</a></li>
+           <div class="navbar">
+                <div class="container">
+
+                 <ul class="Log-links unstyled pull-right  style2 visible-phone">
+                        {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
+                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                        {% elseif is_granted('ROLE_NOTACTIVE') %}
+                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                        {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
+                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                        {% else %}
+                             <li class="Login"><a href="{{ path('login') }}"><i class="fa fa-key"></i> Login</a></li>
+                             <li class="Sign-up"><a href="{{path('user_signup')}}"><i class="fa fa-user"></i>  sign up</a></li>
+                        {% endif %}
+                    </ul>
+
+                  <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a href="{{ path('site_homepage') }}" class="brand"><img src="{{ asset('img/Logo.png')}}"></a>
+                  <div class="nav-collapse collapse pull-right">
+                    <ul class="nav">
+                      <li><a href="{{ path('site_homepage') }}"><i class="fa fa-desktop"></i> Home</a></li>
+                      {% if not is_granted('ROLE_NOTACTIVE_COMPANY') and not is_granted('ROLE_NOTACTIVE') and not is_granted('ROLE_COMPANY_MANAGER')%}
+                      <li><a href="{{path('employers_data')}}"><i class="fa fa-file-text"></i> Employers</a></li>
+                      <li><a href="{{path('students_data')}}"><i class="fa fa-pencil"></i> students</a></li>
+                      {% endif %}
+                      <li><a href="{{path('internship',{'loginName':'internjump'})}}"><i class="fa fa-suitcase"></i>Career Centers</a></li>
+                      <li><a href="{{path('aboutUs')}}"><i class="fa fa-mobile-phone"></i> About Us</a></li>
+                    </ul>
+                  </div><!--/.nav-collapse -->
+                </div>
+            </div><!--navbar-->
+            {% block body %}{% endblock %}
+            <div class="footer">
+            	<div class="container">
+                	 <div class="row-fluid show-grid">
+                           <div class="span4">
+                           	<h2>GET IN TOUCH</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+                               <ul class="social-icons">
+                                   {% if twitter_page_url %}
+                                    <li><a href="{{twitter_page_url}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    {% endif %}
+                                    {% if skybe_name %}
+                                    <li><a href="skype:{{skybe_name}}?call"><i class="fa fa-skype"></i></a></li>
+                                    {% endif %}
+                                    {% if google_page_url %}
+                                    <li><a href="{{google_page_url}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                    {% endif %}
+                                    {% if linkledIn_page_url %}
+                                    <li><a href="{{linkledIn_page_url}}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                    {% endif %}
+                                     {% if face_page_url %}
+                                     <li><a href="{{face_page_url}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                     {% endif %}
+
                                 </ul>
-                            {% elseif is_granted('ROLE_NOTACTIVE') %}
-                                <ul class="log-links pull-right  unstyled">
-                                     <!--<li><a href="{{ path('student_task',{'loginName' : app.user.loginName}) }}">Hi, {{app.user.loginName}}</a></li>-->
-                                     <li><i class="icon-off"></i><a href="{{ path('logout') }}">Sign out</a></li>
-                                </ul>
-                            {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
-                                <ul class="log-links pull-right  unstyled">
-                                     <!--<li><a href="{{ path('student_task',{'loginName' : app.user.loginName}) }}">Hi, {{app.user.loginName}}</a></li>-->
-                                     <li><i class="icon-off"></i><a href="{{ path('logout') }}">Sign out</a></li>
-                                </ul>
-                            {% else %}
-                                            <ul class="log-links pull-right  unstyled">
-                                                <li><i class="icon-chevron-right"></i><a href="{{ path('login') }}">Login</a></li>
-                                                <li><i class="icon-user"></i><a href="{{path('user_signup')}}" class="muted">Sign up</a></li>
-                                            </ul><!--socila-icons--->
-                            {% endif %}
-                                        </div><!--Top-links-->
+                           </div>
+                           <div class="span8 text-right">
 
-                                        <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar collapsed pull-right" type="button">
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </button>
-                                        <div class="nav-collapse collapse pull-right">
-                                            <ul class="nav">
-                                                {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
-                                                {% elseif is_granted('ROLE_NOTACTIVE') %}
-                                                {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
-                                                {% else %}
-                                                    <li id="employerLink"><a href="{{path('students_data')}}" class="nav-students">Students</a></li>
-                                                    <li id="studentLink"><a href="{{path('employers_data')}}" class="nav-companies">Employers</a></li>
-                                                    <li id="schoolsLink"><a href="{{path('schools')}}">Schools</a></li>
-                                                    <li id="resourceLink"><a href="{{path('resources')}}">Resources</a></li>
-                                                {% endif %}
-                                            </ul>
-                                        </div><!--/.nav-collapse -->
+                          	 <ul class="menu-footer pull-right unstyled">
+                             	<li><a href="{{ path('site_homepage') }}">Home</a>|</li>
+                                <li><a href="{{path('resources')}}">Resources</a>|</li>
+                            	 <li><a href="{{path('aboutUs')}}">About Us </a>|</li>
+                                 <li><a href="{{path('termsOfUse')}}">Terms Of Service</a>|</li>
+                                 <li><a href="{{path('privacy')}}">Privacy Policy</a>|</li>
+                                 <li><a href="{{path('internship',{'loginName':'internjump'})}}">Careers</a>|</li>
+                                 <li><a href="{{path('contactUs')}}">Contact Us</a>|</li>
+                                 <li><a href="{{path('employers')}}">Industries</a>|</li>
+                                 <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
+                             </ul>
+                           </div>
+                     </div>
+                </div>
+                <div class="copy-right">
+                	<div class="container"><p class="text-left">© {{"now"|date('Y')}} Innovative Web. All rights reserved.</p>
+                    	<a href="{{ path('site_homepage') }}" class="logo-footer brand"><img src="{{ asset('img/Logo.png')}}"></a>
+                    </div>
+                </div>
+            </div><!--footer-->
 
-                                    </div><!--Container-->
-                                </div><!--navbar-inner-->
-                            </div><!--navbar-->
-                            <div class="Subcatego">
-                                {% if is_granted('ROLE_COMPANY') %}
-                                    <div class="container">
-                                        <ul class="unstyled">
-                                            <li><a href="{{ path('internship',{'loginName' : app.user.loginName}) }}">Home</a></li>
-                                            <li><a href="{{ path('internship_new') }}">Add new Position</a></li>
-                                            <li><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
-                                            <li><a href="{{ path('company_search_for_cv') }}">Search Candidates</a></li>
-                                            <li><a href="{{ path('company_managers',{'loginName' : app.user.loginName}) }}">Managers</a></li>
-                                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
-                                        </ul>
-                                    </div>
-                                {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
-                                    <div class="container">
-                                        <ul class="unstyled">
-                                            <li><a href="{{ path('manager_home') }}">Home</a></li>
-                                            <li><a href="{{ path('internship_new') }}">Add new Position</a></li>
-                                            <li><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
-                                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
-                                        </ul>
-                                    </div>
-                                {% elseif is_granted('ROLE_USER') %}
-                                    <div class="container">
-                                        <ul class="unstyled">
-                                            <li><a href="{{path('student_task',{'loginName' : app.user.loginName})}}">Home</a></li>
-                                            <li><a href="{{ path('user_search_page') }}">Search</a></li>
-                                            <li><a href="{{ path('education_new') }}">Education</a></li>
-                                            <li><a href="{{ path('employmenthistory_new') }}">Employment</a></li>
-                                            <li><a href="{{ path('user_languages') }}">Language</a></li>
-                                            <li><a href="{{ path('addEditUserSkills') }}">Skills</a></li>
-                                            <li><a href="{{ path('personal_questions') }}">Questions</a></li>
-                                            {% if not app.user.score %}
-                                                <li><a href="{{path('internjumb_quiz')}}">Personality Quiz</a></li>
-                                            {% else %}
-                                                <li><a href="{{path('internjumb_quiz_page_result')}}">Personality Quiz</a></li>
-                                            {% endif %}
-                                            <li><a href="{{ path('howMuchAreYouWorth') }}">Find Your Worth</a></li>
-                                            <li id="resourceLink"><a href="{{path('resources')}}">Resources</a></li>
-                                        </ul>
-                                    </div>
-                                {% endif %}
-                            </div>
-
-                            {% block notifications %}
-                            <div class="page-title">
-                                <div class="container">
-                                    <h1 class="pull-left">{#{% block pageTitle %}Home{% endblock %}#}</h1>
-                                    <div class="notifsWrapper">
-                                {% if is_granted('ROLE_USER') %}
-                                    {% render "ObjectsInternJumpBundle:InternjumpUser:getUserNotifications" %}
-                                {% elseif is_granted('ROLE_COMPANY') %}
-                                    {% render "ObjectsInternJumpBundle:Company:getCompanyNotifications" %}
-                                {% endif %}
-                                    </div>
-                                </div><!--container--->
-                            </div>
-                            {% endblock %}
-
-                            {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
-                                {% if not is_granted('ROLE_COMPANY') %}
-                                    <div class="alert alert-info">
-                                        <h3 class="">Please activate your account</h3>
-                                        <a href="{{path('company_reActivation')}}">Resend activation email</a>
-                                    </div>
-                                {% endif %}
-                            {% elseif is_granted('ROLE_NOTACTIVE') %}
-                                {% if not is_granted('ROLE_USER') %}
-                                    <div class="alert alert-info">
-                                        <h3 class="">Please activate your account</h3>
-                                    </div>
-                                {% endif %}
-                            {% endif %}
-
-                            {% if app.session.hasFlash('loginSuccess') %}
-                                <div class="alert alert-info timeMessage">
-                                    <h3 class="">Welcome, {{app.user.loginName}}</h3>
-                                </div>
-                            {% endif %}
-
-                            {% if app.session.hasFlash('notice') %}
-                                <div class="alert alert-info">
-                                <button type="button" class="close" data-dismiss="alert"> × </button>
-                                {{ app.session.flash('notice') | raw }}
-                                </div>
-                            {% endif %}
-
-                            {% if app.session.hasFlash('success') %}
-                                <div class="alert alert-success">
-                                <button type="button" class="close" data-dismiss="alert"> × </button>
-                                {{ app.session.flash('success') | raw }}
-                                </div>
-                            {% endif %}
-
-                            {% if app.session.hasFlash('error') %}
-                                <div class="alert alert-error">
-                                <button type="button" class="close" data-dismiss="alert"> × </button>
-                                {{ app.session.flash('error') | raw }}
-                                </div>
-                            {% endif %}
-
-                            {% block body %}{% endblock %}
-
-                            <div class="footer">
-                                <div class="container">
-
-
-
-                                    <div class=" nav-footer  pull-right">
-                                        <ul class="">
-                                            <li><a href="{{ path('site_homepage') }}"> Home   </a></li> |
-                                            <li><a href="{{path('resources')}}">Resources</a></li>|
-                                            <li><a href="{{path('aboutUs')}}">About Us</a></li> |
-                                            <li><a href="{{path('termsOfUse')}}">Terms Of Service</a></li> |
-                                            <li><a href="{{path('privacy')}}">Privacy Policy</a></li> |
-                                            <li><a href="https://internjump.com/internship/internjump">Careers</a></li> |
-                                            <li><a href="{{path('contactUs')}}">Contact Us</a></li> |
-                                            <li><a href="{{path('employers')}}">Industries</a></li> |
-                                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
-                                        </ul>
-                                    </div>
-                                    <a href="" class="pull-left"><img src="{{asset('img/logo-2.png')}}" /></a>
-                                    <ul class="Social-icons-f unstyled  pull-right ">
-                                        <li>Follow us</li>
-                                        {% if face_page_url %}
-                                    <li><a target="_blank" href="{{face_page_url}}" class="ico-facebook"></a></li>
-                                {% endif %}
-                                {% if twitter_page_url %}
-                                        <li><a target="_blank" href="{{twitter_page_url}}" class="ico-twitter"></a></li>
-                                {% endif %}
-                                {% if linkledIn_page_url %}
-                                            <li><a target="_blank" href="{{linkledIn_page_url}}" class="ico-google"></a></li>
-                                {% endif %}
-                                    </ul>
-
-                                </div>
-                            </div><!--footer-->
-                            <div class="Copy-Right">
-                                <p>© {{ "now"|date("Y") }} {{internjumb_copyright}}</p>
-                            </div><!--Copy-Right--->
-
+        </div>
                             {% block javascripts %}
                             <script src="{{asset('js/libs/jquery-1.8.1.js')}}"></script>
                             <script src="{{asset('js/bootstrap.min.js')}}"></script>
                             <script src="{{asset('js/plugins.js')}}"></script>
                             <script src="{{asset('js/main.js')}}"></script>
+                            <script src="{{asset('js/plugins_new.js')}}"></script>
+                            <script src="{{asset('js/main_new.js')}}"></script>
                             <script>
                                 var _gaq=[['_setAccount','{{analytics}}'],['_trackPageview']];
                                 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

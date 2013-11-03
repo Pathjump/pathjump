@@ -78,10 +78,6 @@
   .hidden-tablet {
     display: none !important;
   }
-  .nav > li > a{
-	  background-image: none !important;
-	 }
-  
 }
 
 @media (max-width: 767px) {
@@ -97,22 +93,55 @@
   .hidden-phone {
     display: none !important;
   }
-  .nav > li > a{
-	  background-image: none !important;
+  .bx-wrapper{
+	  display:none;
 	 }
-  .step4 img{
-		display:none;
-   }
-   .Last-M-N{
-	   background-image:none;
-	  }
-   .last-m .l-box{
-	   top:0;
-	  }
-	.Tasks .title{
-		display:none;
-	}
-	
+	 .Search-Slide{
+		 background: url(../img/Slider.jpg) center;
+		 padding:20px;
+		 margin:20px 0 !important;
+		}
+		.Search-block{
+			width:92% !important;
+		}
+		.social-icons li a,.Log-links li a{
+			font-size: 0;
+    line-height: 3;
+    padding: 6px 12px 4px !important;
+		}
+		.social-icons li a i,.Log-links li a i{
+			font-size:20px !important; 
+		}
+		.navbar .brand{
+			width:20%;
+			padding:5px 10px !important;
+		}
+		.nav-collapse{
+			float:none !important;
+		}
+		.nav-collapse ul,.nav-collapse li{
+			margin-left:0  !important;
+		}
+		.nav li a i {
+    display: inline-block !important;
+    font-size: 19px !important;
+    margin-bottom: 0  !important;
+    margin-right: 6px ;
+}
+.footer .row-fluid .span4,.footer .row-fluid .span8{
+	padding:0 20px;
+}
+.menu-footer {
+    margin-top: 35px !important;
+}
+
+.logo-footer {
+
+    padding: 5px !important;
+
+
+    width: 8% !important;
+}
 }
 
 .visible-print {
@@ -151,7 +180,7 @@
   .navbar-static-top .container,
   .navbar-fixed-top .container,
   .navbar-fixed-bottom .container {
-    width: 960px;
+    width: 1170px;
   }
   .span12 {
     width: 1170px;
@@ -479,6 +508,15 @@
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+	.Search-block{
+		width:100% !important;
+	}
+	.Search-form .Industry, .Search-form .State, .Search-form .job-type{
+		display: inline-block;
+    margin-right: 2%;
+    width: 31% !important;
+	}
+
   .row {
     margin-left: -20px;
     *zoom: 1;
@@ -817,32 +855,19 @@
   .uneditable-input.span1 {
     width: 28px;
   }
-.nav-collapse{
-		width:100%;
-		text-align:center;
-		margin-top:10px;
 }
-.nav-collapse li a {
-    background: none repeat scroll 0 0 #F0F0F0 !important;
-}
-}
-
 
 @media (max-width: 767px) {
-  body,.Subcatego,.page-title {
-    padding-right: 10px;
-    padding-left: 10px;
+  body {
+    padding-right: 20px;
+    padding-left: 20px;
   }
-  
   .navbar-fixed-top,
   .navbar-fixed-bottom,
   .navbar-static-top {
     margin-right: -20px;
     margin-left: -20px;
   }
-  .Your-worth .worth-img{
-	  margin-right:0;
-	 }
   .container-fluid {
     padding: 0;
   }
@@ -928,36 +953,14 @@
   .modal.fade.in {
     top: 20px;
   }
-  .thumb-a .caption{
-	  text-align:left
+}
+@media (max-width: 1000px) {
+  .bx-wrapper .bx-caption{
+	  display:none !important
 	 }
-	 .Start-form .Form-Text,.intrens{
-		 padding:0 10px
-		}
-	.Latest-In {
-    background-image: none;
-    border: 1px solid #CCCCCC;
-	margin:10px 0;
-}
-.Latest-In h3,.Latest-In h3 span{
-	color:#2B3593 !important;
-	margin-bottom:20px;
 }
 
-
-.nav-collapse{
-		width:100%;
-		text-align:center;
-		margin-top:10px;
-}
-.nav-collapse li a {
-    background: none repeat scroll 0 0 #F0F0F0 !important;
-}
-
-
-}
-
-@media (max-width: 480px) {
+{
   .nav-collapse {
     -webkit-transform: translate3d(0, 0, 0);
   }
@@ -1007,6 +1010,11 @@
   .carousel-caption {
     position: static;
   }
+  #myCarouse3 .carousel-control{
+	display:none}
+	#myCarouse3 .span2{
+		text-align:center !important;
+	}
 }
 
 @media (max-width: 979px) {
@@ -1028,7 +1036,7 @@
     padding: 5px;
   }
   .navbar .container {
-    width: auto;
+   /* width: auto;*/
     padding: 0;
   }
   .navbar .brand {

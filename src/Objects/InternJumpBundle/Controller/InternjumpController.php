@@ -1133,12 +1133,12 @@ class InternjumpController extends Controller {
         $worthUsers = array();
         $worthFrom = $this->container->getParameter('worth_select_from');
         if ($worthFrom == 'automatic') {
-            $worthUsers = $userRepo->getWorthUsers(3);
+            $worthUsers = $userRepo->getWorthUsers(2);
             foreach ($worthUsers as $worthUser) {
                 $worthUser->worthResult = number_format($worthUser->getCurrentWorth());
             }
         } else {
-            $worthUsers = $userRepo->getManuallyWorthUsers(3);
+            $worthUsers = $userRepo->getManuallyWorthUsers(2);
             foreach ($worthUsers as $worthUser) {
                 $worthUser->worthResult = number_format($worthUser->getWorth());
             }

@@ -1,0 +1,845 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,300);
+@import url(http://fonts.googleapis.com/css?family=Coda:400,800);
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 0.8em;
+    line-height: 1.4;
+	font-family: 'Lato', sans-serif;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+a{
+	-webkit-transition: all 0.5s ease-in-out;
+	  -moz-transition: all 0.5s ease-in-out;
+	   -o-transition: all 0.5s ease-in-out;
+	    -ms-transition: all 0.5s ease-in-out;
+		 transition: all 0.5s ease-in-out;
+}
+/* ==========================================================================
+   Chrome Frame prompt
+   ========================================================================== */
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+li{
+	margin:0 ;
+}
+a:hover{
+	text-decoration:none;
+}
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+.Log-links li{
+	display:inline-block;
+	margin:0 0 0 -4px
+
+}
+.Log-links li a{
+		padding:5px 10px;
+		display:block;
+		color:#fff;
+}
+.top-bar{
+	border-bottom:1px solid #ebebeb;
+}
+.Login a{
+	background:#1ab574
+}
+
+.Sign-up a{
+	background:#0b82af;
+}
+.social-icons li{
+	border-left:1px solid #ebebeb;
+	display:inline-block;
+	color:#ccc;
+	margin-left:-4px;
+}
+.social-icons li a{
+	color:#898989;	padding:5px 10px;
+	display:block;
+}
+.social-icons li a:hover{
+	color:#0B82AF;
+	background:#f4f4f4;
+}
+.navbar .brand{
+	background:#fff;
+	margin-top:-32px;
+	border:1px solid #ebebeb;
+	padding:10px 20px;
+	position:relative;
+	z-index:2;
+	margin-left:0px;
+}
+.Search-Slide h2{
+	color:#e5a908;
+	background:rgba(255,255,255,0.7);
+	display:inline-block;
+	font-family: 'Lato', sans-serif;
+	padding:0 10px;
+	border:1px solid #fff;
+}
+.nav {
+    margin: 15px 0 0 20px !important;
+}
+.nav li a{
+	font-size:16px;
+	text-transform:uppercase;
+}
+.nav li a i{
+	display:block;
+	text-align:center;
+	font-size:40px;
+	color:#A5A6A8;
+	margin-bottom:15px;}
+.nav li{
+	margin-left:20px
+}
+.navbar .nav > li > a{
+	padding-bottom:12px;
+}
+.bx-wrapper{
+	margin-top:-60px;
+}
+#myCarousel .carousel-indicators{
+	width:100%;
+	bottom:0;
+	top:inherit;
+}
+.Search-Slide {
+     margin-bottom: 60px;
+    margin-top: -396px;
+    position: relative;
+    z-index: 99999;
+	clear:left;
+}
+
+.bx-wrapper .bx-caption {
+    background: none repeat scroll 0 0 rgba(62, 181, 116, 0.75);
+    border: 1px solid #FFFFFF;
+    bottom: inherit;
+    font-size: 30px;
+    left: 7%;
+    position: absolute;
+    top: 68px;
+    width: auto;
+	font-family: 'Coda', cursive;
+}
+.How-work h1 i{
+	color:#0b82af;
+}
+.How-work{
+	text-align:center;
+}
+h1,h2,h3,button,input[type="submit"]{
+	font-family: 'Coda', cursive;
+	font-weight:normal;
+}
+h1{
+	font-family: 'Coda', cursive;
+	font-size:30px;
+	font-weight:normal;
+}
+.Search-Slide .container{
+	position:relative;
+	z-index:0;
+}
+
+.Search-block{
+
+	padding:20px;
+	background:rgba(255,255,255,0.5);
+	border:1px solid #1ab574;
+	width:38%;
+	
+}
+
+.Search-block .Search-form i{
+	background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #DBDBDB;
+    color: #499FC0;
+    font-size: 28px;
+    padding: 8px 12px;
+	float:left;
+}
+.chosen-container-single .chosen-single:before{
+   background: none repeat scroll 0 0 #F5F5F5;
+    border-right: 1px solid #DBDBDB;
+    color: #499FC0;
+    font-family: 'FontAwesome';
+    font-size: 23px;
+    height: 100%;
+    left: 0;
+    line-height: 1.6;
+    padding: 0 12px;
+    position: absolute;
+}
+.job-type .chosen-container-single .chosen-single:before{
+	    content:  "\f007";
+}
+.State  .chosen-container-single .chosen-single:before{
+	 content:  "\f0ac";
+}
+
+.Industry  .chosen-container-single .chosen-single:before{
+	 content:  "\f0f2";
+}
+.Search-form .Industry,.Search-form .State,.Search-form .job-type{
+	margin-bottom:15px;
+}
+.Search-form select{
+	width:100%;
+}
+.chosen-container .chosen-drop{
+	border-color:#aaa;
+}
+
+.chosen-container-single .chosen-search,.chosen-container .chosen-results {
+    padding: 7px 14px;
+}
+.chosen-container-single .chosen-search input[type="text"]{
+	padding:8px;
+}
+.chosen-container-single .chosen-search input[type="text"] {
+    -moz-box-sizing: border-box;
+    background: url("chosen-sprite.png") no-repeat scroll 100% -31px, linear-gradient(#EEEEEE 1%, #FFFFFF 15%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.chosen-container{
+	width:100% !important;
+}
+.chosen-container-active .chosen-single {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.chosen-container-single .chosen-single div b {
+    background: url("chosen-sprite.png") no-repeat scroll 12px 5px rgba(0, 0, 0, 0);
+}
+
+.chosen-container-single .chosen-single div {
+    border-left: 1px solid #DBDBDB;
+     width: 45px;
+}
+.chosen-container-active.chosen-with-drop .chosen-single div {
+	    border-left: 1px solid #DBDBDB;
+}
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+  background-position: -20px 6px;
+}
+.chosen-container-single .chosen-single {
+    border: 1px solid #DBDBDB;
+    font-size: 19px;
+    height: 38px !important;
+    line-height: 1.9;
+    padding: 0 0 0 60px;
+    text-transform: uppercase;
+}
+.btn-a{
+	background:#1ab574;
+	color:#fff;
+	padding:2px 20px;
+	border-radius:0;
+	box-shadow:none !important;
+	text-shadow:none;
+}
+.btn-a:hover{
+	background:#77b2cb;
+	opacity:1;
+	
+}
+.Search-form .chosen-container-single .chosen-single span{
+	color:#000;
+}
+
+.bx-wrapper {
+    position: relative;
+    top: -66px;
+	z-index:0;
+}
+#myCarousel select.carousel-indicators {
+    bottom: 0;
+    color: #FF0000;
+    text-align: center;
+    top: inherit;
+    width: 100%;
+}
+#myCarousel .carousel-indicators li{
+	float:none;
+	display:inline-block;
+	background:#1ab574;
+}
+#myCarousel .carousel-indicators .active{
+	background:#0b82af !important;
+	 position: relative;
+    top: -3px;
+}
+#myCarousel{
+	padding-bottom:30px;
+}
+
+#myCarousel {
+	font-size:16px;
+	line-height:1.8;
+}
+
+.home-infos{
+	background:#e6f0ee;text-align:center;
+	padding:40px 0;
+}
+.home-infos li img{
+	border:1px solid #1ab574;
+	-webkit-transition: all 0.5s ease-in-out;
+	  -moz-transition: all 0.5s ease-in-out;
+	   -o-transition: all 0.5s ease-in-out;
+	    -ms-transition: all 0.5s ease-in-out;
+		 transition: all 0.5s ease-in-out;
+
+}
+.home-infos li:hover .img-box{
+	width:-70%;
+}
+.home-infos .img-box{
+	position:relative;
+}
+
+
+.icon-box {
+ background: none repeat scroll 0 0 #1AB574;
+    border-radius: 30px 30px 30px 30px;
+    bottom: -2px;
+    color: #FFFFFF;
+    font-size: 24px;
+    height: 38px;
+    padding-top: 12px;
+    position: absolute;
+    right: 26%;
+    width: 50px;
+    z-index: 1;
+}
+.icon-box i{
+	display:block;
+}
+.section3 {
+	padding:50px 0;
+}
+.section3 .find-worth{
+	background:url(../img/battern1.jpg);
+	outline:2px solid #1ab574;
+	border:5px solid #fff;
+	padding:10px;
+	font-weight:bold;
+	margin-right:25px;
+	margin-bottom:20px;
+}
+.style2{
+	 clear: both;
+    margin-left: 23px !important;
+    margin-top: 5px;
+}
+.section3 .find-worth .title{
+	background:#fff;
+	margin:5px 0;
+	padding:0 5px;
+	font-size:20px;
+	font-weight:700 !important;
+	line-height:2;
+	color:#333;
+	text-align:center;
+}
+.section3 .find-worth h3,.section3 .find-worth h2,.section3 .find-worth h1{
+	background:none;
+	margin:0;
+	line-height:1.3;
+
+}
+.section3 .find-worth {
+	color:#fff;
+}
+.green{
+	color:#1ab574;
+}
+.blue{
+	color:#499fc0
+}
+.yellow{
+	color:#efbe1b;
+}
+.section3 .find-worth .fa-dollar{
+	background:#fff;
+	padding:5px;
+	color:#efbe1b;
+	border-radius:50px;
+}
+.section3 .find-worth .fa-dollar {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 6px solid;
+    border-radius: 50px 50px 50px 50px;
+    color: #EFBE1B;
+    font-size: 15px;
+    margin: 5px 0;
+    padding: 5px;
+    text-align: center;
+    width: 15px;
+	-webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+     
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+     
+    overflow:hidden;
+}
+.section3 .find-worth:hover .fa-dollar{
+	 -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+}
+
+.link-a{
+	font-family: 'Coda', cursive;
+	background:#000;
+	color:#fff;
+	text-align:center;
+	padding:3px 25px;
+	font-size:16px;
+	font-weight:normal !important;
+
+}
+
+.section3 .find-worth .link-a{
+		margin:10px 0 0;
+		display:inline-block;
+}
+.section3 .find-worth .link-a:hover{
+	background:#fff;
+}
+
+.Maxim h2,.testmonials h2 {
+    line-height: 1;
+    margin-bottom: 25px;
+    margin-top: 0;
+	font-size:19px;
+}
+.Maxim h3{
+	margin:0 0 8px  ;
+	line-height:1;
+}
+.Maxim  p{
+	margin:5px 0;
+}
+.list-a li{
+	padding-bottom:18px;
+	margin-bottom:20px;
+	border-bottom:1px dotted #ccc;
+	list-style:none;
+}
+
+
+.testmonials{
+	border-left:1px solid #dedede;
+	padding-left:30px;
+}
+.testmonial-block .text-box{
+	background:#f5f5f5;
+	border:1px #ccc solid;
+	padding:15px;
+	font-style:italic;
+	font-size:14px;
+	color:#666;
+	position:relative;
+	padding-left:87px;
+}
+
+.testmonial-block .text-box p {
+    margin: 0;
+    min-height: 80px;
+	line-height:1.3;
+}
+.testmonial-block .fa-quote-left{
+ color: #CCCCCC;
+    font-size: 42px;
+    left: 26px;
+    position: absolute;
+    top: 20px;
+}
+
+.testmonial-block .media h3 {
+    line-height: 1.3;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+
+
+.slider-a .carousel-control {
+      background: none repeat scroll 0 0 #99A3A7;
+    color: #FFFFFF;
+    font-size: 22px;
+    line-height: 0.3;
+    padding: 5px 5px 10px;
+    position: absolute;
+    right: 0;
+    top: -40px;
+    z-index: 1;
+}
+#myCarouse2 .carousel-control.left{
+	right:25px;
+}
+.news-block{
+	background:#1ab574;
+	padding:10px 0;
+	border-bottom:1px solid #fff;
+}
+
+.slider-a{
+	margin-bottom:0;
+}
+
+.footer{
+	background:#e6f0ee;
+	padding:30px 0 0;
+}
+.footer h2{
+	margin:  0;
+	line-height:1;
+}
+.footer .social-icons {
+	margin-top:20px;
+}
+.footer .social-icons li a{
+	background:#fff;
+	font-size:20px;
+	color:#4688b7;
+}
+
+.footer .social-icons li a:hover{
+	background:#4688b7;
+	color:#fff;
+}
+.menu-footer li{
+	display:inline-block;
+	margin:0 0 0 5px;
+}
+.menu-footer li a{
+	display: inline-block;
+	color:#666;
+	padding:0 5px;
+}
+.menu-footer li a:hover{
+	color:#1ab574
+}
+.menu-footer{
+	margin-top:35px;
+}
+.copy-right{
+	background:#fff;
+	margin-top:30px;
+	font-size:11px;
+	position:relative;
+}
+.copy-right .container{
+	position:relative;
+}
+
+.logo-footer {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #EBEBEB;
+    bottom: 0;
+    display: block;
+    padding: 10px 12px 5px;
+    position: absolute;
+    right: 0;
+    width: 60px;
+}
+#myCarouse3 .carousel-control{
+	top:20px;
+	background:#fff;
+	color:#1ab574;
+	opacity:0;
+		-webkit-transition: all 0.5s ease-in-out;
+	  -moz-transition: all 0.5s ease-in-out;
+	   -o-transition: all 0.5s ease-in-out;
+	    -ms-transition: all 0.5s ease-in-out;
+		 transition: all 0.5s ease-in-out;
+}
+#myCarouse3:hover .carousel-control	{
+	opacity:0.5;
+}
+#myCarouse3 .carousel-control.left{
+	left:-10px;
+	right:inherit;
+	
+}
+#myCarouse3 .carousel-control.right{
+	right:-10px;
+	
+}
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
