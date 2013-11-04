@@ -108,9 +108,9 @@
             </div>
             <div class="span3">
                 <span class="jobAlert">Create a Job Alert  and more for free</span>
-            </div>            
+            </div>
         </div>
-    </div>    
+    </div>
 </div>
 
 <div class="container-fluid signupForm">
@@ -214,12 +214,13 @@
 
                     <div class="span6">
                         <div class="Social-sign-up">
-                            <ul class="Social-icons">
-                                <li>Sign Up with</li>
-                                <li>{% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_logging','permissions': 'email,publish_stream,user_birthday,user_about_me,user_education_history,user_work_history,user_location,user_hometown','cssClass' : 'ico-facebook' , 'linkText' : ''} %}</li>
-                                <li><a class="ico-google" onclick="newWindow = window.open('{{ path('linkedInButton', {'callbackUrl': 'linkedIn_user_data','popup' : 'yes'}) }}', '{% trans %}LinkedIn Sign up{% endtrans %}', 'height=400, width=600');if(window.focus)newWindow.focus();return false;" target="_blank" title="{% trans %}LinkedIn Sign up{% endtrans %}" href="{{ path('linkedInButton', {'callbackUrl': 'linkedIn_user_data'}) }}"></a></li>
-                                <li><a class="ico-twitter" onclick="newWindow = window.open('{{ path('twitter_authentication', {'redirectRoute': 'twitter_enter', 'popup': 'yes'}) }}', '{% trans %}Twitter Sign up{% endtrans %}', 'height=200, width=200');if(window.focus)newWindow.focus();return false;" target="_blank" title="{% trans %}Twitter Sign up{% endtrans %}" href="{{ path('twitter_authentication', {'redirectRoute': 'twitter_enter'}) }}"></a></li>
-                            </ul>
+                            <ul class="social-icons">
+                                <li class="text-social">Sign Up with</li>
+                                <li>{% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_logging','permissions': 'email,publish_stream,user_birthday,user_about_me,user_education_history,user_work_history,user_location,user_hometown','cssClass' : 'ico-facebook' , 'linkText' : '<i class="fa fa-facebook"></i>'} %}</li>
+                                <li><a onclick="newWindow = window.open('{{ path('linkedInButton', {'callbackUrl': 'linkedIn_user_data','popup' : 'yes'}) }}', '{% trans %}LinkedIn Sign up{% endtrans %}', 'height=400, width=600');if(window.focus)newWindow.focus();return false;" target="_blank" title="{% trans %}LinkedIn Sign up{% endtrans %}" href="{{ path('linkedInButton', {'callbackUrl': 'linkedIn_user_data'}) }}"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a onclick="newWindow = window.open('{{ path('twitter_authentication', {'redirectRoute': 'twitter_enter', 'popup': 'yes'}) }}', '{% trans %}Twitter Sign up{% endtrans %}', 'height=200, width=200');if(window.focus)newWindow.focus();return false;" target="_blank" title="{% trans %}Twitter Sign up{% endtrans %}" href="{{ path('twitter_authentication', {'redirectRoute': 'twitter_enter'}) }}"><i class="fa fa-twitter"></i></a></li>
+                             </ul>
+
                             <br />
                             <strong>For employers <a href="{{ path('company_signup') }}"> Sign up here</a> </strong>
                         </div>
@@ -254,7 +255,7 @@
 </div>
 
 
-</div><!-- end landing -->        
+</div><!-- end landing -->
 {% endblock %}
 
 {% block javascripts %}

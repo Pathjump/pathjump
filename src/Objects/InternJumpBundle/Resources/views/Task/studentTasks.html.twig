@@ -31,8 +31,8 @@
                         {% if allCategory |length > 0 %}
                         <div class="controls">
                               <label>I am interested in ..</label>
-                        <select  Class="Choosen chzn-select span12" id="industryFilter">
-                            <option value="">Industry</option>
+                        <select data-placeholder="Industry" Class="Choosen chzn-select span12" id="industryFilter">
+                            <option></option>
                             {% for category in allCategory %}
                             <option value="{{category.id}}">{{category}}</option>
                             {% endfor %}
