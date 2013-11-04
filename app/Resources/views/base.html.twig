@@ -118,6 +118,41 @@
                       <li><a href="{{path('internship',{'loginName':'internjump'})}}"><i class="fa fa-suitcase"></i>Career Centers</a></li>
                       <li><a href="{{path('aboutUs')}}"><i class="fa fa-mobile-phone"></i> About Us</a></li>
                     </ul>
+
+                    {% if is_granted('ROLE_COMPANY') %}
+                        <ul class="sub-nav">
+                            <li><a href="{{ path('internship',{'loginName' : app.user.loginName}) }}">Home</a></li>
+                            <li><a href="{{ path('internship_new') }}">Add new Position</a></li>
+                            <li><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
+                            <li><a href="{{ path('company_search_for_cv') }}">Search Candidates</a></li>
+                            <li><a href="{{ path('company_managers',{'loginName' : app.user.loginName}) }}">Managers</a></li>
+                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
+                        </ul>
+                    {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
+                        <ul class="sub-nav">
+                            <li><a href="{{ path('manager_home') }}">Home</a></li>
+                            <li><a href="{{ path('internship_new') }}">Add new Position</a></li>
+                            <li><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
+                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
+                        </ul>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <ul class="sub-nav">
+                            <li><a href="{{path('student_task',{'loginName' : app.user.loginName})}}">Home</a></li>
+                            <li><a href="{{ path('user_search_page') }}">Search</a></li>
+                            <li><a href="{{ path('education_new') }}">Education</a></li>
+                            <li><a href="{{ path('employmenthistory_new') }}">Employment</a></li>
+                            <li><a href="{{ path('user_languages') }}">Language</a></li>
+                            <li><a href="{{ path('addEditUserSkills') }}">Skills</a></li>
+                            <li><a href="{{ path('personal_questions') }}">Questions</a></li>
+                            {% if not app.user.score %}
+                                <li><a href="{{path('internjumb_quiz')}}">Personality Quiz</a></li>
+                            {% else %}
+                                <li><a href="{{path('internjumb_quiz_page_result')}}">Personality Quiz</a></li>
+                            {% endif %}
+                            <li><a href="{{ path('howMuchAreYouWorth') }}">Find Your Worth</a></li>
+                            <li id="resourceLink"><a href="{{path('resources')}}">Resources</a></li>
+                        </ul>
+                    {% endif %}
                   </div><!--/.nav-collapse -->
                 </div>
 
