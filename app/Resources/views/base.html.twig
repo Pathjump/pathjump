@@ -52,13 +52,13 @@
         		<div class="container">
                     <ul class="Log-links unstyled pull-right hidden-phone">
                     	{% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
-                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                            <li class="Sign-up"><a href="{{ path('logout') }}"><i class="fa fa-user"></i> Sign out</a></li>
                         {% elseif is_granted('ROLE_NOTACTIVE') %}
-                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                            <li class="Sign-up"><a href="{{ path('logout') }}"><i class="fa fa-user"></i> Sign out</a></li>
                         {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
-                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                            <li class="Sign-up"><a href="{{ path('logout') }}"><i class="fa fa-user"></i> Sign out</a></li>
                         {% elseif is_granted('ROLE_ADMIN') %}
-                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                            <li class="Sign-up"><a href="{{ path('logout') }}"><i class="fa fa-user"></i> Sign out</a></li>
                         {% else %}
                              <li class="Login"><a href="{{ path('login') }}"><i class="fa fa-key"></i> Login</a></li>
                              <li class="Sign-up"><a href="{{path('user_signup')}}"><i class="fa fa-user"></i>  sign up</a></li>
@@ -84,16 +84,18 @@
                 </div>
         	</div>
 
-           <div class="navbar">
+               <div class="navbar {% block headerClasss %}head-2{% endblock %}">
                 <div class="container">
 
                  <ul class="Log-links unstyled pull-right  style2 visible-phone">
                         {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
-                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                            <li class="Sign-up"><a href="{{ path('logout') }}"><i class="fa fa-user"></i> Sign out</a></li>
                         {% elseif is_granted('ROLE_NOTACTIVE') %}
-                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                            <li class="Sign-up"><a href="{{ path('logout') }}"><i class="fa fa-user"></i> Sign out</a></li>
                         {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
-                            <li class="Logout"><a href="{{ path('logout') }}"><i class="fa fa-user-logout"></i> Sign out</a></li>
+                            <li class="Sign-up"><a href="{{ path('logout') }}"><i class="fa fa-user"></i> Sign out</a></li>
+                        {% elseif is_granted('ROLE_ADMIN') %}
+                            <li class="Sign-up"><a href="{{ path('logout') }}"><i class="fa fa-user"></i> Sign out</a></li>
                         {% else %}
                              <li class="Login"><a href="{{ path('login') }}"><i class="fa fa-key"></i> Login</a></li>
                              <li class="Sign-up"><a href="{{path('user_signup')}}"><i class="fa fa-user"></i>  sign up</a></li>
