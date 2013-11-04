@@ -81,6 +81,16 @@
                          <li><a href="{{face_page_url}}" target="_blank"><i class="fa fa-facebook"></i> facebook</a></li>
                          {% endif %}
                     </ul>
+
+                    {% block notifications %}
+                        <div class="notifsWrapper">
+                        {% if is_granted('ROLE_USER') %}
+                            {% render "ObjectsInternJumpBundle:InternjumpUser:getUserNotifications" %}
+                        {% elseif is_granted('ROLE_COMPANY') %}
+                            {% render "ObjectsInternJumpBundle:Company:getCompanyNotifications" %}
+                        {% endif %}
+                        /div>
+                    {% endblock %}
                 </div>
         	</div>
 
