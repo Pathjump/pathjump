@@ -17,7 +17,7 @@
         <!--<link href="{{ asset('css/main.css')}}" rel="stylesheet" media="screen"/>-->
         <link href="{{ asset('css/bootstrap-responsive.css')}}" rel="stylesheet"/>
         <link rel="stylesheet" href="{{ asset('css/normalize.css')}}"/>
-        <link rel="stylesheet" href="{{ asset('css/chosen.css')}}"/>
+
         <link rel="stylesheet" href="{{ asset('css/main_new.css')}}"/>
         <link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}"/>
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,400italic,700italic' rel='stylesheet' type='text/css'/>
@@ -120,6 +120,48 @@
                     </ul>
                   </div><!--/.nav-collapse -->
                 </div>
+
+                {% if is_granted('ROLE_NOTACTIVE_COMPANY') %}
+                    {% if not is_granted('ROLE_COMPANY') %}
+                        <div class="alert alert-info">
+                            <h3 class="">Please activate your account</h3>
+                            <a href="{{path('company_reActivation')}}">Resend activation email</a>
+                        </div>
+                    {% endif %}
+                {% elseif is_granted('ROLE_NOTACTIVE') %}
+                    {% if not is_granted('ROLE_USER') %}
+                        <div class="alert alert-info">
+                            <h3 class="">Please activate your account</h3>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                {% if app.session.hasFlash('loginSuccess') %}
+                    <div class="alert alert-info timeMessage">
+                        <h3 class="">Welcome, {{app.user.loginName}}</h3>
+                    </div>
+                {% endif %}
+
+                {% if app.session.hasFlash('notice') %}
+                    <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                    {{ app.session.flash('notice') | raw }}
+                    </div>
+                {% endif %}
+
+                {% if app.session.hasFlash('success') %}
+                    <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                    {{ app.session.flash('success') | raw }}
+                    </div>
+                {% endif %}
+
+                {% if app.session.hasFlash('error') %}
+                    <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert"> × </button>
+                    {{ app.session.flash('error') | raw }}
+                    </div>
+                {% endif %}
             </div><!--navbar-->
             {% block body %}{% endblock %}
             <div class="footer">
