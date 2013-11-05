@@ -100,6 +100,9 @@ a{
 li{
 	margin:0 ;
 }
+ul{
+	list-style:none;
+}
 a:hover{
 	text-decoration:none;
 }
@@ -242,7 +245,7 @@ h1{
     padding: 8px 12px;
 	float:left;
 }
-.chosen-container-single .chosen-single:before{
+.Search-form .chosen-container-single .chosen-single:before{
    background: none repeat scroll 0 0 #F5F5F5;
     border-right: 1px solid #DBDBDB;
     color: #499FC0;
@@ -254,14 +257,14 @@ h1{
     padding: 0 12px;
     position: absolute;
 }
-.job-type .chosen-container-single .chosen-single:before{
+.Search-form .job-type .chosen-container-single .chosen-single:before{
 	    content:  "\f007";
 }
-.State  .chosen-container-single .chosen-single:before{
+.Search-form .State  .chosen-container-single .chosen-single:before{
 	 content:  "\f0ac";
 }
 
-.Industry  .chosen-container-single .chosen-single:before{
+.Search-form .Industry  .chosen-container-single .chosen-single:before{
 	 content:  "\f0f2";
 }
 .Search-form .Industry,.Search-form .State,.Search-form .job-type{
@@ -270,41 +273,41 @@ h1{
 .Search-form select{
 	width:100%;
 }
-.chosen-container .chosen-drop{
+.Search-form .chosen-container .chosen-drop{
 	border-color:#aaa;
 }
 
-.chosen-container-single .chosen-search,.chosen-container .chosen-results {
+.Search-form .chosen-container-single .chosen-search,.chosen-container .chosen-results {
     padding: 7px 14px;
 }
-.chosen-container-single .chosen-search input[type="text"]{
+.Search-form .chosen-container-single .chosen-search input[type="text"]{
 	padding:8px;
 }
-.chosen-container-single .chosen-search input[type="text"] {
+.Search-form .chosen-container-single .chosen-search input[type="text"] {
     -moz-box-sizing: border-box;
     background: url("chosen-sprite.png") no-repeat scroll 100% -31px, linear-gradient(#EEEEEE 1%, #FFFFFF 15%) repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
-.chosen-container{
+.Search-form .chosen-container{
 	width:100% !important;
 }
-.chosen-container-active .chosen-single {
+.Search-form .chosen-container-active .chosen-single {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
-.chosen-container-single .chosen-single div b {
+.Search-form .chosen-container-single .chosen-single div b {
     background: url("chosen-sprite.png") no-repeat scroll 12px 5px rgba(0, 0, 0, 0);
 }
 
-.chosen-container-single .chosen-single div {
+.Search-form .chosen-container-single .chosen-single div {
     border-left: 1px solid #DBDBDB;
      width: 45px;
 }
-.chosen-container-active.chosen-with-drop .chosen-single div {
+.Search-form .chosen-container-active.chosen-with-drop .chosen-single div {
 	    border-left: 1px solid #DBDBDB;
 }
-.chosen-container-active.chosen-with-drop .chosen-single div b {
+.Search-form .chosen-container-active.chosen-with-drop .chosen-single div b {
   background-position: -20px 6px;
 }
-.chosen-container-single .chosen-single {
+.Search-form .chosen-container-single .chosen-single {
     border: 1px solid #DBDBDB;
     font-size: 19px;
     height: 38px !important;
@@ -578,6 +581,7 @@ h1{
 .footer{
 	background:#e6f0ee;
 	padding:30px 0 0;
+	margin-top:50px;
 }
 .footer h2{
 	margin:  0;
@@ -654,6 +658,596 @@ h1{
 	right:-10px;
 	
 }
+/*---------------------- new css pages -----------------------------*/
+.container.Main-content {
+    border-bottom: 2px none;
+    clear: both;
+    margin-bottom: 86px;
+}
+
+.Student  h3 {
+    color: #1AB574;
+    font-family: 'Coda',cursive;
+    font-size: 23px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+
+.navbar.head-2 {
+    border-bottom: 41px solid #F5F8F7;
+    height: 63px;
+}
+
+.navbar.head-2 .brand {
+    padding: 10px 14px 7px;
+    width: 87px;
+}
+.head-2 .nav i {
+    display: none !important;
+}
+/*
+.Sign-Up {
+    width: 90%;
+}
+*/
+.Social-sign-up {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border: 1px solid #ECECEC;
+    padding: 29px 35px 20px;
+}
+.Social-sign-up .social-icons a {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #1AB574;
+    font-size: 22px;
+}
+.text-social {
+    border: 0 none !important;
+    color: #0B82AF !important;
+    display: block !important;
+    font-size: 18px;
+    margin-bottom: 26px;
+    text-transform: uppercase;
+}
+
+.Social-sign-up > p {
+    line-height: 2.3
+	;
+}
+
+.landing .signupForm {
+    background: none repeat scroll 0 0 #E6F0EE;
+    padding-bottom: 30px;
+    padding-top: 15px;
+}
+
+
+.landing .slide-title-normal {
+    color: #EFBE1B;
+    text-transform: capitalize;
+}
+
+
+.company-form{
+    background: none repeat scroll 0 0 #F8FBFA;
+    border: 1px solid #EBEBEB;
+    padding: 20px;
+}
+
+
+
+
+
+.company-form  h2 {
+    background: none repeat scroll 0 0 #1AB574;
+    color: #FFFFFF;
+    font-size: 20px !important;
+    line-height: 1.5;
+   /* margin: 25px -21px 25px;*/
+    padding: 0 18px;
+}
+
+.company-form > h2,.company-form > legend > h2{
+
+    margin-top:0px !important;
+
+}
+.Notifications .table th, .C-profile .table th {
+    background: none repeat scroll 0 0 #0B82AF;
+    border-color: #006B98;
+    color: #FFFFFF !important;
+}
+
+.back {
+    margin: 13px 0 0;
+}
+
+.list2 {
+    border: 1px solid #CCCCCC;
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.list2 li {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #E3E3E3;
+    color: #646464;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    padding: 5px 10px;
+	border-bottom:0;
+}
+.quizMore {
+    background: none repeat scroll 0 0 #000000;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    font-size: 20px !important;
+    padding: 0 8px;
+}
+
+
+.Col-block {
+    border: 1px dotted #AFAFAF;
+    margin: 0 0 20px;
+    padding: 0 20px 30px;
+}
+
+.quizMore > a {
+    color: #FFFFFF;
+}
+
+
+.Col-block > h2 {
+    border-bottom: 1px dotted;
+    color: #4688B7;
+    margin: 10px 0 25px;
+}
+.Notifications .table th, .C-profile .table th {
+    border-right: medium none;
+    color: #464646;
+    font-weight: normal;
+    width: 70px;
+}
+
+.Notifications .table, .C-profile .table {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #7D7D7D;
+}
+.Latest-Interrnships .media {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border-bottom: 1px solid #F6F6F6;
+    margin-top: 15px;
+    padding: 10px;
+}
+.chosen-container-single .chosen-search input[type="text"] {
+    background: url("chosen-sprite.png") no-repeat scroll 100% -34px, linear-gradient(#EEEEEE 1%, #FFFFFF 15%) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+
+.sub-nav > li {
+    border-left: 1px solid #CCCCCC;
+    display: inline-block;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.sub-nav {
+    clear: both;
+    display: table;
+    position: relative;
+    top: 15px;
+}
+.navbar .nav{
+	float:right !important; 
+}
+
+
+.span12 .nav-tabs > li > a{
+	border-radius:0 !important;
+	color:#333 !important;
+}
+
+
+
+.span12 .nav.nav-tabs {
+    border-bottom: 1px solid #EBEBEB;
+    margin-bottom: 18px !important;
+    margin-left: 0 !important;
+	float:right;
+	border:0;
+	margin-right:10px !important;
+}
+
+
+.company-profile h2 {
+    display: table;
+    margin-top: -2px !important;
+}
+.company-profile h2 .img-box{
+	float:left;
+	margin-right:10px;
+}
+
+
+.showCompanyMap.map.cboxElement {
+    display: block;
+}
+
+
+.inner-list {
+    border: 1px solid #DFDFDF;
+    padding: 0 20px;
+}
+.inner-list li {
+    border-bottom: 1px solid #DDDDDD;
+    margin-bottom: -1px;
+    padding-top: 19px;
+}
+.inner-list li h4{
+	margin-top:0 !important;
+}
+
+
+.inner-list li h4 a {
+    color: #1AB574;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+
+.inner-list .Area {
+    background: none repeat scroll 0 0 #0B82AF;
+    clear: left;
+    color: #FFFFFF;
+    display: table;
+    font-size: 12px;
+    margin-bottom: 6px;
+    margin-right: -22px;
+    padding: 0 10px;
+}
+
+
+#form_jobtype input, #form_jobtype label {
+    display: inline-block;
+    margin: 4px;
+}
+.Search-student .nav{
+	margin-left:0 !important
+}
+
+
+
+.Search-student {
+    background: none repeat scroll 0 0 #0B82AF;
+    padding: 20px;
+}
+
+.searchResult, .searchResult .searchResult {
+    margin: 0;
+    padding: 0;
+}
+
+#form_jobtype input, #form_jobtype label {
+    display: inline-block;
+    margin: 4px;
+}
+.input-append .btn {
+    height: 30px;
+}
+.Search-Internships .btn {
+    border-radius: 0 15px 15px 0 !important;
+    margin-left: -11px !important;
+}
+
+.Search-student .tab-content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DBDBDB;
+    margin: -1px 0;
+    overflow: inherit !important;
+    padding: 10px;
+}
+
+.tab-content .controls {
+    border-bottom: 1px dotted #E2E2E2;
+    padding-bottom: 10px;
+    padding-top: 15px;
+}
+
+
+.tab-content .chosen-container {
+    display: block;
+    float: none;
+    width: 90% !important;
+}
+.tab-content input[type="text"]{
+
+  width: 85% !important;
+
+}
+.loading {
+    background:rgba(255,255,255,0.8);
+    border: 1px solid #00C4FF;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color: #000000;
+    height: 100px;
+    left: 40%;
+    margin: 10px;
+    padding: 5px;
+    position: fixed;
+    text-align: center;
+    top: 35%;
+    width: 200px;
+    z-index: 999999;
+}
+
+.loading img {
+    left: 83px;
+    position: absolute;
+    top: 15px;
+}
+
+.loading p {
+    left: 77px;
+    position: absolute;
+    top: 68px;
+}
+
+.Search-student .nav li {
+    margin-left: 0px;
+}
+.Search-student  .nav-tabs > li > a{
+	color:#fff;
+}
+
+.Search-student .nav-tabs > .active > a,.Search-student  .nav-tabs > .active > a:hover,.Search-student  .nav-tabs > .active > a:focus{
+	color:#333 !important;
+}
+
+
+.navbar {
+    margin-bottom: 40px;
+}
+
+.input-append input, .input-append select, .input-append .uneditable-input {
+    border-radius: 0 0 0 0;
+}
+
+
+#skillsResult > li {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E9B646;
+    display: inline-block;
+    padding: 2px 10px;
+	margin-bottom:10px;
+}
+
+
+.title3 {
+    background: none repeat scroll 0 0 #0B82AF;
+    color: #FFFFFF;
+    font-family: 'Coda',cursive;
+    font-size: 19px;
+    font-weight: normal;
+    margin: 10px 0;
+    padding: 3px 8px;
+}
+
+.Result-box .inner-list{
+	background:#fff;
+}
+
+.title3 {
+    background: none repeat scroll 0 0 #0B82AF;
+    color: #FFFFFF;
+    font-family: 'Coda',cursive;
+    font-size: 19px;
+    font-weight: normal;
+    margin: 10px 0;
+    padding: 3px 8px;
+}
+
+.Result-box .Area a {
+    color: #FFFFFF;
+	width:100%
+}
+
+.Result-box .Area {
+   /* float: right;*/
+    margin-right: 0;
+   /* padding-bottom: 4px;*/
+}
+.Resume-title h2 {
+    margin: 0 !important;
+}
+
+
+
+.Resume .btn {
+    background: none repeat scroll 0 0 #1AB574;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+}
+
+.links a{
+	margin-left:10px;
+	display:inline-block;
+}
+.questionsContainer h5{
+	font-size:14px;
+	color:#1AB574;
+}
+
+
+#quizBackButton{
+	margin:5px ;
+}
+
+
+.step2 {
+    font-size: 14px;
+    line-height: 2;
+}
+.Facebook-login {
+    background: none repeat scroll 0 0 #E6F0EE;
+    float: none !important;
+    font-size: 18px;
+    margin: 20px auto !important;
+    padding: 20px 10px;
+}
+
+
+.facebookButton:before {
+    content: "";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: 56px;
+    left: 2px;
+    position: absolute;
+    top: -29px;
+}
+.facebookButton {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 10px 10px 10px 10px;
+    display: block;
+    font-size: 20px;
+    height: 42px;
+    margin: 0 auto !important;
+    padding: 5px 5px 5px 19px;
+    position: relative;
+    width: 192px;
+}
+
+
+
+.resources .media {
+    background: none repeat scroll 0 0 #FCFCFC;
+    border: 1px solid #EBEBEB;
+    padding: 10px;
+}
+
+
+.resources .media-heading {
+    background: none repeat scroll 0 0 #E6F0EE;
+    display: block;
+
+    line-height: 2;
+    text-indent: 11px;
+}
+
+.resources .media-heading a{
+	    font-size: 16px;
+		color:#1AB574;
+}
+
+.company-profile > h2{
+}
+
+.addCompanyToFavorite {
+    background: none repeat scroll 0 0 #E9B646;
+    color: #FFFFFF !important;
+    font-size: 13px !important;
+    padding: 2px 5px !important;
+}
+.addCompanyToFavorite i {
+    color: #FFFFFF !important;
+    display: inline-block;
+    float: left;
+    font-size: 20px !important;
+    margin-bottom: 10px;
+    margin-right: 9px;
+}
+
+.company-profile > h2 {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #000000;
+	padding:0
+}
+
+
+
+
+/*New CSS for Check Input*/
+
+.tableScroll input {
+	vertical-align: top;
+	width: 16px;
+	height: 16px;
+}
+
+.ez-hide { opacity: 0; filter:alpha(opacity=0); }
+
+.ez-checkbox, .ez-checked {
+	display: inline-block;
+    height: 25px;
+    vertical-align: sub;
+    width: 25px;
+}
+
+.ez-checkbox {
+	background: url(../img/cheks.png) center top no-repeat;
+}
+
+.ez-checked {
+	background: url(../img/cheks.png) center bottom no-repeat;
+}
+
+table .ez-checkbox, .ch_out .ez-checkbox {
+	background: url(../img/cheks.png) center bottom no-repeat;
+}
+
+table .ez-checked, .ch_out .ez-checked {
+	background: url(../img/cheks.png) 0px top no-repeat;
+}
+
+table .ez-checkbox, td.defaultP .ez-checked {
+	vertical-align: text-top;
+}
+
+.ez-checkbox { zoom: 1; *display:inline; _height:30px; }
+/*------------------------------*/
+
+.ez-checkbox {
+    position: relative;
+	float:left
+}
+
+
+.Sign-Up  .controls .checkbox {
+    margin-left: 0;
+    margin-top: 23px;
+    padding-left: 0;
+}
+
+.Sign-Up{
+}
+
+.Sign-Up {
+    background: none repeat scroll 0 0 #E6F0EE;
+    margin: 0 0 10px;
+    padding: 0 20px 27px;
+}
+
+.Sign-Up legend h3 {
+    background: none repeat scroll 0 0 #0B82AF;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+.Sign-Up .btn{
+	margin-top:20px;
+}
+
+
+
+
+
+
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
