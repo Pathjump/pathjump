@@ -30,7 +30,7 @@
                     <h2><div class="img-box"><img src="{{company.getTimThumbUrl(98,102)}}"></div>{{company}} Profile
                         <a href="#companyMap" class="showCompanyMap map">Show Map</a>
                     {% if ownerCompanyFlag == 1 %}
-                        <a href="{{path('company_edit')}}" style="float: right;margin-right: 10px;">Edit</a>
+                        <a href="{{path('company_edit')}}" class="companyEditAccount">Edit</a>
                     {% endif %}
                     </h2>
                     <div class="C-profile">
@@ -216,7 +216,7 @@
 
 
             {% if companyInterests|length > 0 %}
-                                                                    <div class="Col-block">
+                                                                    <div class="Col-block interestingCandidates">
                                                                         <h2>interesting candidates</h2>
                                                                         <ul class="list2">
                 {% for interest in companyInterests %}

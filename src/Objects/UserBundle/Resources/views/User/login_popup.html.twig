@@ -1,4 +1,5 @@
-{% if error %}
+<div class="container Main-content">
+    {% if error %}
 <div class="alert alert-error">
     <button type="button" class="close" data-dismiss="alert"> × </button>
     {{ error.message | trans }}
@@ -18,8 +19,7 @@
     {{ message | raw }}
 </div>
 {% endif %}
-
-<div class="container Main-content">
+        
     <div class="Student">
         <h3>Login here</h3>
         <div class="row-fluid show-grid">

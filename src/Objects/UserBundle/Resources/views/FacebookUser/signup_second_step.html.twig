@@ -14,14 +14,15 @@
 
 {% block body %}
 
-        {% if form_errors(form) %}
-        <div class="alert alert-error">
-            <button data-dismiss="alert" class="close" type="button"> &times; </button>
-            {{ form_errors(form) }}
-        </div>
-        {% endif %}
+
 
         <div class="container Main-content">
+            {% if form_errors(form) %}
+            <div class="alert alert-error">
+                <button data-dismiss="alert" class="close" type="button"> &times; </button>
+                {{ form_errors(form) }}
+            </div>
+            {% endif %}
             <div class="Student">
                 <h3>{% if formName %}{{ formName }}{% endif %}</h3>
                 <p>{% if formDesc %}{{ formDesc }}{% endif %}</p>

@@ -74,19 +74,7 @@
 
 {% block body %}
 
-        {% if message %}
-        <div class="alert">
-            <button data-dismiss="alert" class="close" type="button"> &times; </button>
-            {{ message }}
-        </div>
-        {% endif %}
 
-        {% if form_errors(form) %}
-        <div class="alert alert-error">
-            <button data-dismiss="alert" class="close" type="button"> &times; </button>
-            {{ form_errors(form) }}
-        </div>
-        {% endif %}
 
 
 
@@ -119,7 +107,19 @@
 
 
         <div class="container Main-content">
+            {% if message %}
+            <div class="alert">
+                <button data-dismiss="alert" class="close" type="button"> &times; </button>
+                {{ message }}
+            </div>
+            {% endif %}
 
+            {% if form_errors(form) %}
+            <div class="alert alert-error">
+                <button data-dismiss="alert" class="close" type="button"> &times; </button>
+                {{ form_errors(form) }}
+            </div>
+            {% endif %}
             <div class="Student">
 
                 <h2>{% if formName %}{{ formName }}{% endif %}</h2>
