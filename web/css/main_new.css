@@ -1242,6 +1242,137 @@ table .ez-checkbox, td.defaultP .ez-checked {
 }
 
 
+.intern-title h3 {
+    font-size: 20px;
+    margin: 0 !important;
+    padding: 4px 20px;
+}
+.intern-title h4 {
+    color: #FFE272;
+    float: left;
+    font-size: 18px;
+    margin: -22px 0 5px;
+}
+
+.span2.logo-box {
+    padding: 10px 0 0;
+}
+.intern-title {
+    background: none repeat scroll 0 0 #1AB574;
+    color: #FFFFFF;
+	margin-bottom:22px;
+}
+
+.interns-info > .span6 {
+    background: none repeat scroll 0 0 #E6F0EE;
+    border: 1px solid #DEE8E6;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    min-height: 152px !important;
+    padding: 10px 19px;
+}
+.interns-info .titl-blue {
+    clear: left;
+    color: #0B82AF;
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    width: 119px;
+}
+
+.box-b.links {
+    background: none repeat scroll 0 0 #FFFFFF;
+    line-height: 2;
+    padding: 10px;
+	border:1px solid #E7E7E7;
+}
+
+.box-b {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #EAEAEA;
+    clear: both;
+    margin: 10px 0;
+    padding: 1px 20px;
+}
+
+.box-b .titl-blue {
+    color: #1AB574;
+    font-size: 17px;
+}
+
+.Col-block .media > .pull-left {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+
+
+.sbHolder {
+    background: none repeat scroll 0 0 #FFFFFF;
+    float: left;
+    margin-bottom: 12px;
+    margin-right: 3px;
+    width: 100%;
+	position:relative;
+
+}
+
+
+.sbSelector {
+    border: 1px solid #CCCCCC;
+    display: block;
+    line-height: 29px;
+    text-indent: 10px;
+}
+
+.sbOptions {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    z-index: 1;
+	overflow:scroll;
+	max-height:200px !important;
+}
+
+
+.sbToggle {
+    background: url("chosen-sprite.png") no-repeat scroll 2px -1px rgba(0, 0, 0, 0);
+    display: block;
+    float: right;
+    height: 31px;
+    width: 32px;
+}
+
+.sbOptions  li {
+    padding: 2px 10px;
+}
+.sbOptions  li a{
+	display:block;
+}
+.sbOptions  li a:hover{
+	background:#f5f5f5;
+}
+.sbToggleOpen{
+    background: url("chosen-sprite.png") no-repeat scroll -29px -1px rgba(0, 0, 0, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
