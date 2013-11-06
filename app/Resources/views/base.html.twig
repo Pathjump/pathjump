@@ -64,6 +64,15 @@
                              <li class="Sign-up"><a href="{{path('user_signup')}}"><i class="fa fa-user"></i>  sign up</a></li>
                         {% endif %}
                     </ul>
+                    {% block notifications %}
+                        <div class="notifsWrapper">
+                        {% if is_granted('ROLE_USER') %}
+                            {% render "ObjectsInternJumpBundle:InternjumpUser:getUserNotifications" %}
+                        {% elseif is_granted('ROLE_COMPANY') %}
+                            {% render "ObjectsInternJumpBundle:Company:getCompanyNotifications" %}
+                        {% endif %}
+                        </div>
+                    {% endblock %}
                     <ul class="social-icons pull-right">
                         {% if twitter_page_url %}
                         <li><a href="{{twitter_page_url}}" target="_blank"><i class="fa fa-twitter"></i> twitter</a></li>
@@ -82,15 +91,6 @@
                          {% endif %}
                     </ul>
 
-                    {% block notifications %}
-                        <div class="notifsWrapper">
-                        {% if is_granted('ROLE_USER') %}
-                            {% render "ObjectsInternJumpBundle:InternjumpUser:getUserNotifications" %}
-                        {% elseif is_granted('ROLE_COMPANY') %}
-                            {% render "ObjectsInternJumpBundle:Company:getCompanyNotifications" %}
-                        {% endif %}
-                        </div>
-                    {% endblock %}
                 </div>
         	</div>
 
