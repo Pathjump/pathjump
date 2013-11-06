@@ -1,14 +1,14 @@
 <ul class="manage-list pull-right">
-    <li><a class="Notifi  active notifiToTooltip" data-original-title="Your Notifications" data-placement="bottom" data-toggle="tooltip" href="{{path('company_notification')}}"></a>
+    <li><a class="Notifi  active notifiToTooltip" data-original-title="Your Notifications" data-placement="bottom" data-toggle="tooltip" href="{{path('company_notification')}}"><i class="fa fa-globe"></i></a>
                 {% if allCompanyNotificationsCount > 0 %}
             <span class="noti-num">{{allCompanyNotificationsCount}}</span>
                 {% endif %}
         </li>
-        <li><a class="Messag messageTooltip" data-original-title="Messages" data-placement="bottom" data-toggle="tooltip" href="{{path('company_box',{'box' : 'inbox'})}}"></a>
+        <li><a class="Messag messageTooltip" data-original-title="Messages" data-placement="bottom" data-toggle="tooltip" href="{{path('company_box',{'box' : 'inbox'})}}"><i class="fa fa-envelope"></i></a>
                 {% if newMessagesCount > 0 %}
                 <span class="noti-num">{{newMessagesCount}}</span>
                 {% endif %}
             </li>
-            <li><a class="Sitt editTooltip" data-original-title="Edit Profile" data-placement="bottom" data-toggle="tooltip" href="{{path('company_edit')}}"></a></li>
+            <li><a class="Sitt editTooltip" data-original-title="Edit Profile" data-placement="bottom" data-toggle="tooltip" href="{{path('company_edit')}}"><i class="fa fa-gear"></i></a></li>
         </ul>
 
