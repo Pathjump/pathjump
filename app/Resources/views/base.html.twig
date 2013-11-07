@@ -77,9 +77,6 @@
                         {% if twitter_page_url %}
                         <li><a href="{{twitter_page_url}}" target="_blank"><i class="fa fa-twitter"></i> twitter</a></li>
                         {% endif %}
-                        {% if skybe_name %}
-                        <li><a href="skype:{{skybe_name}}?call"><i class="fa fa-skype"></i> skype</a></li>
-                        {% endif %}
                         {% if google_page_url %}
                         <li><a href="{{google_page_url}}" target="_blank"><i class="fa fa-google-plus"></i> Google+</a></li>
                         {% endif %}
@@ -120,13 +117,13 @@
                   <a href="{{ path('site_homepage') }}" class="brand"><img src="{{ asset('img/Logo.png')}}"></a>
                   <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
-                      <li><a href="{{ path('site_homepage') }}"><i class="fa fa-desktop"></i> Home</a></li>
+
                       {% if not is_granted('ROLE_NOTACTIVE_COMPANY') and not is_granted('ROLE_NOTACTIVE') and not is_granted('ROLE_COMPANY_MANAGER')%}
+                          <li><a href="{{path('students_data')}}"><i class="fa fa-pencil"></i> students</a></li>
                       <li><a href="{{path('employers_data')}}"><i class="fa fa-file-text"></i> Employers</a></li>
-                      <li><a href="{{path('students_data')}}"><i class="fa fa-pencil"></i> students</a></li>
                       {% endif %}
                       <li><a href="{{path('internship',{'loginName':'internjump'})}}"><i class="fa fa-suitcase"></i>Career Centers</a></li>
-                      <li><a href="{{path('aboutUs')}}"><i class="fa fa-mobile-phone"></i> About Us</a></li>
+                      <li><a href="{{path('campus_resps')}}"><i class="fa fa-mobile-phone"></i> Campus Representatives</a></li>
                     </ul>
 
                     {% if is_granted('ROLE_COMPANY') %}
@@ -213,14 +210,13 @@
             	<div class="container">
                 	 <div class="row-fluid show-grid">
                            <div class="span4">
-                           	<h2>GET IN TOUCH</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+                           	<h2>Follow Us</h2>
                                <ul class="social-icons">
                                    {% if twitter_page_url %}
                                     <li><a href="{{twitter_page_url}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
                                     {% endif %}
-                                    {% if skybe_name %}
-                                    <li><a href="skype:{{skybe_name}}?call"><i class="fa fa-skype"></i></a></li>
+                                    {% if pinterest_page_url %}
+                                    <li><a href="{{pinterest_page_url}}"><i class="fa fa-skype"></i></a></li>
                                     {% endif %}
                                     {% if google_page_url %}
                                     <li><a href="{{google_page_url}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
@@ -251,7 +247,7 @@
                      </div>
                 </div>
                 <div class="copy-right">
-                	<div class="container"><p class="text-left">© {{"now"|date('Y')}} Innovative Web. All rights reserved.</p>
+                	<div class="container"><p class="text-left">© {{"now"|date('Y')}} Innovative Web Inc. All rights reserved.</p>
                     	<a href="{{ path('site_homepage') }}" class="logo-footer brand"><img src="{{ asset('img/Logo.png')}}"></a>
                     </div>
                 </div>

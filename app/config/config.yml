@@ -37,7 +37,7 @@ twig:
         contact_info_name: %contact_info_name%
         contact_info_address_part1: %contact_info_address_part1%
         contact_info_address_part2: %contact_info_address_part2%
-        skybe_name: %skybe_name%
+        pinterest_page_url: %pinterest_page_url%
 
 # Assetic Configuration
 assetic:

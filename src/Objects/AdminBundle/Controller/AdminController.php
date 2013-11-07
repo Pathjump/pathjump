@@ -155,7 +155,7 @@ class AdminController extends Controller {
             $config['worth_select_from'] = $container->getParameter('worth_select_from');
             $config['user_worth_description'] = $container->getParameter('user_worth_description');
             $config['user_net_worth_description'] = $container->getParameter('user_net_worth_description');
-            $config['skybe_name'] = $container->getParameter('skybe_name');
+            $config['pinterest_page_url'] = $container->getParameter('pinterest_page_url');
 
             //make form to fill it with data
             $form = $this->createFormBuilder($config)
@@ -194,7 +194,7 @@ class AdminController extends Controller {
                     ->add('google_page_url', 'text', array('required' => FALSE))
                     ->add('linkledIn_page_url', 'text', array('required' => FALSE))
                     ->add('home_page_video_id', 'text', array('required' => FALSE))
-                    ->add('skybe_name', 'text', array('required' => FALSE))
+                    ->add('pinterest_page_url', 'text', array('required' => FALSE))
                     ->add('new_job_success_message', 'text')
                     ->add('new_task_success_message', 'text')
                     ->add('a_grade_points', 'integer')
@@ -529,7 +529,7 @@ class AdminController extends Controller {
                         $firstFileChange = TRUE;
                     }
 
-                    if ($formDataArray['skybe_name'] != $container->getParameter('skybe_name')) {
+                    if ($formDataArray['pinterest_page_url'] != $container->getParameter('pinterest_page_url')) {
                         $firstFileChange = TRUE;
                     }
 
@@ -648,7 +648,7 @@ class AdminController extends Controller {
                             $value['parameters']['company_message_not_found_error_msg'] = $formDataArray['company_message_not_found_error_msg'];
                             $value['parameters']['internship_not_found_error_msg'] = $formDataArray['internship_not_found_error_msg'];
 
-                            $value['parameters']['skybe_name'] = $formDataArray['skybe_name'];
+                            $value['parameters']['pinterest_page_url'] = $formDataArray['pinterest_page_url'];
 
 
                             //dump to make spaces and format of the file before update it
