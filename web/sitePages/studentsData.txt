@@ -1,44 +1,103 @@
-<div class="wrapper">
-	<div class="student-data-text">
-		<h1>
-			Seamlessly Connect With Top Interns</h1>
-		<p>
-			Finding and managing internship programs can be expensive and time consuming. InternJump makes finding interns easy and provides tools to manage interns on the job. InternJump allows companies of all sizes to find and manage qualified interns.</p>
-		<a class="btn btn-info" href="javascript:void(0)" id="companySignUpLink">Get Started</a> <span>or</span> <a href="javascript:void(0)" id="companyLogin" class="btn btn-primary">Login</a></div>
-	<!--employers-data-text-->
-	<div class="clearfix">
-		&nbsp;</div>
-</div>
-<!--end of wrapper -->
-<div class="Ques-container">
-	<div class="Ques-box">
-		<h2>
-			What exactly does InternJump.com offer me as an employer?</h2>
-		<ul>
-			<li>
-				A sophisticated algorithm to screen potential interns and present you with your top matches based on specific skills/requirements you select.</li>
-			<li>
-				A free branding opportunity to build your firm&#39;s presence at the most prestigious institutions and with some of the nation&#39;s most talented students.</li>
-			<li>
-				A simplified internship management tool over traditional HR. Manage the entire internship process from start to finish and control how many resumes</li>
-			<li>
-				you receive so you don&#39;t need to spend valuable time sifting through hundreds of resumes.</li>
-			<li>
-				Access to some of the top young students who are eager to intern with your firm, in either paid or unpaid internship positions.</li>
-			<li>
-				Foster new connections, so when/if you are looking to hire you have people to choose from who have already demonstrated their productivity a interns.</li>
-			<li>
-				A No Cost Solution to traditional job boards where you are flooded with resumes!</li>
-			<li>
-				Tools to manage interns on the job, including a weekly log where interns document how they are spending their days ensuring maximum productivity.</li>
-		</ul>
-		<h2>
-			How difficult is this to set up, I don&#39;t have time to learn some new software?</h2>
-		<p>
-			We designed InternJump..com com with ease of use in mind. Setup takes less than ten minutes and then you are all set! And don&#39;t worryabout being bombarded with resumes, interns can only contact you when you are logged into your account, so your personal email will never be flooded with resumes.</p>
-		<h2>
-			Why use InternJump?</h2>
-		<p>
-			Aside from all the pre-mentioned tools and functionalities, InternJump.com will save you tons of time and man-power otherwise required to scan through thousands of applicants. With our autonomous system, you can easily hire the most outstanding intern in minutes.</p>
-	</div>
-	<!--Ques-box--></div>
+<div class="container">
+        <div class="row-fluid show-grid employe-box">
+
+            <div class="span6 section-a">
+                <h2>Showcase all your work, accomplishments, skills & interests</h2>
+                <p class="subtext"> Finding and managing internship programs can be expensive and time consuming. InternJump makes finding interns easy and provides tools to manage interns on the job. InternJump allows companies of all sizes to find and manage qualified interns.</p>
+                <div class="links">
+                    <a href="javascript:void(0)" class="btn btn-info" id="companySignUpLink">Get startes</a>
+                    <a href="javascript:void(0)" class="btn btn-primary" id="companyLogin">Login</a>
+                </div>
+            </div>
+            <div class="span6">
+                <img src="/img/image1.jpg">
+            </div>
+        </div>
+    </div>
+
+    <div class="section-b">
+        <div class="container Answers">
+            <h2>Get Expert Answers</h2>
+            <ul>
+                <li> What exactly does pathJump.com offer me as an employer?</li>
+                <li>What should I write on my resume?</li>
+                <li>Should I go for a small company or a big company?</li>
+                <li>Why use pathJump?</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container section-c"><span class="bg-a"></span>
+        <h2>Most liked companies</h2>
+        <div class="row-fluid M-liked">
+            <div class="span2">
+                <img src="/img/Logo.jpg" width="136" height="56">
+                <div>7.77%  </div>
+            </div>
+            <div class="span2">
+                <img src="/img/Logo.jpg" width="136" height="56">
+                <div>7.77%  </div>
+            </div>
+            <div class="span2"><img src="/img/img_11.jpg"width="136" height="56"><div>7.77%  </div></div>
+            <div class="span2">
+                <img src="/img/Logo.jpg" width="136" height="56">
+                <div>7.77%  </div>
+            </div>
+            <div class="span2"><img src="/img/img_11.jpg"width="136" height="56"><div>7.77%  </div></div>
+            <div class="span2"><img src="/img/img_11.jpg"width="136" height="56"><div>7.77%  </div></div>
+
+        </div>
+    </div>
+    <div class="section-b">
+        <div class="container">
+            <h2>Happy collegefeeders!</h2>
+            <div class="row-fluid Happy-co">
+                <div class="span4">
+
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="/img/images.jpg" width="120" height="120">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="">Sam Kim </a></h4>
+                            <span class="univ">UC-Berkeley</span>
+
+                            <p>Hired at Apptimize through collegefeed</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="span4">
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="/img/images.jpg" width="120" height="120">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="">Sam Kim </a></h4>
+                            <span class="univ">UC-Berkeley</span>
+
+                            <p>Hired at Apptimize through collegefeed</p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="span4">
+
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="/img/images.jpg" width="120" height="120">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="">Sam Kim </a></h4>
+                            <span class="univ">UC-Berkeley</span>
+
+                            <p>Hired at Apptimize through collegefeed</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

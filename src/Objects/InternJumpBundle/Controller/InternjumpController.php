@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
+use Objects\UserBundle\Entity\User;
 
 require_once __DIR__ . '/../../../../vendor/FacebookSDK/src/facebook.php';
 
@@ -205,7 +206,7 @@ class InternjumpController extends Controller {
         if (FALSE === $this->get('security.context')->isGranted('ROLE_USER')) {
             return $this->render('ObjectsInternJumpBundle:Internjump:howMuchAreYouWorth.html.twig', array(
                         'facebook' => 'notlogged'
-                    ));
+            ));
         } else {
             $em = $this->getDoctrine()->getEntityManager();
             $ImproveResultsMessageArray = array();
@@ -439,11 +440,11 @@ class InternjumpController extends Controller {
                             'userNetWorth' => number_format(ceil($userNetWorthSum)),
                             'user_worth_description' => $this->container->getParameter('user_worth_description'),
                             'user_net_worth_description' => $this->container->getParameter('user_net_worth_description')
-                        ));
+                ));
             } else {
                 return $this->render('ObjectsInternJumpBundle:Internjump:howMuchAreYouWorth.html.twig', array(
                             'facebook' => 'notlinked'
-                        ));
+                ));
             }
         }
     }
@@ -693,11 +694,11 @@ class InternjumpController extends Controller {
                             'userNetWorth' => number_format(ceil($userNetWorthSum)),
                             'user_worth_description' => $this->container->getParameter('user_worth_description'),
                             'user_net_worth_description' => $this->container->getParameter('user_net_worth_description')
-                        ));
+                ));
             } else {
                 return $this->render('ObjectsInternJumpBundle:Internjump:howMuchAreYouWorth.html.twig', array(
                             'facebook' => 'notlinked'
-                        ));
+                ));
             }
         }
     }
@@ -741,7 +742,7 @@ class InternjumpController extends Controller {
                     'userBrowser' => $browser,
                     'browserVersion' => $version,
                     'userOs' => $os,
-                )));
+        )));
         //send the mail
         $this->container->get('mailer')->send($message);
         return $this->render('ObjectsInternJumpBundle:Internjump:mail404.html.twig');
@@ -786,7 +787,7 @@ class InternjumpController extends Controller {
         $results = TwitterController::getLastTweets($container->getParameter('consumer_key'), $container->getParameter('consumer_secret'), $container->getParameter('oauth_token'), $container->getParameter('oauth_token_secret'), 'internjump', $count);
         return $this->render('ObjectsInternJumpBundle:Internjump:getLatestTwitts.html.twig', array(
                     'results' => $results
-                ));
+        ));
     }
 
     /**
@@ -808,7 +809,7 @@ class InternjumpController extends Controller {
                     'flag' => '',
                     'content' => $pageText,
                     'founders' => $founders
-                ));
+        ));
     }
 
     /**
@@ -830,7 +831,7 @@ class InternjumpController extends Controller {
                     'flag' => '',
                     'content' => $pageText,
                     'founders' => $founders
-                ));
+        ));
     }
 
     /**
@@ -852,7 +853,7 @@ class InternjumpController extends Controller {
                     'flag' => 'yes',
                     'content' => $pageText,
                     'founders' => $founders,
-                ));
+        ));
     }
 
     /**
@@ -884,11 +885,11 @@ class InternjumpController extends Controller {
         }
         //prepare the validation constrains
         $collectionConstraint = new Collection(array(
-                    'Name' => new NotBlank(),
-                    'Email' => array(new Email(), new NotBlank()),
-                    'Phone' => new NotBlank(),
-                    'Message' => new NotBlank()
-                ));
+            'Name' => new NotBlank(),
+            'Email' => array(new Email(), new NotBlank()),
+            'Phone' => new NotBlank(),
+            'Message' => new NotBlank()
+        ));
         //create the contact form
 
         $form = $this->createFormBuilder($data, array(
@@ -931,7 +932,7 @@ class InternjumpController extends Controller {
                     'founders' => $founders,
                     'form' => $form->createView(),
                     'flag' => $flag,
-                ));
+        ));
     }
 
     /**
@@ -940,9 +941,28 @@ class InternjumpController extends Controller {
      */
     public function studentsDataAction() {
         $studentsData = file_get_contents(__DIR__ . '/../../../../web/sitePages/studentsData.txt');
+
+        $formValidationGroups = array('signup');
+        $user = new User();
+        //create a signup form
+        $formBuilder = $this->createFormBuilder($user, array(
+                    'validation_groups' => $formValidationGroups
+                ))
+                ->add('name', null, array('required' => FALSE))
+                ->add('email')
+                ->add('userPassword', 'repeated', array(
+            'type' => 'password',
+            'first_name' => 'Password',
+            'second_name' => 'RePassword',
+            'invalid_message' => "The passwords don't match",
+        ));
+        //create the form
+        $form = $formBuilder->getForm();
+
         return $this->render('ObjectsInternJumpBundle:Internjump:studentsData.html.twig', array(
-                    'studentsData' => $studentsData
-                ));
+                    'studentsData' => $studentsData,
+                    'form' => $form->createView()
+        ));
     }
 
     /**
@@ -953,7 +973,7 @@ class InternjumpController extends Controller {
         $employersData = file_get_contents(__DIR__ . '/../../../../web/sitePages/employersData.txt');
         return $this->render('ObjectsInternJumpBundle:Internjump:employersData.html.twig', array(
                     'employersData' => $employersData
-                ));
+        ));
     }
 
     /**
@@ -1172,7 +1192,7 @@ class InternjumpController extends Controller {
                         'allState' => $allState,
                         'allCategory' => $allCategory,
                         'worthFrom' => $worthFrom
-                    ));
+            ));
         } else {
             return $this->render('ObjectsInternJumpBundle:Internjump:homePage.html.twig', array(
                         'worthUsers' => $worthUsers,
@@ -1183,7 +1203,7 @@ class InternjumpController extends Controller {
                         'allState' => $allState,
                         'allCategory' => $allCategory,
                         'worthFrom' => $worthFrom
-                    ));
+            ));
         }
     }
 
@@ -1239,9 +1259,9 @@ class InternjumpController extends Controller {
 
         //Yes, inside facebook
         $facebook = new \Facebook(array(
-                    'appId' => $appId,
-                    'secret' => $appSecrete,
-                ));
+            'appId' => $appId,
+            'secret' => $appSecrete,
+        ));
         // Get User ID
         $user = $facebook->getUser();
 
@@ -1303,7 +1323,7 @@ class InternjumpController extends Controller {
                     'allCities' => $allCities,
                     'allState' => $allState,
                     'allCategory' => $allCategory
-                ));
+        ));
     }
 
     /**
@@ -1356,11 +1376,11 @@ class InternjumpController extends Controller {
         }
         //prepare the validation constrains
         $collectionConstraint = new Collection(array(
-                    'Name' => new NotBlank(),
-                    'Email' => array(new NotBlank(), new Email()),
-                    'Subject' => new NotBlank(),
-                    'Message' => new NotBlank()
-                ));
+            'Name' => new NotBlank(),
+            'Email' => array(new NotBlank(), new Email()),
+            'Subject' => new NotBlank(),
+            'Message' => new NotBlank()
+        ));
         //create the contact form
         $form = $this->createFormBuilder($data, array(
                     'validation_constraint' => $collectionConstraint,
@@ -1403,7 +1423,7 @@ class InternjumpController extends Controller {
         return $this->render('ObjectsInternJumpBundle:Internjump:ContactUs.html.twig', array(
                     'form' => $form->createView(),
                     'flag' => $flag,
-                )); //,$response
+        )); //,$response
     }
 
     /**
@@ -1420,7 +1440,7 @@ class InternjumpController extends Controller {
 
         return $this->render('ObjectsInternJumpBundle:Internjump:FAQ.html.twig', array(
                     'AskedQuestions' => $AskedQuestions,
-                ));
+        ));
     }
 
     /**
@@ -1433,7 +1453,7 @@ class InternjumpController extends Controller {
         return $this->render('ObjectsInternJumpBundle:Internjump:school.html.twig', array(
                     'schoolsDataUpper' => $schoolsDataUpper,
                     'schoolsDataLower' => $schoolsDataLower
-                ));
+        ));
     }
 
     /**
@@ -1471,7 +1491,7 @@ class InternjumpController extends Controller {
                     'allPosts' => $allPosts,
                     'postsCount' => $postsCount,
                     'lastPageNumber' => $lastPageNumber
-                ));
+        ));
     }
 
     /**
@@ -1489,7 +1509,7 @@ class InternjumpController extends Controller {
 
         return $this->render('ObjectsInternJumpBundle:Internjump:showPost.html.twig', array(
                     'post' => $post,
-                ));
+        ));
     }
 
 }
