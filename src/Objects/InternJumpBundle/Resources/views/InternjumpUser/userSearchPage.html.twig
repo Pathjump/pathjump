@@ -2,7 +2,7 @@
 {% block title %}
 Job Search
 {% endblock %}
-
+{% block searchNav %}active{% endblock%}
 {% block pageTitle %}Job Search{% endblock %}
 
 {% block stylesheets %}
@@ -32,9 +32,9 @@ Job Search
                                					{{form_widget(form.jobtype, { 'attr': {'class': '', 'id' : 'jobtype_search'} })}}
                             			</div>
                                         <div class="span4 ">
-                                            <label>State</label>        
+                                            <label>State</label>
                                             {{form_widget(form.state, { 'attr': {'class': 'chzn-select', 'id' : 'state_search'} })}}
-                                        </div>    
+                                        </div>
                                              </div>
                                         <div class="controls  row-fluid show-grid">
                                         <div class="span4">
@@ -66,10 +66,10 @@ Job Search
 
                                             <div class="row-fluid show-grid">
                                                 <div class="span4">
-                                            <label>Location</label>    
+                                            <label>Location</label>
                                             {{form_widget(form.country, { 'attr': {'class': 'chzn-select', 'id' : 'country_search'} })}}
                                                     </div>{#{{form_widget(form.city, { 'attr': {'class': 'chzn-select','style':'width:160px;', 'id' : 'city_search'} })}}#}
-                                                    
+
                                             <div class="span4 ">
                                                 <label>Language</label>
                                                     {{form_widget(form.language, { 'attr': {'class': 'chzn-select', 'style' : 'width: auto', 'id' : 'language_search'} })}}
@@ -83,10 +83,10 @@ Job Search
                                                 <label>Companies</label>
                                 {{form_widget(form.company, { 'attr': {'class': '', 'style' : 'width: auto', 'id' : 'company_search'} })}}
                                             </div>
-                                           
+
 
                                         </div>
-                                       
+
                                     </p>
                                      <input id="search_button"  name="" type="button" value="Search" class="btn btn-info pull-right search_button"/>
                                      <div class="clearfix"></div>
@@ -276,9 +276,9 @@ No Results found
 
     if($('#form_category').val()!= ""){ var category=$('#form_category').val();}
     else{ var category="empty"; }
-    
+
     /*if($('#form_company').val()!= ""){ var company=$('#form_company').val();}
-    else{ 
+    else{
         var comp = '{{ app.request.get('company') }}';
         if(comp != "empty" && comp != '') {  var company=comp;}
         else  var company="empty";
@@ -296,7 +296,7 @@ No Results found
     if($('#form_jobtype input:radio').is(':checked')){
         if($('#form_jobtype input:radio:checked').val() != "" ) {var jobType = $('#form_jobtype input:radio:checked').val()}
     }  else {var jobType="empty" }
-    
+
     if(text || country || city || state || category || company || language || jobType){
     $('#search_error').hide();
                         {% if app.request.get('access_method') == 'facebook' %}

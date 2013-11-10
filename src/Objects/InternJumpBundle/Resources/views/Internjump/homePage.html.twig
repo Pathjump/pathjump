@@ -8,7 +8,8 @@
 <link href="{{ asset('css/jquery.bxslider.css')}}" rel="stylesheet" />
 {% endblock %}
 
-{% block headerClasss %}head-1{% endblock %}
+
+{% block headerClasss %}{% if is_granted('ROLE_NOTACTIVE_COMPANY') or is_granted('ROLE_NOTACTIVE') or is_granted('ROLE_COMPANY_MANAGER')%}head-1{% endif %}{% endblock %}
 
 
 {%block body%}

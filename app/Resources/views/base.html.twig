@@ -119,45 +119,47 @@
                     <ul class="nav">
 
                       {% if not is_granted('ROLE_NOTACTIVE_COMPANY') and not is_granted('ROLE_NOTACTIVE') and not is_granted('ROLE_COMPANY_MANAGER')%}
-                          <li><a href="{{path('students_data')}}"><i class="fa fa-pencil"></i> students</a></li>
-                      <li><a href="{{path('employers_data')}}"><i class="fa fa-file-text"></i> Employers</a></li>
+                      <li class="{% block studentNav %}{% endblock%}"><a href="{{path('students_data')}}"><i class="fa fa-pencil"></i> students</a></li>
+                      <li class="{% block employeeNav %}{% endblock%}"><a href="{{path('employers_data')}}"><i class="fa fa-file-text"></i> Employers</a></li>
                       {% endif %}
-                      <li><a href="{{path('internship',{'loginName':'internjump'})}}"><i class="fa fa-suitcase"></i>Career Centers</a></li>
-                      <li><a href="{{path('campus_resps')}}"><i class="fa fa-mobile-phone"></i> Campus Representatives</a></li>
+                      <li class="{% block careerNav %}{% endblock%}"><a href="{{path('internship',{'loginName':'internjump'})}}"><i class="fa fa-suitcase"></i>Career Centers</a></li>
+                      <li class="{% block campusNav %}{% endblock%}"><a href="{{path('campus_resps')}}"><i class="fa fa-mobile-phone"></i> Campus Representatives</a></li>
                     </ul>
 
                     {% if is_granted('ROLE_COMPANY') %}
                         <ul class="sub-nav">
-                            <li><a href="{{ path('internship',{'loginName' : app.user.loginName}) }}">Home</a></li>
-                            <li><a href="{{ path('internship_new') }}">Add new Position</a></li>
-                            <li><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
-                            <li><a href="{{ path('company_search_for_cv') }}">Search Candidates</a></li>
-                            <li><a href="{{ path('company_managers',{'loginName' : app.user.loginName}) }}">Managers</a></li>
-                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
+                            <li class="{% block companyHomeNav %}{% endblock%}"><a href="{{ path('internship',{'loginName' : app.user.loginName}) }}">Home</a></li>
+                            <li class="{% block newPosNav %}{% endblock%}"><a href="{{ path('internship_new') }}">Add new Position</a></li>
+                            <li class="{% block internsNav %}{% endblock%}"><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
+                            <li class="{% block companySearchNav %}{% endblock%}"><a href="{{ path('company_search_for_cv') }}">Search Candidates</a></li>
+                            <li class="{% block managersNav %}{% endblock%}"><a href="{{ path('company_managers',{'loginName' : app.user.loginName}) }}">Managers</a></li>
+                            <li class="{% block companyFaqNav %}{% endblock%}"><a href="{{path('FAQ_page')}}">FAQ</a></li>
                         </ul>
                     {% elseif is_granted('ROLE_COMPANY_MANAGER') %}
                         <ul class="sub-nav">
-                            <li><a href="{{ path('manager_home') }}">Home</a></li>
-                            <li><a href="{{ path('internship_new') }}">Add new Position</a></li>
-                            <li><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
-                            <li><a href="{{path('FAQ_page')}}">FAQ</a></li>
+                            <li class="{% block managerHomeNav %}{% endblock%}"><a href="{{ path('manager_home') }}">Home</a></li>
+                            <li class="{% block managerNewPosNav %}{% endblock%}"><a href="{{ path('internship_new') }}">Add new Position</a></li>
+                            <li class="{% block managerInternsNav %}{% endblock%}"><a href="{{ path('company_task') }}">Manage Interns/Employees</a></li>
+                            <li class="{% block managerFaqNav %}{% endblock%}"><a href="{{path('FAQ_page')}}">FAQ</a></li>
                         </ul>
                     {% elseif is_granted('ROLE_USER') %}
                         <ul class="sub-nav">
-                            <li><a href="{{path('student_task',{'loginName' : app.user.loginName})}}">Home</a></li>
-                            <li><a href="{{ path('user_search_page') }}">Search</a></li>
-                            <li><a href="{{ path('education_new') }}">Education</a></li>
-                            <li><a href="{{ path('employmenthistory_new') }}">Employment</a></li>
-                            <li><a href="{{ path('user_languages') }}">Language</a></li>
-                            <li><a href="{{ path('addEditUserSkills') }}">Skills</a></li>
-                            <li><a href="{{ path('personal_questions') }}">Questions</a></li>
+                            <li class="{% block userHomeNav %}{% endblock%}"><a href="{{path('student_task',{'loginName' : app.user.loginName})}}">Home</a></li>
+                            <li class="{% block searchNav %}{% endblock%}"><a href="{{ path('user_search_page') }}">Search</a></li>
+                            <li class="{% block educationNav %}{% endblock%}"><a href="{{ path('education_new') }}">Education</a></li>
+                            <li class="{% block employmentNav %}{% endblock%}"><a href="{{ path('employmenthistory_new') }}">Employment</a></li>
+                            <li class="{% block languageNav %}{% endblock%}"><a href="{{ path('user_languages') }}">Language</a></li>
+                            <li class="{% block skillsNav %}{% endblock%}"><a href="{{ path('addEditUserSkills') }}">Skills</a></li>
+                            <li class="{% block questionsNav %}{% endblock%}"><a href="{{ path('personal_questions') }}">Questions</a></li>
+                            <li class="{% block personalityNav %}{% endblock%}">
                             {% if not app.user.score %}
-                                <li><a href="{{path('internjumb_quiz')}}">Personality Quiz</a></li>
+                                <a href="{{path('internjumb_quiz')}}">Personality Quiz</a>
                             {% else %}
-                                <li><a href="{{path('internjumb_quiz_page_result')}}">Personality Quiz</a></li>
+                                    <a href="{{path('internjumb_quiz_page_result')}}">Personality Quiz</a>
                             {% endif %}
-                            <li><a href="{{ path('howMuchAreYouWorth') }}">Find Your Worth</a></li>
-                            <li id="resourceLink"><a href="{{path('resources')}}">Resources</a></li>
+                            </li>
+                            <li class="{% block worthNav %}{% endblock%}"><a href="{{ path('howMuchAreYouWorth') }}">Find Your Worth</a></li>
+                            <li id="resourceLink" class="{% block resourcesNav %}{% endblock%}"><a href="{{path('resources')}}">Resources</a></li>
                         </ul>
                     {% endif %}
                   </div><!--/.nav-collapse -->

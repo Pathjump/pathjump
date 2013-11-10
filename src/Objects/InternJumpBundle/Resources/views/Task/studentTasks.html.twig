@@ -3,7 +3,7 @@
 {% block title %}
 {{app.user.loginName}}'s profile
 {% endblock %}
-
+{% block userHomeNav %}active{% endblock%}
 {% block stylesheets %}
 {{parent()}}
 <link href="{{ asset('css/chosen.css') }}" rel="stylesheet" type="text/css"/>

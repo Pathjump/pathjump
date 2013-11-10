@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 {% block title %}{{ company }} - managers {% endblock %}
-
+{% block managersNav %}active{% endblock%}
 {% block stylesheets %}
 {{ parent() }}
 <link href="{{ asset('css/jquery.alerts.css') }}" rel="stylesheet" type="text/css"/>
