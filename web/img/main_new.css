@@ -145,7 +145,6 @@ a:hover{
 	color:#0B82AF;
 	background:#f4f4f4;
 }
-/*
 .navbar .brand{
 	background:#fff;
 	margin-top:-32px;
@@ -154,27 +153,15 @@ a:hover{
 	position:relative;
 	z-index:2;
 	margin-left:0px;
-}*/
-
-
-.navbar .brand {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #EBEBEB;
-    margin-left: 0;
-    margin-top: -32px;
-    padding: 30px 25px;
-    position: relative;
-    z-index: 2;
 }
 .Search-Slide h2{
 	color:#e5a908;
 	background:rgba(255,255,255,0.7);
-	display: table;
+	display:inline-block;
 	font-family: 'Lato', sans-serif;
 	padding:0 10px;
 	border:1px solid #fff;
 	line-height:1.5;
-	margin:10px 0;
 }
 .navbar .nav {
     margin: 15px 0 0 20px !important;
@@ -196,7 +183,7 @@ a:hover{
 	padding-bottom:12px;
 }
 .bx-wrapper{
-	margin-top:-40px;
+	margin-top:-60px;
 }
 #myCarousel .carousel-indicators{
 	width:100%;
@@ -205,7 +192,8 @@ a:hover{
 }
 .Search-Slide {
      margin-bottom: 60px;
-    margin-top: -480px;
+  /*  margin-top: -396px;*/
+  margin-top: -470px;
     position: relative;
     z-index: 99999;
 	clear:left;
@@ -365,7 +353,7 @@ h1{
 
 .bx-wrapper {
     position: relative;
-    top: -34px;
+    top: -66px;
 	z-index:0;
 }
 #myCarousel select.carousel-indicators {
@@ -445,7 +433,7 @@ h1{
 }
 .style2{
 	 clear: both;
-  /*  margin-left: 23px !important;*/
+    margin-left: 23px !important;
     margin-top: 5px;
 }
 .section3 .find-worth .title{
@@ -644,7 +632,7 @@ h1{
 	color:#1ab574
 }
 .menu-footer{
-	margin-top:10px;
+	margin-top:35px;
 }
 .copy-right{
 	background:#fff;
@@ -709,12 +697,12 @@ h1{
 
 .navbar.head-2 {
     border-bottom: 41px solid #F5F8F7;
-    height: 62px;
+    height: 63px;
 }
 
 .navbar.head-2 .brand {
-   /* padding: 10px 14px 7px;
-    width: 87px;*/
+    padding: 10px 14px 7px;
+    width: 87px;
 }
 .head-2 .nav i {
     display: inline !important;
@@ -859,34 +847,23 @@ h1{
     background: url("chosen-sprite.png") no-repeat scroll 100% -34px, linear-gradient(#EEEEEE 1%, #FFFFFF 15%) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
 }
 
-.head-2 .nav li {
-    margin-left: 12px;
-}
+
 .sub-nav > li {
     border-left: 1px solid #CCCCCC;
     display: inline-block;
-    margin-left: 5px;
-    padding-left: 5px;
+    margin-left: 10px;
+    padding-left: 10px;
 }
-.sub-nav > li:first-child{
-	border:none;
-}
-.addCompanyToFavorite {
-    color: #FFFFFF !important;
-    margin-top: 13px;
-}
-.head-1 .nav-collapse{
-	margin-bottom:-29px;
-}
+
 .sub-nav {
     clear: both;
     display: table;
     position: relative;
     top: 15px;
 }
-/*.navbar .nav{
+.navbar .nav{
 	float:right !important; 
-}*/
+}
 
 
 .span12 .nav-tabs > li > a{
@@ -1554,13 +1531,12 @@ position:relative
 }
 
 
-
 .head-1 .sub-nav {
     background: none repeat scroll 0 0 #FFFFFF;
-    padding: 4px 10px;
+    padding: 4px 15px;
     position: relative;
-    top: 23px;
-    z-index: 999999;
+    top: 34px;
+    z-index: 1;
 }
 
 
@@ -1568,14 +1544,7 @@ position:relative
     font-size: 23px !important;
     line-height: 3.4;
 }
-.alert.alert-info.timeMessage {
-    margin-top: -13px;
-}
 
-.timeMessage h3 {
-    line-height: 23px;
-    margin: 0;
-}
 
 .Resume .Resume-title h2 div {
     font-size: 100%;
@@ -1887,23 +1856,20 @@ h5.titl-blue {
     border: 1px solid #FFFFFF;
     bottom: inherit;
     font-family: 'Coda',cursive;
-    font-size: 24px;
+    font-size: 22px;
 	color:#fff;
-	margin-bottom:10px;
 
     padding:0px 10px;
 
     width: auto;
 	line-height:1.5;
 	display:inline-block;
-	margin-top:18px;
 }
+
 
 .home-infos h2 {
     height: 48px;
     line-height: 1.5;
-	margin:10px 0;
-	
 }
 
 .home-infos  .icon-box{
@@ -1912,25 +1878,7 @@ h5.titl-blue {
 
 
 
-.list-b {
-    background: none repeat scroll 0 0 rgba(11, 130, 175, 0.5);
-    border: 1px solid #fff;
-    display: table;
-    padding: 2px 13px;
-}
 
-
-.list-b li {
-    font-size: 15px;
-    line-height: 1.8;
-    list-style: square inside none;
-	color:#fff;
-}
-
-
-.bx-wrapper img{
-	margin:0 auto;
-}
 
 
 
