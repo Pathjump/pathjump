@@ -3,9 +3,9 @@ parameters:
   consumer_secret: ISTezbrDecK4TF0UncTjZE9qsc7BtGVMFiSXP17Ypw
   oauth_token: null
   oauth_token_secret: null
-  fb_app_id: '140790826106156'
+  fb_app_id: '475293302588219'
   # '282137608565990'
-  fb_app_secret: 560ae9b6b521ba64b82d84082e365320
+  fb_app_secret: b6f19761eab0d26ad94e933ebfeabf64
   # c0e978a64bc520a8b677dfa9e57f4746
   fb_app_state: ae3a926faaec553ac9b570eb78509e76
   fb_page_name: TestObjects
