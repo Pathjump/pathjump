@@ -74,18 +74,18 @@
                         </div>
                     {% endblock %}
                     <ul class="social-icons pull-right">
-                        {% if twitter_page_url %}
-                        <li><a href="{{twitter_page_url}}" target="_blank"><i class="fa fa-twitter"></i> twitter</a></li>
+                        {% if face_page_url %}
+                         <li><a href="{{face_page_url}}" target="_blank"><i class="fa fa-facebook"></i> facebook</a></li>
+                         {% endif %}
+                         {% if linkledIn_page_url %}
+                        <li><a href="{{linkledIn_page_url}}" target="_blank"><i class="fa fa-linkedin"></i>  linkedin</a></li>
                         {% endif %}
                         {% if google_page_url %}
                         <li><a href="{{google_page_url}}" target="_blank"><i class="fa fa-google-plus"></i> Google+</a></li>
                         {% endif %}
-                        {% if linkledIn_page_url %}
-                        <li><a href="{{linkledIn_page_url}}" target="_blank"><i class="fa fa-linkedin"></i>  linkedin</a></li>
+                        {% if twitter_page_url %}
+                        <li><a href="{{twitter_page_url}}" target="_blank"><i class="fa fa-twitter"></i> twitter</a></li>
                         {% endif %}
-                         {% if face_page_url %}
-                         <li><a href="{{face_page_url}}" target="_blank"><i class="fa fa-facebook"></i> facebook</a></li>
-                         {% endif %}
                     </ul>
 
                 </div>

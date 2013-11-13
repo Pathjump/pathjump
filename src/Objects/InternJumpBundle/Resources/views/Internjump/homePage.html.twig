@@ -72,23 +72,9 @@
 </div><!--Search-Slide-->
 
 <div class="How-work">
-    <h1><i class="fa fa-comment"></i> Find Openings With Great Companies</h1>
+    <h1><i class="fa fa-comment"></i> Find Your Path</h1>
     <div class="container">
-
-        <div id="myCarousel" class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-                <div class="active item">Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</div>
-                <div class="item">Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</div>
-                <div class="item">Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</div>
-            </div>
-            <!-- Carousel nav -->
-        </div>
+        <p>Launching your career as a young professional can be difficult. Pathjump makes it easy to find the right career, connect with alumni, and search for relevant openings.</p>
     </div>
 </div><!--How-work-->
 
@@ -306,16 +292,14 @@
                                     {% if loop.first %}
                                         {# the loop is displaying 3 results first then group of 4, to fix that i added this line #}
                                         <div class="span2">
-                                            <a href="/internJumpUser/search?company=goldmansachs">
                                             <img src="/company-logo/173/71/51cda3c0a06db.jpg"  width="173" height="71"/>
-                                        </a>
+
                                     </div>
                                     {% endif %}
 
                                     <div class="span2">
-                                        <a href="{{path('user_search_page',{'company' : company.loginName})}}">
                                             <img src="{{company.getTimThumbUrl(173,71)}}"  width="173" height="71"/>
-                                        </a>
+
                                     </div>
                     {% endfor %}
                     </div>
