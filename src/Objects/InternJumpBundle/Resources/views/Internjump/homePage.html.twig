@@ -20,7 +20,6 @@
 </ul>
 
 <div class="container Search-Slide">
-    <h1>Find Your Career Path.</h1>
     <ul class="list-b">
      <li>Discover places you will love to work</li>
      <li>Find out if your career field is a fit for you</li>
@@ -61,7 +60,7 @@
                 {% endif %}
 
                 <div class="text-right">
-                    <button class="btn btn-a" id="homeSearchJob">Search Now</button>
+                    <button class="btn btn-a" id="homeSearchJob" type="button">Search Now</button>
                 </div>
 
             </form>
@@ -354,6 +353,38 @@
     <script src="{{asset('js/jquery.bxslider.js')}}"></script>
 
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
+    var searchJobsUrl = "{{path('user_search_page')}}";
+    $(document).ready(function() {
+        $('#homeSearchJob').click(function() {
+
+            var company = $('#companyFilter').val();
+            var city = $('#cityFilter').val();
+            var state = $('#stateFilter').val();
+            var category = $('#industryFilter').val();
+            var keyword = $('#keywordFilter').val();
+
+
+            if (company || city || state || category || keyword)
+                searchJobsUrl += '?';
+
+            if (company)
+                searchJobsUrl += "&jobType=" + company;
+
+            if (city)
+                searchJobsUrl += "&city=" + city;
+
+            if (state)
+                searchJobsUrl += "&state=" + state;
+
+            if (category)
+                searchJobsUrl += "&industry=" + category;
+
+            if (keyword)
+                searchJobsUrl += "&keyword=" + keyword;
+
+            window.location = searchJobsUrl;
+        });
+    });
+    </script>
 {% endblock %}
