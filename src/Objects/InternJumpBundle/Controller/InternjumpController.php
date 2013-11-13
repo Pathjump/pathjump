@@ -1182,6 +1182,23 @@ class InternjumpController extends Controller {
         //check for 2nd home page
         $landingPage = $this->getRequest()->get('code');
 
+        $formValidationGroups = array('signup');
+        $user = new User();
+        //create a signup form
+        $formBuilder = $this->createFormBuilder($user, array(
+                    'validation_groups' => $formValidationGroups
+                ))
+                ->add('name', null, array('required' => FALSE))
+                ->add('email')
+                ->add('userPassword', 'repeated', array(
+            'type' => 'password',
+            'first_name' => 'Password',
+            'second_name' => 'RePassword',
+            'invalid_message' => "The passwords don't match",
+        ));
+        //create the form
+        $form = $formBuilder->getForm();
+
         if ($landingPage == 1) {
             return $this->render('ObjectsInternJumpBundle:Internjump:landingHomePage_1.html.twig', array(
                         'worthUsers' => $worthUsers,
@@ -1191,7 +1208,8 @@ class InternjumpController extends Controller {
                         'allCities' => $allCities,
                         'allState' => $allState,
                         'allCategory' => $allCategory,
-                        'worthFrom' => $worthFrom
+                        'worthFrom' => $worthFrom,
+                        'form' => $form->createView()
             ));
         } else {
             return $this->render('ObjectsInternJumpBundle:Internjump:homePage.html.twig', array(
@@ -1202,7 +1220,8 @@ class InternjumpController extends Controller {
                         'allCities' => $allCities,
                         'allState' => $allState,
                         'allCategory' => $allCategory,
-                        'worthFrom' => $worthFrom
+                        'worthFrom' => $worthFrom,
+                        'form' => $form->createView()
             ));
         }
     }

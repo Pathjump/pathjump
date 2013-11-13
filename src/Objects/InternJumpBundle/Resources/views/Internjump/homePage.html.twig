@@ -27,37 +27,65 @@
     </ul>
 
     <h2>Jump Start Your Career</h2>
+
     <div class="Search-block">
+        {% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_logging','permissions': 'email,publish_stream,user_birthday,user_about_me,user_education_history,user_work_history,user_location,user_hometown','cssClass' : 'login-f-b' , 'linkText' : 'sign with facebook'} %}
+
+        <div class="text-center Or">or</div>
+        <hr/>
+        <div class="Login-form">
+            <form action="{{ path('user_signup') }}" method="post" {{ form_enctype(form) }}>
+                <div>{{ form_widget(form.email, {'attr': {'placeholder': 'Enter your email','class' : 'input-block-level'} }) }}</div>
+                <div>{{ form_widget(form.userPassword.Password, {'attr': {'placeholder': 'Enter password','class':'input-block-level'} }) }}</div>
+                <div class="text-right">
+                    <button class="btn btn-info input-block-level" type="submit">Search Now</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+    </div>
+</div><!--Search-Slide-->
+
+<div class=" section-b">
+<div class="container">
+    <div class="Search-block2">
 
         <div class="Search-form">
             <form>
-                <div class="job-type">
-                    <select data-placeholder="Jop Type" class="chosen-select" tabindex="2" id="companyFilter">
-                        <option></option>
-                        <option value="Internship" selected>Internship</option>
-                        <option value="Entry Level">Entry Level</option>
-                    </select>
+                <div class="row">
+                    <div class="job-type span4">
+                        <select data-placeholder="Jop Type" class="chosen-select" tabindex="2" id="companyFilter">
+                            <option></option>
+                            <option value="Internship" selected>Internship</option>
+                            <option value="Entry Level">Entry Level</option>
+                        </select>
+                    </div>
+                    {% if allState |length > 0 %}
+                    <div class="State span4">
+                        <select data-placeholder="State" class="chosen-select" tabindex="2" id="stateFilter">
+                            <option></option>
+                            {% for state in allState %}
+                            <option value="{{state}}">{{state}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+
+                    {% if allCategory |length > 0 %}
+                    <div class="Industry span4">
+                        <select data-placeholder="Industry" class="chosen-select" tabindex="2" id="industryFilter">
+                            <option></option>
+                            {% for category in allCategory %}
+                            <option value="{{category.id}}">{{category}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+
                 </div>
-                {% if allState |length > 0 %}
-                <div class="State">
-                    <select data-placeholder="State" class="chosen-select" tabindex="2" id="stateFilter">
-                        <option></option>
-                        {% for state in allState %}
-                        <option value="{{state}}">{{state}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                {% endif %}
-                {% if allCategory |length > 0 %}
-                <div class="Industry">
-                    <select data-placeholder="Industry" class="chosen-select" tabindex="2" id="industryFilter">
-                        <option></option>
-                        {% for category in allCategory %}
-                        <option value="{{category.id}}">{{category}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                {% endif %}
 
                 <div class="text-right">
                     <button class="btn btn-a" id="homeSearchJob" type="button">Search Now</button>
@@ -67,9 +95,9 @@
         </div>
 
 
-    </div><!--Search-block--->
-
-</div><!--Search-Slide-->
+    </div>
+</div>
+</div>
 
 <div class="How-work">
     <h1><i class="fa fa-comment"></i> Find Your Path</h1>
