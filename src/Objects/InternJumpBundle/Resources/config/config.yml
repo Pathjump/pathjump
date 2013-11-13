@@ -4,7 +4,7 @@ parameters:
   skills_autocomplete_number: 10
   refresh_notification_time: 30
   contact_us_email: info@internjump.com
-  site_meta_title: 'Internship opportunities for College Students and Graduates'
+  site_meta_title: 'Find Your Path: Pathjump The Young Professional Career Guide'
   site_meta_keywords: 'Internships, Jobs, Students, Employers, university, college, careers, employment'
   site_meta_description: 'InternJump.com is the leading platform for internships that provides students a fresh and new outlook on finding internship opportunities to Jump Start their career.'
   analytics: UA-1416230-24
@@ -50,7 +50,7 @@ parameters:
   skill_point: 5
   one_year_experience_points: 20
   contact_detinations: 'Compliment,Criticism,Suggestion,Bug Report,Support,Investor Relations,Other'
-  contact_info_name: 'InternJump LLC'
+  contact_info_name: 'Pathjump'
   contact_info_address_part1: '30 Broad St'
   contact_info_address_part2: 'New York, NY 10004'
   resource_per_page: 10
