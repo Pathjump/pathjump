@@ -121,7 +121,7 @@
                       {% if not is_granted('ROLE_NOTACTIVE_COMPANY') and not is_granted('ROLE_NOTACTIVE') and not is_granted('ROLE_COMPANY_MANAGER')%}
                       <li class="{% block studentNav %}{% endblock%}"><a href="{{path('students_data')}}"><i class="fa fa-pencil"></i> students</a></li>
                       <li class="{% block employeeNav %}{% endblock%}"><a href="{{path('employers_data')}}"><i class="fa fa-file-text"></i> Employers</a></li>
-                      <li class="{% block careerNav %}{% endblock%}"><a href="{{path('internship',{'loginName':'internjump'})}}"><i class="fa fa-suitcase"></i>Career Centers</a></li>
+                      <li class="{% block careerNav %}{% endblock%}"><a href="{{path('schools')}}"><i class="fa fa-suitcase"></i>Career Centers</a></li>
                       <li class="{% block campusNav %}{% endblock%}"><a href="{{path('campus_resps')}}"><i class="fa fa-mobile-phone"></i> Campus Representatives</a></li>
                       {% endif %}
 
