@@ -1487,6 +1487,7 @@ class InternjumpController extends Controller {
         $schoolsDataUpper = file_get_contents(__DIR__ . '/../../../../web/sitePages/schools_p1.txt');
         $schoolsDataLower = file_get_contents(__DIR__ . '/../../../../web/sitePages/schools_p2.txt');
 
+        $pageText = file_get_contents(__DIR__ . "/../../../../web/sitePages/CampusReps.txt");
         $request = $this->getRequest();
         $flag = 0;
         $data = array();
@@ -1548,6 +1549,7 @@ class InternjumpController extends Controller {
                     'schoolsDataLower' => $schoolsDataLower,
                     'form' => $form->createView(),
                     'flag' => $flag,
+                    'content' => $pageText
         ));
     }
 
