@@ -17,6 +17,21 @@ use Doctrine\ORM\EntityRepository;
 class UserRepository extends EntityRepository implements UserProviderInterface {
 
     /**
+     * @author ahmed
+     * @param array $ids
+     */
+    public function getSuccessStudents($ids) {
+        $query = $this->getEntityManager()
+                        ->createQuery('
+            SELECT u
+            FROM ObjectsUserBundle:User u
+            where u.id in (:ids)
+            ')->setParameter('ids', $ids);
+
+        return $query->getResult();
+    }
+
+    /**
      * get not complete resume users from 3,7,15 days
      * @author ahmed
      * @param datetime $threeDate

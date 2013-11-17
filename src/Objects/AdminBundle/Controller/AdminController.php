@@ -1030,10 +1030,12 @@ class AdminController extends Controller {
      */
     public function editStudentsDataPageAction() {
         $data = array(
-            'studentsData' => @file_get_contents(__DIR__ . '/../../../../web/sitePages/studentsData.txt')
+            'studentsData' => @file_get_contents(__DIR__ . '/../../../../web/sitePages/studentsData.txt'),
+            'studentsIds' => @file_get_contents(__DIR__ . '/../../../../web/sitePages/successStudentsIds.txt')
         );
         $form = $this->createFormBuilder($data)
                 ->add('studentsData', 'textarea')
+                ->add('studentsIds', 'textarea', array('required' => FALSE))
                 ->getForm();
         $request = $this->getRequest(); //the default message to display to the user
         $message = FALSE;
@@ -1047,6 +1049,7 @@ class AdminController extends Controller {
                 $data = $form->getData();
                 //save the data to the file
                 $bytes = @file_put_contents(__DIR__ . '/../../../../web/sitePages/studentsData.txt', $data['studentsData']);
+                $bytes = @file_put_contents(__DIR__ . '/../../../../web/sitePages/successStudentsIds.txt', $data['studentsIds']);
                 if ($bytes === FALSE) {
                     //set the error message
                     $message = 'writing failed';

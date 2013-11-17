@@ -2,6 +2,9 @@
 {% block title %}Edit students data page{% endblock %}
 
 {% block body %}
+<style>
+#form_studentsIds {width: 99%;}
+    </style>
 <h1>Edit students data page</h1>
 
 {% if message %}
@@ -12,8 +15,10 @@
 
 <form  action="{{ url('admin_edit_students_data_page') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form.studentsData) }}
+    <label>Success students ids</label>
+    {{ form_widget(form.studentsIds) }}
     {{ form_rest(form) }}
-        <button type="submit" id="about-submit" class="btn">Submit</button>
+        <br/><button type="submit" id="about-submit" class="btn">Submit</button>
 </form>
 {% endblock %}
 {% block javascripts %}
@@ -29,23 +34,23 @@ tinyMCE.init({
         // Theme options - button# indicated the row# only
         theme_advanced_buttons1 : "newdocument,|,bold,italic,underline,|,justifyleft,justifycenter,justifyright,fontselect,fontsizeselect,formatselect",
         theme_advanced_buttons2 : "cut,copy,paste,|,bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,image,|,code,preview,|,forecolor,backcolor",
-        theme_advanced_buttons3 : "insertdate,inserttime,|,spellchecker,advhr,,removeformat,|,sub,sup,|,charmap,emotions",      
+        theme_advanced_buttons3 : "insertdate,inserttime,|,spellchecker,advhr,,removeformat,|,sub,sup,|,charmap,emotions",
         theme_advanced_toolbar_location : "top",
         theme_advanced_toolbar_align : "left",
         theme_advanced_statusbar_location : "bottom",
         theme_advanced_resizing : true
 
-    });    
-    
+    });
+
      $(document).ready(function () {
             $('#about-submit').click(function(){
-                
-                    
+
+
                 var article = tinyMCE.editors[0].getContent();
                 if(($.trim(article)).length > 0){
                     $('#form_studentsData').val(article);
                 }
-                
+
                 return true;
             });
             });
@@ -58,5 +63,5 @@ tinyMCE.init({
                     CKEDITOR.replace( 'form_studentsData' );
             }
         </script>
-    
+
 {% endblock %}

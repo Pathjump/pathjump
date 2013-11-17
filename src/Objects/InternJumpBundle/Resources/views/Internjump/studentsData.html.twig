@@ -9,55 +9,81 @@
 {%block body%}
 <div class="main-wapper">
     {{studentsData|raw}}
-    <div class="join-now">
-        <div class=" container">
-            <h1>Join Now <i class="fa fa-angle-double-right"></i></h1>
+
+        {% if successStudents | length > 0 %}
+        <div class="section-b">
+            <div class="container">
+                <h2>Pathjump success trends!</h2>
+                <div class="row-fluid Happy-co">
+                    {% for user in successStudents %}
+                    <div class="span4">
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" height="120" src="{{ user.getTimThumbUrl(120,120) }}" width="120" />
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="#">{{ user }} </a></h4>
+                                <span class="univ">{{ user.schoolName }}</span>
+                                <p>{{ user.city }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="join-now">
+            <div class=" container">
+                <h1>Join Now <i class="fa fa-angle-double-right"></i></h1>
             {% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_logging','permissions': 'email,publish_stream,user_birthday,user_about_me,user_education_history,user_work_history,user_location,user_hometown','cssClass' : 'sign-face' , 'linkText' : 'Sign up with Facebook'} %}
 
-            <h1>Or</h1>
-            <div class="sign-up2">
-                <form action="{{ path('user_signup') }}" method="post" {{ form_enctype(form) }}>
+                    <h1>Or</h1>
+                    <div class="sign-up2">
+                        <form action="{{ path('user_signup') }}" method="post" {{ form_enctype(form) }}>
 
-                    <div class="row-fluid">
-                        <div class="span4">
+                            <div class="row-fluid">
+                                <div class="span4">
                             {{ form_widget(form.email, {'attr': {'placeholder': 'sign up with your email'} }) }}
-                        </div>
-                        <div class="span4">
+                                    </div>
+                                    <div class="span4">
                             {{ form_widget(form.userPassword.Password, {'attr': {'placeholder': 'Password','class':'newUserPassword'} }) }}
-                        </div>
-                        <div class="span4">
-                            <input name="" type="submit" class="btn btn-info submitNewUser" value="Sign Up">
-                        </div>
-                    </div>
-                    <div style="display: none;">
+                                        </div>
+                                        <div class="span4">
+                                            <input name="" type="submit" class="btn btn-info submitNewUser" value="Sign Up">
+                                        </div>
+                                    </div>
+                                    <div style="display: none;">
                         {{ form_rest(form) }}
-                    </div>
-                </form>
-                </div>
-        </div>
-    </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
-</div>
+                    </div>
 
 {%endblock%}
 
 {% block javascripts %}
 {{parent()}}
-<script>
-    $(document).ready(function() {
-        //add password to repassworsd field
-        $('.submitNewUser').click(function(){
-            var password = $('.newUserPassword').val();
-            $('#form_userPassword_RePassword').val(password);
-        });
+                    <script>
+                        $(document).ready(function() {
+                            //add password to repassworsd field
+                            $('.submitNewUser').click(function() {
+                                var password = $('.newUserPassword').val();
+                                $('#form_userPassword_RePassword').val(password);
+                            });
 
-        $('#companySignUpLink').click(function() {
-            window.location = '{{path('user_signup')}}';
-        });
-        $('#companyLogin').click(function() {
-            window.location = '{{path('login')}}';
-        });
-    });
-    </script>
+                            $('#companySignUpLink').click(function() {
+                                window.location = '{{path('user_signup')}}';
+                            });
+                            $('#companyLogin').click(function() {
+                                window.location = '{{path('login')}}';
+                            });
+                        });
+                        </script>
 {% endblock %}
 

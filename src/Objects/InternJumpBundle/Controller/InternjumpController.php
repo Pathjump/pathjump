@@ -941,6 +941,22 @@ class InternjumpController extends Controller {
      */
     public function studentsDataAction() {
         $studentsData = file_get_contents(__DIR__ . '/../../../../web/sitePages/studentsData.txt');
+        $successStudentsIds = file_get_contents(__DIR__ . '/../../../../web/sitePages/successStudentsIds.txt');
+
+        $successStudents = NULL;
+        if ($successStudentsIds) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $userRepo = $em->getRepository('ObjectsUserBundle:User');
+            $educationRepo = $em->getRepository('ObjectsInternJumpBundle:Education');
+            $successStudents = $userRepo->getSuccessStudents(explode(',', $successStudentsIds));
+            foreach ($successStudents as $user) {
+                $lastEducation = $educationRepo->findBy(array('user' => $user->getId()), array('startDate' => 'desc'), $limit = 1);
+                if ($lastEducation)
+                    $user->schoolName = $lastEducation['0']->getSchoolName();
+                else
+                    $user->schoolName = NULL;
+            }
+        }
 
         $formValidationGroups = array('signup');
         $user = new User();
@@ -961,7 +977,8 @@ class InternjumpController extends Controller {
 
         return $this->render('ObjectsInternJumpBundle:Internjump:studentsData.html.twig', array(
                     'studentsData' => $studentsData,
-                    'form' => $form->createView()
+                    'form' => $form->createView(),
+                    'successStudents' => $successStudents
         ));
     }
 
