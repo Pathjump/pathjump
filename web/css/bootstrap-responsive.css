@@ -96,6 +96,12 @@
 	
 	
 }
+@media (max-width: 1150px){
+	
+.banner-form {
+    background: url("../img/foto-students.jpg") repeat scroll 0 0 / auto 100% rgba(0, 0, 0, 0);
+}
+}
 @media (max-width: 767px) {
 	
   .hidden-desktop {
@@ -1226,6 +1232,13 @@
 	.navbar .brand {
     padding: 10px !important;
     width: 207px;
+}
+.banner-form .Sign-Up{
+	width:auto;
+}
+
+.banner-ff {
+    width: 88%;
 }
 }
 @media (min-width: 700px) and (max-width: 767px) {
