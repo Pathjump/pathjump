@@ -1486,9 +1486,68 @@ class InternjumpController extends Controller {
     public function schoolsAction() {
         $schoolsDataUpper = file_get_contents(__DIR__ . '/../../../../web/sitePages/schools_p1.txt');
         $schoolsDataLower = file_get_contents(__DIR__ . '/../../../../web/sitePages/schools_p2.txt');
+
+        $request = $this->getRequest();
+        $flag = 0;
+        $data = array();
+        if (true === $this->get('security.context')->isGranted('ROLE_NOTACTIVE')) {
+            $user = $this->get('security.context')->getToken()->getUser();
+            $data['Name'] = $user->__toString();
+            $data['Email'] = $user->getEmail();
+        } elseif (true === $this->get('security.context')->isGranted('ROLE_NOTACTIVE_COMPANY')) {
+            $company = $this->get('security.context')->getToken()->getUser();
+            $data['Name'] = $company->__toString();
+            $data['Email'] = $company->getEmail();
+        }
+        //prepare the validation constrains
+        $collectionConstraint = new Collection(array(
+            'Name' => new NotBlank(),
+            'Email' => array(new Email(), new NotBlank()),
+            'Phone' => new NotBlank(),
+            'Message' => new NotBlank()
+        ));
+        //create the contact form
+
+        $form = $this->createFormBuilder($data, array(
+                    'validation_constraint' => $collectionConstraint,
+                ))
+                ->add('Name', 'text', array('required' => true, 'invalid_message' => 'please enter username'))
+                ->add('Email', 'email', array('required' => true, 'invalid_message' => 'please enter email'))
+                ->add('Phone', 'text', array('required' => true))
+                ->add('Message', 'textarea', array('required' => true, 'invalid_message' => 'please enter your messege'))
+                ->getForm();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+
+                $sendtoemail = $this->container->getParameter('info_email');
+                $data = $form->getData();
+                $body = $data['Message'];
+                $subject = "Tell us about yourself";
+                $from = $data['Email'];
+                $message = \Swift_Message::newInstance()
+                        ->setFrom($from)
+                        ->setTo($sendtoemail)
+                        ->setSubject($subject)
+                        ->setBody('<html>' .
+                        ' <head></head>' .
+                        ' <body>' .
+                        ' <b>Name:</b>' . $data['Name'] . '<br />' .
+                        ' <b>Phone:</b>' . $data['Phone'] . '<br />' .
+                        $body .
+                        ' </body>' .
+                        '</html>', 'text/html');
+                $this->get('mailer')->send($message);
+                $flag = 1;
+            }
+        }
+
         return $this->render('ObjectsInternJumpBundle:Internjump:school.html.twig', array(
                     'schoolsDataUpper' => $schoolsDataUpper,
-                    'schoolsDataLower' => $schoolsDataLower
+                    'schoolsDataLower' => $schoolsDataLower,
+                    'form' => $form->createView(),
+                    'flag' => $flag,
         ));
     }
 
