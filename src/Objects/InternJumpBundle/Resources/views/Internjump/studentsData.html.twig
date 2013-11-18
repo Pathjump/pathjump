@@ -14,76 +14,100 @@
         <div class="section-b">
             <div class="container">
                 <h2>Pathjump success trends!</h2>
-                <div class="row-fluid Happy-co">
-                    {% for user in successStudents %}
-                    <div class="span4">
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" height="120" src="{{ user.getTimThumbUrl(120,120) }}" width="120" />
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    <a href="#">{{ user }} </a></h4>
-                                <span class="univ">{{ user.schoolName }}</span>
-                                <p>{{ user.city }}</p>
+                <div id="myCarousel" class="carousel slide Student-slid">
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        {% set index = 0 %}
+                        {% set index2 = 0 %}
+                        {% for user in successStudents %}
+                        {% if index % 6 == 0 %}
+                        <div class="{% if index == 0 %}active{% endif %} item">
+                        {% endif %}
+                            {% if index2 % 3 == 0 %}
+                            <div class="row-fluid Happy-co">
+                            {% endif %}
+                                <div class="span4">
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object" height="120" src="{{ user.getTimThumbUrl(120,120) }}" width="120" />
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <a href="#">{{ user }} </a></h4>
+                                            <span class="univ">{{ user.schoolName }}</span>
+                                            <p>{{ user.city }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% set index2 = index2 +1 %}
+                            {% if index2 == successStudents | length or index2 % 3 == 0 %}
                             </div>
+                            {% endif %}
+                        {% set index = index +1 %}
+                        {% if index == successStudents | length or index % 6 == 0 %}
                         </div>
+                        {% endif %}
+                        {% endfor %}
+
+
                     </div>
-                    {% endfor %}
+                    <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                </div>
                 </div>
             </div>
-        </div>
         {% endif %}
 
-        <div class="join-now">
-            <div class=" container">
-                <h1>Join Now <i class="fa fa-angle-double-right"></i></h1>
+            <div class="join-now">
+                <div class=" container">
+                    <h1>Join Now <i class="fa fa-angle-double-right"></i></h1>
             {% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_logging','permissions': 'email,publish_stream,user_birthday,user_about_me,user_education_history,user_work_history,user_location,user_hometown','cssClass' : 'sign-face' , 'linkText' : 'Sign up with Facebook'} %}
 
-                    <h1>Or</h1>
-                    <div class="sign-up2">
-                        <form action="{{ path('user_signup') }}" method="post" {{ form_enctype(form) }}>
+                        <h1>Or</h1>
+                        <div class="sign-up2">
+                            <form action="{{ path('user_signup') }}" method="post" {{ form_enctype(form) }}>
 
-                            <div class="row-fluid">
-                                <div class="span4">
-                            {{ form_widget(form.email, {'attr': {'placeholder': 'sign up with your email'} }) }}
-                                    </div>
+                                <div class="row-fluid">
                                     <div class="span4">
-                            {{ form_widget(form.userPassword.Password, {'attr': {'placeholder': 'Password','class':'newUserPassword'} }) }}
+                            {{ form_widget(form.email, {'attr': {'placeholder': 'sign up with your email'} }) }}
                                         </div>
                                         <div class="span4">
-                                            <input name="" type="submit" class="btn btn-info submitNewUser" value="Sign Up">
+                            {{ form_widget(form.userPassword.Password, {'attr': {'placeholder': 'Password','class':'newUserPassword'} }) }}
+                                            </div>
+                                            <div class="span4">
+                                                <input name="" type="submit" class="btn btn-info submitNewUser" value="Sign Up">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div style="display: none;">
+                                        <div style="display: none;">
                         {{ form_rest(form) }}
-                                        </div>
-                                    </form>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
+                        </div>
 
 {%endblock%}
 
 {% block javascripts %}
 {{parent()}}
-                    <script>
-                        $(document).ready(function() {
-                            //add password to repassworsd field
-                            $('.submitNewUser').click(function() {
-                                var password = $('.newUserPassword').val();
-                                $('#form_userPassword_RePassword').val(password);
-                            });
+                        <script>
+                            $(document).ready(function() {
+                                //add password to repassworsd field
+                                $('.submitNewUser').click(function() {
+                                    var password = $('.newUserPassword').val();
+                                    $('#form_userPassword_RePassword').val(password);
+                                });
 
-                            $('#companySignUpLink').click(function() {
-                                window.location = '{{path('user_signup')}}';
+                                $('#companySignUpLink').click(function() {
+                                    window.location = '{{path('user_signup')}}';
+                                });
+                                $('#companyLogin').click(function() {
+                                    window.location = '{{path('login')}}';
+                                });
                             });
-                            $('#companyLogin').click(function() {
-                                window.location = '{{path('login')}}';
-                            });
-                        });
-                        </script>
+                            </script>
 {% endblock %}
 
