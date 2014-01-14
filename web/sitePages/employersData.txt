@@ -40,7 +40,7 @@
 
                     <p> pathjump makes finding interns easy and provides tools to manage interns on the job. pathjump allows companies of all sizes to find and manage qualified interns.</p>
                     <div class="links">
-                        <a href="javascript:void(0)" class="btn btn-info" id="companySignUpLink">Get startes</a>
+                        <a href="javascript:void(0)" class="btn btn-info" id="companySignUpLink">Get Started</a>
                         <a href="javascript:void(0)" class="btn btn-primary" id="companyLogin">Login</a>
                     </div>
 
