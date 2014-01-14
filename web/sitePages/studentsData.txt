@@ -5,7 +5,7 @@
                 <h2>Showcase all your work, accomplishments, skills & interests</h2>
                 <p class="subtext"> Finding and managing internship programs can be expensive and time consuming. InternJump makes finding interns easy and provides tools to manage interns on the job. InternJump allows companies of all sizes to find and manage qualified interns.</p>
                 <div class="links">
-                    <a href="javascript:void(0)" class="btn btn-info" id="companySignUpLink">Get startes</a>
+                    <a href="javascript:void(0)" class="btn btn-info" id="companySignUpLink">Get Started</a>
                     <a href="javascript:void(0)" class="btn btn-primary" id="companyLogin">Login</a>
                 </div>
             </div>
