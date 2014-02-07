@@ -19,10 +19,10 @@
         <div class="container Answers">
             <h2>Get Expert Answers</h2>
             <ul>
-                <li> What exactly does pathJump.com offer me as an employer?</li>
+                <li>What exactly does pathJump.com offer me as a student/graduate?</li>
                 <li>What should I write on my resume?</li>
                 <li>Should I go for a small company or a big company?</li>
-                <li>Why use pathJump?</li>
+                <li>Why use PathJump?</li>
             </ul>
         </div>
     </div>
@@ -30,74 +30,12 @@
     <div class="container section-c"><span class="bg-a"></span>
         <h2>Most liked companies</h2>
         <div class="row-fluid M-liked">
-            <div class="span2">
-                <img src="/img/Logo.jpg" width="136" height="56">
-                <div>7.77%  </div>
-            </div>
-            <div class="span2">
-                <img src="/img/Logo.jpg" width="136" height="56">
-                <div>7.77%  </div>
-            </div>
-            <div class="span2"><img src="/img/img_11.jpg"width="136" height="56"><div>7.77%  </div></div>
-            <div class="span2">
-                <img src="/img/Logo.jpg" width="136" height="56">
-                <div>7.77%  </div>
-            </div>
-            <div class="span2"><img src="/img/img_11.jpg"width="136" height="56"><div>7.77%  </div></div>
-            <div class="span2"><img src="/img/img_11.jpg"width="136" height="56"><div>7.77%  </div></div>
+            <div class="span2"><img src="/company-logo/173/71/51cc88c3e29db.gif" width="136" height="56"><div>Google</div></div>
+            <div class="span2"><img src="/company-logo/173/71/51cc881968cf1.jpg" width="136" height="56"><div>Facebook</div></div>
+            <div class="span2"><img src="/company-logo/173/71/519519515295d.jpg"width="136" height="56"><div>Alice & Olivia</div></div>
+            <div class="span2"><img src="/company-logo/173/71/517a95e40fc82.jpg" width="136" height="56"><div>AOL</div></div>
+            <div class="span2"><img src="/company-logo/173/71/517569e73a10e.jpg"width="136" height="56"><div>DocZoc</div></div>
+            <div class="span2"><img src="/company-logo/173/71/519556f212fee.jpg"width="136" height="56"><div>Oppenheimer</div></div>
 
-        </div>
-    </div>
-    <div class="section-b">
-        <div class="container">
-            <h2>Happy collegefeeders!</h2>
-            <div class="row-fluid Happy-co">
-                <div class="span4">
-
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="/img/images.jpg" width="120" height="120">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="">Sam Kim </a></h4>
-                            <span class="univ">UC-Berkeley</span>
-
-                            <p>Hired at Apptimize through collegefeed</p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="span4">
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="/img/images.jpg" width="120" height="120">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="">Sam Kim </a></h4>
-                            <span class="univ">UC-Berkeley</span>
-
-                            <p>Hired at Apptimize through collegefeed</p>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                <div class="span4">
-
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="/img/images.jpg" width="120" height="120">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="">Sam Kim </a></h4>
-                            <span class="univ">UC-Berkeley</span>
-
-                            <p>Hired at Apptimize through collegefeed</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </div>
     </div>
