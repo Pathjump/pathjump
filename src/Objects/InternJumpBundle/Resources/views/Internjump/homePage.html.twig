@@ -22,14 +22,14 @@
 <div class="container Search-Slide">
     <ul class="list-b">
      <li>Discover places you will love to work</li>
-     <li>Find out if your career field is a fit for you</li>
-     <li>Showcase your unique skillset to employers</li>
+     <li>Find out which jobs you are a fit for</li>
+     <li>Showcase your unique skills through the young professional profile</li>
     </ul>
 
-    <h2>Jump Start Your Career</h2>
+    <h1>Jump Start Your Career</h1>
 
     <div class="Search-block">
-        {% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_logging','permissions': 'email,publish_stream,user_birthday,user_about_me,user_education_history,user_work_history,user_location,user_hometown','cssClass' : 'login-f-b' , 'linkText' : 'sign with facebook'} %}
+        {% render "ObjectsAPIBundle:Facebook:facebookButton" with {'facebookUserHandleRoute' : 'facebook_logging','permissions': 'email,publish_stream,user_birthday,user_about_me,user_education_history,user_work_history,user_location,user_hometown','cssClass' : 'login-f-b' , 'linkText' : 'Sign up with Facebook'} %}
 
         <div class="text-center Or">or</div>
         <hr/>
@@ -100,9 +100,9 @@
 </div>
 
 <div class="How-work">
-    <h1>Find Openings With Great Companies</h1>
+    <h1>Finding Your Career Path Has Never Been Easier!</h1>
     <div class="container">
-        <p>Launching your career as a young professional can be difficult. Pathjump makes it easy to find the right career, connect with alumni, and search for relevant openings.</p>
+        <h3>Launching your career as a young professional can be difficult. Pathjump makes it easy to: discover what career you are best suited for, connect with your classmates and alumn,learn about different company cultures, and search for relevant openings.</h3>
     </div>
 </div><!--How-work-->
 
@@ -111,12 +111,12 @@
 
         <ul class="row-fluid show-grid">
             <li class="span4">
-                <h2>Show Employers Why They Should Hire You </h2>
+                <h2>Create an interactive career profile customized for young professionals without significant full-time experience. This isn't your dad's career network!</h2>
                 <div class="img-box">
                     <img  class="img-circle" src="{{asset('img/10.jpg')}}">
                     <span class="icon-box"><i class="fa fa-user"></i></span>
                 </div>
-                <p>Create a unique Pathjump profile to show off your skills, interests, and accomplishments</p>
+                <h5>Create a unique Pathjump profile to show off your skills, interests, and accomplishments</h5>
             </li>
             <li class="span4">
                 <h2>Discover Companies You Would Enjoy Working For</h2>
@@ -124,7 +124,7 @@
                     <img  class="img-circle" src="{{asset('img/11.jpg')}}">
                     <span class="icon-box"><i class="fa fa-user"></i></span>
                 </div>
-                <p>Learn about different company cultures and each company’s unique mission</p>
+                <h5>Learn about different company cultures and each company’s unique mission</h5>
             </li>
             <li class="span4">
                 <h2>Find Answers To Your Career Questions</h2>
@@ -132,7 +132,7 @@
                     <img  class="img-circle" src="{{asset('img/12.jpg')}}">
                     <span class="icon-box"><i class="fa fa-user"></i></span>
                 </div>
-                <p>Should I work for a start-up or a big corporation? What is it like to interview with Amazon? What are pros and cons of working in NYC versus San Francisco? Find the career answers you need!</p>
+                <h5>Should I work for a start-up or a big corporation? What is it like to interview with Amazon? What are pros and cons of working in NYC versus San Francisco? Find the career answers you need!</h5>
             </li>
         </ul>
     </div>
@@ -154,7 +154,7 @@
             </div>
             {% if worthUsers | length > 0 %}
             <div class="span3 Maxim">
-                <h2>How Can I Maximize My Salary?</h2>
+                <h2>How Can I Maximize My Salary?</h2>  
 
                 <ul class="list-a">
                     {% if worthFrom == 'automatic' %}
